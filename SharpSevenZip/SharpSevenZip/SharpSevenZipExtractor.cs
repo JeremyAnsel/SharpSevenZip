@@ -491,7 +491,7 @@ public sealed partial class SharpSevenZipExtractor
     /// <summary>
     /// Retrieves all information about the archive.
     /// </summary>
-    /// <exception cref="SharpSevenZip.SevenZipArchiveException"/>
+    /// <exception cref="SharpSevenZipArchiveException"/>
     private void GetArchiveInfo(bool disposeStream)
     {
         if (_archive == null)
