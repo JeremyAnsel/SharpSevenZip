@@ -1,5 +1,6 @@
 # SharpSevenZip
 
+[![Build status](https://ci.appveyor.com/api/projects/status/u6ki6smclwffstjy/branch/main?svg=true)](https://ci.appveyor.com/project/JeremyAnsel/sharpsevenzip/branch/main)
 [![NuGet Version](https://buildstats.info/nuget/SharpSevenZip)](https://www.nuget.org/packages/SharpSevenZip)
 ![License](https://img.shields.io/github/license/JeremyAnsel/SharpSevenZip)
 
