@@ -1,0 +1,524 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class Encoder </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class Encoder ">
+    
+    <meta name="description" content="The LZMA encoder class">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.json">
+      <meta property="docfx:tocrel" content="toc.json">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../api/index.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/JeremyAnsel/SharpSevenZip" title="Source Code">Source Code</a>
+                      </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.html" title="SharpSevenZip" class="">SharpSevenZip</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.ArchiveFileInfo.html" title="ArchiveFileInfo" class="">ArchiveFileInfo</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ArchiveProperty.html" title="ArchiveProperty" class="">ArchiveProperty</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionLevel.html" title="CompressionLevel" class="">CompressionLevel</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMethod.html" title="CompressionMethod" class="">CompressionMethod</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMode.html" title="CompressionMode" class="">CompressionMode</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventSynchronizationStrategy.html" title="EventSynchronizationStrategy" class="">EventSynchronizationStrategy</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ExtractFileCallback.html" title="ExtractFileCallback" class="">ExtractFileCallback</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Formats.html" title="Formats" class="">Formats</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ICancellable.html" title="ICancellable" class="">ICancellable</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.InArchiveFormat.html" title="InArchiveFormat" class="">InArchiveFormat</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.LibraryFeature.html" title="LibraryFeature" class="">LibraryFeature</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.OperationResult.html" title="OperationResult" class="">OperationResult</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.OutArchiveFormat.html" title="OutArchiveFormat" class="">OutArchiveFormat</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SfxModule.html" title="SfxModule" class="">SfxModule</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipBase.html" title="SharpSevenZipBase" class="">SharpSevenZipBase</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipCompressor.html" title="SharpSevenZipCompressor" class="">SharpSevenZipCompressor</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipExtractor.html" title="SharpSevenZipExtractor" class="">SharpSevenZipExtractor</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipSfx.html" title="SharpSevenZipSfx" class="">SharpSevenZipSfx</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ZipEncryptionMethod.html" title="ZipEncryptionMethod" class="">ZipEncryptionMethod</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.EventArguments.html" title="SharpSevenZip.EventArguments" class="">SharpSevenZip.EventArguments</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ExtractFileCallbackArgs.html" title="ExtractFileCallbackArgs" class="">ExtractFileCallbackArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ExtractFileCallbackReason.html" title="ExtractFileCallbackReason" class="">ExtractFileCallbackReason</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileInfoEventArgs.html" title="FileInfoEventArgs" class="">FileInfoEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileNameEventArgs.html" title="FileNameEventArgs" class="">FileNameEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileOverwriteEventArgs.html" title="FileOverwriteEventArgs" class="">FileOverwriteEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.IntEventArgs.html" title="IntEventArgs" class="">IntEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.OpenEventArgs.html" title="OpenEventArgs" class="">OpenEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.PercentDoneEventArgs.html" title="PercentDoneEventArgs" class="">PercentDoneEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ProgressEventArgs.html" title="ProgressEventArgs" class="">ProgressEventArgs</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Exceptions.html" title="SharpSevenZip.Exceptions" class="">SharpSevenZip.Exceptions</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.CompressionFailedException.html" title="CompressionFailedException" class="">CompressionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.ExtractionFailedException.html" title="ExtractionFailedException" class="">ExtractionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.LzmaException.html" title="LzmaException" class="">LzmaException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html" title="SharpSevenZipArchiveException" class="">SharpSevenZipArchiveException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html" title="SharpSevenZipCompressionFailedException" class="">SharpSevenZipCompressionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipException.html" title="SharpSevenZipException" class="">SharpSevenZipException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html" title="SharpSevenZipExtractionFailedException" class="">SharpSevenZipExtractionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html" title="SharpSevenZipInvalidFileNamesException" class="">SharpSevenZipInvalidFileNamesException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html" title="SharpSevenZipLibraryException" class="">SharpSevenZipLibraryException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html" title="SharpSevenZipSfxValidationException" class="">SharpSevenZipSfxValidationException</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Lzma.html" title="SharpSevenZip.Lzma" class="">SharpSevenZip.Lzma</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Lzma.LzmaDecodeStream.html" title="LzmaDecodeStream" class="">LzmaDecodeStream</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Lzma.LzmaEncodeStream.html" title="LzmaEncodeStream" class="">LzmaEncodeStream</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Sdk.html" title="SharpSevenZip.Sdk" class="">SharpSevenZip.Sdk</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.CoderPropId.html" title="CoderPropId" class="">CoderPropId</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.ICodeProgress.html" title="ICodeProgress" class="">ICodeProgress</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.ICoder.html" title="ICoder" class="">ICoder</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Sdk.Compression.Lzma.html" title="SharpSevenZip.Sdk.Compression.Lzma" class="">SharpSevenZip.Sdk.Compression.Lzma</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.Compression.Lzma.Decoder.html" title="Decoder" class="">Decoder</a>
+                          </li>
+                          <li class="active">
+                            <a href="SharpSevenZip.Sdk.Compression.Lzma.Encoder.html" title="Encoder" class="active">Encoder</a>
+                          </li>
+                        </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder">
+
+
+
+  <h1 id="SharpSevenZip_Sdk_Compression_Lzma_Encoder" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder" class="text-break">Class Encoder</h1>
+  <div class="markdown level0 summary"><p>The LZMA encoder class</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">Encoder</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="SharpSevenZip.Sdk.ICoder.html">ICoder</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SharpSevenZip.html">SharpSevenZip</a>.<a class="xref" href="SharpSevenZip.Sdk.html">Sdk</a>.<a class="xref" href="SharpSevenZip.Sdk.Compression.html">Compression</a>.<a class="xref" href="SharpSevenZip.Sdk.Compression.Lzma.html">Lzma</a></h6>
+  <h6><strong>Assembly</strong>: SharpSevenZip.dll</h6>
+  <h5 id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class Encoder : ICoder</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_Sdk_Compression_Lzma_Encoder__ctor.md&amp;value=---%0Auid%3A%20SharpSevenZip.Sdk.Compression.Lzma.Encoder.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/Sdk/Compression/Lzma/Encoder.cs/#L106">View Source</a>
+  </span>
+  <a id="SharpSevenZip_Sdk_Compression_Lzma_Encoder__ctor_" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.#ctor*"></a>
+  <h4 id="SharpSevenZip_Sdk_Compression_Lzma_Encoder__ctor" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.#ctor">Encoder()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the Encoder class</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Encoder()</code></pre>
+  </div>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_Sdk_Compression_Lzma_Encoder_Code_System_IO_Stream_System_IO_Stream_System_Int64_System_Int64_SharpSevenZip_Sdk_ICodeProgress_.md&amp;value=---%0Auid%3A%20SharpSevenZip.Sdk.Compression.Lzma.Encoder.Code(System.IO.Stream%2CSystem.IO.Stream%2CSystem.Int64%2CSystem.Int64%2CSharpSevenZip.Sdk.ICodeProgress)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/Sdk/Compression/Lzma/Encoder.cs/#L124">View Source</a>
+  </span>
+  <a id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_Code_" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.Code*"></a>
+  <h4 id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_Code_System_IO_Stream_System_IO_Stream_System_Int64_System_Int64_SharpSevenZip_Sdk_ICodeProgress_" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.Code(System.IO.Stream,System.IO.Stream,System.Int64,System.Int64,SharpSevenZip.Sdk.ICodeProgress)">Code(Stream, Stream, long, long, ICodeProgress?)</h4>
+  <div class="markdown level1 summary"><p>Codes the specified stream</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Code(Stream inStream, Stream outStream, long inSize, long outSize, ICodeProgress? progress)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">inStream</span></td>
+        <td><p>The input stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">outStream</span></td>
+        <td><p>The output stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">inSize</span></td>
+        <td><p>The input size</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td><span class="parametername">outSize</span></td>
+        <td><p>The output size</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.Sdk.ICodeProgress.html">ICodeProgress</a></td>
+        <td><span class="parametername">progress</span></td>
+        <td><p>The progress callback</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_Sdk_Compression_Lzma_Encoder_SetCoderProperties_SharpSevenZip_Sdk_CoderPropId___System_Object___.md&amp;value=---%0Auid%3A%20SharpSevenZip.Sdk.Compression.Lzma.Encoder.SetCoderProperties(SharpSevenZip.Sdk.CoderPropId%5B%5D%2CSystem.Object%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/Sdk/Compression/Lzma/Encoder.cs/#L154">View Source</a>
+  </span>
+  <a id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_SetCoderProperties_" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.SetCoderProperties*"></a>
+  <h4 id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_SetCoderProperties_SharpSevenZip_Sdk_CoderPropId___System_Object___" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.SetCoderProperties(SharpSevenZip.Sdk.CoderPropId[],System.Object[])">SetCoderProperties(CoderPropId[], object[])</h4>
+  <div class="markdown level1 summary"><p>Sets the coder properties</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void SetCoderProperties(CoderPropId[] propIDs, object[] properties)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.Sdk.CoderPropId.html">CoderPropId</a>[]</td>
+        <td><span class="parametername">propIDs</span></td>
+        <td><p>The property identificators</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a>[]</td>
+        <td><span class="parametername">properties</span></td>
+        <td><p>The array of properties</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_Sdk_Compression_Lzma_Encoder_WriteCoderProperties_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.Sdk.Compression.Lzma.Encoder.WriteCoderProperties(System.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/Sdk/Compression/Lzma/Encoder.cs/#L278">View Source</a>
+  </span>
+  <a id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_WriteCoderProperties_" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.WriteCoderProperties*"></a>
+  <h4 id="SharpSevenZip_Sdk_Compression_Lzma_Encoder_WriteCoderProperties_System_IO_Stream_" data-uid="SharpSevenZip.Sdk.Compression.Lzma.Encoder.WriteCoderProperties(System.IO.Stream)">WriteCoderProperties(Stream)</h4>
+  <div class="markdown level1 summary"><p>Writes the coder properties</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void WriteCoderProperties(Stream outStream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">outStream</span></td>
+        <td><p>The output stream to write the properties to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="SharpSevenZip.Sdk.ICoder.html">ICoder</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_Sdk_Compression_Lzma_Encoder.md&amp;value=---%0Auid%3A%20SharpSevenZip.Sdk.Compression.Lzma.Encoder%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/Sdk/Compression/Lzma/Encoder.cs/#L10" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Copyright (C) Markovtsev Vadim 2009, 2010, J&eacute;r&eacute;my Ansel 2024
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

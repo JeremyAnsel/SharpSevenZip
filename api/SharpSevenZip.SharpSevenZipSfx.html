@@ -1,0 +1,859 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class SharpSevenZipSfx </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class SharpSevenZipSfx ">
+    
+    <meta name="description" content="The class for making 7-zip based self-extracting archives.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.json">
+      <meta property="docfx:tocrel" content="toc.json">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../api/index.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/JeremyAnsel/SharpSevenZip" title="Source Code">Source Code</a>
+                      </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.html" title="SharpSevenZip" class="">SharpSevenZip</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.ArchiveFileInfo.html" title="ArchiveFileInfo" class="">ArchiveFileInfo</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ArchiveProperty.html" title="ArchiveProperty" class="">ArchiveProperty</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionLevel.html" title="CompressionLevel" class="">CompressionLevel</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMethod.html" title="CompressionMethod" class="">CompressionMethod</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMode.html" title="CompressionMode" class="">CompressionMode</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventSynchronizationStrategy.html" title="EventSynchronizationStrategy" class="">EventSynchronizationStrategy</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ExtractFileCallback.html" title="ExtractFileCallback" class="">ExtractFileCallback</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Formats.html" title="Formats" class="">Formats</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ICancellable.html" title="ICancellable" class="">ICancellable</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.InArchiveFormat.html" title="InArchiveFormat" class="">InArchiveFormat</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.LibraryFeature.html" title="LibraryFeature" class="">LibraryFeature</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.OperationResult.html" title="OperationResult" class="">OperationResult</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.OutArchiveFormat.html" title="OutArchiveFormat" class="">OutArchiveFormat</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SfxModule.html" title="SfxModule" class="">SfxModule</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipBase.html" title="SharpSevenZipBase" class="">SharpSevenZipBase</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipCompressor.html" title="SharpSevenZipCompressor" class="">SharpSevenZipCompressor</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipExtractor.html" title="SharpSevenZipExtractor" class="">SharpSevenZipExtractor</a>
+                          </li>
+                          <li class="active">
+                            <a href="SharpSevenZip.SharpSevenZipSfx.html" title="SharpSevenZipSfx" class="active">SharpSevenZipSfx</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ZipEncryptionMethod.html" title="ZipEncryptionMethod" class="">ZipEncryptionMethod</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.EventArguments.html" title="SharpSevenZip.EventArguments" class="">SharpSevenZip.EventArguments</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ExtractFileCallbackArgs.html" title="ExtractFileCallbackArgs" class="">ExtractFileCallbackArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ExtractFileCallbackReason.html" title="ExtractFileCallbackReason" class="">ExtractFileCallbackReason</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileInfoEventArgs.html" title="FileInfoEventArgs" class="">FileInfoEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileNameEventArgs.html" title="FileNameEventArgs" class="">FileNameEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileOverwriteEventArgs.html" title="FileOverwriteEventArgs" class="">FileOverwriteEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.IntEventArgs.html" title="IntEventArgs" class="">IntEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.OpenEventArgs.html" title="OpenEventArgs" class="">OpenEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.PercentDoneEventArgs.html" title="PercentDoneEventArgs" class="">PercentDoneEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ProgressEventArgs.html" title="ProgressEventArgs" class="">ProgressEventArgs</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Exceptions.html" title="SharpSevenZip.Exceptions" class="">SharpSevenZip.Exceptions</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.CompressionFailedException.html" title="CompressionFailedException" class="">CompressionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.ExtractionFailedException.html" title="ExtractionFailedException" class="">ExtractionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.LzmaException.html" title="LzmaException" class="">LzmaException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html" title="SharpSevenZipArchiveException" class="">SharpSevenZipArchiveException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html" title="SharpSevenZipCompressionFailedException" class="">SharpSevenZipCompressionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipException.html" title="SharpSevenZipException" class="">SharpSevenZipException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html" title="SharpSevenZipExtractionFailedException" class="">SharpSevenZipExtractionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html" title="SharpSevenZipInvalidFileNamesException" class="">SharpSevenZipInvalidFileNamesException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html" title="SharpSevenZipLibraryException" class="">SharpSevenZipLibraryException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html" title="SharpSevenZipSfxValidationException" class="">SharpSevenZipSfxValidationException</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Lzma.html" title="SharpSevenZip.Lzma" class="">SharpSevenZip.Lzma</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Lzma.LzmaDecodeStream.html" title="LzmaDecodeStream" class="">LzmaDecodeStream</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Lzma.LzmaEncodeStream.html" title="LzmaEncodeStream" class="">LzmaEncodeStream</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Sdk.html" title="SharpSevenZip.Sdk" class="">SharpSevenZip.Sdk</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.CoderPropId.html" title="CoderPropId" class="">CoderPropId</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.ICodeProgress.html" title="ICodeProgress" class="">ICodeProgress</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.ICoder.html" title="ICoder" class="">ICoder</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Sdk.Compression.Lzma.html" title="SharpSevenZip.Sdk.Compression.Lzma" class="">SharpSevenZip.Sdk.Compression.Lzma</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.Compression.Lzma.Decoder.html" title="Decoder" class="">Decoder</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.Compression.Lzma.Encoder.html" title="Encoder" class="">Encoder</a>
+                          </li>
+                        </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SharpSevenZip.SharpSevenZipSfx">
+
+
+
+  <h1 id="SharpSevenZip_SharpSevenZipSfx" data-uid="SharpSevenZip.SharpSevenZipSfx" class="text-break">Class SharpSevenZipSfx</h1>
+  <div class="markdown level0 summary"><p>The class for making 7-zip based self-extracting archives.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">SharpSevenZipSfx</span></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SharpSevenZip.html">SharpSevenZip</a></h6>
+  <h6><strong>Assembly</strong>: SharpSevenZip.dll</h6>
+  <h5 id="SharpSevenZip_SharpSevenZipSfx_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public class SharpSevenZipSfx</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx__ctor.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.%23ctor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L78">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx__ctor_" data-uid="SharpSevenZip.SharpSevenZipSfx.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx__ctor" data-uid="SharpSevenZip.SharpSevenZipSfx.#ctor">SharpSevenZipSfx()</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the SharpSevenZipSfx class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipSfx()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx__ctor_SharpSevenZip_SfxModule_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.%23ctor(SharpSevenZip.SfxModule)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L88">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx__ctor_" data-uid="SharpSevenZip.SharpSevenZipSfx.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx__ctor_SharpSevenZip_SfxModule_" data-uid="SharpSevenZip.SharpSevenZipSfx.#ctor(SharpSevenZip.SfxModule)">SharpSevenZipSfx(SfxModule)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the SharpSevenZipSfx class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipSfx(SfxModule module)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.SfxModule.html">SfxModule</a></td>
+        <td><span class="parametername">module</span></td>
+        <td><p>The sfx module to use as a front-end.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx__ctor_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.%23ctor(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L103">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx__ctor_" data-uid="SharpSevenZip.SharpSevenZipSfx.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx__ctor_System_String_" data-uid="SharpSevenZip.SharpSevenZipSfx.#ctor(System.String)">SharpSevenZipSfx(string)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of the SharpSevenZipSfx class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipSfx(string moduleFileName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">moduleFileName</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_ModuleFileName.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.ModuleFileName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L118">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_ModuleFileName_" data-uid="SharpSevenZip.SharpSevenZipSfx.ModuleFileName*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_ModuleFileName" data-uid="SharpSevenZip.SharpSevenZipSfx.ModuleFileName">ModuleFileName</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the custom sfx module file name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? ModuleFileName { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_SfxModule.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.SfxModule%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L113">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_SfxModule_" data-uid="SharpSevenZip.SharpSevenZipSfx.SfxModule*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_SfxModule" data-uid="SharpSevenZip.SharpSevenZipSfx.SfxModule">SfxModule</h4>
+  <div class="markdown level1 summary"><p>Gets the sfx module type.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SfxModule SfxModule { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.SfxModule.html">SfxModule</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_Collections_Generic_Dictionary_System_String_System_String__System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L408">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_Collections_Generic_Dictionary_System_String_System_String__System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream,System.Collections.Generic.Dictionary{System.String,System.String},System.IO.Stream)">MakeSfx(Stream, Dictionary&lt;string, string&gt;, Stream)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(Stream archive, Dictionary&lt;string, string&gt; settings, Stream sfxStream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archive</span></td>
+        <td><p>The archive stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The sfx settings.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">sfxStream</span></td>
+        <td><p>The stream to write the self-extracting executable to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_Collections_Generic_Dictionary_System_String_System_String__System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L396">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_Collections_Generic_Dictionary_System_String_System_String__System_String_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">MakeSfx(Stream, Dictionary&lt;string, string&gt;, string)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(Stream archive, Dictionary&lt;string, string&gt; settings, string sfxFileName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archive</span></td>
+        <td><p>The archive stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The sfx settings.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sfxFileName</span></td>
+        <td><p>The name of the self-extracting executable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L385">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream,System.IO.Stream)">MakeSfx(Stream, Stream)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(Stream archive, Stream sfxStream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archive</span></td>
+        <td><p>The archive stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">sfxStream</span></td>
+        <td><p>The stream to write the self-extracting executable to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L374">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_IO_Stream_System_String_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.IO.Stream,System.String)">MakeSfx(Stream, string)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(Stream archive, string sfxFileName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archive</span></td>
+        <td><p>The archive stream.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sfxFileName</span></td>
+        <td><p>The name of the self-extracting executable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_Collections_Generic_Dictionary_System_String_System_String__System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L473">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_Collections_Generic_Dictionary_System_String_System_String__System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.IO.Stream)">MakeSfx(string, Dictionary&lt;string, string&gt;, Stream)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(string archiveFileName, Dictionary&lt;string, string&gt; settings, Stream sfxStream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFileName</span></td>
+        <td><p>The archive file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The sfx settings.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">sfxStream</span></td>
+        <td><p>The stream to write the self-extracting executable to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_Collections_Generic_Dictionary_System_String_System_String__System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String%2CSystem.Collections.Generic.Dictionary%7BSystem.String%2CSystem.String%7D%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L460">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_Collections_Generic_Dictionary_System_String_System_String__System_String_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String,System.Collections.Generic.Dictionary{System.String,System.String},System.String)">MakeSfx(string, Dictionary&lt;string, string&gt;, string)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(string archiveFileName, Dictionary&lt;string, string&gt; settings, string sfxFileName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFileName</span></td>
+        <td><p>The archive file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.generic.dictionary-2">Dictionary</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>, <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td><span class="parametername">settings</span></td>
+        <td><p>The sfx settings.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sfxFileName</span></td>
+        <td><p>The name of the self-extracting executable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L448">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String,System.IO.Stream)">MakeSfx(string, Stream)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(string archiveFileName, Stream sfxStream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFileName</span></td>
+        <td><p>The archive file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">sfxStream</span></td>
+        <td><p>The stream to write the self-extracting executable to.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L436">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipSfx_MakeSfx_System_String_System_String_" data-uid="SharpSevenZip.SharpSevenZipSfx.MakeSfx(System.String,System.String)">MakeSfx(string, string)</h4>
+  <div class="markdown level1 summary"><p>Makes the self-extracting archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void MakeSfx(string archiveFileName, string sfxFileName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFileName</span></td>
+        <td><p>The archive file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">sfxFileName</span></td>
+        <td><p>The name of the self-extracting executable.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipSfx.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipSfx%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipSfx.cs/#L45" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Copyright (C) Markovtsev Vadim 2009, 2010, J&eacute;r&eacute;my Ansel 2024
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

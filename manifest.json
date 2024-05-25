@@ -1,0 +1,569 @@
+{
+  "source_base_path": "C:/projects/sharpsevenzip/SharpSevenZip/Documentation",
+  "xrefmap": "xrefmap.yml",
+  "files": [
+    {
+      "type": "Resource",
+      "output": {
+        "resource": {
+          "relative_path": "index.json"
+        }
+      }
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ArchiveFileInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ArchiveFileInfo.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ArchiveProperty.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ArchiveProperty.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.CompressionLevel.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.CompressionLevel.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.CompressionMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.CompressionMethod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.CompressionMode.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.CompressionMode.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.ExtractFileCallbackArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.ExtractFileCallbackArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.ExtractFileCallbackReason.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.ExtractFileCallbackReason.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.FileInfoEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.FileInfoEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.FileNameEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.FileNameEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.FileOverwriteEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.FileOverwriteEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.IntEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.IntEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.OpenEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.OpenEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.PercentDoneEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.PercentDoneEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.ProgressEventArgs.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.ProgressEventArgs.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventArguments.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventArguments.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.EventSynchronizationStrategy.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.EventSynchronizationStrategy.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.CompressionFailedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.CompressionFailedException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.ExtractionFailedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.ExtractionFailedException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.LzmaException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.LzmaException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipArchiveException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipLibraryException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ExtractFileCallback.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ExtractFileCallback.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Formats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Formats.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ICancellable.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ICancellable.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.InArchiveFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.InArchiveFormat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.LibraryFeature.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.LibraryFeature.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Lzma.LzmaDecodeStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Lzma.LzmaDecodeStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Lzma.LzmaEncodeStream.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Lzma.LzmaEncodeStream.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Lzma.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Lzma.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.OperationResult.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.OperationResult.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.OutArchiveFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.OutArchiveFormat.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.CoderPropId.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.CoderPropId.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.Decoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.Decoder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.Encoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.Encoder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.ICodeProgress.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.ICodeProgress.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.ICoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.ICoder.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Sdk.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Sdk.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SfxModule.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SfxModule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SharpSevenZipBase.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SharpSevenZipBase.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SharpSevenZipCompressor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SharpSevenZipCompressor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SharpSevenZipExtractor.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SharpSevenZipExtractor.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SharpSevenZipSfx.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SharpSevenZipSfx.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ZipEncryptionMethod.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ZipEncryptionMethod.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "api/index.md",
+      "output": {
+        ".html": {
+          "relative_path": "api/index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "api/toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "api/toc.json"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Conceptual",
+      "source_relative_path": "index.md",
+      "output": {
+        ".html": {
+          "relative_path": "index.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "Toc",
+      "source_relative_path": "toc.yml",
+      "output": {
+        ".json": {
+          "relative_path": "toc.json"
+        }
+      },
+      "version": ""
+    }
+  ],
+  "groups": [
+    {
+      "xrefmap": "xrefmap.yml"
+    }
+  ]
+}

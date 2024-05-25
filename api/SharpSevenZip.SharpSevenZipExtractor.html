@@ -1,0 +1,2294 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+
+  <head>
+    <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+      <title>Class SharpSevenZipExtractor </title>
+      <meta name="viewport" content="width=device-width">
+      <meta name="title" content="Class SharpSevenZipExtractor ">
+    
+    <meta name="description" content="Class to unpack data from archives supported by 7-Zip.">
+      <link rel="shortcut icon" href="../favicon.ico">
+      <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
+      <link rel="stylesheet" href="../styles/docfx.css">
+      <link rel="stylesheet" href="../styles/main.css">
+      <meta property="docfx:navrel" content="../toc.json">
+      <meta property="docfx:tocrel" content="toc.json">
+    
+    <meta property="docfx:rel" content="../">
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+
+                <ul class="nav level1 navbar-nav">
+                      <li>
+                          <a href="../api/index.html" title="Api Documentation">Api Documentation</a>
+                      </li>
+                      <li>
+                          <a href="https://github.com/JeremyAnsel/SharpSevenZip" title="Source Code">Source Code</a>
+                      </li>
+                </ul>
+            </div>
+          </div>
+        </nav>
+
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div class="container body-content">
+
+        <div id="search-results">
+          <div class="search-list">Search Results for <span></span></div>
+          <div class="sr-items">
+            <p><i class="glyphicon glyphicon-refresh index-loading"></i></p>
+          </div>
+          <ul id="pagination" data-first="First" data-prev="Previous" data-next="Next" data-last="Last"></ul>
+        </div>
+      </div>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div>
+              <div class="sidefilter">
+                <form class="toc-filter">
+                  <span class="glyphicon glyphicon-filter filter-icon"></span>
+                  <input type="text" id="toc_filter_input" placeholder="Enter here to filter..." onkeypress="if(event.keyCode==13) {return false;}">
+                </form>
+              </div>
+              <div class="sidetoc">
+                <div class="toc" id="toc">
+
+                  <ul class="nav level1">
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.html" title="SharpSevenZip" class="">SharpSevenZip</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.ArchiveFileInfo.html" title="ArchiveFileInfo" class="">ArchiveFileInfo</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ArchiveProperty.html" title="ArchiveProperty" class="">ArchiveProperty</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionLevel.html" title="CompressionLevel" class="">CompressionLevel</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMethod.html" title="CompressionMethod" class="">CompressionMethod</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMode.html" title="CompressionMode" class="">CompressionMode</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventSynchronizationStrategy.html" title="EventSynchronizationStrategy" class="">EventSynchronizationStrategy</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ExtractFileCallback.html" title="ExtractFileCallback" class="">ExtractFileCallback</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Formats.html" title="Formats" class="">Formats</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ICancellable.html" title="ICancellable" class="">ICancellable</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.InArchiveFormat.html" title="InArchiveFormat" class="">InArchiveFormat</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.LibraryFeature.html" title="LibraryFeature" class="">LibraryFeature</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.OperationResult.html" title="OperationResult" class="">OperationResult</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.OutArchiveFormat.html" title="OutArchiveFormat" class="">OutArchiveFormat</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SfxModule.html" title="SfxModule" class="">SfxModule</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipBase.html" title="SharpSevenZipBase" class="">SharpSevenZipBase</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipCompressor.html" title="SharpSevenZipCompressor" class="">SharpSevenZipCompressor</a>
+                          </li>
+                          <li class="active">
+                            <a href="SharpSevenZip.SharpSevenZipExtractor.html" title="SharpSevenZipExtractor" class="active">SharpSevenZipExtractor</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.SharpSevenZipSfx.html" title="SharpSevenZipSfx" class="">SharpSevenZipSfx</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.ZipEncryptionMethod.html" title="ZipEncryptionMethod" class="">ZipEncryptionMethod</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.EventArguments.html" title="SharpSevenZip.EventArguments" class="">SharpSevenZip.EventArguments</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ExtractFileCallbackArgs.html" title="ExtractFileCallbackArgs" class="">ExtractFileCallbackArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ExtractFileCallbackReason.html" title="ExtractFileCallbackReason" class="">ExtractFileCallbackReason</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileInfoEventArgs.html" title="FileInfoEventArgs" class="">FileInfoEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileNameEventArgs.html" title="FileNameEventArgs" class="">FileNameEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.FileOverwriteEventArgs.html" title="FileOverwriteEventArgs" class="">FileOverwriteEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.IntEventArgs.html" title="IntEventArgs" class="">IntEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.OpenEventArgs.html" title="OpenEventArgs" class="">OpenEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.PercentDoneEventArgs.html" title="PercentDoneEventArgs" class="">PercentDoneEventArgs</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.EventArguments.ProgressEventArgs.html" title="ProgressEventArgs" class="">ProgressEventArgs</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Exceptions.html" title="SharpSevenZip.Exceptions" class="">SharpSevenZip.Exceptions</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.CompressionFailedException.html" title="CompressionFailedException" class="">CompressionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.ExtractionFailedException.html" title="ExtractionFailedException" class="">ExtractionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.LzmaException.html" title="LzmaException" class="">LzmaException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html" title="SharpSevenZipArchiveException" class="">SharpSevenZipArchiveException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html" title="SharpSevenZipCompressionFailedException" class="">SharpSevenZipCompressionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipException.html" title="SharpSevenZipException" class="">SharpSevenZipException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html" title="SharpSevenZipExtractionFailedException" class="">SharpSevenZipExtractionFailedException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html" title="SharpSevenZipInvalidFileNamesException" class="">SharpSevenZipInvalidFileNamesException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html" title="SharpSevenZipLibraryException" class="">SharpSevenZipLibraryException</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html" title="SharpSevenZipSfxValidationException" class="">SharpSevenZipSfxValidationException</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Lzma.html" title="SharpSevenZip.Lzma" class="">SharpSevenZip.Lzma</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Lzma.LzmaDecodeStream.html" title="LzmaDecodeStream" class="">LzmaDecodeStream</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Lzma.LzmaEncodeStream.html" title="LzmaEncodeStream" class="">LzmaEncodeStream</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Sdk.html" title="SharpSevenZip.Sdk" class="">SharpSevenZip.Sdk</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.CoderPropId.html" title="CoderPropId" class="">CoderPropId</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.ICodeProgress.html" title="ICodeProgress" class="">ICodeProgress</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.ICoder.html" title="ICoder" class="">ICoder</a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="">
+                      <span class="expand-stub"></span>
+                      <a href="SharpSevenZip.Sdk.Compression.Lzma.html" title="SharpSevenZip.Sdk.Compression.Lzma" class="">SharpSevenZip.Sdk.Compression.Lzma</a>
+
+                        <ul class="nav level2">
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.Compression.Lzma.Decoder.html" title="Decoder" class="">Decoder</a>
+                          </li>
+                          <li class="">
+                            <a href="SharpSevenZip.Sdk.Compression.Lzma.Encoder.html" title="Encoder" class="">Encoder</a>
+                          </li>
+                        </ul>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="SharpSevenZip.SharpSevenZipExtractor">
+
+
+
+  <h1 id="SharpSevenZip_SharpSevenZipExtractor" data-uid="SharpSevenZip.SharpSevenZipExtractor" class="text-break">Class SharpSevenZipExtractor</h1>
+  <div class="markdown level0 summary"><p>Class to unpack data from archives supported by 7-Zip.</p>
+</div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject">MarshalByRefObject</a></div>
+    <div class="level2"><a class="xref" href="SharpSevenZip.SharpSevenZipBase.html">SharpSevenZipBase</a></div>
+    <div class="level3"><span class="xref">SharpSevenZipExtractor</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a></div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_EventSynchronization">SharpSevenZipBase.EventSynchronization</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_UniqueID">SharpSevenZipBase.UniqueID</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_Password">SharpSevenZipBase.Password</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_SetLibraryPath_System_String_">SharpSevenZipBase.SetLibraryPath(string)</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_CurrentLibraryFeatures">SharpSevenZipBase.CurrentLibraryFeatures</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_Equals_System_Object_">SharpSevenZipBase.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_GetHashCode">SharpSevenZipBase.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_ToString">SharpSevenZipBase.ToString()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.getlifetimeservice">MarshalByRefObject.GetLifetimeService()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.marshalbyrefobject.initializelifetimeservice">MarshalByRefObject.InitializeLifetimeService()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SharpSevenZip.html">SharpSevenZip</a></h6>
+  <h6><strong>Assembly</strong>: SharpSevenZip.dll</h6>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public sealed class SharpSevenZipExtractor : SharpSevenZipBase, IDisposable</code></pre>
+  </div>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor_examples"><strong>Examples</strong></h5>
+  <p>using (var extr = new SharpSevenZipExtractor(@&quot;C:\Test.7z&quot;))
+{
+extr.ExtractArchive(@&quot;C:\TestDirectory&quot;);
+}</p>
+
+  <h3 id="constructors">Constructors
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L154">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.IO.Stream)">SharpSevenZipExtractor(Stream)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(Stream archiveStream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archiveStream</span></td>
+        <td><p>The stream to read the archive from.
+Use SharpSevenZipExtractor(string) to extract from disk, though it is not necessary.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The archive format is guessed by the signature.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_Boolean_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.IO.Stream%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L166">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_Boolean_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.IO.Stream,System.Boolean)">SharpSevenZipExtractor(Stream, bool)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(Stream archiveStream, bool leaveOpen)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archiveStream</span></td>
+        <td><p>The stream to read the archive from.
+Use SharpSevenZipExtractor(string) to extract from disk, though it is not necessary.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leaves the base stream open.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The archive format is guessed by the signature.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_Boolean_SharpSevenZip_InArchiveFormat_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.IO.Stream%2CSystem.Boolean%2CSharpSevenZip.InArchiveFormat)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L180">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_Boolean_SharpSevenZip_InArchiveFormat_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.IO.Stream,System.Boolean,SharpSevenZip.InArchiveFormat)">SharpSevenZipExtractor(Stream, bool, InArchiveFormat)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(Stream archiveStream, bool leaveOpen, InArchiveFormat format)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archiveStream</span></td>
+        <td><p>The stream to read the archive from.
+Use SharpSevenZipExtractor(string) to extract from disk, though it is not necessary.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leaves the base stream open.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.InArchiveFormat.html">InArchiveFormat</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Manual archive format setup. You SHOULD NOT normally specify it this way.
+Instead, use SharpSevenZipExtractor(Stream archiveStream), that constructor
+automatically detects the archive format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.IO.Stream%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L241">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.IO.Stream,System.String)">SharpSevenZipExtractor(Stream, string)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(Stream archiveStream, string password)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archiveStream</span></td>
+        <td><p>The stream to read the archive from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>Password for an encrypted archive.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The archive format is guessed by the signature.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.IO.Stream%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L253">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_System_Boolean_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.IO.Stream,System.String,System.Boolean)">SharpSevenZipExtractor(Stream, string, bool)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(Stream archiveStream, string password, bool leaveOpen)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archiveStream</span></td>
+        <td><p>The stream to read the archive from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>Password for an encrypted archive.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leaves the base stream open.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_System_Boolean__remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>The archive format is guessed by the signature.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_System_Boolean_SharpSevenZip_InArchiveFormat_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.IO.Stream%2CSystem.String%2CSystem.Boolean%2CSharpSevenZip.InArchiveFormat)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L267">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_IO_Stream_System_String_System_Boolean_SharpSevenZip_InArchiveFormat_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.IO.Stream,System.String,System.Boolean,SharpSevenZip.InArchiveFormat)">SharpSevenZipExtractor(Stream, string, bool, InArchiveFormat)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(Stream archiveStream, string password, bool leaveOpen, InArchiveFormat format)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">archiveStream</span></td>
+        <td><p>The stream to read the archive from.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>Password for an encrypted archive.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><span class="parametername">leaveOpen</span></td>
+        <td><p>Leaves the base stream open.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.InArchiveFormat.html">InArchiveFormat</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Manual archive format setup. You SHOULD NOT normally specify it this way.
+Instead, use SharpSevenZipExtractor(Stream archiveStream, string password), that constructor
+automatically detects the archive format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L191">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String)">SharpSevenZipExtractor(string)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(string archiveFullName)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFullName</span></td>
+        <td><p>The archive full file name.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_SharpSevenZip_InArchiveFormat_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.String%2CSharpSevenZip.InArchiveFormat)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L203">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_SharpSevenZip_InArchiveFormat_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,SharpSevenZip.InArchiveFormat)">SharpSevenZipExtractor(string, InArchiveFormat)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(string archiveFullName, InArchiveFormat format)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFullName</span></td>
+        <td><p>The archive full file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.InArchiveFormat.html">InArchiveFormat</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Manual archive format setup. You SHOULD NOT normally specify it this way.
+Instead, use SharpSevenZipExtractor(string archiveFullName), that constructor
+automatically detects the archive format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.String%2CSystem.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L214">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_System_String_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,System.String)">SharpSevenZipExtractor(string, string)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(string archiveFullName, string password)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFullName</span></td>
+        <td><p>The archive full file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>Password for an encrypted archive.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_System_String_SharpSevenZip_InArchiveFormat_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.%23ctor(System.String%2CSystem.String%2CSharpSevenZip.InArchiveFormat)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L228">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor__ctor_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_System_String_SharpSevenZip_InArchiveFormat_" data-uid="SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,System.String,SharpSevenZip.InArchiveFormat)">SharpSevenZipExtractor(string, string, InArchiveFormat)</h4>
+  <div class="markdown level1 summary"><p>Initializes a new instance of SharpSevenZipExtractor class.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public SharpSevenZipExtractor(string archiveFullName, string password, InArchiveFormat format)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">archiveFullName</span></td>
+        <td><p>The archive full file name.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">password</span></td>
+        <td><p>Password for an encrypted archive.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.InArchiveFormat.html">InArchiveFormat</a></td>
+        <td><span class="parametername">format</span></td>
+        <td><p>Manual archive format setup. You SHOULD NOT normally specify it this way.
+Instead, use SharpSevenZipExtractor(string archiveFullName, string password), that constructor
+automatically detects the archive format.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ArchiveFileData.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ArchiveFileData%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L921">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ArchiveFileData_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ArchiveFileData*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ArchiveFileData" data-uid="SharpSevenZip.SharpSevenZipExtractor.ArchiveFileData">ArchiveFileData</h4>
+  <div class="markdown level1 summary"><p>Gets the collection of ArchiveFileInfo with all information about files in the archive</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;ArchiveFileInfo&gt; ArchiveFileData { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="SharpSevenZip.ArchiveFileInfo.html">ArchiveFileInfo</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ArchiveFileNames.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ArchiveFileNames%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L952">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ArchiveFileNames_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ArchiveFileNames*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ArchiveFileNames" data-uid="SharpSevenZip.SharpSevenZipExtractor.ArchiveFileNames">ArchiveFileNames</h4>
+  <div class="markdown level1 summary"><p>Gets the collection of all file names contained in the archive.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;string&gt; ArchiveFileNames { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor_ArchiveFileNames_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Each get recreates the collection</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ArchiveProperties.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ArchiveProperties%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L935">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ArchiveProperties_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ArchiveProperties*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ArchiveProperties" data-uid="SharpSevenZip.SharpSevenZipExtractor.ArchiveProperties">ArchiveProperties</h4>
+  <div class="markdown level1 summary"><p>Gets the properties for the current archive</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;ArchiveProperty&gt; ArchiveProperties { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="SharpSevenZip.ArchiveProperty.html">ArchiveProperty</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_FileName.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.FileName%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L282">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_FileName_" data-uid="SharpSevenZip.SharpSevenZipExtractor.FileName*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_FileName" data-uid="SharpSevenZip.SharpSevenZipExtractor.FileName">FileName</h4>
+  <div class="markdown level1 summary"><p>Gets or sets archive full file name</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public string? FileName { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_FilesCount.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.FilesCount%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L347">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_FilesCount_" data-uid="SharpSevenZip.SharpSevenZipExtractor.FilesCount*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_FilesCount" data-uid="SharpSevenZip.SharpSevenZipExtractor.FilesCount">FilesCount</h4>
+  <div class="markdown level1 summary"><p>Gets the number of files in the archive</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">[CLSCompliant(false)]
+public uint FilesCount { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.uint32">uint</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_Format.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.Format%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L367">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_Format_" data-uid="SharpSevenZip.SharpSevenZipExtractor.Format*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_Format" data-uid="SharpSevenZip.SharpSevenZipExtractor.Format">Format</h4>
+  <div class="markdown level1 summary"><p>Gets archive format</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public InArchiveFormat Format { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.InArchiveFormat.html">InArchiveFormat</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_IsSolid.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.IsSolid%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L328">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_IsSolid_" data-uid="SharpSevenZip.SharpSevenZipExtractor.IsSolid*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_IsSolid" data-uid="SharpSevenZip.SharpSevenZipExtractor.IsSolid">IsSolid</h4>
+  <div class="markdown level1 summary"><p>Gets a value indicating whether the archive is solid</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool IsSolid { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_PackedSize.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.PackedSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L295">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_PackedSize_" data-uid="SharpSevenZip.SharpSevenZipExtractor.PackedSize*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_PackedSize" data-uid="SharpSevenZip.SharpSevenZipExtractor.PackedSize">PackedSize</h4>
+  <div class="markdown level1 summary"><p>Gets the size of the archive file</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long PackedSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_PreserveDirectoryStructure.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.PreserveDirectoryStructure%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L380">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_PreserveDirectoryStructure_" data-uid="SharpSevenZip.SharpSevenZipExtractor.PreserveDirectoryStructure*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_PreserveDirectoryStructure" data-uid="SharpSevenZip.SharpSevenZipExtractor.PreserveDirectoryStructure">PreserveDirectoryStructure</h4>
+  <div class="markdown level1 summary"><p>Gets or sets the value indicating whether to preserve the directory structure of extracted files.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool PreserveDirectoryStructure { get; set; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_UnpackedSize.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.UnpackedSize%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L310">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_UnpackedSize_" data-uid="SharpSevenZip.SharpSevenZipExtractor.UnpackedSize*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_UnpackedSize" data-uid="SharpSevenZip.SharpSevenZipExtractor.UnpackedSize">UnpackedSize</h4>
+  <div class="markdown level1 summary"><p>Gets the size of unpacked archive data</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public long UnpackedSize { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int64">long</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_VolumeFileNames.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.VolumeFileNames%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L969">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_VolumeFileNames_" data-uid="SharpSevenZip.SharpSevenZipExtractor.VolumeFileNames*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_VolumeFileNames" data-uid="SharpSevenZip.SharpSevenZipExtractor.VolumeFileNames">VolumeFileNames</h4>
+  <div class="markdown level1 summary"><p>Gets the list of archive volume file names.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public ReadOnlyCollection&lt;string&gt; VolumeFileNames { get; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.collections.objectmodel.readonlycollection-1">ReadOnlyCollection</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="methods">Methods
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_BeginExtractArchive_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.BeginExtractArchive(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L105">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractArchive_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractArchive*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractArchive_System_String_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractArchive(System.String)">BeginExtractArchive(string)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the whole archive asynchronously to the specified directory name at the specified priority.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginExtractArchive(string directory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>The directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_BeginExtractFile_System_Int32_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.BeginExtractFile(System.Int32%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L164">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFile_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFile*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFile_System_Int32_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFile(System.Int32,System.IO.Stream)">BeginExtractFile(int, Stream)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the file asynchronously by its index to the specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginExtractFile(int index, Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index in the archive file table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream where the file is to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_BeginExtractFile_System_String_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.BeginExtractFile(System.String%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L134">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFile_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFile*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFile_System_String_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFile(System.String,System.IO.Stream)">BeginExtractFile(string, Stream)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the file asynchronously by its name to the specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginExtractFile(string fileName, Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
+        <td><p>The file full name in the archive file table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream where the file is to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_SharpSevenZip_ExtractFileCallback_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles(SharpSevenZip.ExtractFileCallback)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L255">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_SharpSevenZip_ExtractFileCallback_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles(SharpSevenZip.ExtractFileCallback)">BeginExtractFiles(ExtractFileCallback)</h4>
+  <div class="markdown level1 summary"><p>Extracts files from the archive asynchronously, giving a callback the choice what
+to do with each file. The order of the files is given by the archive.
+7-Zip (and any other solid) archives are NOT supported.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginExtractFiles(ExtractFileCallback extractFileCallback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.ExtractFileCallback.html">ExtractFileCallback</a></td>
+        <td><span class="parametername">extractFileCallback</span></td>
+        <td><p>The callback to call for each file in the archive.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_System_String_System_Int32___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles(System.String%2CSystem.Int32%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L194">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_System_String_System_Int32___" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles(System.String,System.Int32[])">BeginExtractFiles(string, params int[])</h4>
+  <div class="markdown level1 summary"><p>Unpacks files asynchronously by their indices to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginExtractFiles(string directory, params int[] indexes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>Directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</td>
+        <td><span class="parametername">indexes</span></td>
+        <td><p>indexes of the files in the archive file table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_System_String_System_String___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles(System.String%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L224">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_BeginExtractFiles_System_String_System_String___" data-uid="SharpSevenZip.SharpSevenZipExtractor.BeginExtractFiles(System.String,System.String[])">BeginExtractFiles(string, params string[])</h4>
+  <div class="markdown level1 summary"><p>Unpacks files asynchronously by their full names to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void BeginExtractFiles(string directory, params string[] fileNames)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>Directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">fileNames</span></td>
+        <td><p>Full file names in the archive file table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_Check.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.Check%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L985">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_Check_" data-uid="SharpSevenZip.SharpSevenZipExtractor.Check*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_Check" data-uid="SharpSevenZip.SharpSevenZipExtractor.Check">Check()</h4>
+  <div class="markdown level1 summary"><p>Performs the archive integrity test.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Check()</code></pre>
+  </div>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.boolean">bool</a></td>
+        <td><p>True is the archive is ok; otherwise, false.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_DecompressStream_System_IO_Stream_System_IO_Stream_System_Nullable_System_Int32__System_EventHandler_SharpSevenZip_EventArguments_ProgressEventArgs__.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.DecompressStream(System.IO.Stream%2CSystem.IO.Stream%2CSystem.Nullable%7BSystem.Int32%7D%2CSystem.EventHandler%7BSharpSevenZip.EventArguments.ProgressEventArgs%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1455">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_DecompressStream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.DecompressStream*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_DecompressStream_System_IO_Stream_System_IO_Stream_System_Nullable_System_Int32__System_EventHandler_SharpSevenZip_EventArguments_ProgressEventArgs__" data-uid="SharpSevenZip.SharpSevenZipExtractor.DecompressStream(System.IO.Stream,System.IO.Stream,System.Nullable{System.Int32},System.EventHandler{SharpSevenZip.EventArguments.ProgressEventArgs})">DecompressStream(Stream, Stream, int?, EventHandler&lt;ProgressEventArgs&gt;)</h4>
+  <div class="markdown level1 summary"><p>Decompress the specified stream (C# inside)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static void DecompressStream(Stream inStream, Stream outStream, int? inLength, EventHandler&lt;ProgressEventArgs&gt; codeProgressEvent)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">inStream</span></td>
+        <td><p>The source compressed stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">outStream</span></td>
+        <td><p>The destination uncompressed stream</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>?</td>
+        <td><span class="parametername">inLength</span></td>
+        <td><p>The length of compressed data (null for inStream.Length)</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SharpSevenZip.EventArguments.ProgressEventArgs.html">ProgressEventArgs</a>&gt;</td>
+        <td><span class="parametername">codeProgressEvent</span></td>
+        <td><p>The event for handling the code progress</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_Dispose.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.Dispose%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L822">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_Dispose_" data-uid="SharpSevenZip.SharpSevenZipExtractor.Dispose*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_Dispose" data-uid="SharpSevenZip.SharpSevenZipExtractor.Dispose">Dispose()</h4>
+  <div class="markdown level1 summary"><p>Releases the unmanaged resources used by SharpSevenZipExtractor.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void Dispose()</code></pre>
+  </div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractArchive_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractArchive(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1364">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractArchive_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractArchive*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractArchive_System_String_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractArchive(System.String)">ExtractArchive(string)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the whole archive to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExtractArchive(string directory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>The directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractArchiveAsync_System_String_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractArchiveAsync(System.String)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L116">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractArchiveAsync_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractArchiveAsync*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractArchiveAsync_System_String_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractArchiveAsync(System.String)">ExtractArchiveAsync(string)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the whole archive asynchronously to the specified directory name at the specified priority.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExtractArchiveAsync(string directory)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>The directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractBytes_System_Byte___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractBytes(System.Byte%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1473">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractBytes_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractBytes*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractBytes_System_Byte___" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractBytes(System.Byte[])">ExtractBytes(byte[])</h4>
+  <div class="markdown level1 summary"><p>Decompress byte array compressed with LZMA algorithm (C# inside)</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public static byte[] ExtractBytes(byte[] data)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><span class="parametername">data</span></td>
+        <td><p>Byte array to decompress</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.byte">byte</a>[]</td>
+        <td><p>Decompressed byte array</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFile_System_Int32_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFile(System.Int32%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1076">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFile_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFile*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFile_System_Int32_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFile(System.Int32,System.IO.Stream)">ExtractFile(int, Stream)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the file by its index to the specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExtractFile(int index, Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index in the archive file table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream where the file is to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFile_System_String_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFile(System.String%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1040">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFile_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFile*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFile_System_String_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFile(System.String,System.IO.Stream)">ExtractFile(string, Stream)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the file by its name to the specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExtractFile(string fileName, Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
+        <td><p>The file full name in the archive file table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream where the file is to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFileAsync_System_Int32_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFileAsync(System.Int32%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L176">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFileAsync_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFileAsync*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFileAsync_System_Int32_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFileAsync(System.Int32,System.IO.Stream)">ExtractFileAsync(int, Stream)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the file asynchronously by its name to the specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExtractFileAsync(int index, Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a></td>
+        <td><span class="parametername">index</span></td>
+        <td><p>Index in the archive file table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream where the file is to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFileAsync_System_String_System_IO_Stream_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFileAsync(System.String%2CSystem.IO.Stream)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L146">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFileAsync_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFileAsync*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFileAsync_System_String_System_IO_Stream_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFileAsync(System.String,System.IO.Stream)">ExtractFileAsync(string, Stream)</h4>
+  <div class="markdown level1 summary"><p>Unpacks the file asynchronously by its name to the specified stream.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExtractFileAsync(string fileName, Stream stream)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">fileName</span></td>
+        <td><p>The file full name in the archive file table.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">stream</span></td>
+        <td><p>The stream where the file is to be unpacked.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_SharpSevenZip_ExtractFileCallback_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(SharpSevenZip.ExtractFileCallback)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1299">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFiles*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_SharpSevenZip_ExtractFileCallback_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(SharpSevenZip.ExtractFileCallback)">ExtractFiles(ExtractFileCallback)</h4>
+  <div class="markdown level1 summary"><p>Extracts files from the archive, giving a callback the choice what
+to do with each file. The order of the files is given by the archive.
+7-Zip (and any other solid) archives are NOT supported.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExtractFiles(ExtractFileCallback extractFileCallback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.ExtractFileCallback.html">ExtractFileCallback</a></td>
+        <td><span class="parametername">extractFileCallback</span></td>
+        <td><p>The callback to call for each file in the archive.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="exceptions">Exceptions</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html">SharpSevenZipExtractionFailedException</a></td>
+        <td><p>Thrown when trying to extract from solid archives.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_System_String_System_Int32___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(System.String%2CSystem.Int32%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1160">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFiles*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_System_String_System_Int32___" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(System.String,System.Int32[])">ExtractFiles(string, params int[])</h4>
+  <div class="markdown level1 summary"><p>Unpacks files by their indices to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExtractFiles(string directory, params int[] indexes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>Directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</td>
+        <td><span class="parametername">indexes</span></td>
+        <td><p>indexes of the files in the archive file table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_System_String_System_String___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(System.String%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L1260">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFiles*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFiles_System_String_System_String___" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(System.String,System.String[])">ExtractFiles(string, params string[])</h4>
+  <div class="markdown level1 summary"><p>Unpacks files by their full names to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void ExtractFiles(string directory, params string[] fileNames)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>Directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">fileNames</span></td>
+        <td><p>Full file names in the archive file table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_SharpSevenZip_ExtractFileCallback_.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync(SharpSevenZip.ExtractFileCallback)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L268">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_SharpSevenZip_ExtractFileCallback_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync(SharpSevenZip.ExtractFileCallback)">ExtractFilesAsync(ExtractFileCallback)</h4>
+  <div class="markdown level1 summary"><p>Extracts files from the archive asynchronously, giving a callback the choice what
+to do with each file. The order of the files is given by the archive.
+7-Zip (and any other solid) archives are NOT supported.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExtractFilesAsync(ExtractFileCallback extractFileCallback)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="SharpSevenZip.ExtractFileCallback.html">ExtractFileCallback</a></td>
+        <td><span class="parametername">extractFileCallback</span></td>
+        <td><p>The callback to call for each file in the archive.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_System_String_System_Int32___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync(System.String%2CSystem.Int32%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L206">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_System_String_System_Int32___" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync(System.String,System.Int32[])">ExtractFilesAsync(string, params int[])</h4>
+  <div class="markdown level1 summary"><p>Unpacks files asynchronously by their indices to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExtractFilesAsync(string directory, params int[] indexes)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>Directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.int32">int</a>[]</td>
+        <td><span class="parametername">indexes</span></td>
+        <td><p>indexes of the files in the archive file table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_System_String_System_String___.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync(System.String%2CSystem.String%5B%5D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L236">View Source</a>
+  </span>
+  <a id="SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync*"></a>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractFilesAsync_System_String_System_String___" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractFilesAsync(System.String,System.String[])">ExtractFilesAsync(string, params string[])</h4>
+  <div class="markdown level1 summary"><p>Unpacks files asynchronously by their full names to the specified directory.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Task ExtractFilesAsync(string directory, params string[] fileNames)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a></td>
+        <td><span class="parametername">directory</span></td>
+        <td><p>Directory where the files are to be unpacked.</p>
+</td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.string">string</a>[]</td>
+        <td><span class="parametername">fileNames</span></td>
+        <td><p>Full file names in the archive file table.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 class="returns">Returns</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.threading.tasks.task">Task</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="events">Events
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_Extracting.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.Extracting%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L863">View Source</a>
+  </span>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_Extracting" data-uid="SharpSevenZip.SharpSevenZipExtractor.Extracting">Extracting</h4>
+  <div class="markdown level1 summary"><p>Occurs when data are being extracted.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;ProgressEventArgs&gt;? Extracting</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SharpSevenZip.EventArguments.ProgressEventArgs.html">ProgressEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor_Extracting_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Use this event for accurate progress handling and various ProgressBar.StepBy(e.PercentDelta) routines.</p>
+</div>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_ExtractionFinished.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.ExtractionFinished%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L857">View Source</a>
+  </span>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_ExtractionFinished" data-uid="SharpSevenZip.SharpSevenZipExtractor.ExtractionFinished">ExtractionFinished</h4>
+  <div class="markdown level1 summary"><p>Occurs when the archive has been unpacked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;EventArgs&gt;? ExtractionFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventargs">EventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_FileExists.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.FileExists%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L868">View Source</a>
+  </span>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_FileExists" data-uid="SharpSevenZip.SharpSevenZipExtractor.FileExists">FileExists</h4>
+  <div class="markdown level1 summary"><p>Occurs during the extraction when a file already exists.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;FileOverwriteEventArgs&gt;? FileExists</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SharpSevenZip.EventArguments.FileOverwriteEventArgs.html">FileOverwriteEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_FileExtractionFinished.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.FileExtractionFinished%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L852">View Source</a>
+  </span>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_FileExtractionFinished" data-uid="SharpSevenZip.SharpSevenZipExtractor.FileExtractionFinished">FileExtractionFinished</h4>
+  <div class="markdown level1 summary"><p>Occurs when a file has been successfully unpacked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;FileInfoEventArgs&gt;? FileExtractionFinished</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SharpSevenZip.EventArguments.FileInfoEventArgs.html">FileInfoEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor_FileExtractionStarted.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor.FileExtractionStarted%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractor.cs/#L847">View Source</a>
+  </span>
+  <h4 id="SharpSevenZip_SharpSevenZipExtractor_FileExtractionStarted" data-uid="SharpSevenZip.SharpSevenZipExtractor.FileExtractionStarted">FileExtractionStarted</h4>
+  <div class="markdown level1 summary"><p>Occurs when a new file is going to be unpacked.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public event EventHandler&lt;FileInfoEventArgs&gt;? FileExtractionStarted</code></pre>
+  </div>
+  <h5 class="eventType">Event Type</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.eventhandler-1">EventHandler</a>&lt;<a class="xref" href="SharpSevenZip.EventArguments.FileInfoEventArgs.html">FileInfoEventArgs</a>&gt;</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h5 id="SharpSevenZip_SharpSevenZipExtractor_FileExtractionStarted_remarks">Remarks</h5>
+  <div class="markdown level1 remarks"><p>Occurs when 7-zip engine requests for an output stream for a new file to unpack in.</p>
+</div>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.idisposable">IDisposable</a>
+  </div>
+
+</article>
+          </div>
+
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_SharpSevenZipExtractor.md&amp;value=---%0Auid%3A%20SharpSevenZip.SharpSevenZipExtractor%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/SharpSevenZipExtractorAsynchronous.cs/#L5" class="contribution-link">View Source</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In this article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+      Copyright (C) Markovtsev Vadim 2009, 2010, J&eacute;r&eacute;my Ansel 2024
+      
+          </div>
+        </div>
+      </footer>
+    </div>
+
+    <script type="text/javascript" src="../styles/docfx.vendor.min.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>
