@@ -33,7 +33,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
             }
 
             Thread.Sleep(25);
-            timeToWait -= 25;
+            //timeToWait -= 25;
         }
 
         var numberOfTestDataFiles = Directory.GetFiles("TestData").Length;
@@ -69,7 +69,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
             }
 
             Thread.Sleep(25);
-            timeToWait -= 25;
+            //timeToWait -= 25;
         }
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
@@ -106,7 +106,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
                 }
 
                 Thread.Sleep(25);
-                timeToWait -= 25;
+                //timeToWait -= 25;
             }
         }
 
@@ -137,7 +137,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
             }
 
             Thread.Sleep(25);
-            timeToWait -= 25;
+            //timeToWait -= 25;
         }
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
@@ -169,7 +169,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
             }
 
             Thread.Sleep(25);
-            timeToWait -= 25;
+            //timeToWait -= 25;
         }
 
         Assert.That(File.Exists(TemporaryFile), Is.True);

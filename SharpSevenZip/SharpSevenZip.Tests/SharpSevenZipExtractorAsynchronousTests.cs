@@ -32,7 +32,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             }
 
             Thread.Sleep(25);
-            timeToWait -= 25;
+            //timeToWait -= 25;
         }
 
         Assert.Multiple(() =>
@@ -56,7 +56,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             }
 
             Thread.Sleep(25);
-            timeToWait -= 25;
+            //timeToWait -= 25;
         }
 
         Assert.That(fileExistsInvoked, Is.EqualTo(3));
@@ -84,7 +84,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
                 }
 
                 Thread.Sleep(25);
-                maximumTimeToWait -= 25;
+                //maximumTimeToWait -= 25;
             }
         }
 
@@ -117,7 +117,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
                 }
 
                 Thread.Sleep(25);
-                timeToWait -= 25;
+                //timeToWait -= 25;
             }
         }
 
