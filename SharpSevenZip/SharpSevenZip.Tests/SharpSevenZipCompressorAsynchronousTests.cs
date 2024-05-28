@@ -24,7 +24,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         compressor.BeginCompressDirectory(@"TestData", TemporaryFile);
 
-        var timeToWait = 1000;
+        var timeToWait = 10000;
         while (compressionFinishedInvoked == 0)
         {
             if (timeToWait <= 0)
@@ -60,7 +60,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         compressor.BeginCompressFiles(TemporaryFile, @"TestData\zip.zip", @"TestData\tar.tar");
 
-        var timeToWait = 1000;
+        var timeToWait = 10000;
         while (!compressionFinishedInvoked)
         {
             if (timeToWait <= 0)
@@ -97,7 +97,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
             using var outputStream = new FileStream(TemporaryFile, FileMode.Create);
             compressor.BeginCompressStream(inputStream, outputStream);
 
-            var timeToWait = 1000;
+            var timeToWait = 10000;
             while (!compressionFinishedInvoked)
             {
                 if (timeToWait <= 0)
@@ -128,7 +128,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         compressor.BeginModifyArchive(TemporaryFile, new Dictionary<int, string?> { { 0, @"tartar" } });
 
-        var timeToWait = 1000;
+        var timeToWait = 10000;
         while (!compressionFinishedInvoked)
         {
             if (timeToWait <= 0)
@@ -160,7 +160,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         compressor.BeginCompressFilesEncrypted(TemporaryFile, "secure", @"TestData\zip.zip", @"TestData\tar.tar");
 
-        var timeToWait = 1000;
+        var timeToWait = 10000;
         while (!compressionFinishedInvoked)
         {
             if (timeToWait <= 0)

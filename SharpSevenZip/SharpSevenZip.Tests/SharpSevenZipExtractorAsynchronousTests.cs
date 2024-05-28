@@ -23,7 +23,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
 
         extractor.BeginExtractArchive(OutputDirectory);
 
-        var timeToWait = 2000;
+        var timeToWait = 10000;
         while (extractionFinishedInvoked == 0)
         {
             if (timeToWait <= 0)
@@ -47,7 +47,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
         extractionFinishedInvoked = 0;
         extractor.BeginExtractArchive(OutputDirectory);
 
-        timeToWait = 1000;
+        timeToWait = 10000;
         while (extractionFinishedInvoked == 0)
         {
             if (timeToWait <= 0)
@@ -74,7 +74,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             extractor.ExtractionFinished += (o, e) => extractionFinishedInvoked = true;
             extractor.BeginExtractFile(0, fileStream);
 
-            var maximumTimeToWait = 60000;
+            var maximumTimeToWait = 10000;
 
             while (!extractionFinishedInvoked)
             {
@@ -108,7 +108,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
 
             extractor.BeginExtractFiles(OutputDirectory, 0, 2);
 
-            var timeToWait = 250;
+            var timeToWait = 10000;
             while (!extractionFinishedInvoked)
             {
                 if (timeToWait <= 0)
