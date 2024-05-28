@@ -1592,28 +1592,6 @@ references:
   commentId: T:SharpSevenZip.ExtractFileCallback
   fullName: SharpSevenZip.ExtractFileCallback
   nameWithType: ExtractFileCallback
-- uid: SharpSevenZip.Formats
-  name: Formats
-  href: api/SharpSevenZip.Formats.html
-  commentId: T:SharpSevenZip.Formats
-  fullName: SharpSevenZip.Formats
-  nameWithType: Formats
-- uid: SharpSevenZip.Formats.FormatByFileName(System.String,System.Boolean)
-  name: FormatByFileName(string, bool)
-  href: api/SharpSevenZip.Formats.html#SharpSevenZip_Formats_FormatByFileName_System_String_System_Boolean_
-  commentId: M:SharpSevenZip.Formats.FormatByFileName(System.String,System.Boolean)
-  name.vb: FormatByFileName(String, Boolean)
-  fullName: SharpSevenZip.Formats.FormatByFileName(string, bool)
-  fullName.vb: SharpSevenZip.Formats.FormatByFileName(String, Boolean)
-  nameWithType: Formats.FormatByFileName(string, bool)
-  nameWithType.vb: Formats.FormatByFileName(String, Boolean)
-- uid: SharpSevenZip.Formats.FormatByFileName*
-  name: FormatByFileName
-  href: api/SharpSevenZip.Formats.html#SharpSevenZip_Formats_FormatByFileName_
-  commentId: Overload:SharpSevenZip.Formats.FormatByFileName
-  isSpec: "True"
-  fullName: SharpSevenZip.Formats.FormatByFileName
-  nameWithType: Formats.FormatByFileName
 - uid: SharpSevenZip.ICancellable
   name: ICancellable
   href: api/SharpSevenZip.ICancellable.html
@@ -2929,6 +2907,52 @@ references:
   commentId: F:SharpSevenZip.SfxModule.Simple
   fullName: SharpSevenZip.SfxModule.Simple
   nameWithType: SfxModule.Simple
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat
+  name: SharpSevenZipArchiveFormat
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html
+  commentId: T:SharpSevenZip.SharpSevenZipArchiveFormat
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat
+  nameWithType: SharpSevenZipArchiveFormat
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream)
+  name: CheckFormat(Stream)
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_CheckFormat_System_IO_Stream_
+  commentId: M:SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream)
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream)
+  nameWithType: SharpSevenZipArchiveFormat.CheckFormat(Stream)
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream,System.Int32@,System.Boolean@)
+  name: CheckFormat(Stream, out int, out bool)
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_CheckFormat_System_IO_Stream_System_Int32__System_Boolean__
+  commentId: M:SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream,System.Int32@,System.Boolean@)
+  name.vb: CheckFormat(Stream, Integer, Boolean)
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream, out int, out bool)
+  fullName.vb: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.IO.Stream, Integer, Boolean)
+  nameWithType: SharpSevenZipArchiveFormat.CheckFormat(Stream, out int, out bool)
+  nameWithType.vb: SharpSevenZipArchiveFormat.CheckFormat(Stream, Integer, Boolean)
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.String)
+  name: CheckFormat(string)
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_CheckFormat_System_String_
+  commentId: M:SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.String)
+  name.vb: CheckFormat(String)
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(string)
+  fullName.vb: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(String)
+  nameWithType: SharpSevenZipArchiveFormat.CheckFormat(string)
+  nameWithType.vb: SharpSevenZipArchiveFormat.CheckFormat(String)
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.String,System.Int32@,System.Boolean@)
+  name: CheckFormat(string, out int, out bool)
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_CheckFormat_System_String_System_Int32__System_Boolean__
+  commentId: M:SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(System.String,System.Int32@,System.Boolean@)
+  name.vb: CheckFormat(String, Integer, Boolean)
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(string, out int, out bool)
+  fullName.vb: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat(String, Integer, Boolean)
+  nameWithType: SharpSevenZipArchiveFormat.CheckFormat(string, out int, out bool)
+  nameWithType.vb: SharpSevenZipArchiveFormat.CheckFormat(String, Integer, Boolean)
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat*
+  name: CheckFormat
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_CheckFormat_
+  commentId: Overload:SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat
+  nameWithType: SharpSevenZipArchiveFormat.CheckFormat
 - uid: SharpSevenZip.SharpSevenZipBase
   name: SharpSevenZipBase
   href: api/SharpSevenZip.SharpSevenZipBase.html

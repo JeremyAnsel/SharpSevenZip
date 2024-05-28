@@ -292,16 +292,6 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/SharpSevenZip.Formats.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/SharpSevenZip.Formats.html"
-        }
-      },
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.ICancellable.yml",
       "output": {
         ".html": {
@@ -456,6 +446,16 @@
       "output": {
         ".html": {
           "relative_path": "api/SharpSevenZip.SfxModule.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SharpSevenZipArchiveFormat.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SharpSevenZipArchiveFormat.html"
         }
       },
       "version": ""
