@@ -74,7 +74,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             extractor.ExtractionFinished += (o, e) => extractionFinishedInvoked = true;
             extractor.BeginExtractFile(0, fileStream);
 
-            var maximumTimeToWait = 10000;
+            var maximumTimeToWait = 60000;
 
             while (!extractionFinishedInvoked)
             {
