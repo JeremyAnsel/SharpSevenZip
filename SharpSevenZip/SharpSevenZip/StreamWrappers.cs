@@ -132,7 +132,7 @@ internal sealed class InStreamWrapper : StreamWrapper, ISequentialInStream, IInS
     /// <param name="data">A data array.</param>
     /// <param name="size">The array size.</param>
     /// <returns>The read bytes count.</returns>
-    public int Read(IntPtr data, uint size)
+    public unsafe int Read(IntPtr data, uint size)
     {
         if (size == 0 || BaseStream is null)
         {
@@ -141,45 +141,31 @@ internal sealed class InStreamWrapper : StreamWrapper, ISequentialInStream, IInS
 
         int readCount = 0;
 
+#if NET6_0_OR_GREATER
+        Span<byte> buffer = new(data.ToPointer(), (int)size);
+
+        readCount = BaseStream.Read(buffer);
+#else
         byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent((int)size);
 
         try
         {
             readCount = BaseStream.Read(buffer, 0, (int)size);
             Marshal.Copy(buffer, 0, data, (int)size);
-
-            if (readCount > 0)
-            {
-                OnBytesRead(readCount);
-            }
         }
         finally
         {
             System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
         }
+#endif
+
+        if (readCount > 0)
+        {
+            OnBytesRead(readCount);
+        }
 
         return readCount;
     }
-
-    ///// <summary>
-    ///// Reads data from the stream.
-    ///// </summary>
-    ///// <param name="data">A data array.</param>
-    ///// <param name="size">The array size.</param>
-    ///// <returns>The read bytes count.</returns>
-    //public int Read(byte[] data, uint size)
-    //{
-    //    int readCount = 0;
-    //    if (BaseStream != null)
-    //    {
-    //        readCount = BaseStream.Read(data, 0, (int)size);
-    //        if (readCount > 0)
-    //        {
-    //            OnBytesRead(new IntEventArgs(readCount));
-    //        }
-    //    }
-    //    return readCount;
-    //}
 
     #endregion
 
@@ -231,7 +217,6 @@ internal sealed class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IO
 
     #region ISequentialOutStream Members
 
-#if NET6_0_OR_GREATER
     /// <summary>
     /// Writes data to the stream
     /// </summary>
@@ -241,38 +226,23 @@ internal sealed class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IO
     /// <returns>Zero if Ok</returns>
     public unsafe int Write(IntPtr data, uint size, IntPtr processedSize)
     {
+
+#if NET6_0_OR_GREATER
+        Span<byte> buffer = new(data.ToPointer(), (int)size);
+        BaseStream!.Write(buffer);
+#else
         using var stream = new UnmanagedMemoryStream((byte*)data.ToPointer(), size);
         stream.CopyTo(BaseStream!);
-
-        if (processedSize != IntPtr.Zero)
-        {
-            Marshal.WriteInt32(processedSize, (int)size);
-        }
-
-        OnBytesWritten((int)size);
-        return 0;
-    }
-#else
-    /// <summary>
-    /// Writes data to the stream
-    /// </summary>
-    /// <param name="data">Data array</param>
-    /// <param name="size">Array size</param>
-    /// <param name="processedSize">Count of written bytes</param>
-    /// <returns>Zero if Ok</returns>
-    public int Write(byte[] data, uint size, IntPtr processedSize)
-    {
-        BaseStream!.Write(data, 0, (int)size);
-
-        if (processedSize != IntPtr.Zero)
-        {
-            Marshal.WriteInt32(processedSize, (int)size);
-        }
-
-        OnBytesWritten((int)size);
-        return 0;
-    }
 #endif
+
+        if (processedSize != IntPtr.Zero)
+        {
+            Marshal.WriteInt32(processedSize, (int)size);
+        }
+
+        OnBytesWritten((int)size);
+        return 0;
+    }
 
     #endregion
 
@@ -419,18 +389,27 @@ internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInSt
     /// <param name="data">A data array.</param>
     /// <param name="size">The array size.</param>
     /// <returns>The read bytes count.</returns>
-    public int Read(IntPtr data, uint size)
+    public unsafe int Read(IntPtr data, uint size)
     {
         if (size == 0)
         {
             return 0;
         }
 
+#if !NET6_0_OR_GREATER
         byte[] buffer;
+#endif
 
         var readSize = (int)size;
         int readCount = 0;
 
+#if NET6_0_OR_GREATER
+        Span<byte> buffer0 = new((data + readCount).ToPointer(), readSize);
+        int count0 = Streams[CurrentStream].Read(buffer0);
+        readCount += count0;
+        readSize -= count0;
+        Position += count0;
+#else
         buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
 
         try
@@ -445,6 +424,7 @@ internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInSt
         {
             System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
         }
+#endif
 
         while (readCount < (int)size)
         {
@@ -456,6 +436,13 @@ internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInSt
             CurrentStream++;
             Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
 
+#if NET6_0_OR_GREATER
+            Span<byte> buffer1 = new((data + readCount).ToPointer(), readSize);
+            int count1 = Streams[CurrentStream].Read(buffer1);
+            readCount += count1;
+            readSize -= count1;
+            Position += count1;
+#else
             buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
 
             try
@@ -470,38 +457,11 @@ internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInSt
             {
                 System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
             }
+#endif
         }
 
         return readCount;
     }
-
-    ///// <summary>
-    ///// Reads data from the stream.
-    ///// </summary>
-    ///// <param name="data">A data array.</param>
-    ///// <param name="size">The array size.</param>
-    ///// <returns>The read bytes count.</returns>
-    //public int Read(byte[] data, uint size)
-    //{
-    //    var readSize = (int)size;
-    //    int readCount = Streams[CurrentStream].Read(data, 0, readSize);
-    //    readSize -= readCount;
-    //    Position += readCount;
-    //    while (readCount < (int)size)
-    //    {
-    //        if (CurrentStream == Streams.Count - 1)
-    //        {
-    //            return readCount;
-    //        }
-    //        CurrentStream++;
-    //        Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
-    //        int count = Streams[CurrentStream].Read(data, readCount, readSize);
-    //        readCount += count;
-    //        readSize -= count;
-    //        Position += count;
-    //    }
-    //    return readCount;
-    //}
 
     #endregion
 }
@@ -540,7 +500,6 @@ internal sealed class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOut
 
     #region ISequentialOutStream Members
 
-#if NET6_0_OR_GREATER
     public unsafe int Write(IntPtr data, uint size, IntPtr processedSize)
     {
         int offset = 0;
@@ -550,52 +509,35 @@ internal sealed class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOut
         while (size > _volumeSize - Streams[CurrentStream].Position)
         {
             var count = (int)(_volumeSize - Streams[CurrentStream].Position);
-
-            using (var stream = new UnmanagedMemoryStream((byte*)data.ToPointer() + offset, count))
-            {
-                stream.CopyTo(Streams[CurrentStream]);
-            }
-
-            size -= (uint)count;
-            offset += count;
-            NewVolumeStream();
-        }
-
-        using (var stream = new UnmanagedMemoryStream((byte*)data.ToPointer() + offset, (int)size))
-        {
-            stream.CopyTo(Streams[CurrentStream]);
-        }
-
-        if (processedSize != IntPtr.Zero)
-        {
-            Marshal.WriteInt32(processedSize, originalSize);
-        }
-
-        return 0;
-    }
+#if NET6_0_OR_GREATER
+            Span<byte> buffer0 = new((data + offset).ToPointer(), count);
+            Streams[CurrentStream].Write(buffer0);
 #else
-    public int Write(byte[] data, uint size, IntPtr processedSize)
-    {
-        int offset = 0;
-        var originalSize = (int)size;
-        Position += size;
-        _overallLength = Math.Max(Position + 1, _overallLength);
-        while (size > _volumeSize - Streams[CurrentStream].Position)
-        {
-            var count = (int)(_volumeSize - Streams[CurrentStream].Position);
-            Streams[CurrentStream].Write(data, offset, count);
+            using var stream0 = new UnmanagedMemoryStream((byte*)(data + offset).ToPointer(), count);
+            stream0.CopyTo(Streams[CurrentStream]);
+#endif
+
+
             size -= (uint)count;
             offset += count;
             NewVolumeStream();
         }
-        Streams[CurrentStream].Write(data, offset, (int)size);
+
+#if NET6_0_OR_GREATER
+        Span<byte> buffer1 = new((data + offset).ToPointer(), (int)size);
+        Streams[CurrentStream].Write(buffer1);
+#else
+        using var stream1 = new UnmanagedMemoryStream((byte*)(data + offset).ToPointer(), (int)size);
+        stream1.CopyTo(Streams[CurrentStream]);
+#endif
+
         if (processedSize != IntPtr.Zero)
         {
             Marshal.WriteInt32(processedSize, originalSize);
         }
+
         return 0;
     }
-#endif
 
     #endregion
 
@@ -628,7 +570,6 @@ internal sealed class FakeOutStreamWrapper : ISequentialOutStream, IDisposable
 
     #region ISequentialOutStream Members
 
-#if NET6_0_OR_GREATER
     /// <summary>
     /// Does nothing except calling the BytesWritten event
     /// </summary>
@@ -647,26 +588,6 @@ internal sealed class FakeOutStreamWrapper : ISequentialOutStream, IDisposable
 
         return 0;
     }
-#else
-    /// <summary>
-    /// Does nothing except calling the BytesWritten event
-    /// </summary>
-    /// <param name="data">Data array</param>
-    /// <param name="size">Array size</param>
-    /// <param name="processedSize">Count of written bytes</param>
-    /// <returns>Zero if Ok</returns>
-    public int Write(byte[] data, uint size, IntPtr processedSize)
-    {
-        OnBytesWritten((int)size);
-
-        if (processedSize != IntPtr.Zero)
-        {
-            Marshal.WriteInt32(processedSize, (int)size);
-        }
-
-        return 0;
-    }
-#endif
 
     #endregion
 

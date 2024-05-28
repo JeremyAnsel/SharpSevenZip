@@ -27,14 +27,14 @@ internal static class FileChecker
 
             var actualSignature = BitConverter.ToString(signature);
 
-            foreach (var expectedSignature in Formats.InSignatureFormats.Keys)
+            foreach (var expectedSignature in Formats.InSignatureFormats)
             {
-                if (Formats.InSignatureFormats[expectedSignature] != expectedFormat)
+                if (expectedSignature.Value != expectedFormat)
                 {
                     continue;
                 }
 
-                if (actualSignature.StartsWith(expectedSignature, StringComparison.OrdinalIgnoreCase))
+                if (actualSignature.AsSpan().StartsWith(expectedSignature.Key.AsSpan(), StringComparison.OrdinalIgnoreCase))
                 {
                     return true;
                 }
@@ -51,9 +51,10 @@ internal static class FileChecker
     /// <param name="offset">The archive beginning offset.</param>
     /// <param name="isExecutable">True if the original format of the stream is PE; otherwise, false.</param>
     /// <returns>Corresponding InArchiveFormat.</returns>
-    public static InArchiveFormat CheckSignature(Stream stream, out int offset, out bool isExecutable)
+    public static unsafe InArchiveFormat CheckSignature(Stream stream, out int offset, out bool isExecutable)
     {
         offset = 0;
+        isExecutable = false;
 
         if (!stream.CanRead)
         {
@@ -86,20 +87,22 @@ internal static class FileChecker
         var suspectedFormat = InArchiveFormat.XZ; // any except PE and Cab
         isExecutable = false;
 
-        foreach (var expectedSignature in Formats.InSignatureFormats.Keys)
+        foreach (var expectedSignature in Formats.InSignatureFormats)
         {
-            if (actualSignature.StartsWith(expectedSignature, StringComparison.OrdinalIgnoreCase) ||
-                actualSignature[6..].StartsWith(expectedSignature, StringComparison.OrdinalIgnoreCase) &&
-                Formats.InSignatureFormats[expectedSignature] == InArchiveFormat.Lzh)
+            InArchiveFormat expectedFormat = expectedSignature.Value;
+
+            if (actualSignature.AsSpan().StartsWith(expectedSignature.Key.AsSpan(), StringComparison.OrdinalIgnoreCase) ||
+                (expectedFormat == InArchiveFormat.Lzh && actualSignature.AsSpan()[6..].StartsWith(expectedSignature.Key.AsSpan(), StringComparison.OrdinalIgnoreCase))
+                )
             {
-                if (Formats.InSignatureFormats[expectedSignature] == InArchiveFormat.PE)
+                if (expectedFormat == InArchiveFormat.PE)
                 {
                     suspectedFormat = InArchiveFormat.PE;
                     isExecutable = true;
                 }
                 else
                 {
-                    return Formats.InSignatureFormats[expectedSignature];
+                    return expectedFormat;
                 }
             }
         }
@@ -231,7 +234,7 @@ internal static class FileChecker
     /// <exception cref="System.ArgumentException"/>
     public static InArchiveFormat CheckSignature(string fileName, out int offset, out bool isExecutable)
     {
-        using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+        using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, SIGNATURE_SIZE);
 
         try
         {

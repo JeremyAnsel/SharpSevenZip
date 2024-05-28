@@ -908,12 +908,9 @@ internal interface ISequentialOutStream
     /// </remarks>
     [PreserveSig]
     int Write(
-#if NET6_0_OR_GREATER
         IntPtr data,
-#else
-        [In, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] data,
-#endif
-        uint size, IntPtr processedSize);
+        uint size,
+        IntPtr processedSize);
 }
 
 /// <summary>
@@ -964,11 +961,7 @@ internal interface IOutStream
     /// <returns>Zero if Ok</returns>
     [PreserveSig]
     int Write(
-#if NET6_0_OR_GREATER
         IntPtr data,
-#else
-        [In, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] data,
-#endif
         uint size,
         IntPtr processedSize);
 

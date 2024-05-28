@@ -362,7 +362,7 @@ public enum CompressionMethod
 /// <summary>
 /// Archive format routines
 /// </summary>
-public static class Formats
+internal static class Formats
 {
     /*/// <summary>
     /// Gets the max value of the specified enum type.
@@ -544,6 +544,7 @@ public static class Formats
             {"52-61-72-21-1A-07-00",                                            InArchiveFormat.Rar4},
             {"52-61-72-21-1A-07-01-00",                                         InArchiveFormat.Rar},
             {"50-4B-03-04",                                                     InArchiveFormat.Zip},
+            {"50-4B-05-06",                                                     InArchiveFormat.Zip},
             {"5D-00-00-40-00",                                                  InArchiveFormat.Lzma},
             {"2D-6C-68",                                                        InArchiveFormat.Lzh},
             //^ 2 byte offset
@@ -581,6 +582,11 @@ public static class Formats
 
         foreach (var pair in InSignatureFormats)
         {
+            if (InSignatureFormatsReversed.ContainsKey(pair.Value))
+            {
+                continue;
+            }
+
             InSignatureFormatsReversed.Add(pair.Value, pair.Key);
         }
     }

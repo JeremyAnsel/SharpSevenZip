@@ -17,11 +17,22 @@ public class Benchmarks
 {
     public const string Test1Archive = "test.zip";
 
+    public MemoryStream? _ms;
+
     [GlobalSetup]
     public void GlobalSetup()
     {
+        _ms = new(1 << 24);
+
         CreateEmptyZip();
         CreateTestZip();
+    }
+
+    [IterationSetup]
+    public void IterationSetup()
+    {
+        _ms!.GetBuffer().AsSpan().Clear();
+        _ms!.Seek(0, SeekOrigin.Begin);
     }
 
     private static void CreateEmptyZip()
@@ -71,8 +82,10 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (ZipArchive zip = ZipFile.OpenRead("empty.zip"))
+        for (int i = 0; i < 10; i++)
         {
+            using ZipArchive zip = ZipFile.OpenRead("empty.zip");
+
             foreach (var entry in zip.Entries)
             {
                 length += entry.Length;
@@ -87,8 +100,10 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (IArchive zip = ArchiveFactory.Open("empty.zip"))
+        for (int i = 0; i < 10; i++)
         {
+            using IArchive zip = ArchiveFactory.Open("empty.zip");
+
             foreach (var entry in zip.Entries)
             {
                 length += entry.Size;
@@ -103,8 +118,10 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (SevenZip.SevenZipExtractor zip = new("empty.zip"))
+        for (int i = 0; i < 10; i++)
         {
+            using SevenZip.SevenZipExtractor zip = new("empty.zip");
+
             foreach (var entry in zip.ArchiveFileData)
             {
                 length += (long)entry.Size;
@@ -119,8 +136,10 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (SharpSevenZipExtractor zip = new("empty.zip"))
+        for (int i = 0; i < 10; i++)
         {
+            using SharpSevenZipExtractor zip = new("empty.zip");
+
             foreach (var entry in zip.ArchiveFileData)
             {
                 length += (long)entry.Size;
@@ -135,16 +154,16 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (ZipArchive zip = ZipFile.OpenRead(Test1Archive))
+        for (int i = 0; i < 10; i++)
         {
+            using ZipArchive zip = ZipFile.OpenRead(Test1Archive);
+
             foreach (var entry in zip.Entries)
             {
                 length += entry.Length;
 
-                using var file = new MemoryStream((int)entry.Length);
                 using var entryStream = entry.Open();
-                entryStream.CopyTo(file);
-                file.Seek(0, SeekOrigin.Begin);
+                entryStream.CopyTo(_ms!);
             }
         }
 
@@ -156,15 +175,15 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (IArchive zip = ArchiveFactory.Open(Test1Archive))
+        for (int i = 0; i < 10; i++)
         {
+            using IArchive zip = ArchiveFactory.Open(Test1Archive);
+
             foreach (var entry in zip.Entries)
             {
                 length += entry.Size;
 
-                using var file = new MemoryStream((int)entry.Size);
-                entry.WriteTo(file);
-                file.Seek(0, SeekOrigin.Begin);
+                entry.WriteTo(_ms!);
             }
         }
 
@@ -176,15 +195,15 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (SevenZip.SevenZipExtractor zip = new(Test1Archive))
+        for (int i = 0; i < 10; i++)
         {
+            using SevenZip.SevenZipExtractor zip = new(Test1Archive);
+
             foreach (var entry in zip.ArchiveFileData)
             {
                 length += (long)entry.Size;
 
-                using var file = new MemoryStream((int)entry.Size);
-                zip.ExtractFile(entry.Index, file);
-                file.Seek(0, SeekOrigin.Begin);
+                zip.ExtractFile(entry.Index, _ms!);
             }
         }
 
@@ -196,15 +215,15 @@ public class Benchmarks
     {
         long length = 0;
 
-        using (SharpSevenZipExtractor zip = new(Test1Archive))
+        for (int i = 0; i < 10; i++)
         {
+            using SharpSevenZipExtractor zip = new(Test1Archive);
+
             foreach (var entry in zip.ArchiveFileData)
             {
                 length += (long)entry.Size;
 
-                using var file = new MemoryStream((int)entry.Size);
-                zip.ExtractFile(entry.Index, file);
-                file.Seek(0, SeekOrigin.Begin);
+                zip.ExtractFile(entry.Index, _ms!);
             }
         }
 

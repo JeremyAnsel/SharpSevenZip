@@ -388,8 +388,8 @@ internal static class SharpSevenZipLibraryManager
 
                     if (_totalUsers == 0)
                     {
-                        NativeMethods.FreeLibrary(_modulePtr);
-                        _modulePtr = IntPtr.Zero;
+                        //NativeMethods.FreeLibrary(_modulePtr);
+                        //_modulePtr = IntPtr.Zero;
                     }
                 }
             }
