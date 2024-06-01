@@ -86,6 +86,8 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
                 Thread.Sleep(25);
                 //maximumTimeToWait -= 25;
             }
+
+            Thread.Sleep(25);
         }
 
         Assert.Multiple(() =>
@@ -119,6 +121,8 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
                 Thread.Sleep(25);
                 //timeToWait -= 25;
             }
+
+            Thread.Sleep(25);
         }
 
         Assert.Multiple(() =>
