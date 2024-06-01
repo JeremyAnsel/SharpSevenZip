@@ -4371,6 +4371,22 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipExtractor.IsSolid
   nameWithType: SharpSevenZipExtractor.IsSolid
+- uid: SharpSevenZip.SharpSevenZipExtractor.OpenFileStream(System.Int32)
+  name: OpenFileStream(int)
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_OpenFileStream_System_Int32_
+  commentId: M:SharpSevenZip.SharpSevenZipExtractor.OpenFileStream(System.Int32)
+  name.vb: OpenFileStream(Integer)
+  fullName: SharpSevenZip.SharpSevenZipExtractor.OpenFileStream(int)
+  fullName.vb: SharpSevenZip.SharpSevenZipExtractor.OpenFileStream(Integer)
+  nameWithType: SharpSevenZipExtractor.OpenFileStream(int)
+  nameWithType.vb: SharpSevenZipExtractor.OpenFileStream(Integer)
+- uid: SharpSevenZip.SharpSevenZipExtractor.OpenFileStream*
+  name: OpenFileStream
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_OpenFileStream_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.OpenFileStream
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.OpenFileStream
+  nameWithType: SharpSevenZipExtractor.OpenFileStream
 - uid: SharpSevenZip.SharpSevenZipExtractor.PackedSize
   name: PackedSize
   href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_PackedSize
