@@ -226,7 +226,6 @@ internal sealed class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IO
     /// <returns>Zero if Ok</returns>
     public unsafe int Write(IntPtr data, uint size, IntPtr processedSize)
     {
-
 #if NET6_0_OR_GREATER
         Span<byte> buffer = new(data.ToPointer(), (int)size);
         BaseStream!.Write(buffer);

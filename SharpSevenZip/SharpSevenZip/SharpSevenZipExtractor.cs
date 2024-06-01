@@ -683,7 +683,7 @@ public sealed partial class SharpSevenZipExtractor
 
     private void ArchiveExtractCallbackCommonInit(ArchiveExtractCallback aec)
     {
-        aec.Open += ((s, e) => { _unpackedSize = (long)e.TotalSize; });
+        aec.Open += OpenEventProxy;
         aec.FileExtractionStarted += FileExtractionStartedEventProxy;
         aec.FileExtractionFinished += FileExtractionFinishedEventProxy;
         aec.Extracting += ExtractingEventProxy;
@@ -726,7 +726,7 @@ public sealed partial class SharpSevenZipExtractor
 
     private void FreeArchiveExtractCallback(ArchiveExtractCallback callback)
     {
-        callback.Open -= ((s, e) => { _unpackedSize = (long)e.TotalSize; });
+        callback.Open -= OpenEventProxy;
         callback.FileExtractionStarted -= FileExtractionStartedEventProxy;
         callback.FileExtractionFinished -= FileExtractionFinishedEventProxy;
         callback.Extracting -= ExtractingEventProxy;
@@ -868,6 +868,16 @@ public sealed partial class SharpSevenZipExtractor
     public event EventHandler<FileOverwriteEventArgs>? FileExists;
 
     #region Event proxies
+
+    /// <summary>
+    /// Event proxy for Open
+    /// </summary>
+    /// <param name="sender">The sender of the event.</param>
+    /// <param name="e">The event arguments.</param>
+    private void OpenEventProxy(object? sender, OpenEventArgs e)
+    {
+        _unpackedSize = (long)e.TotalSize;
+    }
 
     /// <summary>
     /// Event proxy for FileExtractionStarted.
@@ -1028,6 +1038,23 @@ public sealed partial class SharpSevenZipExtractor
         }
 
         return true;
+    }
+
+    /// <summary>
+    /// Unpacks the file by its index to the specified stream.
+    /// </summary>
+    /// <param name="index">Index in the archive file table.</param>
+    /// <returns>The stream where the file is to be unpacked.</returns>
+    public Stream OpenFileStream(int index)
+    {
+        var stream = new ExtractStream();
+
+        ThreadPool.QueueUserWorkItem(state =>
+        {
+            ExtractFile(index, stream);
+        });
+
+        return stream;
     }
 
     #region ExtractFile overloads

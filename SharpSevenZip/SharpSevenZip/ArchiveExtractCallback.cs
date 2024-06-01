@@ -31,6 +31,7 @@ internal sealed class ArchiveExtractCallback : CallbackBase, IArchiveExtractCall
     private uint? _fileIndex;
     private int _filesCount;
     private OutStreamWrapper? _fileStream;
+    private Stream? _baseStream;
     private bool _directoryStructure;
     private int _currentIndex;
     private const int MemoryPressure = 64 * 1024 * 1024; //64mb seems to be the maximum value
@@ -112,6 +113,7 @@ internal sealed class ArchiveExtractCallback : CallbackBase, IArchiveExtractCall
     private void Init(IInArchive archive, Stream stream, int filesCount, uint fileIndex, SharpSevenZipExtractor extractor)
     {
         CommonInit(archive, filesCount, extractor);
+        _baseStream = stream;
         _fileStream = new OutStreamWrapper(stream, false);
         _fileStream.BytesWritten += IntEventArgsHandler;
         _fileIndex = fileIndex;
@@ -187,6 +189,7 @@ internal sealed class ArchiveExtractCallback : CallbackBase, IArchiveExtractCall
     public void SetTotal(ulong total)
     {
         _bytesCount = (long)total;
+        _baseStream?.SetLength((long)total);
         Open?.Invoke(this, new OpenEventArgs(total));
     }
 

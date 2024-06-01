@@ -37,6 +37,11 @@ public class Benchmarks
 
     private static void CreateEmptyZip()
     {
+        //if (File.Exists("empty.zip"))
+        //{
+        //    return;
+        //}
+
         File.Delete("empty.zip");
 
         var compressor = new SharpSevenZipCompressor
@@ -52,6 +57,11 @@ public class Benchmarks
 
     private static void CreateTestZip()
     {
+        //if (File.Exists("test.zip"))
+        //{
+        //    return;
+        //}
+
         File.Delete("test.zip");
 
         var compressor = new SharpSevenZipCompressor
@@ -224,6 +234,27 @@ public class Benchmarks
                 length += (long)entry.Size;
 
                 zip.ExtractFile(entry.Index, _ms!);
+            }
+        }
+
+        return length;
+    }
+
+    [Benchmark]
+    public long Decompress_SharpSevenZip_Sum1_Stream()
+    {
+        long length = 0;
+
+        for (int i = 0; i < 10; i++)
+        {
+            using SharpSevenZipExtractor zip = new(Test1Archive);
+
+            foreach (var entry in zip.ArchiveFileData)
+            {
+                length += (long)entry.Size;
+
+                using var entryStream = zip.OpenFileStream(entry.Index);
+                entryStream.CopyTo(_ms!);
             }
         }
 
