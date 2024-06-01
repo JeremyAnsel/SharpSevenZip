@@ -189,7 +189,12 @@ internal sealed class ArchiveExtractCallback : CallbackBase, IArchiveExtractCall
     public void SetTotal(ulong total)
     {
         _bytesCount = (long)total;
-        _baseStream?.SetLength((long)total);
+
+        if (_baseStream is ExtractStream)
+        {
+            _baseStream?.SetLength((long)total);
+        }
+
         Open?.Invoke(this, new OpenEventArgs(total));
     }
 
