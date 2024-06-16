@@ -519,10 +519,11 @@ public sealed partial class SharpSevenZipExtractor
                 }
 
                 _filesCount = _archive.GetNumberOfItems();
-                _archiveFileData = new List<ArchiveFileInfo>((int)_filesCount);
 
                 if (_filesCount != 0)
                 {
+                    _archiveFileData = new List<ArchiveFileInfo>((int)_filesCount);
+
                     var data = new PropVariant();
 
                     try
@@ -630,7 +631,10 @@ public sealed partial class SharpSevenZipExtractor
                 _archiveStream = null;
             }
 
-            _archiveFileInfoCollection = new ReadOnlyCollection<ArchiveFileInfo>(_archiveFileData);
+            if (_filesCount != 0)
+            {
+                _archiveFileInfoCollection = new ReadOnlyCollection<ArchiveFileInfo>(_archiveFileData!);
+            }
         }
     }
 
@@ -640,7 +644,7 @@ public sealed partial class SharpSevenZipExtractor
     /// <param name="disposeStream">Dispose the archive stream after this operation.</param>
     private void InitArchiveFileData(bool disposeStream)
     {
-        if (_archiveFileData == null)
+        if (_filesCount == null)
         {
             GetArchiveInfo(disposeStream);
         }
@@ -935,6 +939,15 @@ public sealed partial class SharpSevenZipExtractor
             DisposedCheck();
             InitArchiveFileData(true);
 
+            if (_filesCount == 0)
+            {
+#if NET8_0_OR_GREATER
+                            return ReadOnlyCollection<ArchiveFileInfo>.Empty;
+#else
+                return new ReadOnlyCollection<ArchiveFileInfo>(Array.Empty<ArchiveFileInfo>());
+#endif
+            }
+
             return _archiveFileInfoCollection!;
         }
     }
@@ -965,6 +978,16 @@ public sealed partial class SharpSevenZipExtractor
         {
             DisposedCheck();
             InitArchiveFileData(true);
+
+            if (_filesCount == 0)
+            {
+#if NET8_0_OR_GREATER
+                return ReadOnlyCollection<string>.Empty;
+#else
+                return new ReadOnlyCollection<string>(Array.Empty<string>());
+#endif
+            }
+
             var fileNames = new List<string>(_archiveFileData!.Count);
 
             fileNames.AddRange(_archiveFileData.Select(afi => afi.FileName));
@@ -1069,6 +1092,12 @@ public sealed partial class SharpSevenZipExtractor
         DisposedCheck();
 
         InitArchiveFileData(false);
+
+        if (_filesCount == 0)
+        {
+            return;
+        }
+
         var index = -1;
 
         foreach (var afi in _archiveFileData!)
@@ -1130,6 +1159,11 @@ public sealed partial class SharpSevenZipExtractor
             {
                 return;
             }
+        }
+
+        if (_filesCount == 0)
+        {
+            return;
         }
 
         var archiveStream = GetArchiveStream(false);
@@ -1288,6 +1322,12 @@ public sealed partial class SharpSevenZipExtractor
     {
         DisposedCheck();
         InitArchiveFileData(false);
+
+        if (_filesCount == 0)
+        {
+            return;
+        }
+
         var indexes = new List<int>(fileNames.Length);
         var archiveFileNames = new List<string>(ArchiveFileNames);
 
