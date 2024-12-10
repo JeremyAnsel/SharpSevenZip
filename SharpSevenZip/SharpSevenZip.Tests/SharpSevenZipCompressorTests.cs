@@ -320,6 +320,65 @@ public class SharpSevenZipCompressorTests : TestBase
     }
 
     [Test]
+    public void CompressStreamDictionaryTest()
+    {
+        var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
+        
+        // Add creation and access time to the archive (write time is added automatically)
+        compressor.CustomParameters.Add("tc", "on"); // Add creation time to archive files
+        compressor.CustomParameters.Add("ta", "on"); // Add last access time to archive files
+
+        DateTime creationTime = DateTime.Now.AddYears(-1);
+        DateTime lastWriteTime = DateTime.Now.AddMonths(-1);
+        DateTime lastAccessTime = DateTime.Now.AddDays(-1);
+
+        var fileDict = new Dictionary<string, StreamWithAttributes>
+            {
+                {"zip.zip", new (new MemoryStream(), creationTime, lastWriteTime, lastAccessTime)}
+            };
+
+        compressor.CompressStreamDictionary(fileDict, TemporaryFile);
+
+        Assert.That(File.Exists(TemporaryFile), Is.True);
+        {
+            using var extractor = new SharpSevenZipExtractor(TemporaryFile);
+            Assert.Multiple(() =>
+            {
+                Assert.That(extractor.FilesCount, Is.EqualTo(1));
+                Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.zip"));
+                Assert.That(extractor.ArchiveFileData[0].CreationTime, Is.EqualTo(creationTime));
+                Assert.That(extractor.ArchiveFileData[0].LastWriteTime, Is.EqualTo(lastWriteTime));
+                Assert.That(extractor.ArchiveFileData[0].LastAccessTime, Is.EqualTo(lastAccessTime));
+            });
+        }
+
+        // Test new compressor in append mode
+        compressor = new SharpSevenZipCompressor { DirectoryStructure = false, CompressionMode = CompressionMode.Append };
+        compressor.CustomParameters.Add("tc", "on"); // Add creation time to archive files
+        compressor.CustomParameters.Add("ta", "on"); // Add access
+        
+        creationTime = creationTime.AddYears(-1);
+        lastWriteTime = lastWriteTime.AddMonths(-1);
+        lastAccessTime = lastAccessTime.AddDays(-1);
+        fileDict = new Dictionary<string, StreamWithAttributes>
+            {
+                {"zip2.zip", new (new MemoryStream(), creationTime, lastWriteTime, lastAccessTime)}
+            };
+        compressor.CompressStreamDictionary(fileDict, TemporaryFile);
+        {
+            using var extractor = new SharpSevenZipExtractor(TemporaryFile);
+            Assert.Multiple(() =>
+            {
+                Assert.That(extractor.FilesCount, Is.EqualTo(2));
+                Assert.That(extractor.ArchiveFileNames[1], Is.EqualTo("zip2.zip"));
+                Assert.That(extractor.ArchiveFileData[1].CreationTime, Is.EqualTo(creationTime));
+                Assert.That(extractor.ArchiveFileData[1].LastWriteTime, Is.EqualTo(lastWriteTime));
+                Assert.That(extractor.ArchiveFileData[1].LastAccessTime, Is.EqualTo(lastAccessTime));
+            });
+        }
+    }
+
+    [Test]
     public void ThreadedCompressionTest()
     {
         var tempFile1 = Path.Combine(OutputDirectory, "t1.7z");

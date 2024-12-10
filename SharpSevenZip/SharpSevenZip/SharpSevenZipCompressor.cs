@@ -834,7 +834,7 @@ public sealed partial class SharpSevenZipCompressor
     /// <param name="password">The archive password</param>
     /// <returns></returns>
     private ArchiveUpdateCallback GetArchiveUpdateCallback(
-        IDictionary<string, Stream> streamDict, string password)
+        IDictionary<string, StreamWithAttributes> streamDict, string password)
     {
         SetCompressionProperties();
         var auc = (string.IsNullOrEmpty(password))
@@ -1416,7 +1416,7 @@ public sealed partial class SharpSevenZipCompressor
     /// <param name="password">The archive password.</param>
     public void CompressFileDictionary(IDictionary<string, string> fileDictionary, Stream archiveStream, string password = "")
     {
-        var streamDict = new Dictionary<string, Stream?>(fileDictionary.Count);
+        var streamDict = new Dictionary<string, StreamWithAttributes?>(fileDictionary.Count);
 
         foreach (var pair in fileDictionary)
         {
@@ -1426,7 +1426,8 @@ public sealed partial class SharpSevenZipCompressor
             }
             else
             {
-                if (!File.Exists(pair.Value))
+                var fileInfo = new FileInfo(pair.Value);
+                if (!fileInfo.Exists)
                 {
                     throw new CompressionFailedException(
                         "The file corresponding to the archive entry \"" + pair.Key + "\" does not exist.");
@@ -1434,7 +1435,8 @@ public sealed partial class SharpSevenZipCompressor
 
                 streamDict.Add(
                     pair.Key,
-                    new FileStream(pair.Value, FileMode.Open, FileAccess.Read, FileShare.ReadWrite));
+                    new(new FileStream(pair.Value, FileMode.Open, FileAccess.Read, FileShare.ReadWrite),
+                        fileInfo.CreationTime, fileInfo.LastWriteTime, fileInfo.LastAccessTime));
             }
         }
 
@@ -1453,7 +1455,7 @@ public sealed partial class SharpSevenZipCompressor
     /// If a stream is null, the corresponding string becomes a directory name.</param>
     /// <param name="archiveName">The archive file name.</param>
     /// <param name="password">The archive password.</param>
-    public void CompressStreamDictionary(IDictionary<string, Stream> streamDictionary, string archiveName, string password = "")
+    public void CompressStreamDictionary(IDictionary<string, StreamWithAttributes> streamDictionary, string archiveName, string password = "")
     {
         _compressingFilesOnDisk = true;
         _archiveName = archiveName;
@@ -1479,7 +1481,7 @@ public sealed partial class SharpSevenZipCompressor
     /// <param name="archiveStream">The archive output stream.
     /// Use CompressStreamDictionary( ... string archiveName ... ) overloads for archiving to disk.</param>
     /// <param name="password">The archive password.</param>
-    public void CompressStreamDictionary(IDictionary<string, Stream> streamDictionary, Stream archiveStream, string password = "")
+    public void CompressStreamDictionary(IDictionary<string, StreamWithAttributes> streamDictionary, Stream archiveStream, string password = "")
     {
         ClearExceptions();
 
@@ -1502,7 +1504,7 @@ public sealed partial class SharpSevenZipCompressor
         UpdateCompressorPassword(password);
 
         if (streamDictionary.Where(
-            pair => pair.Value != null && (!pair.Value.CanSeek || !pair.Value.CanRead)).Any(
+            pair => pair.Value.Stream != null && (!pair.Value.Stream.CanSeek || !pair.Value.Stream.CanRead)).Any(
             pair => !ThrowException(null,
                 new ArgumentException(
                     $"The specified stream dictionary contains an invalid stream corresponding to the archive entry \"{pair.Key}\".",
@@ -1572,7 +1574,6 @@ public sealed partial class SharpSevenZipCompressor
 
         ThrowUserException();
     }
-
     #endregion
 
     #region CompressStream overloads
