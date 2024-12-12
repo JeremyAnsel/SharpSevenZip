@@ -502,6 +502,16 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.StreamWithAttributes.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.StreamWithAttributes.html"
+        }
+      },
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.ZipEncryptionMethod.yml",
       "output": {
         ".html": {

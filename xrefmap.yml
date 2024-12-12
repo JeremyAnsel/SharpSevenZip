@@ -3588,24 +3588,24 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipCompressor.CompressStreamAsync
   nameWithType: SharpSevenZipCompressor.CompressStreamAsync
-- uid: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,System.IO.Stream},System.IO.Stream,System.String)
-  name: CompressStreamDictionary(IDictionary<string, Stream>, Stream, string)
-  href: api/SharpSevenZip.SharpSevenZipCompressor.html#SharpSevenZip_SharpSevenZipCompressor_CompressStreamDictionary_System_Collections_Generic_IDictionary_System_String_System_IO_Stream__System_IO_Stream_System_String_
-  commentId: M:SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,System.IO.Stream},System.IO.Stream,System.String)
-  name.vb: CompressStreamDictionary(IDictionary(Of String, Stream), Stream, String)
-  fullName: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary<string, System.IO.Stream>, System.IO.Stream, string)
-  fullName.vb: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary(Of String, System.IO.Stream), System.IO.Stream, String)
-  nameWithType: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary<string, Stream>, Stream, string)
-  nameWithType.vb: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary(Of String, Stream), Stream, String)
-- uid: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,System.IO.Stream},System.String,System.String)
-  name: CompressStreamDictionary(IDictionary<string, Stream>, string, string)
-  href: api/SharpSevenZip.SharpSevenZipCompressor.html#SharpSevenZip_SharpSevenZipCompressor_CompressStreamDictionary_System_Collections_Generic_IDictionary_System_String_System_IO_Stream__System_String_System_String_
-  commentId: M:SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,System.IO.Stream},System.String,System.String)
-  name.vb: CompressStreamDictionary(IDictionary(Of String, Stream), String, String)
-  fullName: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary<string, System.IO.Stream>, string, string)
-  fullName.vb: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary(Of String, System.IO.Stream), String, String)
-  nameWithType: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary<string, Stream>, string, string)
-  nameWithType.vb: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary(Of String, Stream), String, String)
+- uid: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,SharpSevenZip.StreamWithAttributes},System.IO.Stream,System.String)
+  name: CompressStreamDictionary(IDictionary<string, StreamWithAttributes>, Stream, string)
+  href: api/SharpSevenZip.SharpSevenZipCompressor.html#SharpSevenZip_SharpSevenZipCompressor_CompressStreamDictionary_System_Collections_Generic_IDictionary_System_String_SharpSevenZip_StreamWithAttributes__System_IO_Stream_System_String_
+  commentId: M:SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,SharpSevenZip.StreamWithAttributes},System.IO.Stream,System.String)
+  name.vb: CompressStreamDictionary(IDictionary(Of String, StreamWithAttributes), Stream, String)
+  fullName: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary<string, SharpSevenZip.StreamWithAttributes>, System.IO.Stream, string)
+  fullName.vb: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary(Of String, SharpSevenZip.StreamWithAttributes), System.IO.Stream, String)
+  nameWithType: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary<string, StreamWithAttributes>, Stream, string)
+  nameWithType.vb: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary(Of String, StreamWithAttributes), Stream, String)
+- uid: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,SharpSevenZip.StreamWithAttributes},System.String,System.String)
+  name: CompressStreamDictionary(IDictionary<string, StreamWithAttributes>, string, string)
+  href: api/SharpSevenZip.SharpSevenZipCompressor.html#SharpSevenZip_SharpSevenZipCompressor_CompressStreamDictionary_System_Collections_Generic_IDictionary_System_String_SharpSevenZip_StreamWithAttributes__System_String_System_String_
+  commentId: M:SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary{System.String,SharpSevenZip.StreamWithAttributes},System.String,System.String)
+  name.vb: CompressStreamDictionary(IDictionary(Of String, StreamWithAttributes), String, String)
+  fullName: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary<string, SharpSevenZip.StreamWithAttributes>, string, string)
+  fullName.vb: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary(System.Collections.Generic.IDictionary(Of String, SharpSevenZip.StreamWithAttributes), String, String)
+  nameWithType: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary<string, StreamWithAttributes>, string, string)
+  nameWithType.vb: SharpSevenZipCompressor.CompressStreamDictionary(IDictionary(Of String, StreamWithAttributes), String, String)
 - uid: SharpSevenZip.SharpSevenZipCompressor.CompressStreamDictionary*
   name: CompressStreamDictionary
   href: api/SharpSevenZip.SharpSevenZipCompressor.html#SharpSevenZip_SharpSevenZipCompressor_CompressStreamDictionary_
@@ -4584,6 +4584,83 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipSfx.SfxModule
   nameWithType: SharpSevenZipSfx.SfxModule
+- uid: SharpSevenZip.StreamWithAttributes
+  name: StreamWithAttributes
+  href: api/SharpSevenZip.StreamWithAttributes.html
+  commentId: T:SharpSevenZip.StreamWithAttributes
+  fullName: SharpSevenZip.StreamWithAttributes
+  nameWithType: StreamWithAttributes
+- uid: SharpSevenZip.StreamWithAttributes.#ctor(System.IO.Stream,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})
+  name: StreamWithAttributes(Stream, DateTime?, DateTime?, DateTime?)
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes__ctor_System_IO_Stream_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Nullable_System_DateTime__
+  commentId: M:SharpSevenZip.StreamWithAttributes.#ctor(System.IO.Stream,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})
+  name.vb: New(Stream, Date?, Date?, Date?)
+  fullName: SharpSevenZip.StreamWithAttributes.StreamWithAttributes(System.IO.Stream, System.DateTime?, System.DateTime?, System.DateTime?)
+  fullName.vb: SharpSevenZip.StreamWithAttributes.New(System.IO.Stream, Date?, Date?, Date?)
+  nameWithType: StreamWithAttributes.StreamWithAttributes(Stream, DateTime?, DateTime?, DateTime?)
+  nameWithType.vb: StreamWithAttributes.New(Stream, Date?, Date?, Date?)
+- uid: SharpSevenZip.StreamWithAttributes.#ctor*
+  name: StreamWithAttributes
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes__ctor_
+  commentId: Overload:SharpSevenZip.StreamWithAttributes.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SharpSevenZip.StreamWithAttributes.StreamWithAttributes
+  fullName.vb: SharpSevenZip.StreamWithAttributes.New
+  nameWithType: StreamWithAttributes.StreamWithAttributes
+  nameWithType.vb: StreamWithAttributes.New
+- uid: SharpSevenZip.StreamWithAttributes.CreationTime
+  name: CreationTime
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_CreationTime
+  commentId: P:SharpSevenZip.StreamWithAttributes.CreationTime
+  fullName: SharpSevenZip.StreamWithAttributes.CreationTime
+  nameWithType: StreamWithAttributes.CreationTime
+- uid: SharpSevenZip.StreamWithAttributes.CreationTime*
+  name: CreationTime
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_CreationTime_
+  commentId: Overload:SharpSevenZip.StreamWithAttributes.CreationTime
+  isSpec: "True"
+  fullName: SharpSevenZip.StreamWithAttributes.CreationTime
+  nameWithType: StreamWithAttributes.CreationTime
+- uid: SharpSevenZip.StreamWithAttributes.LastAccessTime
+  name: LastAccessTime
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_LastAccessTime
+  commentId: P:SharpSevenZip.StreamWithAttributes.LastAccessTime
+  fullName: SharpSevenZip.StreamWithAttributes.LastAccessTime
+  nameWithType: StreamWithAttributes.LastAccessTime
+- uid: SharpSevenZip.StreamWithAttributes.LastAccessTime*
+  name: LastAccessTime
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_LastAccessTime_
+  commentId: Overload:SharpSevenZip.StreamWithAttributes.LastAccessTime
+  isSpec: "True"
+  fullName: SharpSevenZip.StreamWithAttributes.LastAccessTime
+  nameWithType: StreamWithAttributes.LastAccessTime
+- uid: SharpSevenZip.StreamWithAttributes.LastWriteTime
+  name: LastWriteTime
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_LastWriteTime
+  commentId: P:SharpSevenZip.StreamWithAttributes.LastWriteTime
+  fullName: SharpSevenZip.StreamWithAttributes.LastWriteTime
+  nameWithType: StreamWithAttributes.LastWriteTime
+- uid: SharpSevenZip.StreamWithAttributes.LastWriteTime*
+  name: LastWriteTime
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_LastWriteTime_
+  commentId: Overload:SharpSevenZip.StreamWithAttributes.LastWriteTime
+  isSpec: "True"
+  fullName: SharpSevenZip.StreamWithAttributes.LastWriteTime
+  nameWithType: StreamWithAttributes.LastWriteTime
+- uid: SharpSevenZip.StreamWithAttributes.Stream
+  name: Stream
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_Stream
+  commentId: P:SharpSevenZip.StreamWithAttributes.Stream
+  fullName: SharpSevenZip.StreamWithAttributes.Stream
+  nameWithType: StreamWithAttributes.Stream
+- uid: SharpSevenZip.StreamWithAttributes.Stream*
+  name: Stream
+  href: api/SharpSevenZip.StreamWithAttributes.html#SharpSevenZip_StreamWithAttributes_Stream_
+  commentId: Overload:SharpSevenZip.StreamWithAttributes.Stream
+  isSpec: "True"
+  fullName: SharpSevenZip.StreamWithAttributes.Stream
+  nameWithType: StreamWithAttributes.Stream
 - uid: SharpSevenZip.ZipEncryptionMethod
   name: ZipEncryptionMethod
   href: api/SharpSevenZip.ZipEncryptionMethod.html

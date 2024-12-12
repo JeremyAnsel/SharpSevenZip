@@ -5,9 +5,9 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Namespace SharpSevenZip.Exceptions </title>
+      <title>Class StreamWithAttributes </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Namespace SharpSevenZip.Exceptions ">
+      <meta name="title" content="Class StreamWithAttributes ">
     
     
       <link rel="shortcut icon" href="../favicon.ico">
@@ -149,8 +149,8 @@
                           <li class="">
                             <a href="SharpSevenZip.SharpSevenZipSfx.html" title="SharpSevenZipSfx" class="">SharpSevenZipSfx</a>
                           </li>
-                          <li class="">
-                            <a href="SharpSevenZip.StreamWithAttributes.html" title="StreamWithAttributes" class="">StreamWithAttributes</a>
+                          <li class="active">
+                            <a href="SharpSevenZip.StreamWithAttributes.html" title="StreamWithAttributes" class="active">StreamWithAttributes</a>
                           </li>
                           <li class="">
                             <a href="SharpSevenZip.ZipEncryptionMethod.html" title="ZipEncryptionMethod" class="">ZipEncryptionMethod</a>
@@ -191,9 +191,9 @@
                           </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li class="">
                       <span class="expand-stub"></span>
-                      <a href="SharpSevenZip.Exceptions.html" title="SharpSevenZip.Exceptions" class="active">SharpSevenZip.Exceptions</a>
+                      <a href="SharpSevenZip.Exceptions.html" title="SharpSevenZip.Exceptions" class="">SharpSevenZip.Exceptions</a>
 
                         <ul class="nav level2">
                           <li class="">
@@ -278,46 +278,227 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SharpSevenZip.Exceptions">
+            <article class="content wrap" id="_content" data-uid="SharpSevenZip.StreamWithAttributes">
 
-  <h1 id="SharpSevenZip_Exceptions" data-uid="SharpSevenZip.Exceptions" class="text-break">Namespace SharpSevenZip.Exceptions</h1>
+
+
+  <h1 id="SharpSevenZip_StreamWithAttributes" data-uid="SharpSevenZip.StreamWithAttributes" class="text-break">Class StreamWithAttributes</h1>
   <div class="markdown level0 summary"></div>
   <div class="markdown level0 conceptual"></div>
-  <div class="markdown level0 remarks"></div>
-    <h3 id="classes">
-Classes
+  <div class="inheritance">
+    <h5>Inheritance</h5>
+    <div class="level0"><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object">object</a></div>
+    <div class="level1"><span class="xref">StreamWithAttributes</span></div>
+  </div>
+  <div class="implements">
+    <h5>Implements</h5>
+    <div><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable</a>&lt;<a class="xref" href="SharpSevenZip.StreamWithAttributes.html">StreamWithAttributes</a>&gt;</div>
+  </div>
+  <div class="inheritedMembers">
+    <h5>Inherited Members</h5>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)">object.Equals(object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)">object.Equals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gethashcode">object.GetHashCode()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.gettype">object.GetType()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone">object.MemberwiseClone()</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.referenceequals">object.ReferenceEquals(object, object)</a>
+    </div>
+    <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.object.tostring">object.ToString()</a>
+    </div>
+  </div>
+  <h6><strong>Namespace</strong>: <a class="xref" href="SharpSevenZip.html">SharpSevenZip</a></h6>
+  <h6><strong>Assembly</strong>: SharpSevenZip.dll</h6>
+  <h5 id="SharpSevenZip_StreamWithAttributes_syntax">Syntax</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public record StreamWithAttributes : IEquatable&lt;StreamWithAttributes&gt;</code></pre>
+  </div>
+  <h3 id="constructors">Constructors
 </h3>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.CompressionFailedException.html">CompressionFailedException</a></h4>
-      <section><p>Exception class for ArchiveUpdateCallback.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.ExtractionFailedException.html">ExtractionFailedException</a></h4>
-      <section><p>Exception class for ArchiveExtractCallback.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.LzmaException.html">LzmaException</a></h4>
-      <section><p>Exception class for LZMA operations.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html">SharpSevenZipArchiveException</a></h4>
-      <section><p>Exception class for 7-zip archive open or read operations.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html">SharpSevenZipCompressionFailedException</a></h4>
-      <section><p>Exception class for fail to create an archive in SharpSevenZipCompressor.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipException.html">SharpSevenZipException</a></h4>
-      <section><p>Base SharpSevenZip exception class.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html">SharpSevenZipExtractionFailedException</a></h4>
-      <section><p>Exception class for fail to extract an archive in SharpSevenZipExtractor.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html">SharpSevenZipInvalidFileNamesException</a></h4>
-      <section><p>Exception class for empty common root if file name array in SharpSevenZipCompressor.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html">SharpSevenZipLibraryException</a></h4>
-      <section><p>Exception class for 7-zip library operations.</p>
-</section>
-      <h4><a class="xref" href="SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html">SharpSevenZipSfxValidationException</a></h4>
-      <section><p>Exception class for 7-zip sfx settings validation.</p>
-</section>
-
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes__ctor_System_IO_Stream_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Nullable_System_DateTime__.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.%23ctor(System.IO.Stream%2CSystem.Nullable%7BSystem.DateTime%7D%2CSystem.Nullable%7BSystem.DateTime%7D%2CSystem.Nullable%7BSystem.DateTime%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L2">View Source</a>
+  </span>
+  <a id="SharpSevenZip_StreamWithAttributes__ctor_" data-uid="SharpSevenZip.StreamWithAttributes.#ctor*"></a>
+  <h4 id="SharpSevenZip_StreamWithAttributes__ctor_System_IO_Stream_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Nullable_System_DateTime__" data-uid="SharpSevenZip.StreamWithAttributes.#ctor(System.IO.Stream,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">StreamWithAttributes(Stream, DateTime?, DateTime?, DateTime?)</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public StreamWithAttributes(Stream Stream, DateTime? CreationTime = null, DateTime? LastWriteTime = null, DateTime? LastAccessTime = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td><span class="parametername">Stream</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td><span class="parametername">CreationTime</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td><span class="parametername">LastWriteTime</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td><span class="parametername">LastAccessTime</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="properties">Properties
+</h3>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_CreationTime.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.CreationTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L2">View Source</a>
+  </span>
+  <a id="SharpSevenZip_StreamWithAttributes_CreationTime_" data-uid="SharpSevenZip.StreamWithAttributes.CreationTime*"></a>
+  <h4 id="SharpSevenZip_StreamWithAttributes_CreationTime" data-uid="SharpSevenZip.StreamWithAttributes.CreationTime">CreationTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? CreationTime { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_LastAccessTime.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.LastAccessTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L2">View Source</a>
+  </span>
+  <a id="SharpSevenZip_StreamWithAttributes_LastAccessTime_" data-uid="SharpSevenZip.StreamWithAttributes.LastAccessTime*"></a>
+  <h4 id="SharpSevenZip_StreamWithAttributes_LastAccessTime" data-uid="SharpSevenZip.StreamWithAttributes.LastAccessTime">LastAccessTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? LastAccessTime { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_LastWriteTime.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.LastWriteTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L2">View Source</a>
+  </span>
+  <a id="SharpSevenZip_StreamWithAttributes_LastWriteTime_" data-uid="SharpSevenZip.StreamWithAttributes.LastWriteTime*"></a>
+  <h4 id="SharpSevenZip_StreamWithAttributes_LastWriteTime" data-uid="SharpSevenZip.StreamWithAttributes.LastWriteTime">LastWriteTime</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public DateTime? LastWriteTime { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_Stream.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.Stream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L2">View Source</a>
+  </span>
+  <a id="SharpSevenZip_StreamWithAttributes_Stream_" data-uid="SharpSevenZip.StreamWithAttributes.Stream*"></a>
+  <h4 id="SharpSevenZip_StreamWithAttributes_Stream" data-uid="SharpSevenZip.StreamWithAttributes.Stream">Stream</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="declaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public Stream Stream { get; init; }</code></pre>
+  </div>
+  <h5 class="propertyValue">Property Value</h5>
+  <table class="table table-bordered table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <h3 id="implements">Implements</h3>
+  <div>
+      <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.iequatable-1">IEquatable&lt;T&gt;</a>
+  </div>
 
 </article>
           </div>
@@ -326,6 +507,12 @@ Classes
             <div class="sideaffix">
               <div class="contribution">
                 <ul class="nav">
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                  </li>
+                  <li>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L2" class="contribution-link">View Source</a>
+                  </li>
                 </ul>
               </div>
               <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
