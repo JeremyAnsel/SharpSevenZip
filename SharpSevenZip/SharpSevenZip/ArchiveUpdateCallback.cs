@@ -58,7 +58,7 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
     /// <summary>
     /// Input streams to be compressed.
     /// </summary>
-    private Stream[]? _streams;
+    private StreamWithAttributes[]? _streams;
 
     private UpdateData _updateData;
     private List<InStreamWrapper>? _wrappersToDispose;
@@ -148,7 +148,7 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
     /// <param name="updateData">The compression parameters.</param>
     /// <param name="directoryStructure">Preserve directory structure.</param>
     public ArchiveUpdateCallback(
-        IDictionary<string, Stream> streamDict,
+        IDictionary<string, StreamWithAttributes> streamDict,
         SharpSevenZipCompressor compressor, UpdateData updateData, bool directoryStructure)
     {
         Init(streamDict, compressor, updateData, directoryStructure);
@@ -163,7 +163,7 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
     /// <param name="updateData">The compression parameters.</param>
     /// <param name="directoryStructure">Preserve directory structure.</param>
     public ArchiveUpdateCallback(
-        IDictionary<string, Stream> streamDict, string password,
+        IDictionary<string, StreamWithAttributes> streamDict, string password,
         SharpSevenZipCompressor compressor, UpdateData updateData, bool directoryStructure)
         : base(password)
     {
@@ -234,19 +234,19 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
     }
 
     private void Init(
-        IDictionary<string, Stream> streamDict,
+        IDictionary<string, StreamWithAttributes> streamDict,
         SharpSevenZipCompressor compressor, UpdateData updateData, bool directoryStructure)
     {
-        _streams = new Stream[streamDict.Count];
+        _streams = new StreamWithAttributes[streamDict.Count];
         streamDict.Values.CopyTo(_streams, 0);
         _entries = new string[streamDict.Count];
         streamDict.Keys.CopyTo(_entries, 0);
         _actualFilesCount = streamDict.Count;
-        foreach (Stream str in _streams)
+        foreach (var str in _streams)
         {
             if (str != null)
             {
-                _bytesCount += str.Length;
+                _bytesCount += str.Stream.Length;
             }
         }
         CommonInit(compressor, updateData, directoryStructure);
@@ -481,7 +481,7 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
                             }
                             else
                             {
-                                size = (ulong)(_streams[index] == null ? 0 : _streams[index].Length);
+                                size = (ulong)(_streams[index] == null ? 0 : _streams[index].Stream.Length);
                             }
                         }
                         else
@@ -529,9 +529,8 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
                     value.VarType = VarEnum.VT_FILETIME;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        value.Int64Value = _files == null
-                                           ? DateTime.Now.ToFileTime()
-                                           : _files[index].CreationTime.ToFileTime();
+                        value.Int64Value = (_files == null ? _streams?[index].CreationTime ?? DateTime.Now
+                                           : _files[index].CreationTime).ToFileTime();
                     }
                     else
                     {
@@ -542,9 +541,8 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
                     value.VarType = VarEnum.VT_FILETIME;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        value.Int64Value = _files == null
-                                           ? DateTime.Now.ToFileTime()
-                                           : _files[index].LastAccessTime.ToFileTime();
+                        value.Int64Value = (_files == null ? _streams?[index].LastAccessTime ?? DateTime.Now
+                                           : _files[index].LastAccessTime).ToFileTime();
                     }
                     else
                     {
@@ -555,9 +553,8 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
                     value.VarType = VarEnum.VT_FILETIME;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        value.Int64Value = _files == null
-                                           ? DateTime.Now.ToFileTime()
-                                           : _files[index].LastWriteTime.ToFileTime();
+                        value.Int64Value = (_files == null ? _streams?[index].LastWriteTime ?? DateTime.Now
+                                           : _files[index].LastWriteTime).ToFileTime();
                     }
                     else
                     {
@@ -647,7 +644,7 @@ internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallba
             }
             else
             {
-                _fileStream = new InStreamWrapper(_streams[index], true);
+                _fileStream = new InStreamWrapper(_streams[index].Stream, true);
                 inStream = _fileStream;
                 if (!EventsForGetStream(index))
                 {

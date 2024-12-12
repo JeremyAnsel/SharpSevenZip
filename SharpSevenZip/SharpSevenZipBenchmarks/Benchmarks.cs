@@ -79,9 +79,9 @@ public class Benchmarks
         fileStream.Write(bytes, 0, bytes.Length);
         fileStream.Seek(0, SeekOrigin.Begin);
 
-        Dictionary<string, Stream> files = new()
+        Dictionary<string, StreamWithAttributes> files = new()
         {
-            {"test.bin", fileStream },
+            {"test.bin", new(fileStream) },
         };
 
         compressor.CompressStreamDictionary(files, "test.zip");
