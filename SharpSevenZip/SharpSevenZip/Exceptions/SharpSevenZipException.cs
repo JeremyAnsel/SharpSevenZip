@@ -11,7 +11,7 @@ public class SharpSevenZipException : Exception
     /// <summary>
     /// The message for thrown user exceptions.
     /// </summary>
-    internal const string USER_EXCEPTION_MESSAGE = "The extraction was successful but" +
+    internal const string USER_EXCEPTION_MESSAGE = "The extraction was successful but " +
         "some exceptions were thrown in your events. Check UserExceptions for details.";
 
     /// <summary>
