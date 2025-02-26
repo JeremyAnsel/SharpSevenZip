@@ -18,7 +18,11 @@
           "relative_path": "api/SharpSevenZip.ArchiveFileInfo.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ArchiveFileInfo",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ArchiveFileInfo.yml\" sourcestartlinenumber=\"1\">Struct for storing information about files in the 7-zip archive.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -28,7 +32,11 @@
           "relative_path": "api/SharpSevenZip.ArchiveProperty.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ArchiveProperty",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ArchiveProperty.yml\" sourcestartlinenumber=\"1\">Archive property struct.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -38,7 +46,11 @@
           "relative_path": "api/SharpSevenZip.CompressionLevel.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.CompressionLevel",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.CompressionLevel.yml\" sourcestartlinenumber=\"1\">Compression level enumeration</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -48,7 +60,11 @@
           "relative_path": "api/SharpSevenZip.CompressionMethod.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.CompressionMethod",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.CompressionMethod.yml\" sourcestartlinenumber=\"1\">Compression method enumeration.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -58,7 +74,11 @@
           "relative_path": "api/SharpSevenZip.CompressionMode.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.CompressionMode",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.CompressionMode.yml\" sourcestartlinenumber=\"1\">Archive compression mode.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -68,7 +88,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.ExtractFileCallbackArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.ExtractFileCallbackArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.ExtractFileCallbackArgs.yml\" sourcestartlinenumber=\"1\">The arguments passed to <xref href=\"SharpSevenZip.ExtractFileCallback\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -78,7 +102,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.ExtractFileCallbackReason.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.ExtractFileCallbackReason",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.ExtractFileCallbackReason.yml\" sourcestartlinenumber=\"1\">The reason for calling <xref href=\"SharpSevenZip.ExtractFileCallback\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -88,7 +116,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.FileInfoEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.FileInfoEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.FileInfoEventArgs.yml\" sourcestartlinenumber=\"1\">EventArgs used to report the file information which is going to be packed.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -98,7 +130,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.FileNameEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.FileNameEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.FileNameEventArgs.yml\" sourcestartlinenumber=\"1\">EventArgs class which stores the file name.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -108,7 +144,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.FileOverwriteEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.FileOverwriteEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.FileOverwriteEventArgs.yml\" sourcestartlinenumber=\"1\">EventArgs for FileExists event, stores the file name and asks whether to overwrite it in case it already exists.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -118,7 +158,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.IntEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.IntEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.IntEventArgs.yml\" sourcestartlinenumber=\"1\">Stores an int number</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -128,7 +172,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.OpenEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.OpenEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.OpenEventArgs.yml\" sourcestartlinenumber=\"1\">EventArgs used to report the size of unpacked archive data</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -138,7 +186,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.PercentDoneEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.PercentDoneEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.PercentDoneEventArgs.yml\" sourcestartlinenumber=\"1\">EventArgs for storing PercentDone property.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -148,7 +200,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.ProgressEventArgs.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments.ProgressEventArgs",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventArguments.ProgressEventArgs.yml\" sourcestartlinenumber=\"1\">The EventArgs class for accurate progress handling.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -158,7 +214,11 @@
           "relative_path": "api/SharpSevenZip.EventArguments.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventArguments",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -168,7 +228,11 @@
           "relative_path": "api/SharpSevenZip.EventSynchronizationStrategy.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.EventSynchronizationStrategy",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.EventSynchronizationStrategy.yml\" sourcestartlinenumber=\"1\">The way of the event synchronization.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -178,7 +242,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.CompressionFailedException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.CompressionFailedException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.CompressionFailedException.yml\" sourcestartlinenumber=\"1\">Exception class for ArchiveUpdateCallback.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -188,7 +256,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.ExtractionFailedException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.ExtractionFailedException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.ExtractionFailedException.yml\" sourcestartlinenumber=\"1\">Exception class for ArchiveExtractCallback.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -198,7 +270,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.LzmaException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.LzmaException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.LzmaException.yml\" sourcestartlinenumber=\"1\">Exception class for LZMA operations.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -208,7 +284,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipArchiveException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipArchiveException.yml\" sourcestartlinenumber=\"1\">Exception class for 7-zip archive open or read operations.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -218,7 +298,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.yml\" sourcestartlinenumber=\"1\">Exception class for fail to create an archive in SharpSevenZipCompressor.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -228,7 +312,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipException.yml\" sourcestartlinenumber=\"1\">Base SharpSevenZip exception class.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -238,7 +326,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.yml\" sourcestartlinenumber=\"1\">Exception class for fail to extract an archive in SharpSevenZipExtractor.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -248,7 +340,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.yml\" sourcestartlinenumber=\"1\">Exception class for empty common root if file name array in SharpSevenZipCompressor.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -258,7 +354,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipLibraryException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipLibraryException.yml\" sourcestartlinenumber=\"1\">Exception class for 7-zip library operations.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -268,7 +368,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.yml\" sourcestartlinenumber=\"1\">Exception class for 7-zip sfx settings validation.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -278,7 +382,11 @@
           "relative_path": "api/SharpSevenZip.Exceptions.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -288,7 +396,11 @@
           "relative_path": "api/SharpSevenZip.ExtractFileCallback.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ExtractFileCallback",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ExtractFileCallback.yml\" sourcestartlinenumber=\"1\">Callback delegate for <xref href=\"SharpSevenZip.SharpSevenZipExtractor.ExtractFiles(SharpSevenZip.ExtractFileCallback)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -298,7 +410,11 @@
           "relative_path": "api/SharpSevenZip.ICancellable.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ICancellable",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ICancellable.yml\" sourcestartlinenumber=\"1\">The definition of the interface which supports the cancellation of a process.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -308,7 +424,11 @@
           "relative_path": "api/SharpSevenZip.InArchiveFormat.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.InArchiveFormat",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.InArchiveFormat.yml\" sourcestartlinenumber=\"1\">Readable archive format enumeration.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -318,7 +438,11 @@
           "relative_path": "api/SharpSevenZip.LibraryFeature.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.LibraryFeature",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.LibraryFeature.yml\" sourcestartlinenumber=\"1\">The set of features supported by the library.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -328,7 +452,11 @@
           "relative_path": "api/SharpSevenZip.Lzma.LzmaDecodeStream.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Lzma.LzmaDecodeStream",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Lzma.LzmaDecodeStream.yml\" sourcestartlinenumber=\"1\">The stream which decompresses data with LZMA on the fly.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -338,7 +466,11 @@
           "relative_path": "api/SharpSevenZip.Lzma.LzmaEncodeStream.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Lzma.LzmaEncodeStream",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Lzma.LzmaEncodeStream.yml\" sourcestartlinenumber=\"1\">The stream which compresses data with LZMA on the fly.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -348,7 +480,11 @@
           "relative_path": "api/SharpSevenZip.Lzma.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Lzma",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -358,7 +494,11 @@
           "relative_path": "api/SharpSevenZip.OperationResult.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.OperationResult",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.OperationResult.yml\" sourcestartlinenumber=\"1\">Stores operation result values</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -368,7 +508,11 @@
           "relative_path": "api/SharpSevenZip.OutArchiveFormat.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.OutArchiveFormat",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.OutArchiveFormat.yml\" sourcestartlinenumber=\"1\">Writable archive format enumeration.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -378,7 +522,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.CoderPropId.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk.CoderPropId",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Sdk.CoderPropId.yml\" sourcestartlinenumber=\"1\">Provides the fields that represent properties idenitifiers for compressing.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -388,7 +536,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.Decoder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk.Compression.Lzma.Decoder",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Sdk.Compression.Lzma.Decoder.yml\" sourcestartlinenumber=\"1\">The LZMA decoder class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -398,7 +550,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.Encoder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk.Compression.Lzma.Encoder",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Sdk.Compression.Lzma.Encoder.yml\" sourcestartlinenumber=\"1\">The LZMA encoder class</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -408,7 +564,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.Compression.Lzma.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk.Compression.Lzma",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -418,7 +578,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.ICodeProgress.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk.ICodeProgress",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Sdk.ICodeProgress.yml\" sourcestartlinenumber=\"1\">Callback progress interface.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -428,7 +592,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.ICoder.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk.ICoder",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Sdk.ICoder.yml\" sourcestartlinenumber=\"1\">Stream coder interface</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -438,7 +606,11 @@
           "relative_path": "api/SharpSevenZip.Sdk.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Sdk",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -448,7 +620,11 @@
           "relative_path": "api/SharpSevenZip.SfxModule.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SfxModule",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SfxModule.yml\" sourcestartlinenumber=\"1\">Sfx module choice enumeration</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -458,7 +634,11 @@
           "relative_path": "api/SharpSevenZip.SharpSevenZipArchiveFormat.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SharpSevenZipArchiveFormat",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SharpSevenZipArchiveFormat.yml\" sourcestartlinenumber=\"1\">Check the format of archives.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -468,7 +648,11 @@
           "relative_path": "api/SharpSevenZip.SharpSevenZipBase.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SharpSevenZipBase",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SharpSevenZipBase.yml\" sourcestartlinenumber=\"1\">SharpSevenZip Extractor/Compressor base class. Implements Password string, ReportErrors flag.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -478,7 +662,11 @@
           "relative_path": "api/SharpSevenZip.SharpSevenZipCompressor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SharpSevenZipCompressor",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SharpSevenZipCompressor.yml\" sourcestartlinenumber=\"1\">Class to pack data into archives supported by 7-Zip.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -488,7 +676,11 @@
           "relative_path": "api/SharpSevenZip.SharpSevenZipExtractor.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SharpSevenZipExtractor",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SharpSevenZipExtractor.yml\" sourcestartlinenumber=\"1\">Class to unpack data from archives supported by 7-Zip.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -498,7 +690,11 @@
           "relative_path": "api/SharpSevenZip.SharpSevenZipSfx.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SharpSevenZipSfx",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SharpSevenZipSfx.yml\" sourcestartlinenumber=\"1\">The class for making 7-zip based self-extracting archives.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -508,7 +704,11 @@
           "relative_path": "api/SharpSevenZip.StreamWithAttributes.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.StreamWithAttributes",
+      "Summary": null
     },
     {
       "type": "ManagedReference",
@@ -518,7 +718,11 @@
           "relative_path": "api/SharpSevenZip.ZipEncryptionMethod.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ZipEncryptionMethod",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ZipEncryptionMethod.yml\" sourcestartlinenumber=\"1\">Zip encryption method enum.</p>\n"
     },
     {
       "type": "ManagedReference",
@@ -528,7 +732,11 @@
           "relative_path": "api/SharpSevenZip.html"
         }
       },
-      "version": ""
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip",
+      "Summary": null
     },
     {
       "type": "Conceptual",
