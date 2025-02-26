@@ -97,6 +97,12 @@ public sealed partial class SharpSevenZipCompressor
     #endregion
 
     private static volatile int _lzmaDictionarySize = 1 << 22;
+    private static volatile int _lzmaPosStateBits = 2;
+    private static volatile int _lzmaLitContextBits = 3;
+    private static volatile int _lzmaLitPosBits = 0;
+    private static volatile int _lzmaNumFastBytes = 256;
+    private static volatile string _lzmaMatchFinder = "bt4";
+    private static volatile bool _lzmaEndMarker = false;
 
     private void CommonInit()
     {
@@ -1759,33 +1765,87 @@ public sealed partial class SharpSevenZipCompressor
         set => _lzmaDictionarySize = value;
     }
 
+    /// <summary>
+    /// Specifies number of postion state bits the managed LZMA algorithm. (0 &lt;= x &lt;= 4).
+    /// </summary>
+    public static int LzmaPosStateBits
+    {
+        get => _lzmaPosStateBits;
+        set => _lzmaPosStateBits = value;
+    }
+
+    /// <summary>
+    /// Specifies number of literal context bits the managed LZMA algorithm. (0 &lt;= x &lt;= 8).
+    /// </summary>
+    public static int LzmaLitContextBits
+    {
+        get => _lzmaLitContextBits;
+        set => _lzmaLitContextBits = value;
+    }
+
+    /// <summary>
+    /// Specifies number of literal position bits for the managed LZMA algorithm. (0 &lt;= x &lt;= 4).
+    /// </summary>
+    public static int LzmaLitPosBits
+    {
+        get => _lzmaLitPosBits;
+        set => _lzmaLitPosBits = value;
+    }
+
+    /// <summary>
+    /// Specifies number of fast bytes for the managed LZMA algorithm.
+    /// </summary>
+    public static int LzmaNumFastBytes
+    {
+        get => _lzmaNumFastBytes;
+        set => _lzmaNumFastBytes = value;
+    }
+
+    /// <summary>
+    /// Specifies match finder for the managed LZMA algorithm. ("BT2", "BT4" or "BT4B")
+    /// </summary>
+    public static string LzmaMatchFinder
+    {
+        get => _lzmaMatchFinder;
+        set => _lzmaMatchFinder = value;
+    }
+
+    /// <summary>
+    /// Specifies mode with end marker for the managed LZMA algorithm.
+    /// </summary>
+    public static bool LzmaEndMarker
+    {
+        get => _lzmaEndMarker;
+        set => _lzmaEndMarker = value;
+    }
+
     internal static void WriteLzmaProperties(Encoder encoder)
     {
         #region LZMA properties definition
 
         CoderPropId[] propIDs =
         {
-                CoderPropId.DictionarySize,
-                CoderPropId.PosStateBits,
-                CoderPropId.LitContextBits,
-                CoderPropId.LitPosBits,
-                CoderPropId.Algorithm,
-                CoderPropId.NumFastBytes,
-                CoderPropId.MatchFinder,
-                CoderPropId.EndMarker
-            };
+            CoderPropId.DictionarySize,
+            CoderPropId.PosStateBits,
+            CoderPropId.LitContextBits,
+            CoderPropId.LitPosBits,
+            CoderPropId.Algorithm,
+            CoderPropId.NumFastBytes,
+            CoderPropId.MatchFinder,
+            CoderPropId.EndMarker
+        };
 
         object[] properties =
         {
-                _lzmaDictionarySize,
-                2,
-                3,
-                0,
-                2,
-                256,
-                "bt4",
-                false
-            };
+            _lzmaDictionarySize,
+            _lzmaPosStateBits,
+            _lzmaLitContextBits,
+            _lzmaLitPosBits,
+            2,
+            _lzmaNumFastBytes,
+            _lzmaMatchFinder,
+            _lzmaEndMarker
+        };
 
         #endregion
 
