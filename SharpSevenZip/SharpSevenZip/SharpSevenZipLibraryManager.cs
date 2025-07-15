@@ -30,7 +30,7 @@ internal static class SharpSevenZipLibraryManager
 
     private static string? DetermineLibraryFilePath()
     {
-        string location = Assembly.GetExecutingAssembly().Location;
+        string location = AppContext.BaseDirectory;
 
         if (string.IsNullOrEmpty(location))
         {
