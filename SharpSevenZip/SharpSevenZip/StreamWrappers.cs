@@ -226,13 +226,7 @@ internal sealed class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IO
     /// <returns>Zero if Ok</returns>
     public unsafe int Write(IntPtr data, uint size, IntPtr processedSize)
     {
-#if NET6_0_OR_GREATER
-        Span<byte> buffer = new(data.ToPointer(), (int)size);
-        BaseStream!.Write(buffer);
-#else
-        using var stream = new UnmanagedMemoryStream((byte*)data.ToPointer(), size);
-        stream.CopyTo(BaseStream!);
-#endif
+        DataHelper.Write(data, 0, BaseStream!, (int)size);
 
         if (processedSize != IntPtr.Zero)
         {
@@ -508,27 +502,14 @@ internal sealed class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOut
         while (size > _volumeSize - Streams[CurrentStream].Position)
         {
             var count = (int)(_volumeSize - Streams[CurrentStream].Position);
-#if NET6_0_OR_GREATER
-            Span<byte> buffer0 = new((data + offset).ToPointer(), count);
-            Streams[CurrentStream].Write(buffer0);
-#else
-            using var stream0 = new UnmanagedMemoryStream((byte*)(data + offset).ToPointer(), count);
-            stream0.CopyTo(Streams[CurrentStream]);
-#endif
-
+            DataHelper.Write(data, offset, Streams[CurrentStream], count);
 
             size -= (uint)count;
             offset += count;
             NewVolumeStream();
         }
 
-#if NET6_0_OR_GREATER
-        Span<byte> buffer1 = new((data + offset).ToPointer(), (int)size);
-        Streams[CurrentStream].Write(buffer1);
-#else
-        using var stream1 = new UnmanagedMemoryStream((byte*)(data + offset).ToPointer(), (int)size);
-        stream1.CopyTo(Streams[CurrentStream]);
-#endif
+        DataHelper.Write(data, offset, Streams[CurrentStream], (int)size);
 
         if (processedSize != IntPtr.Zero)
         {
@@ -598,5 +579,34 @@ internal sealed class FakeOutStreamWrapper : ISequentialOutStream, IDisposable
     private void OnBytesWritten(int e)
     {
         BytesWritten?.Invoke(this, new IntEventArgs(e));
+    }
+}
+
+internal static class DataHelper
+{
+    public static unsafe int Write(IntPtr data, int offset, Stream destination, int size)
+    {
+#if NET6_0_OR_GREATER
+        Span<byte> buffer = new((data + offset).ToPointer(), (int)size);
+        destination.Write(buffer);
+#else
+        using var stream = new UnmanagedMemoryStream((byte*)(data + offset).ToPointer(), size);
+
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(8192);
+        try
+        {
+            int bytesRead;
+            while ((bytesRead = stream.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                destination.Write(buffer, 0, bytesRead);
+            }
+        }
+        finally
+        {
+            System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
+        }
+#endif
+
+        return 0;
     }
 }

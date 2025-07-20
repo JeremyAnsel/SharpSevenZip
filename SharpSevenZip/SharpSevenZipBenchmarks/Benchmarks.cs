@@ -173,7 +173,7 @@ public class Benchmarks
                 length += entry.Length;
 
                 using var entryStream = entry.Open();
-                entryStream.CopyTo(_ms!);
+                StreamCopyTo(entryStream, _ms!);
             }
         }
 
@@ -254,10 +254,27 @@ public class Benchmarks
                 length += (long)entry.Size;
 
                 using var entryStream = zip.OpenFileStream(entry.Index);
-                entryStream.CopyTo(_ms!);
+                StreamCopyTo(entryStream, _ms!);
             }
         }
 
         return length;
+    }
+
+    private static void StreamCopyTo(Stream source, Stream destination)
+    {
+        byte[] buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(8192);
+        try
+        {
+            int bytesRead;
+            while ((bytesRead = source.Read(buffer, 0, buffer.Length)) != 0)
+            {
+                destination!.Write(buffer, 0, bytesRead);
+            }
+        }
+        finally
+        {
+            System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
+        }
     }
 }
