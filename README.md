@@ -42,10 +42,10 @@ As well as a number of improvements and bug fixes.
 Quick start
 ------------
 
-SharpSevenZip exports three main classes - SharSevenZipExtractor, SharSevenZipCompressor and SharSevenZipSfx.
-SharSevenZipExtractor is a 7-zip unpacking front-end, it allows either to extract archives or LZMA-compressed byte arrays.
-SharSevenZipCompressor is a 7-zip pack ingfront-end, it allows either to compress archives or byte arrays.
-SharSevenZipSfx is a special class to create self-extracting archives. It uses the embedded sfx module by Oleg Scherbakov .
+SharpSevenZip exports three main classes - SharpSevenZipExtractor, SharpSevenZipCompressor and SharpSevenZipSfx.
+SharpSevenZipExtractor is a 7-zip unpacking front-end, it allows either to extract archives or LZMA-compressed byte arrays.
+SharpSevenZipCompressor is a 7-zip pack ingfront-end, it allows either to compress archives or byte arrays.
+SharpSevenZipSfx is a special class to create self-extracting archives. It uses the embedded sfx module by Oleg Scherbakov .
 LzmaEncodeStream/LzmaDecodeStream are special fully managed classes derived from Stream to store data compressed with LZMA and extract it.
 
 
@@ -98,39 +98,38 @@ The benchmarks use these libraries:
 
 | Method                               | Job   | Mean         | Error | Ratio | Allocated   | Alloc Ratio |
 |------------------------------------- |------ |-------------:|------:|------:|------------:|------------:|
-| Decompress_DotNetFramework_Empty     | Net80 |   3,042.1 us |    NA |  5.24 |     51.3 KB |        0.92 |
-| Decompress_DotNetFramework_Empty     | Net60 |   1,639.6 us |    NA |  2.82 |    51.55 KB |        0.92 |
-| Decompress_DotNetFramework_Empty     | Net48 |     580.6 us |    NA |  1.00 |       56 KB |        1.00 |
+| Decompress_DotNetFramework_Empty     | Net80 |   2,506.4 탎 |    NA |  3.62 |     51.3 KB |        0.92 |
+| Decompress_DotNetFramework_Empty     | Net60 |   2,153.1 탎 |    NA |  3.11 |    51.55 KB |        0.92 |
+| Decompress_DotNetFramework_Empty     | Net48 |     691.6 탎 |    NA |  1.00 |       56 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SharpCompress_Empty       | Net60 |   4,418.8 us |    NA |  2.31 |   108.77 KB |        0.97 |
-| Decompress_SharpCompress_Empty       | Net80 |   3,866.2 us |    NA |  2.02 |   107.89 KB |        0.96 |
-| Decompress_SharpCompress_Empty       | Net48 |   1,915.2 us |    NA |  1.00 |      112 KB |        1.00 |
+| Decompress_SharpCompress_Empty       | Net60 |   5,246.6 탎 |    NA |  2.38 |    132.4 KB |        0.87 |
+| Decompress_SharpCompress_Empty       | Net80 |   4,402.2 탎 |    NA |  2.00 |   131.76 KB |        0.87 |
+| Decompress_SharpCompress_Empty       | Net48 |   2,201.4 탎 |    NA |  1.00 |      152 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SevenZipSharp_Empty       | Net80 |  12,933.3 us |    NA |  1.98 |  1437.23 KB |        1.00 |
-| Decompress_SevenZipSharp_Empty       | Net60 |  10,845.9 us |    NA |  1.66 |  1437.94 KB |        1.00 |
-| Decompress_SevenZipSharp_Empty       | Net48 |   6,547.6 us |    NA |  1.00 |  1440.08 KB |        1.00 |
+| Decompress_SevenZipSharp_Empty       | Net60 |  12,238.4 탎 |    NA |  1.49 |  1437.94 KB |        1.00 |
+| Decompress_SevenZipSharp_Empty       | Net80 |  11,731.7 탎 |    NA |  1.42 |  1437.23 KB |        1.00 |
+| Decompress_SevenZipSharp_Empty       | Net48 |   8,236.1 탎 |    NA |  1.00 |  1440.08 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SharpSevenZip_Empty       | Net80 |   5,289.0 us |    NA |  2.61 |    72.64 KB |        1.01 |
-| Decompress_SharpSevenZip_Empty       | Net60 |   3,706.8 us |    NA |  1.83 |    73.34 KB |        1.02 |
-| Decompress_SharpSevenZip_Empty       | Net48 |   2,026.9 us |    NA |  1.00 |       72 KB |        1.00 |
+| Decompress_SharpSevenZip_Empty       | Net80 |   5,164.0 탎 |    NA |  2.59 |    72.64 KB |        1.01 |
+| Decompress_SharpSevenZip_Empty       | Net60 |   3,822.6 탎 |    NA |  1.91 |    73.34 KB |        1.02 |
+| Decompress_SharpSevenZip_Empty       | Net48 |   1,996.8 탎 |    NA |  1.00 |       72 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_DotNetFramework_Sum1      | Net80 |   5,806.9 us |    NA |  2.33 |    59.75 KB |        0.07 |
-| Decompress_DotNetFramework_Sum1      | Net60 |   3,958.1 us |    NA |  1.59 |    59.84 KB |        0.07 |
-| Decompress_DotNetFramework_Sum1      | Net48 |   2,497.1 us |    NA |  1.00 |   864.47 KB |        1.00 |
+| Decompress_DotNetFramework_Sum1      | Net60 |   7,581.0 탎 |    NA |  1.54 |    59.84 KB |        0.94 |
+| Decompress_DotNetFramework_Sum1      | Net80 |   7,033.6 탎 |    NA |  1.43 |    59.75 KB |        0.93 |
+| Decompress_DotNetFramework_Sum1      | Net48 |   4,921.8 탎 |    NA |  1.00 |       64 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SharpCompress_Sum1        | Net80 |  10,730.4 us |    NA |  1.04 |   135.54 KB |        0.14 |
-| Decompress_SharpCompress_Sum1        | Net60 |  10,606.4 us |    NA |  1.03 |   137.45 KB |        0.15 |
-| Decompress_SharpCompress_Sum1        | Net48 |  10,307.9 us |    NA |  1.00 |   944.47 KB |        1.00 |
+| Decompress_SharpCompress_Sum1        | Net80 |  10,215.2 탎 |    NA |  1.84 |   797.77 KB |        0.97 |
+| Decompress_SharpCompress_Sum1        | Net60 |   6,530.2 탎 |    NA |  1.18 |   800.67 KB |        0.97 |
+| Decompress_SharpCompress_Sum1        | Net48 |   5,539.4 탎 |    NA |  1.00 |    824.7 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SevenZipSharp_Sum1        | Net60 |  31,525.8 us |    NA |  1.32 | 28356.76 KB |        1.00 |
-| Decompress_SevenZipSharp_Sum1        | Net80 |  30,917.0 us |    NA |  1.30 | 28368.31 KB |        1.00 |
-| Decompress_SevenZipSharp_Sum1        | Net48 |  23,795.4 us |    NA |  1.00 | 28333.16 KB |        1.00 |
+| Decompress_SevenZipSharp_Sum1        | Net80 |  30,720.4 탎 |    NA |  1.29 | 28370.96 KB |        1.00 |
+| Decompress_SevenZipSharp_Sum1        | Net60 |  28,560.4 탎 |    NA |  1.20 | 28356.42 KB |        1.00 |
+| Decompress_SevenZipSharp_Sum1        | Net48 |  23,728.1 탎 |    NA |  1.00 | 28333.16 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SharpSevenZip_Sum1        | Net80 |  14,997.3 us |    NA |  1.55 |   105.06 KB |        0.02 |
-| Decompress_SharpSevenZip_Sum1        | Net60 |  14,375.7 us |    NA |  1.48 |   104.67 KB |        0.02 |
-| Decompress_SharpSevenZip_Sum1        | Net48 |   9,690.2 us |    NA |  1.00 |  6555.75 KB |        1.00 |
+| Decompress_SharpSevenZip_Sum1        | Net80 |  13,632.1 탎 |    NA |  1.33 |   105.06 KB |        0.94 |
+| Decompress_SharpSevenZip_Sum1        | Net60 |  13,624.2 탎 |    NA |  1.33 |   104.67 KB |        0.93 |
+| Decompress_SharpSevenZip_Sum1        | Net48 |  10,225.2 탎 |    NA |  1.00 |      112 KB |        1.00 |
 |                                      |       |              |       |       |             |             |
-| Decompress_SharpSevenZip_Sum1_Stream | Net60 | 152,644.4 us |    NA |  1.00 |    111.2 KB |        0.02 |
-| Decompress_SharpSevenZip_Sum1_Stream | Net48 | 152,415.6 us |    NA |  1.00 |  7380.22 KB |        1.00 |
-| Decompress_SharpSevenZip_Sum1_Stream | Net80 | 150,575.1 us |    NA |  0.99 |   111.59 KB |        0.02 |
-
+| Decompress_SharpSevenZip_Sum1_Stream | Net48 | 153,302.2 탎 |    NA |  1.00 |      176 KB |        1.00 |
+| Decompress_SharpSevenZip_Sum1_Stream | Net60 | 151,244.0 탎 |    NA |  0.99 |    111.2 KB |        0.63 |
+| Decompress_SharpSevenZip_Sum1_Stream | Net80 | 148,351.9 탎 |    NA |  0.97 |   111.59 KB |        0.63 |
