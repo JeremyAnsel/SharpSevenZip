@@ -96,7 +96,7 @@ internal class ExtractStream : Stream
 
             if (_position >= _currentDataLength)
             {
-                lock(_lock)
+                lock (_lock)
                 {
                     _currentData.Dispose();
                     _currentData = null;
@@ -184,8 +184,30 @@ internal class ExtractStream : Stream
             _unpackedSize = -1;
         }
 
-        Thread.Sleep(1);
+        SleepDelay();
 
         base.Dispose(disposing);
+    }
+
+    private static void SleepDelay()
+    {
+        //Thread.Sleep(1);
+
+        ulong start = NativeMethods.GetThreadCycles();
+
+        while (true)
+        {
+            ulong end = NativeMethods.GetThreadCycles();
+            ulong cycles = end - start;
+
+#if NET6_0_OR_GREATER
+            if (cycles > 150000u)
+#else
+            if (cycles > 400000u)
+#endif
+            {
+                return;
+            }
+        }
     }
 }

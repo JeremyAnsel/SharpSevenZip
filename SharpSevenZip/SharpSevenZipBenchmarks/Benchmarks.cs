@@ -201,6 +201,27 @@ public class Benchmarks
     }
 
     [Benchmark]
+    public long Decompress_SharpCompress_Sum1_Stream()
+    {
+        long length = 0;
+
+        for (int i = 0; i < 10; i++)
+        {
+            using IArchive zip = ArchiveFactory.Open(Test1Archive);
+
+            foreach (var entry in zip.Entries)
+            {
+                length += entry.Size;
+
+                using var entryStream = entry.OpenEntryStream();
+                StreamCopyTo(entryStream, _ms!);
+            }
+        }
+
+        return length;
+    }
+
+    [Benchmark]
     public long Decompress_SevenZipSharp_Sum1()
     {
         long length = 0;
