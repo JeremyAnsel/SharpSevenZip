@@ -27,7 +27,10 @@ partial class SharpSevenZipExtractor
                 backupFileName = _fileName;
             }
 
+            bool leaveOpen = _leaveOpen;
+            _leaveOpen = true;
             CommonDispose();
+            _leaveOpen = leaveOpen;
 
             if (backupStream == null)
             {
