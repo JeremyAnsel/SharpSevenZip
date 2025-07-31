@@ -37,7 +37,7 @@ public sealed partial class SharpSevenZipExtractor
     private ReadOnlyCollection<ArchiveFileInfo>? _archiveFileInfoCollection;
     private ReadOnlyCollection<ArchiveProperty>? _archiveProperties;
     private ReadOnlyCollection<string>? _volumeFileNames;
-    private bool _leaveOpen;
+    private readonly bool _leaveOpen;
 
     /// <summary>
     /// This is used to lock possible Dispose() calls.
