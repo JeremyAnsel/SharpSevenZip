@@ -2907,6 +2907,30 @@ references:
   commentId: F:SharpSevenZip.SfxModule.Simple
   fullName: SharpSevenZip.SfxModule.Simple
   nameWithType: SfxModule.Simple
+- uid: SharpSevenZip.SfxTarget
+  name: SfxTarget
+  href: api/SharpSevenZip.SfxTarget.html
+  commentId: T:SharpSevenZip.SfxTarget
+  fullName: SharpSevenZip.SfxTarget
+  nameWithType: SfxTarget
+- uid: SharpSevenZip.SfxTarget.Auto
+  name: Auto
+  href: api/SharpSevenZip.SfxTarget.html#SharpSevenZip_SfxTarget_Auto
+  commentId: F:SharpSevenZip.SfxTarget.Auto
+  fullName: SharpSevenZip.SfxTarget.Auto
+  nameWithType: SfxTarget.Auto
+- uid: SharpSevenZip.SfxTarget.X64
+  name: X64
+  href: api/SharpSevenZip.SfxTarget.html#SharpSevenZip_SfxTarget_X64
+  commentId: F:SharpSevenZip.SfxTarget.X64
+  fullName: SharpSevenZip.SfxTarget.X64
+  nameWithType: SfxTarget.X64
+- uid: SharpSevenZip.SfxTarget.X86
+  name: X86
+  href: api/SharpSevenZip.SfxTarget.html#SharpSevenZip_SfxTarget_X86
+  commentId: F:SharpSevenZip.SfxTarget.X86
+  fullName: SharpSevenZip.SfxTarget.X86
+  nameWithType: SfxTarget.X86
 - uid: SharpSevenZip.SharpSevenZipArchiveFormat
   name: SharpSevenZipArchiveFormat
   href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html
@@ -4662,6 +4686,19 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipSfx.SfxModule
   nameWithType: SharpSevenZipSfx.SfxModule
+- uid: SharpSevenZip.SharpSevenZipSfx.TargetPlatform
+  name: TargetPlatform
+  href: api/SharpSevenZip.SharpSevenZipSfx.html#SharpSevenZip_SharpSevenZipSfx_TargetPlatform
+  commentId: P:SharpSevenZip.SharpSevenZipSfx.TargetPlatform
+  fullName: SharpSevenZip.SharpSevenZipSfx.TargetPlatform
+  nameWithType: SharpSevenZipSfx.TargetPlatform
+- uid: SharpSevenZip.SharpSevenZipSfx.TargetPlatform*
+  name: TargetPlatform
+  href: api/SharpSevenZip.SharpSevenZipSfx.html#SharpSevenZip_SharpSevenZipSfx_TargetPlatform_
+  commentId: Overload:SharpSevenZip.SharpSevenZipSfx.TargetPlatform
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipSfx.TargetPlatform
+  nameWithType: SharpSevenZipSfx.TargetPlatform
 - uid: SharpSevenZip.StreamWithAttributes
   name: StreamWithAttributes
   href: api/SharpSevenZip.StreamWithAttributes.html

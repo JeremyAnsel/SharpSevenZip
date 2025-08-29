@@ -628,6 +628,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.SfxTarget.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.SfxTarget.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.SfxTarget",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.SfxTarget.yml\" sourcestartlinenumber=\"1\">Sfx module target platform choice enumeration</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.SharpSevenZipArchiveFormat.yml",
       "output": {
         ".html": {
