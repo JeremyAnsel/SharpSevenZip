@@ -136,7 +136,7 @@ internal struct PropVariant
                     {
                         return Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
                     }
-                    catch (NotSupportedException)
+                    catch (Exception ex) when (ex is InvalidOperationException or NotSupportedException)
                     {
                         return VarType switch
                         {
@@ -144,6 +144,7 @@ internal struct PropVariant
                             VarEnum.VT_UI4 => UInt32Value,
                             VarEnum.VT_I8 => Int64Value,
                             VarEnum.VT_I4 => Int32Value,
+                            VarEnum.VT_BOOL => Int32Value != 0,
                             _ => 0,
                         };
                     }
