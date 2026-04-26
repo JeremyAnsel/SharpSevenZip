@@ -15,10 +15,20 @@ internal class ExtractStream : Stream
     private long _totalWriteSize = 0;
     private long _unpackedSize = -1;
     private bool _isOpen = true;
+    private bool _isEndOfStream = false;
+
     private readonly object _lock = new();
 
     public ExtractStream()
     {
+    }
+
+    public void SignalEndOfStream()
+    {
+        lock (_lock)
+        {
+            _isEndOfStream = true;
+        }
     }
 
     public override bool CanRead => _isOpen;
@@ -58,13 +68,11 @@ internal class ExtractStream : Stream
 
                 long maxTotalRequestedSize = Math.Min(_totalRequestedSize, _unpackedSize);
 
-                if (_unpackedSize != -1 && maxTotalRequestedSize <= _totalWriteSize)
+                if (_isEndOfStream || _unpackedSize != -1 && maxTotalRequestedSize <= _totalWriteSize)
                 {
                     break;
                 }
             }
-
-            //Thread.Sleep(1);
         }
 
         count = (int)Math.Min(count, _unpackedSize - _totalReadSize);
