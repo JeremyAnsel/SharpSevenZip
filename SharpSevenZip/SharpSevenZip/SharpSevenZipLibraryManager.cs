@@ -2,6 +2,7 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Text;
 
 namespace SharpSevenZip;
@@ -114,7 +115,7 @@ internal static class SharpSevenZipLibraryManager
                     throw new SharpSevenZipLibraryException("DLL file does not exist.");
                 }
 
-                if ((_modulePtr = NativeMethods.LoadLibrary(_libraryFileName!)) == IntPtr.Zero)
+                if ((_modulePtr = NativeMethods.LoadLibraryA(_libraryFileName!)) == IntPtr.Zero)
                 {
                     throw new SharpSevenZipLibraryException($"failed to load library from \"{_libraryFileName}\".");
                 }
@@ -401,7 +402,7 @@ internal static class SharpSevenZipLibraryManager
     /// </summary>
     /// <param name="format">Archive format.</param>
     /// <param name="user">Archive format user.</param>
-    public static IInArchive InArchive(InArchiveFormat format, object user)
+    public unsafe static IInArchive InArchive(InArchiveFormat format, object user)
     {
         lock (SyncRoot)
         {
@@ -417,19 +418,18 @@ internal static class SharpSevenZipLibraryManager
                     }
                 }
 
-                var createObject = (NativeMethods.CreateObjectDelegate)
-                    Marshal.GetDelegateForFunctionPointer(
-                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject"),
-                        typeof(NativeMethods.CreateObjectDelegate))
-                    ?? throw new SharpSevenZipLibraryException();
+                var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
+                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
 
-                object result;
+                IInArchive? result;
+                nint resultPtr;
                 var interfaceId = typeof(IInArchive).GUID;
                 var classId = Formats.InFormatGuids[format];
 
                 try
                 {
-                    createObject(ref classId, ref interfaceId, out result);
+                    createObject(ref classId, ref interfaceId, out resultPtr);
+                    result = ComInterfaceMarshaller<IInArchive>.ConvertToManaged(resultPtr.ToPointer());
                 }
                 catch (Exception)
                 {
@@ -437,7 +437,7 @@ internal static class SharpSevenZipLibraryManager
                 }
 
                 InitUserInFormat(user, format);
-                _inArchives[user][format] = result as IInArchive;
+                _inArchives[user][format] = result;
             }
 
             return _inArchives[user][format]!;

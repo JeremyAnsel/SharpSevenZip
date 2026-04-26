@@ -4,7 +4,7 @@ using System.Security;
 namespace SharpSevenZip;
 
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-internal static class NativeMethods
+internal static partial class NativeMethods
 {
     public static ulong GetThreadCycles()
     {
@@ -16,8 +16,9 @@ internal static class NativeMethods
         return cycles;
     }
 
-    [DllImport("kernel32.dll", SetLastError = true)]
-    private static extern bool QueryThreadCycleTime(IntPtr hThread, out ulong cycles);
+    [LibraryImport("kernel32.dll", SetLastError = true)]
+    [return:MarshalAs(UnmanagedType.Bool)]
+    private static partial bool QueryThreadCycleTime(IntPtr hThread, out ulong cycles);
 
     private static readonly IntPtr PseudoHandle = (IntPtr)(-2);
 
@@ -27,15 +28,15 @@ internal static class NativeMethods
         [In] ref Guid interfaceID,
         [MarshalAs(UnmanagedType.Interface)] out object outObject);
 
-    [DllImport("kernel32.dll", BestFitMapping = false, ThrowOnUnmappableChar = true)]
-    public static extern IntPtr LoadLibrary([MarshalAs(UnmanagedType.LPStr)] string fileName);
+    [LibraryImport("kernel32.dll")]
+    public static partial IntPtr LoadLibraryA([MarshalAs(UnmanagedType.LPStr)] string fileName);
 
-    [DllImport("kernel32.dll")]
+    [LibraryImport("kernel32.dll")]
     [return: MarshalAs(UnmanagedType.Bool)]
-    public static extern bool FreeLibrary(IntPtr hModule);
+    public static partial bool FreeLibrary(IntPtr hModule);
 
-    [DllImport("kernel32.dll", BestFitMapping = false, ThrowOnUnmappableChar = true)]
-    public static extern IntPtr GetProcAddress(IntPtr hModule, [MarshalAs(UnmanagedType.LPStr)] string procName);
+    [LibraryImport("kernel32.dll")]
+    public static partial IntPtr GetProcAddress(IntPtr hModule, [MarshalAs(UnmanagedType.LPStr)] string procName);
 
     public static T? SafeCast<T>(PropVariant var, T? def)
     {

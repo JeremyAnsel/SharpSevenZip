@@ -1,7 +1,11 @@
 ﻿using System.Globalization;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 using System.Security;
 using FILETIME = System.Runtime.InteropServices.ComTypes.FILETIME;
+
+[assembly:DisableRuntimeMarshalling]
 
 namespace SharpSevenZip;
 
@@ -645,10 +649,10 @@ internal static class PropIdToName
 /// 7-zip IArchiveOpenCallback imported interface to handle the opening of an archive.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600100000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IArchiveOpenCallback
+internal partial interface IArchiveOpenCallback
 {
     // ref ulong replaced with IntPtr because handlers often pass null value
     // read actual value with Marshal.ReadInt64
@@ -675,10 +679,10 @@ internal interface IArchiveOpenCallback
 /// 7-zip ICryptoGetTextPassword imported interface to get the archive password.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000500100000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface ICryptoGetTextPassword
+internal partial interface ICryptoGetTextPassword
 {
     /// <summary>
     /// Gets password for the archive
@@ -694,10 +698,10 @@ internal interface ICryptoGetTextPassword
 /// 7-zip ICryptoGetTextPassword2 imported interface for setting the archive password.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000500110000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface ICryptoGetTextPassword2
+internal partial interface ICryptoGetTextPassword2
 {
     /// <summary>
     /// Sets password for the archive
@@ -715,10 +719,10 @@ internal interface ICryptoGetTextPassword2
 /// 7-zip IArchiveExtractCallback imported interface.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600200000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IArchiveExtractCallback
+internal partial interface IArchiveExtractCallback
 {
     /// <summary>
     /// Gives the size of the unpacked archive files
@@ -730,7 +734,7 @@ internal interface IArchiveExtractCallback
     /// SetCompleted 7-zip function
     /// </summary>
     /// <param name="completeValue"></param>
-    void SetCompleted([In] ref ulong completeValue);
+    void SetCompleted(ref ulong completeValue);
 
     /// <summary>
     /// Gets the stream for file extraction
@@ -742,7 +746,7 @@ internal interface IArchiveExtractCallback
     [PreserveSig]
     int GetStream(
         uint index,
-        [Out, MarshalAs(UnmanagedType.Interface)] out ISequentialOutStream? outStream,
+        [MarshalAs(UnmanagedType.Interface)] out ISequentialOutStream? outStream,
         AskMode askExtractMode);
 
     /// <summary>
@@ -762,10 +766,10 @@ internal interface IArchiveExtractCallback
 /// 7-zip IArchiveUpdateCallback imported interface.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600800000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IArchiveUpdateCallback
+internal partial interface IArchiveUpdateCallback
 {
     /// <summary>
     /// Gives the size of the unpacked archive files.
@@ -777,7 +781,7 @@ internal interface IArchiveUpdateCallback
     /// SetCompleted 7-zip internal function.
     /// </summary>
     /// <param name="completeValue"></param>
-    void SetCompleted([In] ref ulong completeValue);
+    void SetCompleted(ref ulong completeValue);
 
     /// <summary>
     /// Gets archive update mode.
@@ -811,7 +815,7 @@ internal interface IArchiveUpdateCallback
     [PreserveSig]
     int GetStream(
         uint index,
-        [Out, MarshalAs(UnmanagedType.Interface)] out ISequentialInStream? inStream);
+        [MarshalAs(UnmanagedType.Interface)] out ISequentialInStream? inStream);
 
     /// <summary>
     /// Sets the result for currently performed operation.
@@ -831,10 +835,10 @@ internal interface IArchiveUpdateCallback
 /// 7-zip IArchiveOpenVolumeCallback imported interface to handle archive volumes.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600300000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IArchiveOpenVolumeCallback
+internal partial interface IArchiveOpenVolumeCallback
 {
     /// <summary>
     /// Gets the archive property data.
@@ -854,17 +858,17 @@ internal interface IArchiveOpenVolumeCallback
     [PreserveSig]
     int GetStream(
         [MarshalAs(UnmanagedType.LPWStr)] string name,
-        [Out, MarshalAs(UnmanagedType.Interface)] out IInStream? inStream);
+        [MarshalAs(UnmanagedType.Interface)] out IInStream? inStream);
 }
 
 /// <summary>
 /// 7-zip ISequentialInStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000300010000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface ISequentialInStream
+internal partial interface ISequentialInStream
 {
     /// <summary>
     /// Writes data to 7-zip packer
@@ -887,10 +891,10 @@ internal interface ISequentialInStream
 /// 7-zip ISequentialOutStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000300020000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface ISequentialOutStream
+internal partial interface ISequentialOutStream
 {
     /// <summary>
     /// Writes data to unpacked file stream
@@ -917,10 +921,10 @@ internal interface ISequentialOutStream
 /// 7-zip IInStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000300030000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IInStream
+internal partial interface IInStream
 {
     /// <summary>
     /// Read routine
@@ -947,10 +951,10 @@ internal interface IInStream
 /// 7-zip IOutStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000300040000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IOutStream
+internal partial interface IOutStream
 {
     /// <summary>
     /// Write routine
@@ -987,10 +991,10 @@ internal interface IOutStream
 /// 7-zip essential in archive interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600600000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IInArchive
+internal partial interface IInArchive
 {
     /// <summary>
     /// Opens archive for reading.
@@ -1002,7 +1006,7 @@ internal interface IInArchive
     [PreserveSig]
     int Open(
         IInStream stream,
-        [In] ref ulong maxCheckStartPosition,
+        ref ulong maxCheckStartPosition,
         [MarshalAs(UnmanagedType.Interface)] IArchiveOpenCallback openArchiveCallback);
 
     /// <summary>
@@ -1094,10 +1098,10 @@ internal interface IInArchive
 /// 7-zip essential out archive interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600A00000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface IOutArchive
+internal partial interface IOutArchive
 {
     /// <summary>
     /// Updates archive items
@@ -1123,10 +1127,10 @@ internal interface IOutArchive
 /// 7-zip ISetProperties interface for setting various archive properties
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
-[ComImport]
+[GeneratedComInterface]
 [Guid("23170F69-40C1-278A-0000-000600030000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
-internal interface ISetProperties
+internal partial interface ISetProperties
 {
     /// <summary>
     /// Sets the archive properties
