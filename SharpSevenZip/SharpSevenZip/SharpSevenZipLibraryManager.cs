@@ -56,6 +56,13 @@ internal static class SharpSevenZipLibraryManager
     private static int _totalUsers;
     private static bool? _modifyCapable;
 
+    private static readonly ComWrappers _comWrappers;
+
+    static SharpSevenZipLibraryManager()
+    {
+        _comWrappers = new StrategyBasedComWrappers();
+    }
+
     private static void InitUserInFormat(object user, InArchiveFormat format)
     {
         if (!_inArchives!.TryGetValue(user, out Dictionary<InArchiveFormat, IInArchive?>? value))
@@ -343,13 +350,7 @@ internal static class SharpSevenZipLibraryManager
                     if (_inArchives != null && _inArchives.TryGetValue(user, out Dictionary<InArchiveFormat, IInArchive?>? userValue) &&
                         userValue.TryGetValue(archiveFormat, out IInArchive? formatValue) &&
                         formatValue != null)
-                    {
-                        try
-                        {
-                            Marshal.ReleaseComObject(formatValue);
-                        }
-                        catch (InvalidComObjectException) { }
-
+                    { 
                         userValue.Remove(archiveFormat);
                         _totalUsers--;
 
@@ -366,12 +367,6 @@ internal static class SharpSevenZipLibraryManager
                         userValue.TryGetValue(outArchiveFormat, out IOutArchive? formatValue) &&
                         formatValue != null)
                     {
-                        try
-                        {
-                            Marshal.ReleaseComObject(formatValue);
-                        }
-                        catch (InvalidComObjectException) { }
-
                         userValue.Remove(outArchiveFormat);
                         _totalUsers--;
 
@@ -421,7 +416,7 @@ internal static class SharpSevenZipLibraryManager
                 var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
                         NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
 
-                IInArchive? result;
+                IInArchive result;
                 nint resultPtr;
                 var interfaceId = typeof(IInArchive).GUID;
                 var classId = Formats.InFormatGuids[format];
@@ -429,7 +424,7 @@ internal static class SharpSevenZipLibraryManager
                 try
                 {
                     createObject(ref classId, ref interfaceId, out resultPtr);
-                    result = ComInterfaceMarshaller<IInArchive>.ConvertToManaged(resultPtr.ToPointer());
+                    result = (IInArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
                 }
                 catch (Exception)
                 {
@@ -449,7 +444,7 @@ internal static class SharpSevenZipLibraryManager
     /// </summary>
     /// <param name="format">Archive format.</param>  
     /// <param name="user">Archive format user.</param>
-    public static IOutArchive OutArchive(OutArchiveFormat format, object user)
+    public unsafe static IOutArchive OutArchive(OutArchiveFormat format, object user)
     {
         lock (SyncRoot)
         {
@@ -460,20 +455,18 @@ internal static class SharpSevenZipLibraryManager
                     throw new SharpSevenZipLibraryException();
                 }
 
-                var createObject = (NativeMethods.CreateObjectDelegate)
-                    Marshal.GetDelegateForFunctionPointer(
-                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject"),
-                        typeof(NativeMethods.CreateObjectDelegate));
+                var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
+                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
 
                 var interfaceId = typeof(IOutArchive).GUID;
 
                 try
                 {
                     var classId = Formats.OutFormatGuids[format];
-                    createObject(ref classId, ref interfaceId, out var result);
+                    createObject(ref classId, ref interfaceId, out nint resultPtr);
 
                     InitUserOutFormat(user, format);
-                    _outArchives[user][format] = result as IOutArchive;
+                    _outArchives[user][format] = (IOutArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
                 }
                 catch (Exception)
                 {

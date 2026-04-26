@@ -22,12 +22,6 @@ internal static partial class NativeMethods
 
     private static readonly IntPtr PseudoHandle = (IntPtr)(-2);
 
-    [UnmanagedFunctionPointer(CallingConvention.StdCall)]
-    public delegate int CreateObjectDelegate(
-        [In] ref Guid classID,
-        [In] ref Guid interfaceID,
-        [MarshalAs(UnmanagedType.Interface)] out object outObject);
-
     [LibraryImport("kernel32.dll")]
     public static partial IntPtr LoadLibraryA([MarshalAs(UnmanagedType.LPStr)] string fileName);
 

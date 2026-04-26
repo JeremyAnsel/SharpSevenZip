@@ -1,13 +1,15 @@
 ﻿using SharpSevenZip.EventArguments;
 using SharpSevenZip.Exceptions;
 using System.Runtime.InteropServices;
+using System.Runtime.InteropServices.Marshalling;
 
 namespace SharpSevenZip;
 
 /// <summary>
 /// Archive update callback to handle the process of packing files
 /// </summary>
-internal sealed class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallback, ICryptoGetTextPassword2,
+[GeneratedComClass]
+internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallback, ICryptoGetTextPassword2,
                                               IDisposable
 {
     #region Fields

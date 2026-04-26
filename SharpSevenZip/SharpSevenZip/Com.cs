@@ -1,11 +1,8 @@
 ﻿using System.Globalization;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Runtime.InteropServices.Marshalling;
 using System.Security;
 using FILETIME = System.Runtime.InteropServices.ComTypes.FILETIME;
-
-[assembly:DisableRuntimeMarshalling]
 
 namespace SharpSevenZip;
 
