@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
+#if NET8_0_OR_GREATER
 using System.Runtime.InteropServices.Marshalling;
+#endif
 using System.Text;
 
 namespace SharpSevenZip;
@@ -56,12 +58,16 @@ internal static class SharpSevenZipLibraryManager
     private static int _totalUsers;
     private static bool? _modifyCapable;
 
+#if NET8_0_OR_GREATER
+
     private static readonly ComWrappers _comWrappers;
 
     static SharpSevenZipLibraryManager()
     {
         _comWrappers = new StrategyBasedComWrappers();
     }
+
+#endif
 
     private static void InitUserInFormat(object user, InArchiveFormat format)
     {
@@ -122,7 +128,7 @@ internal static class SharpSevenZipLibraryManager
                     throw new SharpSevenZipLibraryException("DLL file does not exist.");
                 }
 
-                if ((_modulePtr = NativeMethods.LoadLibraryA(_libraryFileName!)) == IntPtr.Zero)
+                if ((_modulePtr = NativeMethods.LoadLibrary(_libraryFileName!)) == IntPtr.Zero)
                 {
                     throw new SharpSevenZipLibraryException($"failed to load library from \"{_libraryFileName}\".");
                 }
@@ -350,7 +356,14 @@ internal static class SharpSevenZipLibraryManager
                     if (_inArchives != null && _inArchives.TryGetValue(user, out Dictionary<InArchiveFormat, IInArchive?>? userValue) &&
                         userValue.TryGetValue(archiveFormat, out IInArchive? formatValue) &&
                         formatValue != null)
-                    { 
+                    {
+#if !NET8_0_OR_GREATER
+                        try
+                        {
+                            Marshal.ReleaseComObject(formatValue);
+                        }
+                        catch (InvalidComObjectException) { }
+#endif
                         userValue.Remove(archiveFormat);
                         _totalUsers--;
 
@@ -367,6 +380,13 @@ internal static class SharpSevenZipLibraryManager
                         userValue.TryGetValue(outArchiveFormat, out IOutArchive? formatValue) &&
                         formatValue != null)
                     {
+#if !NET8_0_OR_GREATER
+                        try
+                        {
+                            Marshal.ReleaseComObject(formatValue);
+                        }
+                        catch (InvalidComObjectException) { }
+#endif
                         userValue.Remove(outArchiveFormat);
                         _totalUsers--;
 
@@ -413,17 +433,17 @@ internal static class SharpSevenZipLibraryManager
                     }
                 }
 
+#if NET8_0_OR_GREATER
                 var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
                         NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
 
-                IInArchive result;
-                nint resultPtr;
                 var interfaceId = typeof(IInArchive).GUID;
                 var classId = Formats.InFormatGuids[format];
 
+                IInArchive result;
                 try
                 {
-                    createObject(ref classId, ref interfaceId, out resultPtr);
+                    createObject(ref classId, ref interfaceId, out nint resultPtr);
                     result = (IInArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
                 }
                 catch (Exception)
@@ -433,6 +453,29 @@ internal static class SharpSevenZipLibraryManager
 
                 InitUserInFormat(user, format);
                 _inArchives[user][format] = result;
+#else
+                var createObject = (NativeMethods.CreateObjectDelegate)
+                    Marshal.GetDelegateForFunctionPointer(
+                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject"),
+                        typeof(NativeMethods.CreateObjectDelegate))
+                    ?? throw new SharpSevenZipLibraryException();
+
+                object result;
+                var interfaceId = typeof(IInArchive).GUID;
+                var classId = Formats.InFormatGuids[format];
+
+                try
+                {
+                    createObject(ref classId, ref interfaceId, out result);
+                }
+                catch (Exception)
+                {
+                    throw new SharpSevenZipLibraryException("Your 7-zip library does not support this archive type.");
+                }
+
+                InitUserInFormat(user, format);
+                _inArchives[user][format] = result as IInArchive;
+#endif
             }
 
             return _inArchives[user][format]!;
@@ -455,6 +498,7 @@ internal static class SharpSevenZipLibraryManager
                     throw new SharpSevenZipLibraryException();
                 }
 
+#if NET8_0_OR_GREATER
                 var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
                         NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
 
@@ -472,6 +516,27 @@ internal static class SharpSevenZipLibraryManager
                 {
                     throw new SharpSevenZipLibraryException("Your 7-zip library does not support this archive type.");
                 }
+#else
+                var createObject = (NativeMethods.CreateObjectDelegate)
+                    Marshal.GetDelegateForFunctionPointer(
+                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject"),
+                        typeof(NativeMethods.CreateObjectDelegate));
+
+                var interfaceId = typeof(IOutArchive).GUID;
+
+                try
+                {
+                    var classId = Formats.OutFormatGuids[format];
+                    createObject(ref classId, ref interfaceId, out var result);
+
+                    InitUserOutFormat(user, format);
+                    _outArchives[user][format] = result as IOutArchive;
+                }
+                catch (Exception)
+                {
+                    throw new SharpSevenZipLibraryException("Your 7-zip library does not support this archive type.");
+                }
+#endif
             }
 
             return _outArchives[user][format]!;

@@ -1,14 +1,18 @@
 ﻿using SharpSevenZip.EventArguments;
 using SharpSevenZip.Exceptions;
 using System.Runtime.InteropServices;
+#if NET8_0_OR_GREATER
 using System.Runtime.InteropServices.Marshalling;
+#endif
 
 namespace SharpSevenZip;
 
 /// <summary>
 /// Archive update callback to handle the process of packing files
 /// </summary>
+#if NET8_0_OR_GREATER
 [GeneratedComClass]
+#endif
 internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpdateCallback, ICryptoGetTextPassword2,
                                               IDisposable
 {

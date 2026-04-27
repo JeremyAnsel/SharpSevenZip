@@ -1,6 +1,8 @@
 ﻿using System.Globalization;
 using System.Runtime.InteropServices;
+#if NET8_0_OR_GREATER
 using System.Runtime.InteropServices.Marshalling;
+#endif
 using System.Security;
 using FILETIME = System.Runtime.InteropServices.ComTypes.FILETIME;
 
@@ -647,7 +649,11 @@ internal static class PropIdToName
 /// 7-zip IArchiveOpenCallback imported interface to handle the opening of an archive.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600100000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IArchiveOpenCallback
@@ -677,7 +683,11 @@ internal partial interface IArchiveOpenCallback
 /// 7-zip ICryptoGetTextPassword imported interface to get the archive password.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000500100000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface ICryptoGetTextPassword
@@ -696,7 +706,11 @@ internal partial interface ICryptoGetTextPassword
 /// 7-zip ICryptoGetTextPassword2 imported interface for setting the archive password.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000500110000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface ICryptoGetTextPassword2
@@ -717,7 +731,11 @@ internal partial interface ICryptoGetTextPassword2
 /// 7-zip IArchiveExtractCallback imported interface.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600200000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IArchiveExtractCallback
@@ -764,7 +782,11 @@ internal partial interface IArchiveExtractCallback
 /// 7-zip IArchiveUpdateCallback imported interface.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600800000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IArchiveUpdateCallback
@@ -833,7 +855,11 @@ internal partial interface IArchiveUpdateCallback
 /// 7-zip IArchiveOpenVolumeCallback imported interface to handle archive volumes.
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600300000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IArchiveOpenVolumeCallback
@@ -863,7 +889,11 @@ internal partial interface IArchiveOpenVolumeCallback
 /// 7-zip ISequentialInStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000300010000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface ISequentialInStream
@@ -889,7 +919,11 @@ internal partial interface ISequentialInStream
 /// 7-zip ISequentialOutStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000300020000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface ISequentialOutStream
@@ -919,7 +953,11 @@ internal partial interface ISequentialOutStream
 /// 7-zip IInStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000300030000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IInStream
@@ -949,7 +987,11 @@ internal partial interface IInStream
 /// 7-zip IOutStream imported interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000300040000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IOutStream
@@ -989,7 +1031,11 @@ internal partial interface IOutStream
 /// 7-zip essential in archive interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600600000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IInArchive
@@ -1096,7 +1142,11 @@ internal partial interface IInArchive
 /// 7-zip essential out archive interface
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600A00000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface IOutArchive
@@ -1125,7 +1175,11 @@ internal partial interface IOutArchive
 /// 7-zip ISetProperties interface for setting various archive properties
 /// </summary>
 [SecurityCritical, SuppressUnmanagedCodeSecurity]
+#if NET8_0_OR_GREATER
 [GeneratedComInterface]
+#else
+[ComImport]
+#endif
 [Guid("23170F69-40C1-278A-0000-000600030000")]
 [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 internal partial interface ISetProperties
