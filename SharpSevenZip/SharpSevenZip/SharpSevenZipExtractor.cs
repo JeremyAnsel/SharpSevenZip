@@ -1158,6 +1158,7 @@ public sealed partial class SharpSevenZipExtractor
                 CheckedExecute(
                     _archive!.Extract(indexes, (uint)indexes.Length, 0, aec),
                     SharpSevenZipExtractionFailedException.DEFAULT_MESSAGE, aec);
+                (stream as ExtractStream)?.SignalEndOfStream();
             }
             finally
             {
