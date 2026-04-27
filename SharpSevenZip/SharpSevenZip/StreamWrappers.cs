@@ -1,6 +1,9 @@
 ﻿using SharpSevenZip.EventArguments;
 using System.Globalization;
 using System.Runtime.InteropServices;
+#if NET8_0_OR_GREATER
+using System.Runtime.InteropServices.Marshalling;
+#endif
 
 namespace SharpSevenZip;
 
@@ -114,7 +117,10 @@ internal class StreamWrapper : DisposeVariableWrapper, IDisposable
 /// <summary>
 /// IInStream wrapper used in stream read operations.
 /// </summary>
-internal sealed class InStreamWrapper : StreamWrapper, ISequentialInStream, IInStream
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStream, IInStream
 {
     /// <summary>
     /// Initializes a new instance of the InStreamWrapper class.
@@ -183,7 +189,10 @@ internal sealed class InStreamWrapper : StreamWrapper, ISequentialInStream, IInS
 /// <summary>
 /// IOutStream wrapper used in stream write operations.
 /// </summary>
-internal sealed class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IOutStream
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class OutStreamWrapper : StreamWrapper, ISequentialOutStream, IOutStream
 {
     /// <summary>
     /// Initializes a new instance of the OutStreamWrapper class
@@ -352,7 +361,10 @@ internal class MultiStreamWrapper : DisposeVariableWrapper, IDisposable
 /// <summary>
 /// IInStream wrapper used in stream multi volume read operations.
 /// </summary>
-internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInStream, IInStream
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInStream, IInStream
 {
     /// <summary>
     /// Initializes a new instance of the InMultiStreamWrapper class.
@@ -462,7 +474,10 @@ internal sealed class InMultiStreamWrapper : MultiStreamWrapper, ISequentialInSt
 /// <summary>
 /// IOutStream wrapper used in multi volume stream write operations.
 /// </summary>
-internal sealed class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOutStream, IOutStream
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOutStream, IOutStream
 {
     private readonly string _archiveName;
     private readonly long _volumeSize;
@@ -537,7 +552,10 @@ internal sealed class OutMultiStreamWrapper : MultiStreamWrapper, ISequentialOut
     }
 }
 
-internal sealed class FakeOutStreamWrapper : ISequentialOutStream, IDisposable
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class FakeOutStreamWrapper : ISequentialOutStream, IDisposable
 {
     #region IDisposable Members
 

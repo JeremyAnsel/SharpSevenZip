@@ -1,13 +1,19 @@
 ﻿using SharpSevenZip.EventArguments;
 using SharpSevenZip.Exceptions;
 using System.Globalization;
+#if NET8_0_OR_GREATER
+using System.Runtime.InteropServices.Marshalling;
+#endif
 
 namespace SharpSevenZip;
 
 /// <summary>
 /// Archive extraction callback to handle the process of unpacking files
 /// </summary>
-internal sealed class ArchiveExtractCallback : CallbackBase, IArchiveExtractCallback, ICryptoGetTextPassword, IDisposable
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExtractCallback, ICryptoGetTextPassword, IDisposable
 {
     private List<uint>? _actualIndexes;
     private IInArchive? _archive;

@@ -2,6 +2,9 @@
 using System.Diagnostics;
 using System.Reflection;
 using System.Runtime.InteropServices;
+#if NET8_0_OR_GREATER
+using System.Runtime.InteropServices.Marshalling;
+#endif
 using System.Text;
 
 namespace SharpSevenZip;
@@ -54,6 +57,17 @@ internal static class SharpSevenZipLibraryManager
     private static Dictionary<object, Dictionary<OutArchiveFormat, IOutArchive?>>? _outArchives;
     private static int _totalUsers;
     private static bool? _modifyCapable;
+
+#if NET8_0_OR_GREATER
+
+    private static readonly ComWrappers _comWrappers;
+
+    static SharpSevenZipLibraryManager()
+    {
+        _comWrappers = new StrategyBasedComWrappers();
+    }
+
+#endif
 
     private static void InitUserInFormat(object user, InArchiveFormat format)
     {
@@ -343,12 +357,13 @@ internal static class SharpSevenZipLibraryManager
                         userValue.TryGetValue(archiveFormat, out IInArchive? formatValue) &&
                         formatValue != null)
                     {
+#if !NET8_0_OR_GREATER
                         try
                         {
                             Marshal.ReleaseComObject(formatValue);
                         }
                         catch (InvalidComObjectException) { }
-
+#endif
                         userValue.Remove(archiveFormat);
                         _totalUsers--;
 
@@ -365,12 +380,13 @@ internal static class SharpSevenZipLibraryManager
                         userValue.TryGetValue(outArchiveFormat, out IOutArchive? formatValue) &&
                         formatValue != null)
                     {
+#if !NET8_0_OR_GREATER
                         try
                         {
                             Marshal.ReleaseComObject(formatValue);
                         }
                         catch (InvalidComObjectException) { }
-
+#endif
                         userValue.Remove(outArchiveFormat);
                         _totalUsers--;
 
@@ -401,7 +417,7 @@ internal static class SharpSevenZipLibraryManager
     /// </summary>
     /// <param name="format">Archive format.</param>
     /// <param name="user">Archive format user.</param>
-    public static IInArchive InArchive(InArchiveFormat format, object user)
+    public unsafe static IInArchive InArchive(InArchiveFormat format, object user)
     {
         lock (SyncRoot)
         {
@@ -417,6 +433,27 @@ internal static class SharpSevenZipLibraryManager
                     }
                 }
 
+#if NET8_0_OR_GREATER
+                var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
+                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
+
+                var interfaceId = typeof(IInArchive).GUID;
+                var classId = Formats.InFormatGuids[format];
+
+                IInArchive result;
+                try
+                {
+                    createObject(ref classId, ref interfaceId, out nint resultPtr);
+                    result = (IInArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
+                }
+                catch (Exception)
+                {
+                    throw new SharpSevenZipLibraryException("Your 7-zip library does not support this archive type.");
+                }
+
+                InitUserInFormat(user, format);
+                _inArchives[user][format] = result;
+#else
                 var createObject = (NativeMethods.CreateObjectDelegate)
                     Marshal.GetDelegateForFunctionPointer(
                         NativeMethods.GetProcAddress(_modulePtr, "CreateObject"),
@@ -438,6 +475,7 @@ internal static class SharpSevenZipLibraryManager
 
                 InitUserInFormat(user, format);
                 _inArchives[user][format] = result as IInArchive;
+#endif
             }
 
             return _inArchives[user][format]!;
@@ -449,7 +487,7 @@ internal static class SharpSevenZipLibraryManager
     /// </summary>
     /// <param name="format">Archive format.</param>  
     /// <param name="user">Archive format user.</param>
-    public static IOutArchive OutArchive(OutArchiveFormat format, object user)
+    public unsafe static IOutArchive OutArchive(OutArchiveFormat format, object user)
     {
         lock (SyncRoot)
         {
@@ -460,6 +498,25 @@ internal static class SharpSevenZipLibraryManager
                     throw new SharpSevenZipLibraryException();
                 }
 
+#if NET8_0_OR_GREATER
+                var createObject = (delegate*<ref Guid, ref Guid, out nint, int>)
+                        NativeMethods.GetProcAddress(_modulePtr, "CreateObject");
+
+                var interfaceId = typeof(IOutArchive).GUID;
+
+                try
+                {
+                    var classId = Formats.OutFormatGuids[format];
+                    createObject(ref classId, ref interfaceId, out nint resultPtr);
+
+                    InitUserOutFormat(user, format);
+                    _outArchives[user][format] = (IOutArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
+                }
+                catch (Exception)
+                {
+                    throw new SharpSevenZipLibraryException("Your 7-zip library does not support this archive type.");
+                }
+#else
                 var createObject = (NativeMethods.CreateObjectDelegate)
                     Marshal.GetDelegateForFunctionPointer(
                         NativeMethods.GetProcAddress(_modulePtr, "CreateObject"),
@@ -479,6 +536,7 @@ internal static class SharpSevenZipLibraryManager
                 {
                     throw new SharpSevenZipLibraryException("Your 7-zip library does not support this archive type.");
                 }
+#endif
             }
 
             return _outArchives[user][format]!;

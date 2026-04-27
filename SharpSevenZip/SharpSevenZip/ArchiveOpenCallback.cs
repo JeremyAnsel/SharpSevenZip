@@ -1,11 +1,17 @@
 ﻿using System.Runtime.InteropServices;
+#if NET8_0_OR_GREATER
+using System.Runtime.InteropServices.Marshalling;
+#endif
 
 namespace SharpSevenZip;
 
 /// <summary>
 /// Callback to handle the archive opening
 /// </summary>
-internal sealed class ArchiveOpenCallback : CallbackBase, IArchiveOpenCallback, IArchiveOpenVolumeCallback,
+#if NET8_0_OR_GREATER
+[GeneratedComClass]
+#endif
+internal sealed partial class ArchiveOpenCallback : CallbackBase, IArchiveOpenCallback, IArchiveOpenVolumeCallback,
                                             ICryptoGetTextPassword, IDisposable
 {
     private FileInfo? _fileInfo;
