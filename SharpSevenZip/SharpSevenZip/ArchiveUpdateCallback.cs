@@ -650,7 +650,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
             }
             else
             {
-                _fileStream = new InStreamWrapper(_streams[index].Stream, true);
+                _fileStream = new InStreamWrapper(_streams[index].Stream, false);
                 inStream = _fileStream;
                 if (!EventsForGetStream(index))
                 {
