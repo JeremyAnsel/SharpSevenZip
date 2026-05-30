@@ -241,7 +241,13 @@ public enum InArchiveFormat
     /// Apple File System Format.
     /// </summary>
     /// <remarks><a href="https://en.wikipedia.org/wiki/Apple_File_System">Wikipedia information</a></remarks>
-    Apfs
+    Apfs,
+
+    /// <summary>
+    /// Linux ext2/ext3/ext4 file system format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Extended_file_system">Wikipedia information</a></remarks>
+    Ext,
 }
 
 /// <summary>
@@ -362,7 +368,7 @@ public enum CompressionMethod
 /// <summary>
 /// Archive format routines
 /// </summary>
-internal static class Formats
+public static class Formats
 {
     /*/// <summary>
     /// Gets the max value of the specified enum type.
@@ -431,7 +437,8 @@ internal static class Formats
                 {InArchiveFormat.Fat,       new Guid("23170f69-40c1-278a-1000-000110DA0000")},
                 {InArchiveFormat.Mbr,       new Guid("23170f69-40c1-278a-1000-000110DB0000")},
                 {InArchiveFormat.MachO,     new Guid("23170f69-40c1-278a-1000-000110DF0000")},
-                {InArchiveFormat.Apfs,      new Guid("23170f69-40c1-278a-1000-000110C30000")}
+                {InArchiveFormat.Apfs,      new Guid("23170f69-40c1-278a-1000-000110C30000")},
+                {InArchiveFormat.Ext,       new Guid("23170f69-40c1-278a-1000-000110C70000")},
         };
 
     #endregion
@@ -523,7 +530,11 @@ internal static class Formats
              {"dll",    InArchiveFormat.PE},
              {"vhd",    InArchiveFormat.Vhd},
              {"gpt",    InArchiveFormat.Gpt },
-             {"ntfs",   InArchiveFormat.Ntfs }
+             {"mbr",    InArchiveFormat.Mbr },
+             {"ext",    InArchiveFormat.Ext },
+             {"ntfs",   InArchiveFormat.Ntfs },
+             {"apfs",   InArchiveFormat.Apfs },
+             {"fat",    InArchiveFormat.Fat },
     };
 
     #endregion
