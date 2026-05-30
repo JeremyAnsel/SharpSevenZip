@@ -404,6 +404,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Formats.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Formats.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Formats",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Formats.yml\" sourcestartlinenumber=\"1\">Archive format routines</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.ICancellable.yml",
       "output": {
         ".html": {

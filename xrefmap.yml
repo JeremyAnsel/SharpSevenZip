@@ -1592,6 +1592,28 @@ references:
   commentId: T:SharpSevenZip.ExtractFileCallback
   fullName: SharpSevenZip.ExtractFileCallback
   nameWithType: ExtractFileCallback
+- uid: SharpSevenZip.Formats
+  name: Formats
+  href: api/SharpSevenZip.Formats.html
+  commentId: T:SharpSevenZip.Formats
+  fullName: SharpSevenZip.Formats
+  nameWithType: Formats
+- uid: SharpSevenZip.Formats.FormatByFileName(System.String,System.Boolean)
+  name: FormatByFileName(string, bool)
+  href: api/SharpSevenZip.Formats.html#SharpSevenZip_Formats_FormatByFileName_System_String_System_Boolean_
+  commentId: M:SharpSevenZip.Formats.FormatByFileName(System.String,System.Boolean)
+  name.vb: FormatByFileName(String, Boolean)
+  fullName: SharpSevenZip.Formats.FormatByFileName(string, bool)
+  fullName.vb: SharpSevenZip.Formats.FormatByFileName(String, Boolean)
+  nameWithType: Formats.FormatByFileName(string, bool)
+  nameWithType.vb: Formats.FormatByFileName(String, Boolean)
+- uid: SharpSevenZip.Formats.FormatByFileName*
+  name: FormatByFileName
+  href: api/SharpSevenZip.Formats.html#SharpSevenZip_Formats_FormatByFileName_
+  commentId: Overload:SharpSevenZip.Formats.FormatByFileName
+  isSpec: "True"
+  fullName: SharpSevenZip.Formats.FormatByFileName
+  nameWithType: Formats.FormatByFileName
 - uid: SharpSevenZip.ICancellable
   name: ICancellable
   href: api/SharpSevenZip.ICancellable.html
@@ -1702,6 +1724,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Elf
   fullName: SharpSevenZip.InArchiveFormat.Elf
   nameWithType: InArchiveFormat.Elf
+- uid: SharpSevenZip.InArchiveFormat.Ext
+  name: Ext
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Ext
+  commentId: F:SharpSevenZip.InArchiveFormat.Ext
+  fullName: SharpSevenZip.InArchiveFormat.Ext
+  nameWithType: InArchiveFormat.Ext
 - uid: SharpSevenZip.InArchiveFormat.Fat
   name: Fat
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Fat
