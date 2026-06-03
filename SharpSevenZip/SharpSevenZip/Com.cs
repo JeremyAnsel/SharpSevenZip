@@ -642,6 +642,7 @@ internal static class PropIdToName
                 {ItemPropId.FreeSpace, "Free Space"},
                 {ItemPropId.ClusterSize, "Cluster Size"},
                 {ItemPropId.VolumeName, "Volume Name"},
+                {ItemPropId.TotalSize, "Total Size"},
         };
     #endregion
 }
