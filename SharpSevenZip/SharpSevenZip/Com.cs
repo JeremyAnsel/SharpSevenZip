@@ -640,7 +640,9 @@ internal static class PropIdToName
                 {ItemPropId.HeadersSize, "Headers Size"},
                 {ItemPropId.Checksum, "Checksum"},
                 {ItemPropId.FreeSpace, "Free Space"},
-                {ItemPropId.ClusterSize, "Cluster Size"}
+                {ItemPropId.ClusterSize, "Cluster Size"},
+                {ItemPropId.VolumeName, "Volume Name"},
+                {ItemPropId.TotalSize, "Total Size"},
         };
     #endregion
 }
