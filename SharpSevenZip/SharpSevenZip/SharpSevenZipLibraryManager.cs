@@ -138,6 +138,11 @@ internal static class SharpSevenZipLibraryManager
             {
                 _libraryFileName ??= DetermineLibraryFilePath();
 
+                if (!File.Exists(_libraryFileName))
+                {
+                    throw new SharpSevenZipLibraryException("DLL file does not exist.");
+                }
+
                 if ((_modulePtr = NativeMethods.LoadLibrary(_libraryFileName!)) == IntPtr.Zero)
                 {
                     throw new SharpSevenZipLibraryException($"failed to load library from \"{_libraryFileName}\".");
@@ -414,8 +419,8 @@ internal static class SharpSevenZipLibraryManager
 
                     if (_totalUsers == 0)
                     {
-                        //NativeMethods.FreeLibrary(_modulePtr);
-                        //_modulePtr = IntPtr.Zero;
+                        NativeMethods.FreeLibrary(_modulePtr);
+                        _modulePtr = IntPtr.Zero;
                     }
                 }
             }
