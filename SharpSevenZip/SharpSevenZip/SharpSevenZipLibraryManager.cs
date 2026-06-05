@@ -33,14 +33,29 @@ internal static class SharpSevenZipLibraryManager
 
     private static string? DetermineLibraryFilePath()
     {
-        string location = AppContext.BaseDirectory;
-
-        if (string.IsNullOrEmpty(location))
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            return null;
-        }
+            string location = AppContext.BaseDirectory;
 
-        return Path.Combine(location, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
+            if (string.IsNullOrEmpty(location))
+            {
+                return null;
+            }
+
+            return Path.Combine(location, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            return "/usr/lib/7zip/7z.so";
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            return "/usr/local/lib/lib7z.dylib";
+        }
+        else
+        {
+            throw new PlatformNotSupportedException("Unsupported platform.");
+        }
     }
 
     /// <summary>
@@ -122,11 +137,6 @@ internal static class SharpSevenZipLibraryManager
             if (_modulePtr == IntPtr.Zero)
             {
                 _libraryFileName ??= DetermineLibraryFilePath();
-
-                if (!File.Exists(_libraryFileName))
-                {
-                    throw new SharpSevenZipLibraryException("DLL file does not exist.");
-                }
 
                 if ((_modulePtr = NativeMethods.LoadLibrary(_libraryFileName!)) == IntPtr.Zero)
                 {
