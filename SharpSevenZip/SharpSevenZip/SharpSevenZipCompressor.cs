@@ -2,9 +2,11 @@
 using SharpSevenZip.Exceptions;
 using SharpSevenZip.Lzma;
 using SharpSevenZip.Sdk;
-using SharpSevenZip.Sdk.Compression.Lzma;
+using System.Buffers;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using System.Text;
+using Encoder = SharpSevenZip.Sdk.Compression.Lzma.Encoder;
 
 namespace SharpSevenZip;
 
@@ -19,6 +21,8 @@ public sealed partial class SharpSevenZipCompressor
         : SharpSevenZipBase
 {
     #region Fields
+
+    private Encoding? _encoding;
 
     private bool _compressingFilesOnDisk;
 
@@ -106,6 +110,15 @@ public sealed partial class SharpSevenZipCompressor
 
     private void CommonInit()
     {
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            _encoding = Encoding.Unicode;
+        }
+        else
+        {
+            _encoding = Encoding.UTF32;
+        }
+
         DirectoryStructure = true;
         IncludeEmptyDirectories = true;
         CompressionLevel = CompressionLevel.Normal;
@@ -242,7 +255,7 @@ public sealed partial class SharpSevenZipCompressor
     /// <summary>
     /// Sets the compression properties
     /// </summary>
-    private void SetCompressionProperties()
+    private unsafe void SetCompressionProperties()
     {
         switch (_archiveFormat)
         {
@@ -298,19 +311,17 @@ public sealed partial class SharpSevenZipCompressor
 
                     #endregion
 
-                    var names = new List<IntPtr>(2 + CustomParameters.Count);
+                    var names = new List<string>(2 + CustomParameters.Count);
                     var values = new List<PropVariant>(2 + CustomParameters.Count);
 
                     #region Initialize compression properties
 
-                    names.Add(Marshal.StringToBSTR("x"));
+                    names.Add("x");
                     values.Add(new PropVariant());
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
-                        names.Add(_archiveFormat == OutArchiveFormat.Zip ?
-                            Marshal.StringToBSTR("m") :
-                            Marshal.StringToBSTR("0"));
+                        names.Add(_archiveFormat == OutArchiveFormat.Zip ? "m" : "0");
 
                         var pv = new PropVariant
                         {
@@ -332,7 +343,7 @@ public sealed partial class SharpSevenZipCompressor
 
                         #endregion
 
-                        names.Add(Marshal.StringToBSTR(pair.Key));
+                        names.Add(pair.Key);
                         var pv = new PropVariant();
 
                         if (pair.Value.All(char.IsDigit))
@@ -398,7 +409,7 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (EncryptHeaders && _archiveFormat == OutArchiveFormat.SevenZip && !SwitchIsInCustomParameters("he"))
                     {
-                        names.Add(Marshal.StringToBSTR("he"));
+                        names.Add("he");
                         var tmp = new PropVariant { VarType = VarEnum.VT_BSTR, Value = Marshal.StringToBSTR("on") };
                         values.Add(tmp);
                     }
@@ -411,7 +422,7 @@ public sealed partial class SharpSevenZipCompressor
                         ZipEncryptionMethod != ZipEncryptionMethod.ZipCrypto &&
                         !SwitchIsInCustomParameters("em"))
                     {
-                        names.Add(Marshal.StringToBSTR("em"));
+                        names.Add("em");
 
                         var tmp = new PropVariant
                         {
@@ -424,17 +435,21 @@ public sealed partial class SharpSevenZipCompressor
 
                     #endregion
 
-                    var namesHandle = GCHandle.Alloc(names.ToArray(), GCHandleType.Pinned);
-                    var valuesHandle = GCHandle.Alloc(values.ToArray(), GCHandleType.Pinned);
-
+                    MemoryHandle[] handles = names.Select(x => _encoding!.GetBytes(x + "\0").AsMemory().Pin()).ToArray();
                     try
                     {
-                        setter?.SetProperties(namesHandle.AddrOfPinnedObject(), valuesHandle.AddrOfPinnedObject(), names.Count);
+                        fixed (nint* namesPtr = handles.Select(h => new IntPtr(h.Pointer)).ToArray())
+                        fixed (PropVariant* valuesPtr = values.ToArray())
+                        {
+                            setter?.SetProperties(new IntPtr(namesPtr), new IntPtr(valuesPtr), names.Count);
+                        }
                     }
                     finally
                     {
-                        namesHandle.Free();
-                        valuesHandle.Free();
+                        foreach (MemoryHandle handle in handles)
+                        {
+                            handle.Dispose();
+                        }
                     }
 
                     break;
