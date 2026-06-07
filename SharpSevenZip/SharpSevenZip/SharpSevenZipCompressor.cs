@@ -309,7 +309,7 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
-                        names.Add(_archiveFormat == OutArchiveFormat.Zip ? 
+                        names.Add(_archiveFormat == OutArchiveFormat.Zip ?
                             Marshal.StringToHGlobalWChar("m") :
                             Marshal.StringToHGlobalWChar("0"));
 
@@ -435,6 +435,7 @@ public sealed partial class SharpSevenZipCompressor
                     }
                     finally
                     {
+#if NET8_0_OR_GREATER
                         foreach (IntPtr name in names)
                         {
                             NativeMemory.Free(name.ToPointer());
@@ -447,6 +448,12 @@ public sealed partial class SharpSevenZipCompressor
                                 NativeMemory.Free(value.Value.ToPointer());
                             }
                         }
+#else
+                        foreach (IntPtr name in names)
+                        {
+                            Marshal.FreeHGlobal(name);
+                        }
+#endif
                     }
 
                     break;
