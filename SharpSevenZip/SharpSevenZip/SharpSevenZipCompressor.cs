@@ -5,7 +5,6 @@ using SharpSevenZip.Sdk;
 using System.Buffers;
 using System.Globalization;
 using System.Runtime.InteropServices;
-using System.Text;
 using Encoder = SharpSevenZip.Sdk.Compression.Lzma.Encoder;
 
 namespace SharpSevenZip;
@@ -305,19 +304,19 @@ public sealed partial class SharpSevenZipCompressor
 
                     #region Initialize compression properties
 
-                    names.Add(NativeMethods.StringToHGlobalWChar("x"));
+                    names.Add(Marshal.StringToHGlobalWChar("x"));
                     values.Add(new PropVariant());
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
                         names.Add(_archiveFormat == OutArchiveFormat.Zip ? 
-                            NativeMethods.StringToHGlobalWChar("m") :
-                            NativeMethods.StringToHGlobalWChar("0"));
+                            Marshal.StringToHGlobalWChar("m") :
+                            Marshal.StringToHGlobalWChar("0"));
 
                         var pv = new PropVariant
                         {
                             VarType = VarEnum.VT_BSTR,
-                            Value = NativeMethods.StringToBSTR(Formats.MethodNames[_compressionMethod])
+                            Value = Marshal.StringToBSTR(Formats.MethodNames[_compressionMethod])
                         };
 
                         values.Add(pv);
@@ -334,7 +333,7 @@ public sealed partial class SharpSevenZipCompressor
 
                         #endregion
 
-                        names.Add(NativeMethods.StringToHGlobalWChar(pair.Key));
+                        names.Add(Marshal.StringToHGlobalWChar(pair.Key));
                         var pv = new PropVariant();
 
                         if (pair.Value.All(char.IsDigit))
@@ -345,7 +344,7 @@ public sealed partial class SharpSevenZipCompressor
                         else
                         {
                             pv.VarType = VarEnum.VT_BSTR;
-                            pv.Value = NativeMethods.StringToBSTR(pair.Value);
+                            pv.Value = Marshal.StringToBSTR(pair.Value);
                         }
 
                         values.Add(pv);
@@ -400,8 +399,8 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (EncryptHeaders && _archiveFormat == OutArchiveFormat.SevenZip && !SwitchIsInCustomParameters("he"))
                     {
-                        names.Add(NativeMethods.StringToHGlobalWChar("he"));
-                        var tmp = new PropVariant { VarType = VarEnum.VT_BSTR, Value = NativeMethods.StringToBSTR("on") };
+                        names.Add(Marshal.StringToHGlobalWChar("he"));
+                        var tmp = new PropVariant { VarType = VarEnum.VT_BSTR, Value = Marshal.StringToBSTR("on") };
                         values.Add(tmp);
                     }
 
@@ -413,12 +412,12 @@ public sealed partial class SharpSevenZipCompressor
                         ZipEncryptionMethod != ZipEncryptionMethod.ZipCrypto &&
                         !SwitchIsInCustomParameters("em"))
                     {
-                        names.Add(NativeMethods.StringToHGlobalWChar("em"));
+                        names.Add(Marshal.StringToHGlobalWChar("em"));
 
                         var tmp = new PropVariant
                         {
                             VarType = VarEnum.VT_BSTR,
-                            Value = NativeMethods.StringToBSTR(Enum.GetName(typeof(ZipEncryptionMethod), ZipEncryptionMethod))
+                            Value = Marshal.StringToBSTR(Enum.GetName(typeof(ZipEncryptionMethod), ZipEncryptionMethod))
                         };
 
                         values.Add(tmp);
@@ -438,14 +437,14 @@ public sealed partial class SharpSevenZipCompressor
                     {
                         foreach (IntPtr name in names)
                         {
-                            Marshal.FreeHGlobal(name);
+                            NativeMemory.Free(name.ToPointer());
                         }
 
                         foreach (PropVariant value in values)
                         {
                             if (value.VarType == VarEnum.VT_BSTR && value.Value != IntPtr.Zero)
                             {
-                                Marshal.FreeHGlobal(value.Value);
+                                NativeMemory.Free(value.Value.ToPointer());
                             }
                         }
                     }

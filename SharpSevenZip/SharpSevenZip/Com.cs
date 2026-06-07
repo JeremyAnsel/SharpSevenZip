@@ -119,7 +119,7 @@ internal struct PropVariant
             switch (VarType)
             {
                 case VarEnum.VT_BSTR:
-                    return NativeMethods.PtrToStringBSTR(Value);
+                    return Marshal.PtrToStringBSTR(Value);
                 case VarEnum.VT_EMPTY:
                     return null;
                 case VarEnum.VT_FILETIME:
@@ -136,7 +136,7 @@ internal struct PropVariant
 
                     try
                     {
-                        return Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
+                        return System.Runtime.InteropServices.Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
                     }
                     catch (Exception ex) when (ex is InvalidOperationException or NotSupportedException)
                     {

@@ -1,6 +1,5 @@
 ﻿using SharpSevenZip.EventArguments;
 using System.Globalization;
-using System.Runtime.InteropServices;
 #if NET8_0_OR_GREATER
 using System.Runtime.InteropServices.Marshalling;
 #endif
@@ -108,7 +107,7 @@ internal class StreamWrapper : DisposeVariableWrapper, IDisposable
             long position = BaseStream.Seek(offset, seekOrigin);
             if (newPosition != IntPtr.Zero)
             {
-                Marshal.WriteInt64(newPosition, position);
+                System.Runtime.InteropServices.Marshal.WriteInt64(newPosition, position);
             }
         }
     }
@@ -239,7 +238,7 @@ internal sealed partial class OutStreamWrapper : StreamWrapper, ISequentialOutSt
 
         if (processedSize != IntPtr.Zero)
         {
-            Marshal.WriteInt32(processedSize, (int)size);
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, (int)size);
         }
 
         OnBytesWritten((int)size);
@@ -353,7 +352,7 @@ internal class MultiStreamWrapper : DisposeVariableWrapper, IDisposable
         Position = StreamOffsets[CurrentStream].Key + delta;
         if (newPosition != IntPtr.Zero)
         {
-            Marshal.WriteInt64(newPosition, Position);
+            System.Runtime.InteropServices.Marshal.WriteInt64(newPosition, Position);
         }
     }
 }
@@ -528,7 +527,7 @@ internal sealed partial class OutMultiStreamWrapper : MultiStreamWrapper, ISeque
 
         if (processedSize != IntPtr.Zero)
         {
-            Marshal.WriteInt32(processedSize, originalSize);
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, originalSize);
         }
 
         return 0;
@@ -581,7 +580,7 @@ internal sealed partial class FakeOutStreamWrapper : ISequentialOutStream, IDisp
 
         if (processedSize != IntPtr.Zero)
         {
-            Marshal.WriteInt32(processedSize, (int)size);
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, (int)size);
         }
 
         return 0;
