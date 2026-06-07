@@ -444,7 +444,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     {
                         val = _updateData.FileNamesToModify![(int)index]!;
                     }
-                    value.Value = Marshal.StringToBSTR(val);
+                    value.Value = NativeMethods.StringToBSTR(val);
                     #endregion
                     break;
                 case ItemPropId.IsDirectory:
@@ -581,17 +581,17 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                                   : _entries == null
                                       ? ""
                                       : Path.GetExtension(_entries[index]);
-                            value.Value = Marshal.StringToBSTR(val);
+                            value.Value = NativeMethods.StringToBSTR(val);
                         }
                         catch (ArgumentException)
                         {
-                            value.Value = Marshal.StringToBSTR("");
+                            value.Value = NativeMethods.StringToBSTR("");
                         }
                     }
                     else
                     {
                         val = Path.GetExtension(_updateData.ArchiveFileData![(int)index].FileName);
-                        value.Value = Marshal.StringToBSTR(val);
+                        value.Value = NativeMethods.StringToBSTR(val);
                     }
 
                     #endregion

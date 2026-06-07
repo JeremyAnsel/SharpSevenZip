@@ -22,8 +22,6 @@ public sealed partial class SharpSevenZipCompressor
 {
     #region Fields
 
-    private Encoding? _encoding;
-
     private bool _compressingFilesOnDisk;
 
     /// <summary>
@@ -110,15 +108,6 @@ public sealed partial class SharpSevenZipCompressor
 
     private void CommonInit()
     {
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            _encoding = Encoding.Unicode;
-        }
-        else
-        {
-            _encoding = Encoding.UTF32;
-        }
-
         DirectoryStructure = true;
         IncludeEmptyDirectories = true;
         CompressionLevel = CompressionLevel.Normal;
@@ -311,22 +300,24 @@ public sealed partial class SharpSevenZipCompressor
 
                     #endregion
 
-                    var names = new List<string>(2 + CustomParameters.Count);
+                    var names = new List<IntPtr>(2 + CustomParameters.Count);
                     var values = new List<PropVariant>(2 + CustomParameters.Count);
 
                     #region Initialize compression properties
 
-                    names.Add("x");
+                    names.Add(NativeMethods.StringToHGlobalWChar("x"));
                     values.Add(new PropVariant());
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
-                        names.Add(_archiveFormat == OutArchiveFormat.Zip ? "m" : "0");
+                        names.Add(_archiveFormat == OutArchiveFormat.Zip ? 
+                            NativeMethods.StringToHGlobalWChar("m") :
+                            NativeMethods.StringToHGlobalWChar("0"));
 
                         var pv = new PropVariant
                         {
                             VarType = VarEnum.VT_BSTR,
-                            Value = Marshal.StringToBSTR(Formats.MethodNames[_compressionMethod])
+                            Value = NativeMethods.StringToBSTR(Formats.MethodNames[_compressionMethod])
                         };
 
                         values.Add(pv);
@@ -343,7 +334,7 @@ public sealed partial class SharpSevenZipCompressor
 
                         #endregion
 
-                        names.Add(pair.Key);
+                        names.Add(NativeMethods.StringToHGlobalWChar(pair.Key));
                         var pv = new PropVariant();
 
                         if (pair.Value.All(char.IsDigit))
@@ -354,7 +345,7 @@ public sealed partial class SharpSevenZipCompressor
                         else
                         {
                             pv.VarType = VarEnum.VT_BSTR;
-                            pv.Value = Marshal.StringToBSTR(pair.Value);
+                            pv.Value = NativeMethods.StringToBSTR(pair.Value);
                         }
 
                         values.Add(pv);
@@ -409,8 +400,8 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (EncryptHeaders && _archiveFormat == OutArchiveFormat.SevenZip && !SwitchIsInCustomParameters("he"))
                     {
-                        names.Add("he");
-                        var tmp = new PropVariant { VarType = VarEnum.VT_BSTR, Value = Marshal.StringToBSTR("on") };
+                        names.Add(NativeMethods.StringToHGlobalWChar("he"));
+                        var tmp = new PropVariant { VarType = VarEnum.VT_BSTR, Value = NativeMethods.StringToBSTR("on") };
                         values.Add(tmp);
                     }
 
@@ -422,12 +413,12 @@ public sealed partial class SharpSevenZipCompressor
                         ZipEncryptionMethod != ZipEncryptionMethod.ZipCrypto &&
                         !SwitchIsInCustomParameters("em"))
                     {
-                        names.Add("em");
+                        names.Add(NativeMethods.StringToHGlobalWChar("em"));
 
                         var tmp = new PropVariant
                         {
                             VarType = VarEnum.VT_BSTR,
-                            Value = Marshal.StringToBSTR(Enum.GetName(typeof(ZipEncryptionMethod), ZipEncryptionMethod))
+                            Value = NativeMethods.StringToBSTR(Enum.GetName(typeof(ZipEncryptionMethod), ZipEncryptionMethod))
                         };
 
                         values.Add(tmp);
@@ -435,10 +426,9 @@ public sealed partial class SharpSevenZipCompressor
 
                     #endregion
 
-                    MemoryHandle[] handles = names.Select(x => _encoding!.GetBytes(x + "\0").AsMemory().Pin()).ToArray();
                     try
                     {
-                        fixed (nint* namesPtr = handles.Select(h => new IntPtr(h.Pointer)).ToArray())
+                        fixed (nint* namesPtr = names.ToArray())
                         fixed (PropVariant* valuesPtr = values.ToArray())
                         {
                             setter?.SetProperties(new IntPtr(namesPtr), new IntPtr(valuesPtr), names.Count);
@@ -446,9 +436,17 @@ public sealed partial class SharpSevenZipCompressor
                     }
                     finally
                     {
-                        foreach (MemoryHandle handle in handles)
+                        foreach (IntPtr name in names)
                         {
-                            handle.Dispose();
+                            Marshal.FreeHGlobal(name);
+                        }
+
+                        foreach (PropVariant value in values)
+                        {
+                            if (value.VarType == VarEnum.VT_BSTR && value.Value != IntPtr.Zero)
+                            {
+                                Marshal.FreeHGlobal(value.Value);
+                            }
                         }
                     }
 

@@ -48,7 +48,7 @@ internal struct PropVariant
     /// </summary>
     public VarEnum VarType
     {
-        private readonly get
+        get
         {
             return (VarEnum)_vt;
         }
@@ -119,7 +119,7 @@ internal struct PropVariant
             switch (VarType)
             {
                 case VarEnum.VT_BSTR:
-                    return Marshal.PtrToStringBSTR(Value);
+                    return NativeMethods.PtrToStringBSTR(Value);
                 case VarEnum.VT_EMPTY:
                     return null;
                 case VarEnum.VT_FILETIME:
