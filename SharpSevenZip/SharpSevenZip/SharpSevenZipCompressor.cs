@@ -309,7 +309,7 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
-                        names.Add(_archiveFormat == OutArchiveFormat.Zip ? 
+                        names.Add(_archiveFormat == OutArchiveFormat.Zip ?
                             Marshal.StringToBSTR("m") :
                             Marshal.StringToBSTR("0"));
 
@@ -432,6 +432,10 @@ public sealed partial class SharpSevenZipCompressor
                         {
                             setter?.SetProperties(new IntPtr(namesPtr), new IntPtr(valuesPtr), names.Count);
                         }
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        throw new SharpSevenZipConfigurationException(SharpSevenZipConfigurationException.DEFAULT_MESSAGE, ex);
                     }
                     finally
                     {
