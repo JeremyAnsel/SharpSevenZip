@@ -309,9 +309,7 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
-                        names.Add(_archiveFormat == OutArchiveFormat.Zip ?
-                            Marshal.StringToHGlobalWChar("m") :
-                            Marshal.StringToHGlobalWChar("0"));
+                        names.Add(Marshal.StringToHGlobalWChar("mf"));
 
                         var pv = new PropVariant
                         {

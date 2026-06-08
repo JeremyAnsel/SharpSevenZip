@@ -63,8 +63,8 @@ internal static class Marshal
                 return IntPtr.Zero;
             }
 
-            nuint byteCount = ((nuint)str.Length + 1) * sizeof(uint) + sizeof(uint); // +1 for null terminator, *4 for UTF-32, +4 for additional length prefix
-            uint* bstrPtr = (uint*)NativeMemory.Alloc(byteCount);
+            nuint byteCount = ((nuint)str.Length + 1) * sizeof(uint); // +1 for null terminator, *4 for UTF-32
+            uint* bstrPtr = (uint*)NativeMemory.Alloc(byteCount + sizeof(uint));
             try
             {
                 *bstrPtr = (uint)byteCount;
@@ -89,7 +89,7 @@ internal static class Marshal
 #endif
     }
 
-    public static string? PtrToStringBSTR(IntPtr bstr)
+    public unsafe static string? PtrToStringBSTR(IntPtr bstr)
     {
 #if !NET8_0_OR_GREATER
         return System.Runtime.InteropServices.Marshal.PtrToStringBSTR(bstr);
@@ -100,22 +100,27 @@ internal static class Marshal
         }
         else
         {
-            if (bstr == IntPtr.Zero)
+            uint* bstrPtr = (uint*)bstr;
+            if (bstrPtr == null)
             {
                 return null;
             }
 
             // On non-Windows platforms, we can read the length prefix and then decode the UTF-32 string.
-            int byteCount = System.Runtime.InteropServices.Marshal.ReadInt32(bstr);
+            uint byteCount = *bstrPtr;
             if (byteCount == 0)
             {
                 return string.Empty;
             }
 
-            int charCount = byteCount / sizeof(uint);
-            int[] charArray = new int[charCount];
-            System.Runtime.InteropServices.Marshal.Copy(bstr + sizeof(uint), charArray, 0, charCount);
-            return new string(charArray.Select(c => (char)c).ToArray());
+            uint charCount = byteCount / sizeof(uint);
+            char[] chars = new char[charCount - 1];
+            for (int i = 0; i < chars.Length; i++)
+            {
+                chars[i] = (char)bstrPtr[1 + i];
+            }
+
+            return new string(chars);
         }
 #endif
     }
