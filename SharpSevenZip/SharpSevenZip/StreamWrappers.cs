@@ -147,7 +147,7 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
 
         int readCount = 0;
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         Span<byte> buffer = new(data.ToPointer(), (int)size);
 
         readCount = BaseStream.Read(buffer);
@@ -401,14 +401,14 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
             return 0;
         }
 
-#if !NET6_0_OR_GREATER
+#if !NET8_0_OR_GREATER
         byte[] buffer;
 #endif
 
         var readSize = (int)size;
         int readCount = 0;
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         Span<byte> buffer0 = new((data + readCount).ToPointer(), readSize);
         int count0 = Streams[CurrentStream].Read(buffer0);
         readCount += count0;
@@ -441,7 +441,7 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
             CurrentStream++;
             Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
 
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
             Span<byte> buffer1 = new((data + readCount).ToPointer(), readSize);
             int count1 = Streams[CurrentStream].Read(buffer1);
             readCount += count1;
@@ -604,7 +604,7 @@ internal static class DataHelper
 {
     public static unsafe int Write(IntPtr data, int offset, Stream destination, int size)
     {
-#if NET6_0_OR_GREATER
+#if NET8_0_OR_GREATER
         Span<byte> buffer = new((data + offset).ToPointer(), (int)size);
         destination.Write(buffer);
 #else
