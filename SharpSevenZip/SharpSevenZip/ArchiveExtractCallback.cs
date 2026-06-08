@@ -1,6 +1,7 @@
 ﻿using SharpSevenZip.EventArguments;
 using SharpSevenZip.Exceptions;
 using System.Globalization;
+using System.Runtime.InteropServices;
 #if NET8_0_OR_GREATER
 using System.Runtime.InteropServices.Marshalling;
 #endif
@@ -470,9 +471,9 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
     #endregion
 
     /// <inheritdoc />
-    public int CryptoGetTextPassword(out string password)
+    public int CryptoGetTextPassword(out IntPtr password)
     {
-        password = Password;
+        password = Marshal.StringToBSTR(Password);
         return 0;
     }
 

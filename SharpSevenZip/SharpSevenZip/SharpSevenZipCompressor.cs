@@ -304,12 +304,14 @@ public sealed partial class SharpSevenZipCompressor
 
                     #region Initialize compression properties
 
-                    names.Add(Marshal.StringToHGlobalWChar("x"));
+                    names.Add(Marshal.StringToBSTR("x"));
                     values.Add(new PropVariant());
 
                     if (_compressionMethod != CompressionMethod.Default)
                     {
-                        names.Add(Marshal.StringToHGlobalWChar("mf"));
+                        names.Add(_archiveFormat == OutArchiveFormat.Zip ? 
+                            Marshal.StringToBSTR("m") :
+                            Marshal.StringToBSTR("0"));
 
                         var pv = new PropVariant
                         {
@@ -331,7 +333,7 @@ public sealed partial class SharpSevenZipCompressor
 
                         #endregion
 
-                        names.Add(Marshal.StringToHGlobalWChar(pair.Key));
+                        names.Add(Marshal.StringToBSTR(pair.Key));
                         var pv = new PropVariant();
 
                         if (pair.Value.All(char.IsDigit))
@@ -397,7 +399,7 @@ public sealed partial class SharpSevenZipCompressor
 
                     if (EncryptHeaders && _archiveFormat == OutArchiveFormat.SevenZip && !SwitchIsInCustomParameters("he"))
                     {
-                        names.Add(Marshal.StringToHGlobalWChar("he"));
+                        names.Add(Marshal.StringToBSTR("he"));
                         var tmp = new PropVariant { VarType = VarEnum.VT_BSTR, Value = Marshal.StringToBSTR("on") };
                         values.Add(tmp);
                     }
@@ -410,7 +412,7 @@ public sealed partial class SharpSevenZipCompressor
                         ZipEncryptionMethod != ZipEncryptionMethod.ZipCrypto &&
                         !SwitchIsInCustomParameters("em"))
                     {
-                        names.Add(Marshal.StringToHGlobalWChar("em"));
+                        names.Add(Marshal.StringToBSTR("em"));
 
                         var tmp = new PropVariant
                         {
@@ -433,25 +435,18 @@ public sealed partial class SharpSevenZipCompressor
                     }
                     finally
                     {
-#if NET8_0_OR_GREATER
                         foreach (IntPtr name in names)
                         {
-                            NativeMemory.Free(name.ToPointer());
+                            Marshal.FreeBSTR(name);
                         }
 
                         foreach (PropVariant value in values)
                         {
                             if (value.VarType == VarEnum.VT_BSTR && value.Value != IntPtr.Zero)
                             {
-                                NativeMemory.Free(value.Value.ToPointer());
+                                Marshal.FreeBSTR(value.Value);
                             }
                         }
-#else
-                        foreach (IntPtr name in names)
-                        {
-                            Marshal.FreeHGlobal(name);
-                        }
-#endif
                     }
 
                     break;

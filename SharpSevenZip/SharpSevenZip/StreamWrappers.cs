@@ -1,5 +1,6 @@
 ﻿using SharpSevenZip.EventArguments;
 using System.Globalization;
+using System.Runtime.InteropServices;
 #if NET8_0_OR_GREATER
 using System.Runtime.InteropServices.Marshalling;
 #endif

@@ -122,8 +122,9 @@ internal sealed partial class ArchiveOpenCallback : CallbackBase, IArchiveOpenCa
         return 0;
     }
 
-    public int GetStream(string name, out IInStream? inStream)
+    public int GetStream(IntPtr namePtr, out IInStream? inStream)
     {
+        string name = Marshal.PtrToStringUni(namePtr)!;
         if (!File.Exists(name))
         {
             name = Path.Combine(Path.GetDirectoryName(_fileInfo!.FullName)!, name);
@@ -168,9 +169,9 @@ internal sealed partial class ArchiveOpenCallback : CallbackBase, IArchiveOpenCa
     /// </summary>
     /// <param name="password">Password for the archive</param>
     /// <returns>Zero if everything is OK</returns>
-    public int CryptoGetTextPassword(out string password)
+    public int CryptoGetTextPassword(out IntPtr password)
     {
-        password = Password;
+        password = Marshal.StringToBSTR(Password);
         return 0;
     }
 

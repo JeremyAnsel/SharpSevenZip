@@ -12,7 +12,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
         var fileExtractionStartedInvoked = 0;
         var fileExtractionFinishedInvoked = 0;
 
-        using var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z");
+        using var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
         extractor.EventSynchronization = EventSynchronizationStrategy.AlwaysSynchronous;
 
         extractor.Extracting += (o, e) => extractingInvoked++;
@@ -69,7 +69,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
 
         using (var fileStream = File.Create(TemporaryFile))
         {
-            using var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z");
+            using var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
             extractor.EventSynchronization = EventSynchronizationStrategy.AlwaysSynchronous;
             extractor.ExtractionFinished += (o, e) => extractionFinishedInvoked = true;
             extractor.BeginExtractFile(0, fileStream);
@@ -102,7 +102,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     {
         var extractionFinishedInvoked = false;
 
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             extractor.EventSynchronization = EventSynchronizationStrategy.AlwaysSynchronous;
 
@@ -135,7 +135,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     [Test]
     public async Task ExtractArchiveAsync()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             await extractor.ExtractArchiveAsync(OutputDirectory);
         }
@@ -146,7 +146,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     [Test]
     public async Task ExtractFileAsync_ByIndex()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             using var fileStream = File.Create(TemporaryFile);
             await extractor.ExtractFileAsync(0, fileStream);
@@ -162,7 +162,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     [Test]
     public async Task ExtractFileAsync_ByFileName()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             using var fileStream = File.Create(TemporaryFile);
             await extractor.ExtractFileAsync("file1.txt", fileStream);
@@ -178,7 +178,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     [Test]
     public async Task ExtractFilesAsync_ByCallback()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\zip.zip"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/zip.zip"))
         {
             await extractor.ExtractFilesAsync(args => { args.ExtractToFile = TemporaryFile; });
         }
@@ -189,7 +189,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     [Test]
     public async Task ExtractFilesAsync_ByIndex()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             await extractor.ExtractFilesAsync(OutputDirectory, 0, 2);
         }
@@ -200,7 +200,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
     [Test]
     public async Task ExtractFilesAsync_ByFileName()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             await extractor.ExtractFilesAsync(OutputDirectory, "file1.txt", "file3.txt");
         }

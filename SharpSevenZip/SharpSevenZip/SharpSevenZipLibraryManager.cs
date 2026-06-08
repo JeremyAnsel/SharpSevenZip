@@ -180,6 +180,11 @@ internal static class SharpSevenZipLibraryManager
         {
             lock (SyncRoot)
             {
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    _modifyCapable = true;
+                }
+
                 if (!_modifyCapable.HasValue)
                 {
                     _libraryFileName ??= DetermineLibraryFilePath();
@@ -230,7 +235,7 @@ internal static class SharpSevenZipLibraryManager
 
             compressor.CompressStream(inStream, outStream);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             return false;
         }
@@ -297,7 +302,7 @@ internal static class SharpSevenZipLibraryManager
                     using var outStream = new MemoryStream();
 
                     CompressionBenchmark(inStream, outStream,
-                        OutArchiveFormat.SevenZip, CompressionMethod.Lzma,
+                        OutArchiveFormat.SevenZip, CompressionMethod.Default,
                         ref _features, LibraryFeature.Compress7z);
                     CompressionBenchmark(inStream, outStream,
                         OutArchiveFormat.SevenZip, CompressionMethod.Lzma2,
@@ -416,12 +421,6 @@ internal static class SharpSevenZipLibraryManager
                 {
                     _inArchives = null;
                     _outArchives = null;
-
-                    if (_totalUsers == 0)
-                    {
-                        NativeMethods.FreeLibrary(_modulePtr);
-                        _modulePtr = IntPtr.Zero;
-                    }
                 }
             }
         }
