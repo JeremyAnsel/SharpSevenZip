@@ -306,6 +306,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.Exceptions.SharpSevenZipConfigurationException",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.yml\" sourcestartlinenumber=\"1\">Exception class for failed configuration in SharpSevenZipExtractor or SharpSevenZipCompressor.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.Exceptions.SharpSevenZipException.yml",
       "output": {
         ".html": {

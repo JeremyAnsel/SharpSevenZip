@@ -1284,6 +1284,64 @@ references:
   commentId: F:SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.DEFAULT_MESSAGE
   fullName: SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.DEFAULT_MESSAGE
   nameWithType: SharpSevenZipCompressionFailedException.DEFAULT_MESSAGE
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException
+  name: SharpSevenZipConfigurationException
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html
+  commentId: T:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException
+  nameWithType: SharpSevenZipConfigurationException
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor
+  name: SharpSevenZipConfigurationException()
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor
+  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor
+  name.vb: New()
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.SharpSevenZipConfigurationException()
+  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New()
+  nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException()
+  nameWithType.vb: SharpSevenZipConfigurationException.New()
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name: SharpSevenZipConfigurationException(SerializationInfo, StreamingContext)
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
+  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+  name.vb: New(SerializationInfo, StreamingContext)
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
+  nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(SerializationInfo, StreamingContext)
+  nameWithType.vb: SharpSevenZipConfigurationException.New(SerializationInfo, StreamingContext)
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.String)
+  name: SharpSevenZipConfigurationException(string)
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor_System_String_
+  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.String)
+  name.vb: New(String)
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(string)
+  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New(String)
+  nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(string)
+  nameWithType.vb: SharpSevenZipConfigurationException.New(String)
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.String,System.Exception)
+  name: SharpSevenZipConfigurationException(string, Exception)
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor_System_String_System_Exception_
+  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.String,System.Exception)
+  name.vb: New(String, Exception)
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(string, System.Exception)
+  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New(String, System.Exception)
+  nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(string, Exception)
+  nameWithType.vb: SharpSevenZipConfigurationException.New(String, Exception)
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor*
+  name: SharpSevenZipConfigurationException
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor_
+  commentId: Overload:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor
+  isSpec: "True"
+  name.vb: New
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.SharpSevenZipConfigurationException
+  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New
+  nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException
+  nameWithType.vb: SharpSevenZipConfigurationException.New
+- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.DEFAULT_MESSAGE
+  name: DEFAULT_MESSAGE
+  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException_DEFAULT_MESSAGE
+  commentId: F:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.DEFAULT_MESSAGE
+  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.DEFAULT_MESSAGE
+  nameWithType: SharpSevenZipConfigurationException.DEFAULT_MESSAGE
 - uid: SharpSevenZip.Exceptions.SharpSevenZipException
   name: SharpSevenZipException
   href: api/SharpSevenZip.Exceptions.SharpSevenZipException.html
