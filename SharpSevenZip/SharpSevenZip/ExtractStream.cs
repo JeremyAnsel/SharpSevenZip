@@ -192,30 +192,6 @@ internal class ExtractStream : Stream
             _unpackedSize = -1;
         }
 
-        SleepDelay();
-
         base.Dispose(disposing);
-    }
-
-    private static void SleepDelay()
-    {
-        //Thread.Sleep(1);
-
-        ulong start = NativeMethods.GetThreadCycles();
-
-        while (true)
-        {
-            ulong end = NativeMethods.GetThreadCycles();
-            ulong cycles = end - start;
-
-#if NET6_0_OR_GREATER
-            if (cycles > 150000u)
-#else
-            if (cycles > 400000u)
-#endif
-            {
-                return;
-            }
-        }
     }
 }

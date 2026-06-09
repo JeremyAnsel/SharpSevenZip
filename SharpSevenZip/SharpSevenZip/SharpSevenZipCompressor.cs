@@ -2,9 +2,10 @@
 using SharpSevenZip.Exceptions;
 using SharpSevenZip.Lzma;
 using SharpSevenZip.Sdk;
-using SharpSevenZip.Sdk.Compression.Lzma;
+using System.Buffers;
 using System.Globalization;
 using System.Runtime.InteropServices;
+using Encoder = SharpSevenZip.Sdk.Compression.Lzma.Encoder;
 
 namespace SharpSevenZip;
 
@@ -242,7 +243,7 @@ public sealed partial class SharpSevenZipCompressor
     /// <summary>
     /// Sets the compression properties
     /// </summary>
-    private void SetCompressionProperties()
+    private unsafe void SetCompressionProperties()
     {
         switch (_archiveFormat)
         {
@@ -424,17 +425,32 @@ public sealed partial class SharpSevenZipCompressor
 
                     #endregion
 
-                    var namesHandle = GCHandle.Alloc(names.ToArray(), GCHandleType.Pinned);
-                    var valuesHandle = GCHandle.Alloc(values.ToArray(), GCHandleType.Pinned);
-
                     try
                     {
-                        setter?.SetProperties(namesHandle.AddrOfPinnedObject(), valuesHandle.AddrOfPinnedObject(), names.Count);
+                        fixed (nint* namesPtr = names.ToArray())
+                        fixed (PropVariant* valuesPtr = values.ToArray())
+                        {
+                            setter?.SetProperties(new IntPtr(namesPtr), new IntPtr(valuesPtr), names.Count);
+                        }
+                    }
+                    catch (ArgumentException ex)
+                    {
+                        throw new SharpSevenZipConfigurationException(SharpSevenZipConfigurationException.DEFAULT_MESSAGE, ex);
                     }
                     finally
                     {
-                        namesHandle.Free();
-                        valuesHandle.Free();
+                        foreach (IntPtr name in names)
+                        {
+                            Marshal.FreeBSTR(name);
+                        }
+
+                        foreach (PropVariant value in values)
+                        {
+                            if (value.VarType == VarEnum.VT_BSTR && value.Value != IntPtr.Zero)
+                            {
+                                Marshal.FreeBSTR(value.Value);
+                            }
+                        }
                     }
 
                     break;

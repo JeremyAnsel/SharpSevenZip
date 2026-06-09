@@ -58,7 +58,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
         compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
 
-        compressor.BeginCompressFiles(TemporaryFile, @"TestData\zip.zip", @"TestData\tar.tar");
+        compressor.BeginCompressFiles(TemporaryFile, @"TestData/zip.zip", @"TestData/tar.tar");
 
         var timeToWait = 10000;
         while (!compressionFinishedInvoked)
@@ -92,7 +92,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
         compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
 
-        using (var inputStream = File.OpenRead(@"TestData\zip.zip"))
+        using (var inputStream = File.OpenRead(@"TestData/zip.zip"))
         {
             using var outputStream = new FileStream(TemporaryFile, FileMode.Create);
             compressor.BeginCompressStream(inputStream, outputStream);
@@ -121,7 +121,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
     {
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
 
-        compressor.CompressFiles(TemporaryFile, @"TestData\tar.tar");
+        compressor.CompressFiles(TemporaryFile, @"TestData/tar.tar");
 
         var compressionFinishedInvoked = false;
         compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
@@ -158,7 +158,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
         compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
 
-        compressor.BeginCompressFilesEncrypted(TemporaryFile, "secure", @"TestData\zip.zip", @"TestData\tar.tar");
+        compressor.BeginCompressFilesEncrypted(TemporaryFile, "secure", @"TestData/zip.zip", @"TestData/tar.tar");
 
         var timeToWait = 10000;
         while (!compressionFinishedInvoked)
@@ -189,7 +189,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
     public async Task CompressFilesAsync()
     {
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
-        await compressor.CompressFilesAsync(TemporaryFile, @"TestData\zip.zip", @"TestData\tar.tar");
+        await compressor.CompressFilesAsync(TemporaryFile, @"TestData/zip.zip", @"TestData/tar.tar");
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
@@ -223,7 +223,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
     public async Task CompressFilesEncryptedAsync()
     {
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
-        await compressor.CompressFilesEncryptedAsync(TemporaryFile, "secure", @"TestData\zip.zip", @"TestData\tar.tar");
+        await compressor.CompressFilesEncryptedAsync(TemporaryFile, "secure", @"TestData/zip.zip", @"TestData/tar.tar");
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
 

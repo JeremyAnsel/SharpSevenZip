@@ -59,7 +59,7 @@ public class SharpSevenZipCompressorTests : TestBase
             ArchiveFormat = OutArchiveFormat.Zip
         };
 
-        compressor.CompressFiles(TemporaryFile, @"TESTDA~1\emptyfile.txt");
+        compressor.CompressFiles(TemporaryFile, @"TESTDA~1/emptyfile.txt");
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
@@ -79,7 +79,7 @@ public class SharpSevenZipCompressorTests : TestBase
             DirectoryStructure = false
         };
 
-        compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
+        compressor.CompressFiles(TemporaryFile, @"Testdata/7z_LZMA2.7z");
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using (var extractor = new SharpSevenZipExtractor(TemporaryFile))
@@ -121,7 +121,7 @@ public class SharpSevenZipCompressorTests : TestBase
             DirectoryStructure = false
         };
 
-        compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
+        compressor.CompressFiles(TemporaryFile, @"TestData/7z_LZMA2.7z");
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using (var extractor = new SharpSevenZipExtractor(TemporaryFile))
@@ -131,7 +131,7 @@ public class SharpSevenZipCompressorTests : TestBase
 
         compressor.CompressionMode = CompressionMode.Append;
 
-        compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
+        compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip");
 
         using (var extractor = new SharpSevenZipExtractor(TemporaryFile))
         {
@@ -148,7 +148,7 @@ public class SharpSevenZipCompressorTests : TestBase
             EncryptHeaders = true
         };
 
-        compressor.CompressFilesEncrypted(TemporaryFile, "password", @"TestData\7z_LZMA2.7z", @"TestData\zip.zip");
+        compressor.CompressFilesEncrypted(TemporaryFile, "password", @"TestData/7z_LZMA2.7z", @"TestData/zip.zip");
 
         var modificationList = new Dictionary<int, string?>
             {
@@ -192,7 +192,7 @@ public class SharpSevenZipCompressorTests : TestBase
             DirectoryStructure = false
         };
 
-        compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
+        compressor.CompressFiles(TemporaryFile, @"Testdata/7z_LZMA2.7z");
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         compressor.ModifyArchive(TemporaryFile, new Dictionary<int, string?> { { 0, "renamed.7z" } });
@@ -219,7 +219,7 @@ public class SharpSevenZipCompressorTests : TestBase
             DirectoryStructure = false
         };
 
-        compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
+        compressor.CompressFiles(TemporaryFile, @"TestData/7z_LZMA2.7z");
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         compressor.ModifyArchive(TemporaryFile, new Dictionary<int, string?> { { 0, null } });
@@ -243,7 +243,7 @@ public class SharpSevenZipCompressorTests : TestBase
             VolumeSize = 100
         };
 
-        compressor.CompressFiles(TemporaryFile, @"Testdata\7z_LZMA2.7z");
+        compressor.CompressFiles(TemporaryFile, @"TestData/7z_LZMA2.7z");
 
         Assert.Multiple(() =>
         {
@@ -259,7 +259,7 @@ public class SharpSevenZipCompressorTests : TestBase
 
         using (var stream = File.Create(TemporaryFile))
         {
-            compressor.CompressFiles(stream, @"TestData\zip.zip");
+            compressor.CompressFiles(stream, @"TestData/zip.zip");
         }
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
@@ -275,7 +275,7 @@ public class SharpSevenZipCompressorTests : TestBase
     [Test]
     public void CompressFromStreamTest()
     {
-        using (var input = File.OpenRead(@"TestData\zip.zip"))
+        using (var input = File.OpenRead(@"TestData/zip.zip"))
         {
             using var output = File.Create(TemporaryFile);
             var compressor = new SharpSevenZipCompressor
@@ -293,7 +293,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.Multiple(() =>
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
-            Assert.That(extractor.ArchiveFileData[0].Size, Is.EqualTo(new FileInfo(@"TestData\zip.zip").Length));
+            Assert.That(extractor.ArchiveFileData[0].Size, Is.EqualTo(new FileInfo(@"TestData/zip.zip").Length));
         });
     }
 
@@ -304,7 +304,7 @@ public class SharpSevenZipCompressorTests : TestBase
 
         var fileDict = new Dictionary<string, string>
             {
-                {"zip.zip", @"TestData\zip.zip"}
+                {"zip.zip", @"TestData/zip.zip"}
             };
 
         compressor.CompressFileDictionary(fileDict, TemporaryFile);
@@ -417,7 +417,7 @@ public class SharpSevenZipCompressorTests : TestBase
             CompressionMethod = method
         };
 
-        compressor.CompressFiles(TemporaryFile, @"TestData\zip.zip");
+        compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip");
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
     }
@@ -428,7 +428,7 @@ public class SharpSevenZipCompressorTests : TestBase
         var compressor = new SharpSevenZipCompressor()
         {
             ArchiveFormat = OutArchiveFormat.SevenZip,
-            CompressionMethod = CompressionMethod.Lzma2,
+            CompressionMethod = CompressionMethod.Default,
             CompressionLevel = CompressionLevel.Normal,
             EncryptHeaders = true,
         };
@@ -439,7 +439,7 @@ public class SharpSevenZipCompressorTests : TestBase
             CompressionMode = CompressionMode.Append
         };
 
-        compressor.CompressFilesEncrypted(TemporaryFile, "password", @"TestData\zip.zip");
+        compressor.CompressFilesEncrypted(TemporaryFile, "password", @"TestData/zip.zip");
     }
 
     [Test]
@@ -450,14 +450,14 @@ public class SharpSevenZipCompressorTests : TestBase
             var compressor = new SharpSevenZipCompressor
             {
                 ArchiveFormat = OutArchiveFormat.SevenZip,
-                CompressionMethod = CompressionMethod.Lzma2,
+                CompressionMethod = CompressionMethod.Default,
                 CompressionMode = CompressionMode.Append,
                 ZipEncryptionMethod = ZipEncryptionMethod.Aes256,
                 CompressionLevel = CompressionLevel.Normal,
                 EncryptHeaders = true
             };
 
-            compressor.CompressFilesEncrypted(fileStream, "password", @"TestData\zip.zip");
+            compressor.CompressFilesEncrypted(fileStream, "password", @"TestData/zip.zip");
         }
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile, "password");

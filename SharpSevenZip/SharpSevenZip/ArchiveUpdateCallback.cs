@@ -734,10 +734,10 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
 
     #region ICryptoGetTextPassword2 Members
 
-    public int CryptoGetTextPassword2(ref int passwordIsDefined, out string password)
+    public int CryptoGetTextPassword2(ref int passwordIsDefined, out IntPtr password)
     {
         passwordIsDefined = string.IsNullOrEmpty(Password) ? 0 : 1;
-        password = Password;
+        password = Marshal.StringToBSTR(Password);
 
         return 0;
     }

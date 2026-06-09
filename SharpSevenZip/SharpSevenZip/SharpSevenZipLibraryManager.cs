@@ -33,14 +33,29 @@ internal static class SharpSevenZipLibraryManager
 
     private static string? DetermineLibraryFilePath()
     {
-        string location = AppContext.BaseDirectory;
-
-        if (string.IsNullOrEmpty(location))
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
         {
-            return null;
-        }
+            string location = AppContext.BaseDirectory;
 
-        return Path.Combine(location, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
+            if (string.IsNullOrEmpty(location))
+            {
+                return null;
+            }
+
+            return Path.Combine(location, Environment.Is64BitProcess ? "x64" : "x86", "7z.dll");
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+        {
+            return "/usr/lib/7zip/7z.so";
+        }
+        else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        {
+            return "/usr/local/lib/lib7z.dylib";
+        }
+        else
+        {
+            throw new PlatformNotSupportedException("Unsupported platform.");
+        }
     }
 
     /// <summary>
@@ -165,6 +180,11 @@ internal static class SharpSevenZipLibraryManager
         {
             lock (SyncRoot)
             {
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    _modifyCapable = true;
+                }
+
                 if (!_modifyCapable.HasValue)
                 {
                     _libraryFileName ??= DetermineLibraryFilePath();
@@ -215,7 +235,7 @@ internal static class SharpSevenZipLibraryManager
 
             compressor.CompressStream(inStream, outStream);
         }
-        catch (Exception)
+        catch (Exception ex)
         {
             return false;
         }
@@ -282,7 +302,7 @@ internal static class SharpSevenZipLibraryManager
                     using var outStream = new MemoryStream();
 
                     CompressionBenchmark(inStream, outStream,
-                        OutArchiveFormat.SevenZip, CompressionMethod.Lzma,
+                        OutArchiveFormat.SevenZip, CompressionMethod.Default,
                         ref _features, LibraryFeature.Compress7z);
                     CompressionBenchmark(inStream, outStream,
                         OutArchiveFormat.SevenZip, CompressionMethod.Lzma2,
@@ -401,12 +421,6 @@ internal static class SharpSevenZipLibraryManager
                 {
                     _inArchives = null;
                     _outArchives = null;
-
-                    if (_totalUsers == 0)
-                    {
-                        //NativeMethods.FreeLibrary(_modulePtr);
-                        //_modulePtr = IntPtr.Zero;
-                    }
                 }
             }
         }

@@ -48,7 +48,7 @@ internal struct PropVariant
     /// </summary>
     public VarEnum VarType
     {
-        private readonly get
+        get
         {
             return (VarEnum)_vt;
         }
@@ -136,7 +136,7 @@ internal struct PropVariant
 
                     try
                     {
-                        return Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
+                        return System.Runtime.InteropServices.Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
                     }
                     catch (Exception ex) when (ex is InvalidOperationException or NotSupportedException)
                     {
@@ -700,8 +700,7 @@ internal partial interface ICryptoGetTextPassword
     /// <param name="password">Password for the archive</param>
     /// <returns>Zero if everything is OK</returns>
     [PreserveSig]
-    int CryptoGetTextPassword(
-        [MarshalAs(UnmanagedType.BStr)] out string password);
+    int CryptoGetTextPassword(out IntPtr password);
 }
 
 /// <summary>
@@ -726,7 +725,7 @@ internal partial interface ICryptoGetTextPassword2
     [PreserveSig]
     int CryptoGetTextPassword2(
         ref int passwordIsDefined,
-        [MarshalAs(UnmanagedType.BStr)] out string password);
+        out IntPtr password);
 }
 
 /// <summary>
@@ -882,8 +881,7 @@ internal partial interface IArchiveOpenVolumeCallback
     /// <param name="inStream">The IInStream pointer for reading.</param>
     /// <returns>Zero if Ok</returns>
     [PreserveSig]
-    int GetStream(
-        [MarshalAs(UnmanagedType.LPWStr)] string name,
+    int GetStream(IntPtr name,
         [MarshalAs(UnmanagedType.Interface)] out IInStream? inStream);
 }
 
@@ -1116,7 +1114,7 @@ internal partial interface IInArchive
     /// <param name="varType">Variant type</param>
     void GetPropertyInfo(
         uint index,
-        [MarshalAs(UnmanagedType.BStr)] out string name,
+        out IntPtr name,
         out ItemPropId propId, // PROPID
         out ushort varType); //VARTYPE
 
@@ -1135,7 +1133,7 @@ internal partial interface IInArchive
     /// <param name="varType">Variant type</param>
     void GetArchivePropertyInfo(
         uint index,
-        [MarshalAs(UnmanagedType.BStr)] out string name,
+        out IntPtr name,
         out ItemPropId propId, // PROPID
         out ushort varType); //VARTYPE
 }

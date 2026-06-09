@@ -26,7 +26,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractFilesTest()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             for (var i = 0; i < extractor.ArchiveFileData.Count; i++)
             {
@@ -40,7 +40,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractSpecificFilesTest()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             extractor.ExtractFiles(OutputDirectory, 0, 2);
             Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(2));
@@ -54,7 +54,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractArchiveMultiVolumesTest()
     {
-        using (var extractor = new SharpSevenZipExtractor(@"TestData\multivolume.part0001.rar"))
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/multivolume.part0001.rar"))
         {
             extractor.ExtractArchive(OutputDirectory);
         }
@@ -69,7 +69,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractionWithCancellationTest()
     {
-        using (var tmp = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var tmp = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             tmp.FileExtractionStarted += (_, args) =>
             {
@@ -88,7 +88,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractionWithSkipTest()
     {
-        using (var tmp = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var tmp = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             tmp.FileExtractionStarted += (_, args) =>
             {
@@ -109,7 +109,7 @@ public class SharpSevenZipExtractorTests : TestBase
     {
         // TODO: Rewrite this to test against more/all TestData archives.
 
-        using var tmp = new SharpSevenZipExtractor(File.OpenRead(@"TestData\multiple_files.7z"));
+        using var tmp = new SharpSevenZipExtractor(File.OpenRead(@"TestData/multiple_files.7z"));
         tmp.ExtractArchive(OutputDirectory);
         Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(3));
     }
@@ -117,7 +117,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractionFromStream_LeaveStreamOpenTest()
     {
-        using var fileStream = new FileStream(@"TestData\multiple_files.7z", FileMode.Open);
+        using var fileStream = new FileStream(@"TestData/multiple_files.7z", FileMode.Open);
         using (var extractor1 = new SharpSevenZipExtractor(fileStream, leaveOpen: true))
         {
             extractor1.ExtractArchive(OutputDirectory);
@@ -136,7 +136,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ExtractionToStreamTest()
     {
-        using (var tmp = new SharpSevenZipExtractor(@"TestData\multiple_files.7z"))
+        using (var tmp = new SharpSevenZipExtractor(@"TestData/multiple_files.7z"))
         {
             using var fileStream = new FileStream(Path.Combine(OutputDirectory, "streamed_file.txt"), FileMode.Create);
             tmp.ExtractFile(1, fileStream);
@@ -152,7 +152,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void DetectMultiVolumeIndexTest()
     {
-        using (var tmp = new SharpSevenZipExtractor(@"TestData\multivolume.part0001.rar"))
+        using (var tmp = new SharpSevenZipExtractor(@"TestData/multivolume.part0001.rar"))
         {
             Assert.Multiple(() =>
             {
@@ -161,7 +161,7 @@ public class SharpSevenZipExtractorTests : TestBase
             });
         }
 
-        using (var tmp = new SharpSevenZipExtractor(@"TestData\multivolume.part0002.rar"))
+        using (var tmp = new SharpSevenZipExtractor(@"TestData/multivolume.part0002.rar"))
         {
             Assert.Multiple(() =>
             {
@@ -179,13 +179,13 @@ public class SharpSevenZipExtractorTests : TestBase
 
         var t1 = new Thread(() =>
         {
-            using var tmp = new SharpSevenZipExtractor(@"TestData\multiple_files.7z");
+            using var tmp = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
             tmp.ExtractArchive(destination1);
         });
 
         var t2 = new Thread(() =>
         {
-            using var tmp = new SharpSevenZipExtractor(@"TestData\multiple_files.7z");
+            using var tmp = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
             tmp.ExtractArchive(destination2);
         });
 
@@ -206,14 +206,14 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test, Ignore("Figure out why this fails, later.")]
     public void ExtractArchiveWithLongPath()
     {
-        using var extractor = new SharpSevenZipExtractor(@"TestData\long_path.7z");
+        using var extractor = new SharpSevenZipExtractor(@"TestData/long_path.7z");
         Assert.Throws<PathTooLongException>(() => extractor.ExtractArchive(OutputDirectory));
     }
 
     [Test]
     public void ReadArchivedFileNames()
     {
-        using var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z");
+        using var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
         var fileNames = extractor.ArchiveFileNames;
         Assert.That(fileNames, Has.Count.EqualTo(3));
 
@@ -228,7 +228,7 @@ public class SharpSevenZipExtractorTests : TestBase
     [Test]
     public void ReadArchivedFileData()
     {
-        using var extractor = new SharpSevenZipExtractor(@"TestData\multiple_files.7z");
+        using var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
         var fileData = extractor.ArchiveFileData;
         Assert.That(fileData, Has.Count.EqualTo(3));
 
