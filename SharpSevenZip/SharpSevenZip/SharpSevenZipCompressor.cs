@@ -1013,7 +1013,7 @@ public sealed partial class SharpSevenZipCompressor
     /// <param name="e">The event arguments.</param>
     private void FileCompressionStartedEventProxy(object? sender, FileNameEventArgs e)
     {
-        OnEvent(FileCompressionStarted, e, false);
+        OnEvent(FileCompressionStarted, e, true);
     }
 
     /// <summary>
