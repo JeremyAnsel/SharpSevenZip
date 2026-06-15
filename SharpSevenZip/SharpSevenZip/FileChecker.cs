@@ -152,6 +152,13 @@ internal static class FileChecker
         {
             return InArchiveFormat.Lp;
         }
+        
+        // VDI: magic (k_Signature) is at offset 0x40
+        // cf. https://github.com/ip7z/7zip/blob/main/CPP/7zip/Archive/VdiHandler.cpp#L287
+        if (SpecialDetect(stream, 0x40, InArchiveFormat.Vdi))
+        {
+            return InArchiveFormat.Vdi;
+        }
 
         #region Last resort for tar - can mistake
 
