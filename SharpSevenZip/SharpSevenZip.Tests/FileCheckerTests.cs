@@ -69,7 +69,18 @@ public class FileCheckerTests
             new(@"TestData/wim.wim", InArchiveFormat.Wim),
             new(@"TestData/xz.xz", InArchiveFormat.XZ),
             new(@"TestData/", InArchiveFormat.Xar),
-            new(@"TestData/zip.zip", InArchiveFormat.Zip)
+            new(@"TestData/zip.zip", InArchiveFormat.Zip),
+            new(@"TestData/zstd.zst", InArchiveFormat.Zstd),
+            new(@"TestData/", InArchiveFormat.Vhdx),
+            new(@"TestData/vdi.vdi", InArchiveFormat.Vdi),
+            new(@"TestData/", InArchiveFormat.Vmdk),
+            new(@"TestData/qcow.qcow2", InArchiveFormat.QCow),
+            new(@"TestData/ihex.ihex", InArchiveFormat.IHex),
+            new(@"TestData/", InArchiveFormat.Hxs),
+            new(@"TestData/", InArchiveFormat.Lp),
+            new(@"TestData/sparse.simg", InArchiveFormat.Sparse),
+            new(@"TestData/", InArchiveFormat.Coff),
+            new(@"TestData/base64.b64", InArchiveFormat.Base64)
         };
 
     [SetUp]
