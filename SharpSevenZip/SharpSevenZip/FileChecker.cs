@@ -146,6 +146,13 @@ internal static class FileChecker
             return InArchiveFormat.Hfs;
         }
 
+        // Android LP (Logical Partitions): magic is at LP_PARTITION_RESERVED_BYTES = 0x1000
+        // cf. https://github.com/ip7z/7zip/blob/main/CPP/7zip/Archive/LpHandler.cpp#L58
+        if (SpecialDetect(stream, 0x1000, InArchiveFormat.Lp))
+        {
+            return InArchiveFormat.Lp;
+        }
+
         #region Last resort for tar - can mistake
 
         if (stream.Length >= 1024)
