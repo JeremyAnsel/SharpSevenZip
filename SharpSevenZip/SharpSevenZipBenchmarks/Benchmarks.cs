@@ -8,10 +8,9 @@ using System.IO.Compression;
 namespace SharpSevenZipBenchmarks;
 
 [SimpleJob(RuntimeMoniker.Net48, 1, 1, 1, id: nameof(RuntimeMoniker.Net48), baseline: true)]
-[SimpleJob(RuntimeMoniker.Net60, 1, 1, 1, id: nameof(RuntimeMoniker.Net60))]
 [SimpleJob(RuntimeMoniker.Net80, 1, 1, 1, id: nameof(RuntimeMoniker.Net80))]
 [Orderer(BenchmarkDotNet.Order.SummaryOrderPolicy.SlowestToFastest)]
-[HideColumns(Column.Runtime)]
+[HideColumns(Column.Runtime, Column.Error)]
 [MemoryDiagnoser(false)]
 public class Benchmarks
 {
@@ -268,7 +267,7 @@ public class Benchmarks
 
         for (int i = 0; i < 10; i++)
         {
-            using SharpSevenZipExtractor zip = new(Test1Archive);
+            SharpSevenZipExtractor zip = new(Test1Archive);
 
             foreach (var entry in zip.ArchiveFileData)
             {

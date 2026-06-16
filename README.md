@@ -31,7 +31,7 @@ Changes from original project
 
 As required by the GNU GPL 3.0 license, here's a rough list of what has changed since the original CodePlex project, including changes made in tomap's fork.
 
-- Target .NET version changed from .NET Framework 2.0 to .NET Standard 2.0, .NET Framework 4.8, .NET 6.0 and .NET 8.0.
+- Target .NET version changed from .NET Framework 2.0 to .NET Standard 2.0, .NET Framework 4.8 and .NET 8.0.
 - Continous Integration added, both building and deploying.
 - Tests re-written to NUnit 3 test cases.
 - General code cleanup.
@@ -96,44 +96,34 @@ The benchmarks use these libraries:
 - SevenZipSharp
 - SharpSevenZip
 
-| Method                               | Job   | Mean        | Error | Ratio | Allocated   | Alloc Ratio |
-|------------------------------------- |------ |------------:|------:|------:|------------:|------------:|
-| Decompress_DotNetFramework_Empty     | Net80 |  2,339.0 탎 |    NA |  3.27 |     51.3 KB |        0.92 |
-| Decompress_DotNetFramework_Empty     | Net60 |  2,189.1 탎 |    NA |  3.06 |    51.45 KB |        0.92 |
-| Decompress_DotNetFramework_Empty     | Net48 |    715.4 탎 |    NA |  1.00 |       56 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SharpCompress_Empty       | Net60 |  6,028.5 탎 |    NA |  2.91 |    132.3 KB |        0.87 |
-| Decompress_SharpCompress_Empty       | Net80 |  4,807.1 탎 |    NA |  2.32 |   131.76 KB |        0.87 |
-| Decompress_SharpCompress_Empty       | Net48 |  2,074.9 탎 |    NA |  1.00 |      152 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SevenZipSharp_Empty       | Net60 | 11,805.9 탎 |    NA |  1.35 |  1437.94 KB |        1.00 |
-| Decompress_SevenZipSharp_Empty       | Net80 | 11,043.7 탎 |    NA |  1.26 |  1437.23 KB |        1.00 |
-| Decompress_SevenZipSharp_Empty       | Net48 |  8,730.2 탎 |    NA |  1.00 |  1440.08 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SharpSevenZip_Empty       | Net80 |  5,362.0 탎 |    NA |  2.46 |    72.64 KB |        1.01 |
-| Decompress_SharpSevenZip_Empty       | Net60 |  3,992.5 탎 |    NA |  1.83 |    73.34 KB |        1.02 |
-| Decompress_SharpSevenZip_Empty       | Net48 |  2,176.1 탎 |    NA |  1.00 |       72 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_DotNetFramework_Sum1      | Net60 |  8,366.1 탎 |    NA |  1.72 |    59.75 KB |        0.93 |
-| Decompress_DotNetFramework_Sum1      | Net80 |  7,726.9 탎 |    NA |  1.58 |    59.75 KB |        0.93 |
-| Decompress_DotNetFramework_Sum1      | Net48 |  4,875.2 탎 |    NA |  1.00 |       64 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SharpCompress_Sum1        | Net60 | 14,144.7 탎 |    NA |  2.16 |   800.57 KB |        0.97 |
-| Decompress_SharpCompress_Sum1        | Net80 |  7,452.1 탎 |    NA |  1.14 |   797.77 KB |        0.97 |
-| Decompress_SharpCompress_Sum1        | Net48 |  6,551.9 탎 |    NA |  1.00 |    824.7 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SharpCompress_Sum1_Stream | Net60 | 15,248.6 탎 |    NA |  1.67 |   799.68 KB |        0.98 |
-| Decompress_SharpCompress_Sum1_Stream | Net80 | 10,727.9 탎 |    NA |  1.18 |   796.99 KB |        0.98 |
-| Decompress_SharpCompress_Sum1_Stream | Net48 |  9,108.2 탎 |    NA |  1.00 |    816.7 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SevenZipSharp_Sum1        | Net60 | 39,970.3 탎 |    NA |  1.67 | 28359.05 KB |        1.00 |
-| Decompress_SevenZipSharp_Sum1        | Net80 | 30,083.0 탎 |    NA |  1.26 | 28360.48 KB |        1.00 |
-| Decompress_SevenZipSharp_Sum1        | Net48 | 23,961.3 탎 |    NA |  1.00 | 28333.16 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SharpSevenZip_Sum1        | Net80 | 13,771.3 탎 |    NA |  1.51 |   105.06 KB |        0.94 |
-| Decompress_SharpSevenZip_Sum1        | Net60 | 12,465.2 탎 |    NA |  1.37 |   104.67 KB |        0.93 |
-| Decompress_SharpSevenZip_Sum1        | Net48 |  9,096.4 탎 |    NA |  1.00 |      112 KB |        1.00 |
-|                                      |       |             |       |       |             |             |
-| Decompress_SharpSevenZip_Sum1_Stream | Net48 | 31,351.2 탎 |    NA |  1.00 |      176 KB |        1.00 |
-| Decompress_SharpSevenZip_Sum1_Stream | Net80 | 17,730.2 탎 |    NA |  0.57 |   111.59 KB |        0.63 |
-| Decompress_SharpSevenZip_Sum1_Stream | Net60 | 15,435.4 탎 |    NA |  0.49 |    111.2 KB |        0.63 |
+| Method                               | Job   | Mean      | Ratio | Allocated   | Alloc Ratio |
+|------------------------------------- |------ |----------:|------:|------------:|------------:|
+| Decompress_DotNetFramework_Empty     | Net80 |  2.990 ms |  2.78 |     51.3 KB |        0.92 |
+| Decompress_DotNetFramework_Empty     | Net48 |  1.077 ms |  1.00 |       56 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SharpCompress_Empty       | Net80 |  7.448 ms |  2.57 |   131.76 KB |        0.87 |
+| Decompress_SharpCompress_Empty       | Net48 |  2.902 ms |  1.00 |      152 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SevenZipSharp_Empty       | Net80 | 14.186 ms |  1.91 |  1437.23 KB |        1.00 |
+| Decompress_SevenZipSharp_Empty       | Net48 |  7.412 ms |  1.00 |  1440.08 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SharpSevenZip_Empty       | Net80 |  7.723 ms |  3.45 |    83.72 KB |        1.16 |
+| Decompress_SharpSevenZip_Empty       | Net48 |  2.238 ms |  1.00 |       72 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_DotNetFramework_Sum1      | Net80 |  8.799 ms |  1.50 |    59.75 KB |        0.93 |
+| Decompress_DotNetFramework_Sum1      | Net48 |  5.875 ms |  1.00 |       64 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SharpCompress_Sum1        | Net80 |  9.976 ms |  1.93 |   797.77 KB |        0.97 |
+| Decompress_SharpCompress_Sum1        | Net48 |  5.156 ms |  1.00 |    824.7 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SharpCompress_Sum1_Stream | Net80 | 12.757 ms |  1.43 |   796.99 KB |        0.98 |
+| Decompress_SharpCompress_Sum1_Stream | Net48 |  8.936 ms |  1.00 |    816.7 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SevenZipSharp_Sum1        | Net80 | 32.895 ms |  1.36 | 28359.66 KB |        1.00 |
+| Decompress_SevenZipSharp_Sum1        | Net48 | 24.214 ms |  1.00 | 28333.16 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SharpSevenZip_Sum1        | Net80 | 19.595 ms |  2.01 |   123.58 KB |        1.10 |
+| Decompress_SharpSevenZip_Sum1        | Net48 |  9.725 ms |  1.00 |      112 KB |        1.00 |
+|                                      |       |           |       |             |             |
+| Decompress_SharpSevenZip_Sum1_Stream | Net48 | 34.122 ms |  1.00 |   171.59 KB |        1.00 |
+| Decompress_SharpSevenZip_Sum1_Stream | Net80 | 18.431 ms |  0.54 |   129.23 KB |        0.75 |
