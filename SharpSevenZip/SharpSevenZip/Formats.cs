@@ -248,6 +248,61 @@ public enum InArchiveFormat
     /// </summary>
     /// <remarks><a href="https://en.wikipedia.org/wiki/Extended_file_system">Wikipedia information</a></remarks>
     Ext,
+    /// <summary>
+    /// Zstandard compressed data format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Zstandard">Wikipedia information</a></remarks>
+    Zstd,
+    /// <summary>
+    /// Microsoft Virtual Hard Disk v2 format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Virtual_Hard_Disk">Wikipedia information</a></remarks>
+    Vhdx,
+    /// <summary>
+    /// VirtualBox Disk Image format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/VirtualBox">Wikipedia information</a></remarks>
+    Vdi,
+    /// <summary>
+    /// VMware virtual disk format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Virtual_Machine_Disk">Wikipedia information</a></remarks>
+    Vmdk,
+    /// <summary>
+    /// QEMU copy-on-write disk image format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Copy-on-write">Wikipedia information</a></remarks>
+    QCow,
+    /// <summary>
+    /// Intel Hex encoded format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Intel_HEX">Wikipedia information</a></remarks>
+    IHex,
+    /// <summary>
+    /// Microsoft Help 2.x Collection format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Microsoft_Compiled_HTML_Help">Wikipedia information</a></remarks>
+    Hxs,
+    /// <summary>
+    /// Android logical partition image format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">Wikipedia information</a></remarks>
+    Lp,
+    /// <summary>
+    /// Android sparse image format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Sparse_image">Wikipedia information</a></remarks>
+    Sparse,
+    /// <summary>
+    /// COFF object file format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/COFF">Wikipedia information</a></remarks>
+    Coff,
+    /// <summary>
+    /// Base64 encoded format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Base64">Wikipedia information</a></remarks>
+    Base64,
 }
 
 /// <summary>
@@ -439,6 +494,17 @@ public static class Formats
                 {InArchiveFormat.MachO,     new Guid("23170f69-40c1-278a-1000-000110DF0000")},
                 {InArchiveFormat.Apfs,      new Guid("23170f69-40c1-278a-1000-000110C30000")},
                 {InArchiveFormat.Ext,       new Guid("23170f69-40c1-278a-1000-000110C70000")},
+                {InArchiveFormat.Zstd,      new Guid("23170f69-40c1-278a-1000-0001100E0000")},
+                {InArchiveFormat.Vhdx,      new Guid("23170f69-40c1-278a-1000-000110C40000")},
+                {InArchiveFormat.Vdi,       new Guid("23170f69-40c1-278a-1000-000110C90000")},
+                {InArchiveFormat.Vmdk,      new Guid("23170f69-40c1-278a-1000-000110C80000")},
+                {InArchiveFormat.QCow,      new Guid("23170f69-40c1-278a-1000-000110CA0000")},
+                {InArchiveFormat.IHex,      new Guid("23170f69-40c1-278a-1000-000110CD0000")},
+                {InArchiveFormat.Hxs,       new Guid("23170f69-40c1-278a-1000-000110CE0000")},
+                {InArchiveFormat.Lp,        new Guid("23170f69-40c1-278a-1000-000110C10000")},
+                {InArchiveFormat.Sparse,    new Guid("23170f69-40c1-278a-1000-000110C20000")},
+                {InArchiveFormat.Coff,      new Guid("23170f69-40c1-278a-1000-000110C60000")},
+                {InArchiveFormat.Base64,    new Guid("23170f69-40c1-278a-1000-000110C50000")},
         };
 
     #endregion
@@ -535,6 +601,33 @@ public static class Formats
              {"ntfs",   InArchiveFormat.Ntfs },
              {"apfs",   InArchiveFormat.Apfs },
              {"fat",    InArchiveFormat.Fat },
+             // Zstandard
+             {"zst",    InArchiveFormat.Zstd },
+             {"tzst",   InArchiveFormat.Zstd },
+             // Virtual disk images
+             {"vhdx",   InArchiveFormat.Vhdx },
+             {"avhdx",  InArchiveFormat.Vhdx },
+             {"vdi",    InArchiveFormat.Vdi },
+             {"vmdk",   InArchiveFormat.Vmdk },
+             // QCOW
+             {"qcow",   InArchiveFormat.QCow },
+             {"qcow2",  InArchiveFormat.QCow },
+             {"qcow2c", InArchiveFormat.QCow },
+             // Misc
+             {"ihex",   InArchiveFormat.IHex },
+             {"hxs",    InArchiveFormat.Hxs },
+             {"hxi",    InArchiveFormat.Hxs },
+             {"hxr",    InArchiveFormat.Hxs },
+             {"hxq",    InArchiveFormat.Hxs },
+             {"hxw",    InArchiveFormat.Hxs },
+             {"lit",    InArchiveFormat.Hxs },
+             {"lpimg",  InArchiveFormat.Lp },
+             {"simg",   InArchiveFormat.Sparse },
+             {"b64",    InArchiveFormat.Base64 },
+             {"obj",    InArchiveFormat.Coff },
+             // Ar/deb - same 7-zip handler (format 0xEC)
+             {"ar",     InArchiveFormat.Deb },
+             {"a",      InArchiveFormat.Deb },
     };
 
     #endregion
@@ -582,7 +675,15 @@ public static class Formats
             {"7F-45-4C-46",                                                     InArchiveFormat.Elf},
             {"78",                                                              InArchiveFormat.Dmg},
             {"63-6F-6E-65-63-74-69-78",                                         InArchiveFormat.Vhd},
-            {"45-46-49-20-50-41-52-54-00-00-01-00",                             InArchiveFormat.Gpt}};
+            {"45-46-49-20-50-41-52-54-00-00-01-00",                             InArchiveFormat.Gpt},
+            {"28-B5-2F-FD",                                                     InArchiveFormat.Zstd},
+            {"76-68-64-78-66-69-6C-65",                                         InArchiveFormat.Vhdx},
+            {"7F-10-DA-BE",                                                     InArchiveFormat.Vdi},
+            {"4B-44-4D-56",                                                     InArchiveFormat.Vmdk},
+            {"51-46-49-FB",                                                     InArchiveFormat.QCow},
+            {"49-54-4F-4C-49-54-4C-53",                                         InArchiveFormat.Hxs},
+            {"67-44-6C-61-34-00-00-00",                                         InArchiveFormat.Lp},
+            {"3A-FF-26-ED-01-00",                                               InArchiveFormat.Sparse}};
     #endregion
 
     internal static Dictionary<InArchiveFormat, string> InSignatureFormatsReversed;
