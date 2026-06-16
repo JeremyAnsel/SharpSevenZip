@@ -246,7 +246,11 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                         if (_filesCount == 1)
                         {
                             var archName = Path.GetFileName(_extractor!.FileName);
-                            archName = archName![..archName!.LastIndexOf('.')];
+                            var dotIndex = archName!.LastIndexOf('.');
+                            if (dotIndex > 0)
+                            {
+                              archName = archName[..dotIndex];
+                            }
                             if (!archName.EndsWith(".tar",
                                                    StringComparison.OrdinalIgnoreCase))
                             {
