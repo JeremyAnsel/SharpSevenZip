@@ -824,7 +824,13 @@ public sealed partial class SharpSevenZipExtractor
     {
         if (_asynchronousDisposeLock)
         {
-            throw new InvalidOperationException("SharpSevenZipExtractor instance must not be disposed while making an asynchronous method call.");
+            // ExtractionFinished fires inside the task body before ReleaseContext() clears
+            // the lock, so a caller that disposes immediately after the event may arrive
+            // here while the lock is still held.  Spin-wait rather than throw: Dispose()
+            // must not throw per IDisposable contract.
+            var start = Environment.TickCount;
+            while (_asynchronousDisposeLock && (Environment.TickCount - start) < 10_000)
+                Thread.Sleep(5);
         }
 
         if (!_disposed)
