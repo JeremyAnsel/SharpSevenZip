@@ -1734,6 +1734,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.BZip2
   fullName: SharpSevenZip.InArchiveFormat.BZip2
   nameWithType: InArchiveFormat.BZip2
+- uid: SharpSevenZip.InArchiveFormat.Base64
+  name: Base64
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Base64
+  commentId: F:SharpSevenZip.InArchiveFormat.Base64
+  fullName: SharpSevenZip.InArchiveFormat.Base64
+  nameWithType: InArchiveFormat.Base64
 - uid: SharpSevenZip.InArchiveFormat.Cab
   name: Cab
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Cab
@@ -1746,6 +1752,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Chm
   fullName: SharpSevenZip.InArchiveFormat.Chm
   nameWithType: InArchiveFormat.Chm
+- uid: SharpSevenZip.InArchiveFormat.Coff
+  name: Coff
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Coff
+  commentId: F:SharpSevenZip.InArchiveFormat.Coff
+  fullName: SharpSevenZip.InArchiveFormat.Coff
+  nameWithType: InArchiveFormat.Coff
 - uid: SharpSevenZip.InArchiveFormat.Compound
   name: Compound
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Compound
@@ -1818,12 +1830,30 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Hfs
   fullName: SharpSevenZip.InArchiveFormat.Hfs
   nameWithType: InArchiveFormat.Hfs
+- uid: SharpSevenZip.InArchiveFormat.Hxs
+  name: Hxs
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Hxs
+  commentId: F:SharpSevenZip.InArchiveFormat.Hxs
+  fullName: SharpSevenZip.InArchiveFormat.Hxs
+  nameWithType: InArchiveFormat.Hxs
+- uid: SharpSevenZip.InArchiveFormat.IHex
+  name: IHex
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_IHex
+  commentId: F:SharpSevenZip.InArchiveFormat.IHex
+  fullName: SharpSevenZip.InArchiveFormat.IHex
+  nameWithType: InArchiveFormat.IHex
 - uid: SharpSevenZip.InArchiveFormat.Iso
   name: Iso
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Iso
   commentId: F:SharpSevenZip.InArchiveFormat.Iso
   fullName: SharpSevenZip.InArchiveFormat.Iso
   nameWithType: InArchiveFormat.Iso
+- uid: SharpSevenZip.InArchiveFormat.Lp
+  name: Lp
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Lp
+  commentId: F:SharpSevenZip.InArchiveFormat.Lp
+  fullName: SharpSevenZip.InArchiveFormat.Lp
+  nameWithType: InArchiveFormat.Lp
 - uid: SharpSevenZip.InArchiveFormat.Lzh
   name: Lzh
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Lzh
@@ -1902,6 +1932,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Ppmd
   fullName: SharpSevenZip.InArchiveFormat.Ppmd
   nameWithType: InArchiveFormat.Ppmd
+- uid: SharpSevenZip.InArchiveFormat.QCow
+  name: QCow
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_QCow
+  commentId: F:SharpSevenZip.InArchiveFormat.QCow
+  fullName: SharpSevenZip.InArchiveFormat.QCow
+  nameWithType: InArchiveFormat.QCow
 - uid: SharpSevenZip.InArchiveFormat.Rar
   name: Rar
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Rar
@@ -1926,6 +1962,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.SevenZip
   fullName: SharpSevenZip.InArchiveFormat.SevenZip
   nameWithType: InArchiveFormat.SevenZip
+- uid: SharpSevenZip.InArchiveFormat.Sparse
+  name: Sparse
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Sparse
+  commentId: F:SharpSevenZip.InArchiveFormat.Sparse
+  fullName: SharpSevenZip.InArchiveFormat.Sparse
+  nameWithType: InArchiveFormat.Sparse
 - uid: SharpSevenZip.InArchiveFormat.Split
   name: Split
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Split
@@ -1980,12 +2022,30 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Udf
   fullName: SharpSevenZip.InArchiveFormat.Udf
   nameWithType: InArchiveFormat.Udf
+- uid: SharpSevenZip.InArchiveFormat.Vdi
+  name: Vdi
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Vdi
+  commentId: F:SharpSevenZip.InArchiveFormat.Vdi
+  fullName: SharpSevenZip.InArchiveFormat.Vdi
+  nameWithType: InArchiveFormat.Vdi
 - uid: SharpSevenZip.InArchiveFormat.Vhd
   name: Vhd
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Vhd
   commentId: F:SharpSevenZip.InArchiveFormat.Vhd
   fullName: SharpSevenZip.InArchiveFormat.Vhd
   nameWithType: InArchiveFormat.Vhd
+- uid: SharpSevenZip.InArchiveFormat.Vhdx
+  name: Vhdx
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Vhdx
+  commentId: F:SharpSevenZip.InArchiveFormat.Vhdx
+  fullName: SharpSevenZip.InArchiveFormat.Vhdx
+  nameWithType: InArchiveFormat.Vhdx
+- uid: SharpSevenZip.InArchiveFormat.Vmdk
+  name: Vmdk
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Vmdk
+  commentId: F:SharpSevenZip.InArchiveFormat.Vmdk
+  fullName: SharpSevenZip.InArchiveFormat.Vmdk
+  nameWithType: InArchiveFormat.Vmdk
 - uid: SharpSevenZip.InArchiveFormat.Wim
   name: Wim
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Wim
@@ -2010,6 +2070,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Zip
   fullName: SharpSevenZip.InArchiveFormat.Zip
   nameWithType: InArchiveFormat.Zip
+- uid: SharpSevenZip.InArchiveFormat.Zstd
+  name: Zstd
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Zstd
+  commentId: F:SharpSevenZip.InArchiveFormat.Zstd
+  fullName: SharpSevenZip.InArchiveFormat.Zstd
+  nameWithType: InArchiveFormat.Zstd
 - uid: SharpSevenZip.LibraryFeature
   name: LibraryFeature
   href: api/SharpSevenZip.LibraryFeature.html
