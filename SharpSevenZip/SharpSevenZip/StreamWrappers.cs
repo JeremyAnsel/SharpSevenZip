@@ -157,7 +157,7 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
         try
         {
             readCount = BaseStream.Read(buffer, 0, (int)size);
-            Marshal.Copy(buffer, 0, data, (int)size);
+            Marshal.Copy(buffer, 0, data, readCount);
         }
         finally
         {
@@ -420,7 +420,7 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
         try
         {
             int count = Streams[CurrentStream].Read(buffer, 0, readSize);
-            Marshal.Copy(buffer, 0, data + readCount, readSize);
+            Marshal.Copy(buffer, 0, data + readCount, count);
             readCount += count;
             readSize -= count;
             Position += count;
@@ -453,7 +453,7 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
             try
             {
                 int count = Streams[CurrentStream].Read(buffer, 0, readSize);
-                Marshal.Copy(buffer, 0, data + readCount, readSize);
+                Marshal.Copy(buffer, 0, data + readCount, count);
                 readCount += count;
                 readSize -= count;
                 Position += count;
@@ -513,7 +513,7 @@ internal sealed partial class OutMultiStreamWrapper : MultiStreamWrapper, ISeque
         int offset = 0;
         var originalSize = (int)size;
         Position += size;
-        _overallLength = Math.Max(Position + 1, _overallLength);
+        _overallLength = Math.Max(Position, _overallLength);
         while (size > _volumeSize - Streams[CurrentStream].Position)
         {
             var count = (int)(_volumeSize - Streams[CurrentStream].Position);
