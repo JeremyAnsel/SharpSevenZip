@@ -54,7 +54,7 @@ internal class ArchiveEmulationStreamProxy : Stream, IDisposable
     public override long Position
     {
         get => Source.Position - Offset;
-        set => Source.Position = value;
+        set => Source.Position = value + Offset;
     }
 
     /// <inheritdoc />
