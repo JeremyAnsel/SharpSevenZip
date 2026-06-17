@@ -716,7 +716,8 @@ public static class Formats
         {
             throw new ArgumentException("File name is null or empty string!");
         }
-        string extension = Path.GetExtension(fileName)[1..];
+        var rawExt = Path.GetExtension(fileName);
+        string extension = rawExt.Length > 0 ? rawExt[1..] : "";
 
         if (!InExtensionFormats.ContainsKey(extension) && reportErrors)
         {
