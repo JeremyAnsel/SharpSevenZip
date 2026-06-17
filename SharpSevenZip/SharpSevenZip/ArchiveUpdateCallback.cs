@@ -737,7 +737,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
     public int CryptoGetTextPassword2(ref int passwordIsDefined, out IntPtr password)
     {
         passwordIsDefined = string.IsNullOrEmpty(Password) ? 0 : 1;
-        password = Marshal.StringToBSTR(Password);
+        password = passwordIsDefined == 1 ? Marshal.StringToBSTR(Password) : IntPtr.Zero;
 
         return 0;
     }
@@ -782,6 +782,11 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
 
         lock (lockObject!)
         {
+            if (_bytesCount <= 0)
+            {
+                return;
+            }
+
             var pOld = (byte)(_bytesWrittenOld * 100 / _bytesCount);
             _bytesWritten += e.Value;
             byte pNow;
