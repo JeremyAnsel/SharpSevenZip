@@ -203,7 +203,7 @@ internal struct PropVariant
     /// <returns>A System.String that represents the current PropVariant.</returns>
     public override readonly string ToString()
     {
-        return "[" + Value + "] " + Int64Value.ToString(CultureInfo.CurrentCulture);
+        return $"[{Value}] {Int64Value.ToString(CultureInfo.CurrentCulture)}";
     }
 
     /// <summary>
