@@ -235,7 +235,7 @@ internal static class SharpSevenZipLibraryManager
 
             compressor.CompressStream(inStream, outStream);
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return false;
         }
@@ -393,8 +393,7 @@ internal static class SharpSevenZipLibraryManager
                         }
                     }
                 }
-
-                if (format is OutArchiveFormat outArchiveFormat)
+                else if (format is OutArchiveFormat outArchiveFormat)
                 {
                     if (_outArchives != null && _outArchives.TryGetValue(user, out Dictionary<OutArchiveFormat, IOutArchive?>? userValue) &&
                         userValue.TryGetValue(outArchiveFormat, out IOutArchive? formatValue) &&
@@ -435,7 +434,9 @@ internal static class SharpSevenZipLibraryManager
     {
         lock (SyncRoot)
         {
-            if (!_inArchives!.TryGetValue(user, out Dictionary<InArchiveFormat, IInArchive?>? archives) || archives[format] == null)
+            if (!_inArchives!.TryGetValue(user, out Dictionary<InArchiveFormat, IInArchive?>? archives)
+                || !archives.TryGetValue(format, out IInArchive? existingArchive)
+                || existingArchive == null)
             {
                 if (_modulePtr == IntPtr.Zero)
                 {
