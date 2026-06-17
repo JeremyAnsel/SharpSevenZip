@@ -1,10 +1,10 @@
-﻿using System.Globalization;
+﻿using SharpSevenZip.Exceptions;
+using System.Globalization;
 using System.Reflection;
 using System.Text;
-using System.Xml.Schema;
 using System.Xml;
+using System.Xml.Schema;
 using SfxSettings = System.Collections.Generic.Dictionary<string, string>;
-using SharpSevenZip.Exceptions;
 
 namespace SharpSevenZip;
 

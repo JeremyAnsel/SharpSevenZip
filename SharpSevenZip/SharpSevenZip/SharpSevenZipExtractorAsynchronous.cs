@@ -1,6 +1,4 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-
-namespace SharpSevenZip;
+﻿namespace SharpSevenZip;
 
 partial class SharpSevenZipExtractor
 {
