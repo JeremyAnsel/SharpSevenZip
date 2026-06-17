@@ -891,7 +891,7 @@ public sealed partial class SharpSevenZipCompressor
         {
             if (
                 !ThrowException(null,
-                    new CompressionFailedException("file \"" + archiveName + "\" does not exist.")))
+                    new CompressionFailedException($"file \"{archiveName}\" does not exist.")))
             {
                 return null;
             }
@@ -1353,7 +1353,7 @@ public sealed partial class SharpSevenZipCompressor
 
         if (!Directory.Exists(directory))
         {
-            throw new ArgumentException("Directory \"" + directory + "\" does not exist!");
+            throw new ArgumentException($"Directory \"{directory}\" does not exist!");
         }
 
         // Get full path, in case this is eg. an SFN path.
@@ -1452,7 +1452,7 @@ public sealed partial class SharpSevenZipCompressor
                 if (!fileInfo.Exists)
                 {
                     throw new CompressionFailedException(
-                        "The file corresponding to the archive entry \"" + pair.Key + "\" does not exist.");
+                        $"The file corresponding to the archive entry \"{pair.Key}\" does not exist.");
                 }
 
                 streamDict.Add(
