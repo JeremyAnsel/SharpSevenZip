@@ -37,7 +37,7 @@ public abstract class SharpSevenZipBase : MarshalByRefObject
     {
         try
         {
-            if (handler != null)
+            if (handler is not null)
             {
                 switch (EventSynchronization)
                 {
@@ -49,7 +49,7 @@ public abstract class SharpSevenZipBase : MarshalByRefObject
                         break;
                 }
 
-                if (Context == null)
+                if (Context is null)
                 {
                     // Usual synchronous call
                     handler(this, e);
@@ -148,7 +148,7 @@ public abstract class SharpSevenZipBase : MarshalByRefObject
     /// <param name="handler">The handler responsible for the exception.</param>
     internal bool ThrowException(CallbackBase? handler, params Exception[] e)
     {
-        if (_reportErrors && (handler == null || !handler.Canceled))
+        if (_reportErrors && (handler is null || !handler.Canceled))
         {
             throw e[0];
         }

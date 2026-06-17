@@ -202,7 +202,7 @@ internal static class SharpSevenZipLibraryManager
 
     private static string GetResourceString(string str)
     {
-        return Namespace + ".arch." + str;
+        return $"{Namespace}.arch.{str}";
     }
 
     private static bool ExtractionBenchmark(string archiveFileName, Stream outStream, ref LibraryFeature? features, LibraryFeature testedFeature)
