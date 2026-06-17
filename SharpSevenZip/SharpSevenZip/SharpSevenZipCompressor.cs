@@ -336,7 +336,7 @@ public sealed partial class SharpSevenZipCompressor
                         names.Add(Marshal.StringToBSTR(pair.Key));
                         var pv = new PropVariant();
 
-                        if (pair.Value.All(char.IsDigit))
+                        if (pair.Value.Length > 0 && pair.Value.All(char.IsDigit))
                         {
                             pv.VarType = VarEnum.VT_UI4;
                             pv.UInt32Value = Convert.ToUInt32(pair.Value, CultureInfo.InvariantCulture);
