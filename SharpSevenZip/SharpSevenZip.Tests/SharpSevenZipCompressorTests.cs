@@ -323,7 +323,7 @@ public class SharpSevenZipCompressorTests : TestBase
     public void CompressStreamDictionaryTest()
     {
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
-        
+
         // Add creation and access time to the archive (write time is added automatically)
         compressor.CustomParameters.Add("tc", "on"); // Add creation time to archive files
         compressor.CustomParameters.Add("ta", "on"); // Add last access time to archive files
@@ -356,7 +356,7 @@ public class SharpSevenZipCompressorTests : TestBase
         compressor = new SharpSevenZipCompressor { DirectoryStructure = false, CompressionMode = CompressionMode.Append };
         compressor.CustomParameters.Add("tc", "on"); // Add creation time to archive files
         compressor.CustomParameters.Add("ta", "on"); // Add access
-        
+
         creationTime = creationTime.AddYears(-1);
         lastWriteTime = lastWriteTime.AddMonths(-1);
         lastAccessTime = lastAccessTime.AddDays(-1);
