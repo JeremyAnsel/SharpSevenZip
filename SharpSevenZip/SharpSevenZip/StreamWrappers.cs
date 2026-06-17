@@ -137,11 +137,14 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
     /// </summary>
     /// <param name="data">A data array.</param>
     /// <param name="size">The array size.</param>
-    /// <returns>The read bytes count.</returns>
-    public unsafe int Read(IntPtr data, uint size)
+    /// <param name="processedSize">Pointer to UInt32 receiving the bytes actually read.</param>
+    /// <returns>S_OK (0) on success.</returns>
+    public unsafe int Read(IntPtr data, uint size, IntPtr processedSize)
     {
         if (size == 0 || BaseStream is null)
         {
+            if (processedSize != IntPtr.Zero)
+                System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, 0);
             return 0;
         }
 
@@ -165,12 +168,15 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
         }
 #endif
 
+        if (processedSize != IntPtr.Zero)
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, readCount);
+
         if (readCount > 0)
         {
             OnBytesRead(readCount);
         }
 
-        return readCount;
+        return 0;
     }
 
     #endregion
@@ -393,11 +399,14 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
     /// </summary>
     /// <param name="data">A data array.</param>
     /// <param name="size">The array size.</param>
-    /// <returns>The read bytes count.</returns>
-    public unsafe int Read(IntPtr data, uint size)
+    /// <param name="processedSize">Pointer to UInt32 receiving the bytes actually read.</param>
+    /// <returns>S_OK (0) on success.</returns>
+    public unsafe int Read(IntPtr data, uint size, IntPtr processedSize)
     {
         if (size == 0)
         {
+            if (processedSize != IntPtr.Zero)
+                System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, 0);
             return 0;
         }
 
@@ -435,7 +444,7 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
         {
             if (CurrentStream == Streams.Count - 1)
             {
-                return readCount;
+                break;
             }
 
             CurrentStream++;
@@ -465,7 +474,10 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
 #endif
         }
 
-        return readCount;
+        if (processedSize != IntPtr.Zero)
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, readCount);
+
+        return 0;
     }
 
     #endregion
