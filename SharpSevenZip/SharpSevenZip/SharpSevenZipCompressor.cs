@@ -430,7 +430,7 @@ public sealed partial class SharpSevenZipCompressor
                         fixed (nint* namesPtr = names.ToArray())
                         fixed (PropVariant* valuesPtr = values.ToArray())
                         {
-                            setter?.SetProperties(new IntPtr(namesPtr), new IntPtr(valuesPtr), names.Count);
+                            setter?.SetProperties(new IntPtr(namesPtr), new IntPtr(valuesPtr), (uint)names.Count);
                         }
                     }
                     catch (ArgumentException ex)

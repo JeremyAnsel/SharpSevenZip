@@ -222,9 +222,9 @@ internal sealed partial class OutStreamWrapper : StreamWrapper, ISequentialOutSt
 
     #region IOutStream Members
 
-    public int SetSize(long newSize)
+    public int SetSize(ulong newSize)
     {
-        BaseStream!.SetLength(newSize);
+        BaseStream!.SetLength(newSize > (ulong)long.MaxValue ? long.MaxValue : (long)newSize);
         return 0;
     }
 
@@ -511,7 +511,7 @@ internal sealed partial class OutMultiStreamWrapper : MultiStreamWrapper, ISeque
 
     #region IOutStream Members
 
-    public int SetSize(long newSize)
+    public int SetSize(ulong newSize)
     {
         return 0;
     }
