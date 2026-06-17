@@ -111,7 +111,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
         _directory = directory;
         _actualIndexes = actualIndexes;
         _directoryStructure = directoryStructure;
-        if (!directory.EndsWith("" + Path.DirectorySeparatorChar, StringComparison.CurrentCulture))
+        if (!directory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.CurrentCulture))
         {
             _directory += Path.DirectorySeparatorChar;
         }
@@ -261,7 +261,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                         }
                         else
                         {
-                            entryName = "[no name] " + index.ToString(CultureInfo.InvariantCulture);
+                            entryName = $"[no name] {index.ToString(CultureInfo.InvariantCulture)}";
                         }
                     }
 
@@ -274,6 +274,15 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                         if (string.IsNullOrEmpty(fileName))
                         {
                             throw new SharpSevenZipArchiveException("Some archive name is null or empty.");
+                        }
+
+                        // Zip Slip guard: ensure the resolved path stays inside the target directory.
+                        var fullTarget = Path.GetFullPath(_directory!);
+                        var fullEntry = Path.GetFullPath(fileName);
+                        if (!fullEntry.StartsWith(fullTarget, StringComparison.OrdinalIgnoreCase))
+                        {
+                            throw new SharpSevenZipArchiveException(
+                                $"Archive entry \"{entryName}\" resolves outside the target directory.");
                         }
                     }
                     catch (Exception e)

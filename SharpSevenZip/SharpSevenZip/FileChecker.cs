@@ -9,7 +9,7 @@ internal static class FileChecker
     private const int SIGNATURE_SIZE = 21;
     private const int SFX_SCAN_LENGTH = 256 * 1024;
 
-    private static unsafe bool SpecialDetect(Stream stream, int offset, InArchiveFormat expectedFormat)
+    private static bool SpecialDetect(Stream stream, int offset, InArchiveFormat expectedFormat)
     {
         if (stream.Length > offset + SIGNATURE_SIZE)
         {
@@ -51,7 +51,7 @@ internal static class FileChecker
     /// <param name="offset">The archive beginning offset.</param>
     /// <param name="isExecutable">True if the original format of the stream is PE; otherwise, false.</param>
     /// <returns>Corresponding InArchiveFormat.</returns>
-    public static unsafe InArchiveFormat CheckSignature(Stream stream, out int offset, out bool isExecutable)
+    public static InArchiveFormat CheckSignature(Stream stream, out int offset, out bool isExecutable)
     {
         offset = 0;
         isExecutable = false;

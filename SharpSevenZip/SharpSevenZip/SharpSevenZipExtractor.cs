@@ -129,6 +129,7 @@ public sealed partial class SharpSevenZipExtractor
             {
                 CommonDispose();
                 _format = InArchiveFormat.PE;
+                SharpSevenZipLibraryManager.LoadLibrary(this, _format);
 
                 try
                 {
@@ -828,8 +829,8 @@ public sealed partial class SharpSevenZipExtractor
             // the lock, so a caller that disposes immediately after the event may arrive
             // here while the lock is still held.  Spin-wait rather than throw: Dispose()
             // must not throw per IDisposable contract.
-            var start = Environment.TickCount;
-            while (_asynchronousDisposeLock && (Environment.TickCount - start) < 10_000)
+            var sw = System.Diagnostics.Stopwatch.StartNew();
+            while (_asynchronousDisposeLock && sw.ElapsedMilliseconds < 10_000)
                 Thread.Sleep(5);
         }
 

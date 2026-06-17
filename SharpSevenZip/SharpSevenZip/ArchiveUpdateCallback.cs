@@ -80,6 +80,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
     public bool FastCompression { private get; set; }
 
     private int _memoryPressure;
+    private readonly object _progressLock = new();
 
     #endregion
 
@@ -365,23 +366,23 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                 break;
             case InternalCompressionMode.Modify:
                 newData = 0;
-                newProperties = Convert.ToInt32(_updateData.FileNamesToModify!.ContainsKey((int)index)
-                    && _updateData.FileNamesToModify[(int)index] != null);
-                if (_updateData.FileNamesToModify.ContainsKey((int)index)
-                    && _updateData.FileNamesToModify[(int)index] == null)
+                bool hasEntry = _updateData.FileNamesToModify!.TryGetValue((int)index, out string? modifiedName);
+                newProperties = Convert.ToInt32(hasEntry && modifiedName is not null);
+
+                if (hasEntry && modifiedName is null)
                 {
                     indexInArchive = (uint)_updateData.ArchiveFileData!.Count;
 
                     foreach (var pairModification in _updateData.FileNamesToModify)
                     {
-                        if (pairModification.Key <= index && (pairModification.Value == null))
+                        if (pairModification.Key <= index && pairModification.Value is null)
                         {
                             do
                             {
                                 indexInArchive--;
                             } while (indexInArchive > 0
-                                     && _updateData.FileNamesToModify.ContainsKey((int)indexInArchive)
-                                     && _updateData.FileNamesToModify[(int)indexInArchive] == null);
+                                     && _updateData.FileNamesToModify.TryGetValue((int)indexInArchive, out string? v)
+                                     && v is null);
                         }
                     }
                 }
@@ -451,15 +452,15 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     value.VarType = VarEnum.VT_BOOL;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        if (_files == null)
+                        if (_files is null)
                         {
-                            if (_streams == null)
+                            if (_streams is null)
                             {
                                 value.UInt64Value = 0;
                             }
                             else
                             {
-                                value.UInt64Value = (ulong)(_streams[index] == null ? 1 : 0);
+                                value.UInt64Value = (ulong)(_streams[index] is null ? 1 : 0);
                             }
                         }
                         else
@@ -479,15 +480,15 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     ulong size;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        if (_files == null)
+                        if (_files is null)
                         {
-                            if (_streams == null)
+                            if (_streams is null)
                             {
                                 size = _bytesCount > 0 ? (ulong)_bytesCount : 0;
                             }
                             else
                             {
-                                size = (ulong)(_streams[index] == null ? 0 : _streams[index].Stream.Length);
+                                size = (ulong)(_streams[index] is null ? 0 : _streams[index].Stream.Length);
                             }
                         }
                         else
@@ -509,15 +510,15 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     value.VarType = VarEnum.VT_UI4;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        if (_files == null)
+                        if (_files is null)
                         {
-                            if (_streams == null)
+                            if (_streams is null)
                             {
                                 value.UInt32Value = (uint)FileAttributes.Normal;
                             }
                             else
                             {
-                                value.UInt32Value = (uint)(_streams[index] == null ? FileAttributes.Directory : FileAttributes.Normal);
+                                value.UInt32Value = (uint)(_streams[index] is null ? FileAttributes.Directory : FileAttributes.Normal);
                             }
                         }
                         else
@@ -535,7 +536,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     value.VarType = VarEnum.VT_FILETIME;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        value.Int64Value = (_files == null ? _streams?[index].CreationTime ?? DateTime.Now
+                        value.Int64Value = (_files is null ? _streams?[index].CreationTime ?? DateTime.Now
                                            : _files[index].CreationTime).ToFileTime();
                     }
                     else
@@ -547,7 +548,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     value.VarType = VarEnum.VT_FILETIME;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        value.Int64Value = (_files == null ? _streams?[index].LastAccessTime ?? DateTime.Now
+                        value.Int64Value = (_files is null ? _streams?[index].LastAccessTime ?? DateTime.Now
                                            : _files[index].LastAccessTime).ToFileTime();
                     }
                     else
@@ -559,7 +560,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     value.VarType = VarEnum.VT_FILETIME;
                     if (_updateData.Mode != InternalCompressionMode.Modify)
                     {
-                        value.Int64Value = (_files == null ? _streams?[index].LastWriteTime ?? DateTime.Now
+                        value.Int64Value = (_files is null ? _streams?[index].LastWriteTime ?? DateTime.Now
                                            : _files[index].LastWriteTime).ToFileTime();
                     }
                     else
@@ -576,11 +577,21 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     {
                         try
                         {
-                            val = _files != null
-                                  ? _files[index].Extension[1..]
-                                  : _entries == null
-                                      ? ""
-                                      : Path.GetExtension(_entries[index]);
+                            string ext;
+                            if (_files != null)
+                            {
+                                ext = _files[index].Extension;
+                                val = ext.Length > 0 ? ext[1..] : ext;
+                            }
+                            else if (_entries != null)
+                            {
+                                ext = Path.GetExtension(_entries[index]);
+                                val = ext.Length > 0 ? ext[1..] : ext;
+                            }
+                            else
+                            {
+                                val = "";
+                            }
                             value.Value = Marshal.StringToBSTR(val);
                         }
                         catch (ArgumentException)
@@ -590,7 +601,8 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     }
                     else
                     {
-                        val = Path.GetExtension(_updateData.ArchiveFileData![(int)index].FileName);
+                        var ext = Path.GetExtension(_updateData.ArchiveFileData![(int)index].FileName);
+                        val = ext.Length > 0 ? ext[1..] : ext;
                         value.Value = Marshal.StringToBSTR(val);
                     }
 
@@ -737,7 +749,7 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
     public int CryptoGetTextPassword2(ref int passwordIsDefined, out IntPtr password)
     {
         passwordIsDefined = string.IsNullOrEmpty(Password) ? 0 : 1;
-        password = Marshal.StringToBSTR(Password);
+        password = passwordIsDefined == 1 ? Marshal.StringToBSTR(Password) : IntPtr.Zero;
 
         return 0;
     }
@@ -778,10 +790,13 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
 
     private void IntEventArgsHandler(object? sender, IntEventArgs e)
     {
-        var lockObject = ((object)_files! ?? _streams) ?? _fileStream;
-
-        lock (lockObject!)
+        lock (_progressLock)
         {
+            if (_bytesCount <= 0)
+            {
+                return;
+            }
+
             var pOld = (byte)(_bytesWrittenOld * 100 / _bytesCount);
             _bytesWritten += e.Value;
             byte pNow;

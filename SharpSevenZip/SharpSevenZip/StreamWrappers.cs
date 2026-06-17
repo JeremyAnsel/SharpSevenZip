@@ -137,11 +137,14 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
     /// </summary>
     /// <param name="data">A data array.</param>
     /// <param name="size">The array size.</param>
-    /// <returns>The read bytes count.</returns>
-    public unsafe int Read(IntPtr data, uint size)
+    /// <param name="processedSize">Pointer to UInt32 receiving the bytes actually read.</param>
+    /// <returns>S_OK (0) on success.</returns>
+    public unsafe int Read(IntPtr data, uint size, IntPtr processedSize)
     {
         if (size == 0 || BaseStream is null)
         {
+            if (processedSize != IntPtr.Zero)
+                System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, 0);
             return 0;
         }
 
@@ -157,7 +160,7 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
         try
         {
             readCount = BaseStream.Read(buffer, 0, (int)size);
-            Marshal.Copy(buffer, 0, data, (int)size);
+            Marshal.Copy(buffer, 0, data, readCount);
         }
         finally
         {
@@ -165,12 +168,15 @@ internal sealed partial class InStreamWrapper : StreamWrapper, ISequentialInStre
         }
 #endif
 
+        if (processedSize != IntPtr.Zero)
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, readCount);
+
         if (readCount > 0)
         {
             OnBytesRead(readCount);
         }
 
-        return readCount;
+        return 0;
     }
 
     #endregion
@@ -216,9 +222,9 @@ internal sealed partial class OutStreamWrapper : StreamWrapper, ISequentialOutSt
 
     #region IOutStream Members
 
-    public int SetSize(long newSize)
+    public int SetSize(ulong newSize)
     {
-        BaseStream!.SetLength(newSize);
+        BaseStream!.SetLength(newSize > (ulong)long.MaxValue ? long.MaxValue : (long)newSize);
         return 0;
     }
 
@@ -309,31 +315,15 @@ internal class MultiStreamWrapper : DisposeVariableWrapper, IDisposable
 
     protected static string VolumeNumber(int num)
     {
-        string prefix;
-        if (num < 10)
-        {
-            prefix = ".00";
-        }
-        else if (num < 100)
-        {
-            prefix = ".0";
-        }
-        else
-        {
-            prefix = ".";
-        }
-        return prefix + num.ToString(CultureInfo.InvariantCulture);
+        return "." + num.ToString("D3", CultureInfo.InvariantCulture);
     }
 
     private int StreamNumberByOffset(long offset)
     {
-        foreach (int number in StreamOffsets.Keys)
+        foreach (var entry in StreamOffsets)
         {
-            if (StreamOffsets[number].Key <= offset &&
-                StreamOffsets[number].Value >= offset)
-            {
-                return number;
-            }
+            if (entry.Value.Key <= offset && entry.Value.Value >= offset)
+                return entry.Key;
         }
         return -1;
     }
@@ -393,79 +383,56 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
     /// </summary>
     /// <param name="data">A data array.</param>
     /// <param name="size">The array size.</param>
-    /// <returns>The read bytes count.</returns>
-    public unsafe int Read(IntPtr data, uint size)
+    /// <param name="processedSize">Pointer to UInt32 receiving the bytes actually read.</param>
+    /// <returns>S_OK (0) on success.</returns>
+    public unsafe int Read(IntPtr data, uint size, IntPtr processedSize)
     {
         if (size == 0)
         {
+            if (processedSize != IntPtr.Zero)
+                System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, 0);
             return 0;
         }
 
-#if !NET8_0_OR_GREATER
-        byte[] buffer;
-#endif
-
-        var readSize = (int)size;
+        int readSize = (int)size;
         int readCount = 0;
-
-#if NET8_0_OR_GREATER
-        Span<byte> buffer0 = new((data + readCount).ToPointer(), readSize);
-        int count0 = Streams[CurrentStream].Read(buffer0);
-        readCount += count0;
-        readSize -= count0;
-        Position += count0;
-#else
-        buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
-
-        try
-        {
-            int count = Streams[CurrentStream].Read(buffer, 0, readSize);
-            Marshal.Copy(buffer, 0, data + readCount, readSize);
-            readCount += count;
-            readSize -= count;
-            Position += count;
-        }
-        finally
-        {
-            System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
-        }
-#endif
 
         while (readCount < (int)size)
         {
-            if (CurrentStream == Streams.Count - 1)
-            {
-                return readCount;
-            }
-
-            CurrentStream++;
-            Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
+            int count;
 
 #if NET8_0_OR_GREATER
-            Span<byte> buffer1 = new((data + readCount).ToPointer(), readSize);
-            int count1 = Streams[CurrentStream].Read(buffer1);
-            readCount += count1;
-            readSize -= count1;
-            Position += count1;
+            Span<byte> buffer = new((data + readCount).ToPointer(), readSize);
+            count = Streams[CurrentStream].Read(buffer);
 #else
-            buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
-
+            var buf = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
             try
             {
-                int count = Streams[CurrentStream].Read(buffer, 0, readSize);
-                Marshal.Copy(buffer, 0, data + readCount, readSize);
-                readCount += count;
-                readSize -= count;
-                Position += count;
+                count = Streams[CurrentStream].Read(buf, 0, readSize);
+                Marshal.Copy(buf, 0, data + readCount, count);
             }
             finally
             {
-                System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
+                System.Buffers.ArrayPool<byte>.Shared.Return(buf);
             }
 #endif
+            readCount += count;
+            readSize -= count;
+            Position += count;
+
+            if (readCount < (int)size)
+            {
+                if (CurrentStream == Streams.Count - 1)
+                    break;
+                CurrentStream++;
+                Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
+            }
         }
 
-        return readCount;
+        if (processedSize != IntPtr.Zero)
+            System.Runtime.InteropServices.Marshal.WriteInt32(processedSize, readCount);
+
+        return 0;
     }
 
     #endregion
@@ -499,7 +466,7 @@ internal sealed partial class OutMultiStreamWrapper : MultiStreamWrapper, ISeque
 
     #region IOutStream Members
 
-    public int SetSize(long newSize)
+    public int SetSize(ulong newSize)
     {
         return 0;
     }
@@ -513,7 +480,7 @@ internal sealed partial class OutMultiStreamWrapper : MultiStreamWrapper, ISeque
         int offset = 0;
         var originalSize = (int)size;
         Position += size;
-        _overallLength = Math.Max(Position + 1, _overallLength);
+        _overallLength = Math.Max(Position, _overallLength);
         while (size > _volumeSize - Streams[CurrentStream].Position)
         {
             var count = (int)(_volumeSize - Streams[CurrentStream].Position);

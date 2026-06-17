@@ -48,7 +48,7 @@ internal struct PropVariant
     /// </summary>
     public VarEnum VarType
     {
-        get
+        readonly get
         {
             return (VarEnum)_vt;
         }
@@ -203,7 +203,7 @@ internal struct PropVariant
     /// <returns>A System.String that represents the current PropVariant.</returns>
     public override readonly string ToString()
     {
-        return "[" + Value + "] " + Int64Value.ToString(CultureInfo.CurrentCulture);
+        return $"[{Value}] {Int64Value.ToString(CultureInfo.CurrentCulture)}";
     }
 
     /// <summary>
@@ -245,7 +245,11 @@ internal enum AskMode
     /// <summary>
     /// Skip mode
     /// </summary>
-    Skip
+    Skip,
+    /// <summary>
+    /// Read-external mode (alternate data streams)
+    /// </summary>
+    ReadExternal = 3
 }
 
 /// <summary>
@@ -555,6 +559,15 @@ internal enum ItemPropId : uint
     ReadOnly,
     OutName,
     CopyLink,
+    ArcFileName,
+    IsHash,
+    ChangeTime,
+    UserId,
+    GroupId,
+    DeviceMajor,
+    DeviceMinor,
+    DevMajor,
+    DevMinor,
     NumDefined,
     /// <summary>
     /// User defined property; usually absent
@@ -899,20 +912,14 @@ internal partial interface IArchiveOpenVolumeCallback
 internal partial interface ISequentialInStream
 {
     /// <summary>
-    /// Writes data to 7-zip packer
+    /// Reads data from the stream.
     /// </summary>
-    /// <param name="data">Array of bytes available for writing</param>
-    /// <param name="size">Array size</param>
-    /// <returns>S_OK if success</returns>
-    /// <remarks>If (size > 0) and there are bytes in stream, 
-    /// this function must read at least 1 byte.
-    /// This function is allowed to read less than "size" bytes.
-    /// You must call Read function in loop, if you need exact amount of data.
-    /// </remarks>
-    int Read(
-        IntPtr data,
-        //[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] data,
-        uint size);
+    /// <param name="data">Buffer to read into.</param>
+    /// <param name="size">Number of bytes requested.</param>
+    /// <param name="processedSize">Pointer to UInt32 that receives the actual bytes read. May be zero at EOF.</param>
+    /// <returns>S_OK (0) on success.</returns>
+    [PreserveSig]
+    int Read(IntPtr data, uint size, IntPtr processedSize);
 }
 
 /// <summary>
@@ -963,15 +970,14 @@ internal partial interface ISequentialOutStream
 internal partial interface IInStream
 {
     /// <summary>
-    /// Read routine
+    /// Reads data from the stream.
     /// </summary>
-    /// <param name="data">Array of bytes to set</param>
-    /// <param name="size">Array size</param>
-    /// <returns>Zero if Ok</returns>
-    int Read(
-        IntPtr data,
-        //[Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = 1)] byte[] data,
-        uint size);
+    /// <param name="data">Buffer to read into.</param>
+    /// <param name="size">Number of bytes requested.</param>
+    /// <param name="processedSize">Pointer to UInt32 that receives the actual bytes read. May be zero at EOF.</param>
+    /// <returns>S_OK (0) on success.</returns>
+    [PreserveSig]
+    int Read(IntPtr data, uint size, IntPtr processedSize);
 
     /// <summary>
     /// Seek routine
@@ -1024,7 +1030,7 @@ internal partial interface IOutStream
     /// <param name="newSize">New size value</param>
     /// <returns>Zero if Ok</returns>
     [PreserveSig]
-    int SetSize(long newSize);
+    int SetSize(ulong newSize);
 }
 
 /// <summary>
@@ -1191,5 +1197,5 @@ internal partial interface ISetProperties
     /// <param name="values">The values of the properties</param>
     /// <param name="numProperties">The properties count</param>
     /// <returns></returns>        
-    int SetProperties(IntPtr names, IntPtr values, int numProperties);
+    int SetProperties(IntPtr names, IntPtr values, uint numProperties);
 }

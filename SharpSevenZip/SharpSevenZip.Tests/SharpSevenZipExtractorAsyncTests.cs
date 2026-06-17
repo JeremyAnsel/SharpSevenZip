@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SharpSevenZip.Tests;
+﻿namespace SharpSevenZip.Tests;
 
 [TestFixture]
 public class SharpSevenZipExtractorAsyncTests
