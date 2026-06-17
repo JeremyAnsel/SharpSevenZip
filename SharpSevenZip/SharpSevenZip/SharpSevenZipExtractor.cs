@@ -129,6 +129,7 @@ public sealed partial class SharpSevenZipExtractor
             {
                 CommonDispose();
                 _format = InArchiveFormat.PE;
+                SharpSevenZipLibraryManager.LoadLibrary(this, _format);
 
                 try
                 {
