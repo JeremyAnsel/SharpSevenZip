@@ -313,6 +313,10 @@ public enum InArchiveFormat
     /// </summary>
     /// <remarks><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">Wikipedia information</a></remarks>
     Lvm,
+    /// <summary>
+    /// Unknown or unrecognized format (sentinel/not-found value).
+    /// </summary>
+    None = -1,
 }
 
 /// <summary>
@@ -745,11 +749,15 @@ public static class Formats
         var rawExt = Path.GetExtension(fileName);
         string extension = rawExt.Length > 0 ? rawExt[1..] : "";
 
-        if (!InExtensionFormats.ContainsKey(extension) && reportErrors)
+        if (!InExtensionFormats.TryGetValue(extension, out var format))
         {
-            throw new ArgumentException("Extension \"" + extension + "\" is not a supported archive file name extension.");
+            if (reportErrors)
+            {
+                throw new ArgumentException($"Extension \"{extension}\" is not a supported archive file name extension.");
+            }
+            return InArchiveFormat.None;
         }
 
-        return InExtensionFormats[extension];
+        return format;
     }
 }
