@@ -315,31 +315,15 @@ internal class MultiStreamWrapper : DisposeVariableWrapper, IDisposable
 
     protected static string VolumeNumber(int num)
     {
-        string prefix;
-        if (num < 10)
-        {
-            prefix = ".00";
-        }
-        else if (num < 100)
-        {
-            prefix = ".0";
-        }
-        else
-        {
-            prefix = ".";
-        }
-        return prefix + num.ToString(CultureInfo.InvariantCulture);
+        return "." + num.ToString("D3", CultureInfo.InvariantCulture);
     }
 
     private int StreamNumberByOffset(long offset)
     {
-        foreach (int number in StreamOffsets.Keys)
+        foreach (var entry in StreamOffsets)
         {
-            if (StreamOffsets[number].Key <= offset &&
-                StreamOffsets[number].Value >= offset)
-            {
-                return number;
-            }
+            if (entry.Value.Key <= offset && entry.Value.Value >= offset)
+                return entry.Key;
         }
         return -1;
     }
@@ -410,68 +394,39 @@ internal sealed partial class InMultiStreamWrapper : MultiStreamWrapper, ISequen
             return 0;
         }
 
-#if !NET8_0_OR_GREATER
-        byte[] buffer;
-#endif
-
-        var readSize = (int)size;
+        int readSize = (int)size;
         int readCount = 0;
-
-#if NET8_0_OR_GREATER
-        Span<byte> buffer0 = new((data + readCount).ToPointer(), readSize);
-        int count0 = Streams[CurrentStream].Read(buffer0);
-        readCount += count0;
-        readSize -= count0;
-        Position += count0;
-#else
-        buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
-
-        try
-        {
-            int count = Streams[CurrentStream].Read(buffer, 0, readSize);
-            Marshal.Copy(buffer, 0, data + readCount, count);
-            readCount += count;
-            readSize -= count;
-            Position += count;
-        }
-        finally
-        {
-            System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
-        }
-#endif
 
         while (readCount < (int)size)
         {
-            if (CurrentStream == Streams.Count - 1)
-            {
-                break;
-            }
-
-            CurrentStream++;
-            Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
+            int count;
 
 #if NET8_0_OR_GREATER
-            Span<byte> buffer1 = new((data + readCount).ToPointer(), readSize);
-            int count1 = Streams[CurrentStream].Read(buffer1);
-            readCount += count1;
-            readSize -= count1;
-            Position += count1;
+            Span<byte> buffer = new((data + readCount).ToPointer(), readSize);
+            count = Streams[CurrentStream].Read(buffer);
 #else
-            buffer = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
-
+            var buf = System.Buffers.ArrayPool<byte>.Shared.Rent(readSize);
             try
             {
-                int count = Streams[CurrentStream].Read(buffer, 0, readSize);
-                Marshal.Copy(buffer, 0, data + readCount, count);
-                readCount += count;
-                readSize -= count;
-                Position += count;
+                count = Streams[CurrentStream].Read(buf, 0, readSize);
+                Marshal.Copy(buf, 0, data + readCount, count);
             }
             finally
             {
-                System.Buffers.ArrayPool<byte>.Shared.Return(buffer);
+                System.Buffers.ArrayPool<byte>.Shared.Return(buf);
             }
 #endif
+            readCount += count;
+            readSize -= count;
+            Position += count;
+
+            if (readCount < (int)size)
+            {
+                if (CurrentStream == Streams.Count - 1)
+                    break;
+                CurrentStream++;
+                Streams[CurrentStream].Seek(0, SeekOrigin.Begin);
+            }
         }
 
         if (processedSize != IntPtr.Zero)
