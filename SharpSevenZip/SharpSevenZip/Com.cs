@@ -48,7 +48,7 @@ internal struct PropVariant
     /// </summary>
     public VarEnum VarType
     {
-        get
+        readonly get
         {
             return (VarEnum)_vt;
         }
