@@ -245,7 +245,11 @@ internal enum AskMode
     /// <summary>
     /// Skip mode
     /// </summary>
-    Skip
+    Skip,
+    /// <summary>
+    /// Read-external mode (alternate data streams)
+    /// </summary>
+    ReadExternal = 3
 }
 
 /// <summary>
@@ -555,6 +559,15 @@ internal enum ItemPropId : uint
     ReadOnly,
     OutName,
     CopyLink,
+    ArcFileName,
+    IsHash,
+    ChangeTime,
+    UserId,
+    GroupId,
+    DeviceMajor,
+    DeviceMinor,
+    DevMajor,
+    DevMinor,
     NumDefined,
     /// <summary>
     /// User defined property; usually absent
