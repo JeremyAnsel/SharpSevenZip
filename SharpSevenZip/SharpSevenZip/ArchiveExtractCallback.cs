@@ -111,7 +111,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
         _directory = directory;
         _actualIndexes = actualIndexes;
         _directoryStructure = directoryStructure;
-        if (!directory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.CurrentCulture))
+        if (_directory!.Length == 0 || _directory[_directory.Length - 1] != Path.DirectorySeparatorChar)
         {
             _directory += Path.DirectorySeparatorChar;
         }
@@ -249,7 +249,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                             var dotIndex = archName!.LastIndexOf('.');
                             if (dotIndex > 0)
                             {
-                              archName = archName[..dotIndex];
+                                archName = archName[..dotIndex];
                             }
                             if (!archName.EndsWith(".tar",
                                                    StringComparison.OrdinalIgnoreCase))
@@ -556,11 +556,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                 {
                     continue;
                 }
-                if (string.IsNullOrEmpty(splitFileName[i]))
-                {
-                    continue;
-                }
-                while (splitFileName[i].IndexOf(chr) > -1)
+                if (!string.IsNullOrEmpty(splitFileName[i]))
                 {
                     splitFileName[i] = splitFileName[i].Replace(chr, '_');
                 }

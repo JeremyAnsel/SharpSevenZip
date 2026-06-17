@@ -9,36 +9,44 @@ internal static class FileChecker
     private const int SIGNATURE_SIZE = 21;
     private const int SFX_SCAN_LENGTH = 256 * 1024;
 
+    /// <summary>
+    /// Reads exactly <paramref name="count"/> bytes from <paramref name="stream"/> into
+    /// <paramref name="buffer"/> starting at <paramref name="offset"/>.
+    /// </summary>
+    private static void ReadFully(Stream stream, byte[] buffer, int offset, int count)
+    {
+#if NET8_0_OR_GREATER
+        stream.ReadExactly(buffer, offset, count);
+#else
+        while (count > 0)
+        {
+            var read = stream.Read(buffer, offset, count);
+            if (read == 0)
+                throw new EndOfStreamException();
+            offset += read;
+            count -= read;
+        }
+#endif
+    }
+
     private static bool SpecialDetect(Stream stream, int offset, InArchiveFormat expectedFormat)
     {
-        if (stream.Length > offset + SIGNATURE_SIZE)
+        if (stream.Length <= offset + SIGNATURE_SIZE)
+            return false;
+
+        var signature = new byte[SIGNATURE_SIZE];
+        stream.Seek(offset, SeekOrigin.Begin);
+        ReadFully(stream, signature, 0, SIGNATURE_SIZE);
+
+        var actualSignature = BitConverter.ToString(signature);
+
+        foreach (var expectedSignature in Formats.InSignatureFormats)
         {
-            var signature = new byte[SIGNATURE_SIZE];
-            var bytesRequired = SIGNATURE_SIZE;
-            var index = 0;
-            stream.Seek(offset, SeekOrigin.Begin);
+            if (expectedSignature.Value != expectedFormat)
+                continue;
 
-            while (bytesRequired > 0)
-            {
-                var bytesRead = stream.Read(signature, index, bytesRequired);
-                bytesRequired -= bytesRead;
-                index += bytesRead;
-            }
-
-            var actualSignature = BitConverter.ToString(signature);
-
-            foreach (var expectedSignature in Formats.InSignatureFormats)
-            {
-                if (expectedSignature.Value != expectedFormat)
-                {
-                    continue;
-                }
-
-                if (actualSignature.AsSpan().StartsWith(expectedSignature.Key.AsSpan(), StringComparison.OrdinalIgnoreCase))
-                {
-                    return true;
-                }
-            }
+            if (actualSignature.AsSpan().StartsWith(expectedSignature.Key.AsSpan(), StringComparison.OrdinalIgnoreCase))
+                return true;
         }
 
         return false;
@@ -56,9 +64,9 @@ internal static class FileChecker
         offset = 0;
         isExecutable = false;
 
-        if (!stream.CanRead)
+        if (!stream.CanRead || !stream.CanSeek)
         {
-            throw new ArgumentException("The stream must be readable.");
+            throw new ArgumentException("The stream must be readable and seekable.");
         }
 
         if (stream.Length < SIGNATURE_SIZE)
@@ -66,25 +74,13 @@ internal static class FileChecker
             throw new ArgumentException("The stream is invalid.");
         }
 
-        #region Get file signature
-
         var signature = new byte[SIGNATURE_SIZE];
-        var bytesRequired = SIGNATURE_SIZE;
-        var index = 0;
         stream.Seek(0, SeekOrigin.Begin);
-
-        while (bytesRequired > 0)
-        {
-            var bytesRead = stream.Read(signature, index, bytesRequired);
-            bytesRequired -= bytesRead;
-            index += bytesRead;
-        }
+        ReadFully(stream, signature, 0, SIGNATURE_SIZE);
 
         var actualSignature = BitConverter.ToString(signature);
 
-        #endregion
-
-        var suspectedFormat = InArchiveFormat.XZ; // any except PE and Cab
+        InArchiveFormat? suspectedFormat = null;
         isExecutable = false;
 
         foreach (var expectedSignature in Formats.InSignatureFormats)
@@ -110,12 +106,15 @@ internal static class FileChecker
         // Many Microsoft formats
         if (actualSignature.StartsWith("D0-CF-11-E0-A1-B1-1A-E1", StringComparison.OrdinalIgnoreCase))
         {
-            suspectedFormat = InArchiveFormat.Cab; // != InArchiveFormat.XZ
+            suspectedFormat = InArchiveFormat.Compound;
         }
 
         #region SpecialDetect
 
-        if (SpecialDetect(stream, 257, InArchiveFormat.Tar))
+        // PE/SFX and OLE2/Compound files must not be short-circuited as TAR even if "ustar"
+        // bytes appear at offset 257 inside their binary content. Only check for TAR when
+        // no other format has been suspected yet.
+        if (suspectedFormat == null && SpecialDetect(stream, 257, InArchiveFormat.Tar))
         {
             return InArchiveFormat.Tar;
         }
@@ -126,17 +125,9 @@ internal static class FileChecker
             return InArchiveFormat.Udf;
         }
 
-        if (SpecialDetect(stream, 0x8001, InArchiveFormat.Iso))
-        {
-            return InArchiveFormat.Iso;
-        }
-
-        if (SpecialDetect(stream, 0x8801, InArchiveFormat.Iso))
-        {
-            return InArchiveFormat.Iso;
-        }
-
-        if (SpecialDetect(stream, 0x9001, InArchiveFormat.Iso))
+        if (SpecialDetect(stream, 0x8001, InArchiveFormat.Iso) ||
+            SpecialDetect(stream, 0x8801, InArchiveFormat.Iso) ||
+            SpecialDetect(stream, 0x9001, InArchiveFormat.Iso))
         {
             return InArchiveFormat.Iso;
         }
@@ -157,7 +148,7 @@ internal static class FileChecker
         {
             return InArchiveFormat.Lp;
         }
-        
+
         // VDI: magic (k_Signature) is at offset 0x40
         // cf. https://github.com/ip7z/7zip/blob/main/CPP/7zip/Archive/VdiHandler.cpp#L287
         if (SpecialDetect(stream, 0x40, InArchiveFormat.Vdi))
@@ -167,19 +158,13 @@ internal static class FileChecker
 
         #region Last resort for tar - can mistake
 
-        if (stream.Length >= 1024)
+        if (suspectedFormat == null && stream.Length >= 1024)
         {
             stream.Seek(-1024, SeekOrigin.End);
             var buf = new byte[1024];
             stream.Read(buf, 0, 1024);
-            var isTar = true;
 
-            for (var i = 0; i < 1024; i++)
-            {
-                isTar = isTar && buf[i] == 0;
-            }
-
-            if (isTar)
+            if (Array.TrueForAll(buf, b => b == 0))
             {
                 return InArchiveFormat.Tar;
             }
@@ -191,26 +176,15 @@ internal static class FileChecker
 
         #region Check if it is an SFX archive or a file with an embedded archive.
 
-        if (suspectedFormat != InArchiveFormat.XZ)
+        if (suspectedFormat != null)
         {
-            #region Get first Min(stream.Length, SFX_SCAN_LENGTH) bytes
 
             var scanLength = Math.Min(stream.Length, SFX_SCAN_LENGTH);
             signature = new byte[scanLength];
-            bytesRequired = (int)scanLength;
-            index = 0;
             stream.Seek(0, SeekOrigin.Begin);
-
-            while (bytesRequired > 0)
-            {
-                var bytesRead = stream.Read(signature, index, bytesRequired);
-                bytesRequired -= bytesRead;
-                index += bytesRead;
-            }
+            ReadFully(stream, signature, 0, (int)scanLength);
 
             actualSignature = BitConverter.ToString(signature);
-
-            #endregion
 
             foreach (var format in new[]
             {
