@@ -1017,7 +1017,7 @@ internal partial interface IOutStream
     /// <param name="newSize">New size value</param>
     /// <returns>Zero if Ok</returns>
     [PreserveSig]
-    int SetSize(long newSize);
+    int SetSize(ulong newSize);
 }
 
 /// <summary>
@@ -1184,5 +1184,5 @@ internal partial interface ISetProperties
     /// <param name="values">The values of the properties</param>
     /// <param name="numProperties">The properties count</param>
     /// <returns></returns>        
-    int SetProperties(IntPtr names, IntPtr values, int numProperties);
+    int SetProperties(IntPtr names, IntPtr values, uint numProperties);
 }
