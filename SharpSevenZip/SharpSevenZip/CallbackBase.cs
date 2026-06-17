@@ -73,7 +73,7 @@ internal class CallbackBase : MarshalByRefObject
     /// <param name="handler">The handler responsible for the exception.</param>
     public bool ThrowException(CallbackBase? handler, params Exception[] e)
     {
-        if (ReportErrors && (handler == null || !handler.Canceled))
+        if (ReportErrors && (handler is null || !handler.Canceled))
         {
             throw e[0];
         }

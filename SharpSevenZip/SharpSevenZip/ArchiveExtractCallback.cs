@@ -111,7 +111,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
         _directory = directory;
         _actualIndexes = actualIndexes;
         _directoryStructure = directoryStructure;
-        if (!directory.EndsWith("" + Path.DirectorySeparatorChar, StringComparison.CurrentCulture))
+        if (!directory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.CurrentCulture))
         {
             _directory += Path.DirectorySeparatorChar;
         }
@@ -261,7 +261,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                         }
                         else
                         {
-                            entryName = "[no name] " + index.ToString(CultureInfo.InvariantCulture);
+                            entryName = $"[no name] {index.ToString(CultureInfo.InvariantCulture)}";
                         }
                     }
 
