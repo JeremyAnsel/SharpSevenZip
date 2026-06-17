@@ -576,11 +576,21 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     {
                         try
                         {
-                            val = _files != null
-                                  ? _files[index].Extension[1..]
-                                  : _entries == null
-                                      ? ""
-                                      : Path.GetExtension(_entries[index]);
+                            string ext;
+                            if (_files != null)
+                            {
+                                ext = _files[index].Extension;
+                                val = ext.Length > 0 ? ext[1..] : ext;
+                            }
+                            else if (_entries != null)
+                            {
+                                ext = Path.GetExtension(_entries[index]);
+                                val = ext.Length > 0 ? ext[1..] : ext;
+                            }
+                            else
+                            {
+                                val = "";
+                            }
                             value.Value = Marshal.StringToBSTR(val);
                         }
                         catch (ArgumentException)
@@ -590,7 +600,8 @@ internal sealed partial class ArchiveUpdateCallback : CallbackBase, IArchiveUpda
                     }
                     else
                     {
-                        val = Path.GetExtension(_updateData.ArchiveFileData![(int)index].FileName);
+                        var ext = Path.GetExtension(_updateData.ArchiveFileData![(int)index].FileName);
+                        val = ext.Length > 0 ? ext[1..] : ext;
                         value.Value = Marshal.StringToBSTR(val);
                     }
 
