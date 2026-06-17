@@ -115,11 +115,16 @@ internal static class FileChecker
 
         #region SpecialDetect
 
-        try
+        if (SpecialDetect(stream, 257, InArchiveFormat.Tar))
         {
-            SpecialDetect(stream, 257, InArchiveFormat.Tar);
+            return InArchiveFormat.Tar;
         }
-        catch (ArgumentException) { }
+
+        // UDF BEA01 at 0x8000; check before ISO so pure-UDF (no CD001 bridge) is detected correctly
+        if (SpecialDetect(stream, 0x8000, InArchiveFormat.Udf))
+        {
+            return InArchiveFormat.Udf;
+        }
 
         if (SpecialDetect(stream, 0x8001, InArchiveFormat.Iso))
         {
