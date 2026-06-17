@@ -486,7 +486,8 @@ public sealed partial class SharpSevenZipCompressor
             }
         }
 
-        var res = "";
+        // Track the cumulative length of common path segments without building a string.
+        int length = 0;
 
         for (var i = 0; i < minSplitLength; i++)
         {
@@ -502,7 +503,7 @@ public sealed partial class SharpSevenZipCompressor
 
             if (common)
             {
-                res += splitFileNames[0][i] + Path.DirectorySeparatorChar;
+                length += splitFileNames[0][i].Length + 1; // segment + separator
             }
             else
             {
@@ -510,7 +511,7 @@ public sealed partial class SharpSevenZipCompressor
             }
         }
 
-        return res.Length;
+        return length;
     }
 
     /// <summary>
@@ -536,7 +537,7 @@ public sealed partial class SharpSevenZipCompressor
             throw new SharpSevenZipInvalidFileNamesException("invalid common root.");
         }
 
-        if (commonRoot.EndsWith(new string(Path.DirectorySeparatorChar, 1), StringComparison.CurrentCulture))
+        if (commonRoot.Length > 0 && commonRoot[^1] == Path.DirectorySeparatorChar)
         {
             commonRoot = commonRoot[..(commonRootLength - 1)];
             commonRootLength--;
@@ -557,7 +558,7 @@ public sealed partial class SharpSevenZipCompressor
     {
         var di = new DirectoryInfo(directory);
 
-        if (di.GetFiles().Length > 0)
+        if (di.EnumerateFiles().Any())
         {
             return false;
         }
@@ -608,7 +609,7 @@ public sealed partial class SharpSevenZipCompressor
             }
             else
             {
-                var fns = new List<string>(files.Count);
+                var fns = new HashSet<string>();
                 CheckCommonRoot(files, ref commonRootLength);
 
                 if (commonRootLength > 0)
@@ -618,16 +619,16 @@ public sealed partial class SharpSevenZipCompressor
                     foreach (var f in files)
                     {
                         var splitAfn = f[commonRootLength..].Split(Path.DirectorySeparatorChar);
-                        var cfn = commonRoot;
+                        var sb = new System.Text.StringBuilder(commonRoot);
 
                         foreach (var t in splitAfn)
                         {
-                            cfn += Path.DirectorySeparatorChar + t;
+                            sb.Append(Path.DirectorySeparatorChar).Append(t);
+                            var cfn = sb.ToString();
 
-                            if (!fns.Contains(cfn))
+                            if (fns.Add(cfn))
                             {
                                 fis.Add(new FileInfo(cfn));
-                                fns.Add(cfn);
                             }
                         }
                     }
@@ -637,16 +638,16 @@ public sealed partial class SharpSevenZipCompressor
                     foreach (var f in files)
                     {
                         var splitAfn = f[commonRootLength..].Split(Path.DirectorySeparatorChar);
-                        var cfn = splitAfn[0];
+                        var sb = new System.Text.StringBuilder(splitAfn[0]);
 
                         for (var i = 1; i < splitAfn.Length; i++)
                         {
-                            cfn += Path.DirectorySeparatorChar + splitAfn[i];
+                            sb.Append(Path.DirectorySeparatorChar).Append(splitAfn[i]);
+                            var cfn = sb.ToString();
 
-                            if (!fns.Contains(cfn))
+                            if (fns.Add(cfn))
                             {
                                 fis.Add(new FileInfo(cfn));
-                                fns.Add(cfn);
                             }
                         }
                     }
