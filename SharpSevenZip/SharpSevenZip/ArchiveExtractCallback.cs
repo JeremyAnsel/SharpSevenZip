@@ -275,6 +275,15 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                         {
                             throw new SharpSevenZipArchiveException("Some archive name is null or empty.");
                         }
+
+                        // Zip Slip guard: ensure the resolved path stays inside the target directory.
+                        var fullTarget = Path.GetFullPath(_directory!);
+                        var fullEntry = Path.GetFullPath(fileName);
+                        if (!fullEntry.StartsWith(fullTarget, StringComparison.OrdinalIgnoreCase))
+                        {
+                            throw new SharpSevenZipArchiveException(
+                                $"Archive entry \"{entryName}\" resolves outside the target directory.");
+                        }
                     }
                     catch (Exception e)
                     {
