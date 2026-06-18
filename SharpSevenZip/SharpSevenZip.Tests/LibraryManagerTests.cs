@@ -1,4 +1,4 @@
-﻿using SharpSevenZip.Exceptions;
+using SharpSevenZip.Exceptions;
 
 namespace SharpSevenZip.Tests;
 
@@ -8,7 +8,7 @@ public class LibraryManagerTests : TestBase
     [Test]
     public void SetNonExistant7zDllLocationTest()
     {
-        Assert.Throws<SharpSevenZipLibraryException>(() => SharpSevenZipLibraryManager.SetLibraryPath("null"));
+        Assert.Throws<SharpSevenZipLibraryException>((Action)(() => SharpSevenZipLibraryManager.SetLibraryPath("null")));
     }
 
     [Test]
@@ -19,7 +19,7 @@ public class LibraryManagerTests : TestBase
         // Exercising more code paths...
         features = SharpSevenZipLibraryManager.CurrentLibraryFeatures;
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(features.HasFlag(LibraryFeature.ExtractAll), Is.True);
             Assert.That(features.HasFlag(LibraryFeature.CompressAll), Is.True);

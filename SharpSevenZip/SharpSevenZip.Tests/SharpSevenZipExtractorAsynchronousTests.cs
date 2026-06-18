@@ -1,4 +1,4 @@
-﻿namespace SharpSevenZip.Tests;
+namespace SharpSevenZip.Tests;
 
 [TestFixture]
 public class SharpSevenZipExtractorAsynchronousTests : TestBase
@@ -35,7 +35,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             //timeToWait -= 25;
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractingInvoked, Is.EqualTo(3));
             Assert.That(extractionFinishedInvoked, Is.EqualTo(1));
@@ -90,7 +90,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             Thread.Sleep(25);
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractionFinishedInvoked, Is.True);
             Assert.That(File.ReadAllText(TemporaryFile), Is.EqualTo("file1"));
@@ -125,7 +125,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             Thread.Sleep(25);
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractionFinishedInvoked, Is.True);
             Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(2));
@@ -152,7 +152,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             await extractor.ExtractFileAsync(0, fileStream);
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(1));
             Assert.That(File.ReadAllText(TemporaryFile), Is.EqualTo("file1"));
@@ -168,7 +168,7 @@ public class SharpSevenZipExtractorAsynchronousTests : TestBase
             await extractor.ExtractFileAsync("file1.txt", fileStream);
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(1));
             Assert.That(File.ReadAllText(TemporaryFile), Is.EqualTo("file1"));

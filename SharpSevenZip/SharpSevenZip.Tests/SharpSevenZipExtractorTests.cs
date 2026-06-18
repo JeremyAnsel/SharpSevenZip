@@ -1,4 +1,4 @@
-﻿namespace SharpSevenZip.Tests;
+namespace SharpSevenZip.Tests;
 
 [TestFixture]
 public class SharpSevenZipExtractorTests : TestBase
@@ -59,7 +59,7 @@ public class SharpSevenZipExtractorTests : TestBase
             extractor.ExtractArchive(OutputDirectory);
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(1));
             Assert.That(File.ReadAllText(Directory.GetFiles(OutputDirectory)[0]), Does.StartWith("Lorem ipsum dolor sit amet"));
@@ -154,7 +154,7 @@ public class SharpSevenZipExtractorTests : TestBase
     {
         using (var tmp = new SharpSevenZipExtractor(@"TestData/multivolume.part0001.rar"))
         {
-            Assert.Multiple(() =>
+            Assert.Multiple((Action)delegate
             {
                 Assert.That(tmp.ArchiveProperties.Any(x => x.Name.Equals("IsVolume") && x.Value != null && x.Value.Equals(true)), Is.True);
                 Assert.That(tmp.ArchiveProperties.Any(x => x.Name.Equals("VolumeIndex") && x.Value != null && Convert.ToInt32(x.Value) == 0), Is.True);
@@ -163,7 +163,7 @@ public class SharpSevenZipExtractorTests : TestBase
 
         using (var tmp = new SharpSevenZipExtractor(@"TestData/multivolume.part0002.rar"))
         {
-            Assert.Multiple(() =>
+            Assert.Multiple((Action)delegate
             {
                 Assert.That(tmp.ArchiveProperties.Any(x => x.Name.Equals("IsVolume") && x.Value != null && x.Value.Equals(true)), Is.True);
                 Assert.That(tmp.ArchiveProperties.Any(x => x.Name.Equals("VolumeIndex") && x.Value != null && Convert.ToInt32(x.Value) == 0), Is.False);
@@ -194,7 +194,7 @@ public class SharpSevenZipExtractorTests : TestBase
         t1.Join();
         t2.Join();
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(Directory.Exists(destination1), Is.True);
             Assert.That(Directory.Exists(destination2), Is.True);
@@ -207,7 +207,7 @@ public class SharpSevenZipExtractorTests : TestBase
     public void ExtractArchiveWithLongPath()
     {
         using var extractor = new SharpSevenZipExtractor(@"TestData/long_path.7z");
-        Assert.Throws<PathTooLongException>(() => extractor.ExtractArchive(OutputDirectory));
+        Assert.Throws<PathTooLongException>((Action)(() => extractor.ExtractArchive(OutputDirectory)));
     }
 
     [Test]
@@ -217,7 +217,7 @@ public class SharpSevenZipExtractorTests : TestBase
         var fileNames = extractor.ArchiveFileNames;
         Assert.That(fileNames, Has.Count.EqualTo(3));
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(fileNames[0], Is.EqualTo("file1.txt"));
             Assert.That(fileNames[1], Is.EqualTo("file2.txt"));
@@ -232,7 +232,7 @@ public class SharpSevenZipExtractorTests : TestBase
         var fileData = extractor.ArchiveFileData;
         Assert.That(fileData, Has.Count.EqualTo(3));
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(fileData[0].FileName, Is.EqualTo("file1.txt"));
             Assert.That(fileData[0].Encrypted, Is.False);
