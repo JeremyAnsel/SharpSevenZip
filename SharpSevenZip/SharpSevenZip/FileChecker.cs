@@ -162,7 +162,7 @@ internal static class FileChecker
         {
             stream.Seek(-1024, SeekOrigin.End);
             var buf = new byte[1024];
-            stream.Read(buf, 0, 1024);
+            ReadFully(stream, buf, 0, buf.Length);
 
             if (Array.TrueForAll(buf, b => b == 0))
             {

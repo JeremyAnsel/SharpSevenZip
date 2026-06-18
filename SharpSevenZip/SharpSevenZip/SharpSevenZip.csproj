@@ -24,6 +24,7 @@
     <PackageProjectUrl>https://github.com/JeremyAnsel/SharpSevenZip</PackageProjectUrl>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <NoWarn>$(NoWarn);CS3016</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
