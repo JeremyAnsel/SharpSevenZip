@@ -1,4 +1,4 @@
-﻿using SharpSevenZip.Exceptions;
+using SharpSevenZip.Exceptions;
 
 namespace SharpSevenZip.Tests;
 
@@ -19,10 +19,10 @@ public class SharpSevenZipCompressorCustomParameterTests : TestBase
 
         // Check parameters for PPMd compression.
         compressor.CustomParameters.Add("mem", "25");
-        Assert.Throws<CompressionFailedException>(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip"));
+        Assert.Throws<CompressionFailedException>((Action)(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip")));
         compressor.CustomParameters.Remove("mem");
         compressor.CustomParameters.Add("o", "10");
-        Assert.Throws<CompressionFailedException>(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip"));
+        Assert.Throws<CompressionFailedException>((Action)(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip")));
         compressor.CustomParameters.Remove("o");
     }
 
@@ -35,11 +35,11 @@ public class SharpSevenZipCompressorCustomParameterTests : TestBase
         };
 
         compressor.CustomParameters.Add("x", "3");
-        Assert.Throws<CompressionFailedException>(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip"));
+        Assert.Throws<CompressionFailedException>((Action)(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip")));
         compressor.CustomParameters.Remove("x");
 
         compressor.CustomParameters.Add("em", "AES128");
-        Assert.Throws<CompressionFailedException>(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip"));
+        Assert.Throws<CompressionFailedException>((Action)(() => compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip")));
     }
 
     [Test]

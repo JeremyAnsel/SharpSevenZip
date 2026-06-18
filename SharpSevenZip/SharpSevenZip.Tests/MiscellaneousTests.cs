@@ -1,4 +1,4 @@
-﻿using SharpSevenZip.Lzma;
+using SharpSevenZip.Lzma;
 
 namespace SharpSevenZip.Tests;
 
@@ -38,7 +38,7 @@ public class MiscellaneousTests : TestBase
 
         using (var extractor = new SharpSevenZipExtractor(sfxFile))
         {
-            Assert.Multiple(() =>
+            Assert.Multiple((Action)delegate
             {
                 Assert.That(extractor.FilesCount, Is.EqualTo(1));
                 Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.zip"));
@@ -99,7 +99,7 @@ public class MiscellaneousTests : TestBase
 
         using var extractor = new SharpSevenZipExtractor(newZip);
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.txt"));

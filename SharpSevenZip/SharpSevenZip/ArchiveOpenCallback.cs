@@ -31,12 +31,13 @@ internal sealed partial class ArchiveOpenCallback : CallbackBase, IArchiveOpenCa
     {
         if (!string.IsNullOrEmpty(fileName))
         {
-            _fileInfo = new FileInfo(fileName);
-            _volumeFileNames.Add(fileName);
-            if (fileName.EndsWith("001", StringComparison.Ordinal))
+            var name = fileName!;
+            _fileInfo = new FileInfo(name);
+            _volumeFileNames.Add(name);
+            if (name.EndsWith("001", StringComparison.Ordinal))
             {
                 int index = 2;
-                var baseName = fileName[..^3];
+                var baseName = name[..^3];
                 var volName = baseName + index.ToString("D3", System.Globalization.CultureInfo.InvariantCulture);
                 while (File.Exists(volName))
                 {

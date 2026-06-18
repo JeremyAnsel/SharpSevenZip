@@ -1,4 +1,6 @@
-﻿using System.Runtime.Serialization;
+#if !NET8_0_OR_GREATER
+using System.Runtime.Serialization;
+#endif
 
 namespace SharpSevenZip.Exceptions;
 
@@ -34,6 +36,7 @@ public class ExtractionFailedException : SharpSevenZipException
     public ExtractionFailedException(string message, Exception inner)
         : base(DEFAULT_MESSAGE, message, inner) { }
 
+#if !NET8_0_OR_GREATER
     /// <summary>
     /// Initializes a new instance of the ExtractionFailedException class
     /// </summary>
@@ -42,4 +45,5 @@ public class ExtractionFailedException : SharpSevenZipException
     protected ExtractionFailedException(
         SerializationInfo info, StreamingContext context)
         : base(info, context) { }
+#endif
 }

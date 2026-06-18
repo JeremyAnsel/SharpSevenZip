@@ -33,7 +33,7 @@ public sealed partial class SharpSevenZipExtractor
     private bool? _isSolid;
     private bool _opened;
     private bool _disposed;
-    private InArchiveFormat _format = (InArchiveFormat)(-1);
+    private InArchiveFormat _format = InArchiveFormat.None;
     private ReadOnlyCollection<ArchiveFileInfo>? _archiveFileInfoCollection;
     private ReadOnlyCollection<ArchiveProperty>? _archiveProperties;
     private ReadOnlyCollection<string>? _volumeFileNames;
@@ -55,7 +55,7 @@ public sealed partial class SharpSevenZipExtractor
         _fileName = archiveFullName;
         var isExecutable = false;
 
-        if ((int)_format == -1)
+        if (_format == InArchiveFormat.None)
         {
             _format = FileChecker.CheckSignature(archiveFullName, out _offset, out isExecutable);
         }
@@ -103,7 +103,7 @@ public sealed partial class SharpSevenZipExtractor
         ValidateStream(stream);
         var isExecutable = false;
 
-        if ((int)_format == -1)
+        if (_format == InArchiveFormat.None)
         {
             _format = FileChecker.CheckSignature(stream, out _offset, out isExecutable);
         }
@@ -165,7 +165,7 @@ public sealed partial class SharpSevenZipExtractor
     /// <param name="leaveOpen">Leaves the base stream open.</param>
     /// <remarks>The archive format is guessed by the signature.</remarks>
     public SharpSevenZipExtractor(Stream archiveStream, bool leaveOpen)
-        : this(archiveStream, leaveOpen, (InArchiveFormat)(-1))
+        : this(archiveStream, leaveOpen, InArchiveFormat.None)
     {
     }
 
@@ -252,7 +252,7 @@ public sealed partial class SharpSevenZipExtractor
     /// <param name="leaveOpen">Leaves the base stream open.</param>
     /// <remarks>The archive format is guessed by the signature.</remarks>
     public SharpSevenZipExtractor(Stream archiveStream, string password, bool leaveOpen)
-        : this(archiveStream, password, leaveOpen, (InArchiveFormat)(-1))
+        : this(archiveStream, password, leaveOpen, InArchiveFormat.None)
     {
     }
 

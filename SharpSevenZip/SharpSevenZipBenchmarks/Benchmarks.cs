@@ -1,4 +1,4 @@
-﻿using BenchmarkDotNet.Attributes;
+using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Columns;
 using BenchmarkDotNet.Jobs;
 using SharpCompress.Archives;
@@ -111,7 +111,7 @@ public class Benchmarks
 
         for (int i = 0; i < 10; i++)
         {
-            using IArchive zip = ArchiveFactory.Open("empty.zip");
+            using IArchive zip = ArchiveFactory.OpenArchive("empty.zip");
 
             foreach (var entry in zip.Entries)
             {
@@ -186,7 +186,7 @@ public class Benchmarks
 
         for (int i = 0; i < 10; i++)
         {
-            using IArchive zip = ArchiveFactory.Open(Test1Archive);
+            using IArchive zip = ArchiveFactory.OpenArchive(Test1Archive);
 
             foreach (var entry in zip.Entries)
             {
@@ -206,7 +206,7 @@ public class Benchmarks
 
         for (int i = 0; i < 10; i++)
         {
-            using IArchive zip = ArchiveFactory.Open(Test1Archive);
+            using IArchive zip = ArchiveFactory.OpenArchive(Test1Archive);
 
             foreach (var entry in zip.Entries)
             {

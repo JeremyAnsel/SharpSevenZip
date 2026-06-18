@@ -43,8 +43,11 @@ public enum SfxModule
 /// </summary>
 public enum SfxTarget
 {
-    Auto, // use Environment.Is64BitProcess
+    /// <summary>Automatically choose the platform based on <see cref="Environment.Is64BitProcess"/>.</summary>
+    Auto,
+    /// <summary>Target 32-bit (x86) platform.</summary>
     X86,
+    /// <summary>Target 64-bit (x64) platform.</summary>
     X64
 }
 /// <summary>
@@ -52,6 +55,7 @@ public enum SfxTarget
 /// </summary>
 public class SharpSevenZipSfx
 {
+    /// <summary>Gets or sets the target platform for the self-extracting archive.</summary>
     public static SfxTarget TargetPlatform { get; set; } = SfxTarget.Auto;
     private static Dictionary<SfxModule, List<string>> SfxSupportedModuleNames
     {

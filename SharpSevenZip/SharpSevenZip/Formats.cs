@@ -303,6 +303,20 @@ public enum InArchiveFormat
     /// </summary>
     /// <remarks><a href="https://en.wikipedia.org/wiki/Base64">Wikipedia information</a></remarks>
     Base64,
+    /// <summary>
+    /// Android Verified Boot image format.
+    /// </summary>
+    /// <remarks><a href="https://source.android.com/docs/security/features/verifiedboot">Android documentation</a></remarks>
+    Avb,
+    /// <summary>
+    /// Linux Logical Volume Manager format.
+    /// </summary>
+    /// <remarks><a href="https://en.wikipedia.org/wiki/Logical_Volume_Manager_(Linux)">Wikipedia information</a></remarks>
+    Lvm,
+    /// <summary>
+    /// Unknown or unrecognized format (sentinel/not-found value).
+    /// </summary>
+    None = -1,
 }
 
 /// <summary>
@@ -505,6 +519,9 @@ public static class Formats
                 {InArchiveFormat.Sparse,    new Guid("23170f69-40c1-278a-1000-000110C20000")},
                 {InArchiveFormat.Coff,      new Guid("23170f69-40c1-278a-1000-000110C60000")},
                 {InArchiveFormat.Base64,    new Guid("23170f69-40c1-278a-1000-000110C50000")},
+                {InArchiveFormat.Msi,       new Guid("23170f69-40c1-278a-1000-000110e50000")},
+                {InArchiveFormat.Avb,       new Guid("23170f69-40c1-278a-1000-000110C00000")},
+                {InArchiveFormat.Lvm,       new Guid("23170f69-40c1-278a-1000-000110BF0000")},
         };
 
     #endregion
@@ -628,6 +645,13 @@ public static class Formats
              // Ar/deb - same 7-zip handler (format 0xEC)
              {"ar",     InArchiveFormat.Deb },
              {"a",      InArchiveFormat.Deb },
+             // MSI uses the same 7-zip Compound handler (format 0xE5)
+             {"msi",    InArchiveFormat.Msi },
+             {"msp",    InArchiveFormat.Msi },
+             {"msm",    InArchiveFormat.Msi },
+             // Virtual machine disk images
+             {"avb",    InArchiveFormat.Avb },
+             {"lvm",    InArchiveFormat.Lvm },
     };
 
     #endregion
@@ -652,7 +676,7 @@ public static class Formats
             {"5D-00-00-40-00",                                                  InArchiveFormat.Lzma},
             {"2D-6C-68",                                                        InArchiveFormat.Lzh},
             //^ 2 byte offset
-            {"1F-9D-90",                                                        InArchiveFormat.Lzw},
+            {"1F-9D",                                                            InArchiveFormat.Lzw},
             {"60-EA",                                                           InArchiveFormat.Arj},
             {"42-5A-68",                                                        InArchiveFormat.BZip2},
             {"4D-53-43-46",                                                     InArchiveFormat.Cab},
@@ -663,18 +687,24 @@ public static class Formats
             //^ 0x8001, 0x8801 or 0x9001 byte offset
             {"ED-AB-EE-DB",                                                     InArchiveFormat.Rpm},
             {"4D-53-57-49-4D-00-00-00",                                         InArchiveFormat.Wim},
-            {"udf",                                                             InArchiveFormat.Udf},
-            {"mub",                                                             InArchiveFormat.Mub},
+            // UDF: Beginning Extended Area Descriptor (BEA01) at offset 0x8000
+            {"00-42-45-41-30-31-01-00",                                         InArchiveFormat.Udf},
+
             {"78-61-72-21",                                                     InArchiveFormat.Xar},
             //0x400 byte offset
             {"48-2B",                                                           InArchiveFormat.Hfs},
-            {"FD-37-7A-58-5A",                                                  InArchiveFormat.XZ},
+            {"FD-37-7A-58-5A-00",                                               InArchiveFormat.XZ},
             {"46-4C-56",                                                        InArchiveFormat.Flv},
             {"46-57-53",                                                        InArchiveFormat.Swf},
+            {"43-57-53",                                                        InArchiveFormat.Swfc},
+            {"5A-57-53",                                                        InArchiveFormat.Swfc},
             {"4D-5A",                                                           InArchiveFormat.PE},
             {"7F-45-4C-46",                                                     InArchiveFormat.Elf},
             {"78",                                                              InArchiveFormat.Dmg},
             {"63-6F-6E-65-63-74-69-78",                                         InArchiveFormat.Vhd},
+            // Mub (Mach-O fat binary): 7-byte sig avoids Java .class false positive (CA-FE-BA-BE alone)
+            {"CA-FE-BA-BE-00-00-00",                                            InArchiveFormat.Mub},
+            {"B9-FA-F1-0E",                                                     InArchiveFormat.Mub},
             {"45-46-49-20-50-41-52-54-00-00-01-00",                             InArchiveFormat.Gpt},
             {"28-B5-2F-FD",                                                     InArchiveFormat.Zstd},
             {"76-68-64-78-66-69-6C-65",                                         InArchiveFormat.Vhdx},
@@ -719,11 +749,15 @@ public static class Formats
         var rawExt = Path.GetExtension(fileName);
         string extension = rawExt.Length > 0 ? rawExt[1..] : "";
 
-        if (!InExtensionFormats.ContainsKey(extension) && reportErrors)
+        if (!InExtensionFormats.TryGetValue(extension, out var format))
         {
-            throw new ArgumentException("Extension \"" + extension + "\" is not a supported archive file name extension.");
+            if (reportErrors)
+            {
+                throw new ArgumentException($"Extension \"{extension}\" is not a supported archive file name extension.");
+            }
+            return InArchiveFormat.None;
         }
 
-        return InExtensionFormats[extension];
+        return format;
     }
 }

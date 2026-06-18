@@ -132,28 +132,35 @@ internal struct PropVariant
                         return DateTime.MinValue;
                     }
                 default:
-                    var propHandle = GCHandle.Alloc(this, GCHandleType.Pinned);
-
-                    try
+#if NET5_0_OR_GREATER
+                    if (OperatingSystem.IsWindows())
+#else
+                    if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+#endif
                     {
-                        return System.Runtime.InteropServices.Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
-                    }
-                    catch (Exception ex) when (ex is InvalidOperationException or NotSupportedException)
-                    {
-                        return VarType switch
+                        var propHandle = GCHandle.Alloc(this, GCHandleType.Pinned);
+                        try
                         {
-                            VarEnum.VT_UI8 => UInt64Value,
-                            VarEnum.VT_UI4 => UInt32Value,
-                            VarEnum.VT_I8 => Int64Value,
-                            VarEnum.VT_I4 => Int32Value,
-                            VarEnum.VT_BOOL => Int32Value != 0,
-                            _ => 0,
-                        };
+                            return System.Runtime.InteropServices.Marshal.GetObjectForNativeVariant(propHandle.AddrOfPinnedObject());
+                        }
+                        catch (Exception ex) when (ex is InvalidOperationException or NotSupportedException)
+                        {
+                            // fall through to platform-neutral conversion below
+                        }
+                        finally
+                        {
+                            propHandle.Free();
+                        }
                     }
-                    finally
+                    return VarType switch
                     {
-                        propHandle.Free();
-                    }
+                        VarEnum.VT_UI8 => UInt64Value,
+                        VarEnum.VT_UI4 => UInt32Value,
+                        VarEnum.VT_I8 => Int64Value,
+                        VarEnum.VT_I4 => Int32Value,
+                        VarEnum.VT_BOOL => Int32Value != 0,
+                        _ => 0,
+                    };
             }
         }
     }

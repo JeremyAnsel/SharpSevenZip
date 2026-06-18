@@ -111,7 +111,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
         _directory = directory;
         _actualIndexes = actualIndexes;
         _directoryStructure = directoryStructure;
-        if (!directory.EndsWith(Path.DirectorySeparatorChar.ToString(), StringComparison.CurrentCulture))
+        if (_directory!.Length == 0 || _directory[_directory.Length - 1] != Path.DirectorySeparatorChar)
         {
             _directory += Path.DirectorySeparatorChar;
         }
@@ -249,7 +249,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                             var dotIndex = archName!.LastIndexOf('.');
                             if (dotIndex > 0)
                             {
-                              archName = archName[..dotIndex];
+                                archName = archName[..dotIndex];
                             }
                             if (!archName.EndsWith(".tar",
                                                    StringComparison.OrdinalIgnoreCase))
@@ -277,7 +277,10 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                         }
 
                         // Zip Slip guard: ensure the resolved path stays inside the target directory.
-                        var fullTarget = Path.GetFullPath(_directory!);
+                        // fullTarget MUST end with a separator so "C:\output" doesn't match "C:\outputevil\..."
+                        var fullTarget = Path.GetFullPath(_directory!).TrimEnd(
+                            Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar)
+                            + Path.DirectorySeparatorChar;
                         var fullEntry = Path.GetFullPath(fileName);
                         if (!fullEntry.StartsWith(fullTarget, StringComparison.OrdinalIgnoreCase))
                         {
@@ -538,6 +541,11 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
     /// <returns></returns>
     private static string RemoveIllegalCharacters(string str, bool isDirectory = false)
     {
+        // Normalise both kinds of path separator before splitting so that
+        // Unix-style '/' paths from Zip/Tar archives are handled correctly
+        // on Windows (where '/' is otherwise an invalid filename character).
+        str = str.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+
         var splitFileName = new List<string>(str.Split(Path.DirectorySeparatorChar));
 
         foreach (var chr in Path.GetInvalidFileNameChars())
@@ -548,11 +556,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                 {
                     continue;
                 }
-                if (string.IsNullOrEmpty(splitFileName[i]))
-                {
-                    continue;
-                }
-                while (splitFileName[i].IndexOf(chr) > -1)
+                if (!string.IsNullOrEmpty(splitFileName[i]))
                 {
                     splitFileName[i] = splitFileName[i].Replace(chr, '_');
                 }

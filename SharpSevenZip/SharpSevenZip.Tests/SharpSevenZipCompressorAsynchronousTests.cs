@@ -1,4 +1,4 @@
-﻿using SharpSevenZip.Exceptions;
+using SharpSevenZip.Exceptions;
 
 namespace SharpSevenZip.Tests;
 
@@ -38,7 +38,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         var numberOfTestDataFiles = Directory.GetFiles("TestData").Length;
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(filesFoundInvoked, Is.EqualTo(1));
             Assert.That(fileCompressionStartedInvoked, Is.EqualTo(numberOfTestDataFiles));
@@ -76,7 +76,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(2));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("zip.zip"));
@@ -143,7 +143,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("tartar"));
@@ -175,14 +175,14 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(2));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("zip.zip"));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("tar.tar"));
         });
 
-        Assert.Throws<ExtractionFailedException>(() => extractor.ExtractArchive(OutputDirectory));
+        Assert.Throws<ExtractionFailedException>((Action)(() => extractor.ExtractArchive(OutputDirectory)));
     }
 
     [Test]
@@ -194,7 +194,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(2));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("zip.zip"));
@@ -211,7 +211,7 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(Directory.GetFiles("TestData"), Has.Length.EqualTo(extractor.FilesCount));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("zip.zip"));
@@ -228,13 +228,13 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile, "insecure");
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(2));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("zip.zip"));
             Assert.That(extractor.ArchiveFileNames, Does.Contain("tar.tar"));
         });
 
-        Assert.Throws<ExtractionFailedException>(() => extractor.ExtractArchive(OutputDirectory));
+        Assert.Throws<ExtractionFailedException>((Action)(() => extractor.ExtractArchive(OutputDirectory)));
     }
 }

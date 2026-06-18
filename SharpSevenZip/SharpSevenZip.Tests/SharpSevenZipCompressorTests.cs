@@ -1,4 +1,4 @@
-﻿using SharpSevenZip.Exceptions;
+using SharpSevenZip.Exceptions;
 
 namespace SharpSevenZip.Tests;
 
@@ -35,7 +35,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0].StartsWith("TestData_LongerDirectoryName", StringComparison.OrdinalIgnoreCase), Is.True);
@@ -47,8 +47,8 @@ public class SharpSevenZipCompressorTests : TestBase
     {
         var compressor = new SharpSevenZipCompressor();
 
-        Assert.Throws<ArgumentException>(() => compressor.CompressDirectory("nonexistent", TemporaryFile));
-        Assert.Throws<ArgumentException>(() => compressor.CompressDirectory("", TemporaryFile));
+        Assert.Throws<ArgumentException>((Action)(() => compressor.CompressDirectory("nonexistent", TemporaryFile)));
+        Assert.Throws<ArgumentException>((Action)(() => compressor.CompressDirectory("", TemporaryFile)));
     }
 
     [Test]
@@ -63,7 +63,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("emptyfile.txt"));
@@ -161,7 +161,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile, "password");
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("changed.zap"));
@@ -180,7 +180,7 @@ public class SharpSevenZipCompressorTests : TestBase
 
         var modificationList = new Dictionary<int, string?> { { 0, "" } };
 
-        Assert.Throws<SharpSevenZipArchiveException>(() => compressor.ModifyArchive(TemporaryFile, modificationList));
+        Assert.Throws<SharpSevenZipArchiveException>((Action)(() => compressor.ModifyArchive(TemporaryFile, modificationList)));
     }
 
     [Test]
@@ -203,7 +203,7 @@ public class SharpSevenZipCompressorTests : TestBase
             extractor.ExtractArchive(OutputDirectory);
         }
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(File.Exists(Path.Combine(OutputDirectory, "renamed.7z")), Is.True);
             Assert.That(File.Exists(Path.Combine(OutputDirectory, "7z_LZMA2.7z")), Is.False);
@@ -245,7 +245,7 @@ public class SharpSevenZipCompressorTests : TestBase
 
         compressor.CompressFiles(TemporaryFile, @"TestData/7z_LZMA2.7z");
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(3));
             Assert.That(File.Exists($"{TemporaryFile}.003"), Is.True);
@@ -265,7 +265,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.zip"));
@@ -290,7 +290,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileData[0].Size, Is.EqualTo(new FileInfo(@"TestData/zip.zip").Length));
@@ -312,7 +312,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.zip"));
@@ -342,7 +342,7 @@ public class SharpSevenZipCompressorTests : TestBase
         Assert.That(File.Exists(TemporaryFile), Is.True);
         {
             using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-            Assert.Multiple(() =>
+            Assert.Multiple((Action)delegate
             {
                 Assert.That(extractor.FilesCount, Is.EqualTo(1));
                 Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.zip"));
@@ -367,7 +367,7 @@ public class SharpSevenZipCompressorTests : TestBase
         compressor.CompressStreamDictionary(fileDict, TemporaryFile);
         {
             using var extractor = new SharpSevenZipExtractor(TemporaryFile);
-            Assert.Multiple(() =>
+            Assert.Multiple((Action)delegate
             {
                 Assert.That(extractor.FilesCount, Is.EqualTo(2));
                 Assert.That(extractor.ArchiveFileNames[1], Is.EqualTo("zip2.zip"));
@@ -401,7 +401,7 @@ public class SharpSevenZipCompressorTests : TestBase
         t1.Join();
         t2.Join();
 
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(File.Exists(tempFile1), Is.True);
             Assert.That(File.Exists(tempFile2), Is.True);
@@ -461,7 +461,7 @@ public class SharpSevenZipCompressorTests : TestBase
         }
 
         using var extractor = new SharpSevenZipExtractor(TemporaryFile, "password");
-        Assert.Multiple(() =>
+        Assert.Multiple((Action)delegate
         {
             Assert.That(extractor.FilesCount, Is.EqualTo(1));
             Assert.That(extractor.ArchiveFileNames[0], Is.EqualTo("zip.zip"));
