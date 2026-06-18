@@ -1009,15 +1009,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.CompressionFailedException.New()
   nameWithType: CompressionFailedException.CompressionFailedException()
   nameWithType.vb: CompressionFailedException.New()
-- uid: SharpSevenZip.Exceptions.CompressionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: CompressionFailedException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.CompressionFailedException.html#SharpSevenZip_Exceptions_CompressionFailedException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.CompressionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.CompressionFailedException.CompressionFailedException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.CompressionFailedException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: CompressionFailedException.CompressionFailedException(SerializationInfo, StreamingContext)
-  nameWithType.vb: CompressionFailedException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.CompressionFailedException.#ctor(System.String)
   name: CompressionFailedException(string)
   href: api/SharpSevenZip.Exceptions.CompressionFailedException.html#SharpSevenZip_Exceptions_CompressionFailedException__ctor_System_String_
@@ -1067,15 +1058,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.ExtractionFailedException.New()
   nameWithType: ExtractionFailedException.ExtractionFailedException()
   nameWithType.vb: ExtractionFailedException.New()
-- uid: SharpSevenZip.Exceptions.ExtractionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: ExtractionFailedException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.ExtractionFailedException.html#SharpSevenZip_Exceptions_ExtractionFailedException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.ExtractionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.ExtractionFailedException.ExtractionFailedException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.ExtractionFailedException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: ExtractionFailedException.ExtractionFailedException(SerializationInfo, StreamingContext)
-  nameWithType.vb: ExtractionFailedException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.ExtractionFailedException.#ctor(System.String)
   name: ExtractionFailedException(string)
   href: api/SharpSevenZip.Exceptions.ExtractionFailedException.html#SharpSevenZip_Exceptions_ExtractionFailedException__ctor_System_String_
@@ -1125,15 +1107,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.LzmaException.New()
   nameWithType: LzmaException.LzmaException()
   nameWithType.vb: LzmaException.New()
-- uid: SharpSevenZip.Exceptions.LzmaException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: LzmaException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.LzmaException.html#SharpSevenZip_Exceptions_LzmaException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.LzmaException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.LzmaException.LzmaException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.LzmaException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: LzmaException.LzmaException(SerializationInfo, StreamingContext)
-  nameWithType.vb: LzmaException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.LzmaException.#ctor(System.String)
   name: LzmaException(string)
   href: api/SharpSevenZip.Exceptions.LzmaException.html#SharpSevenZip_Exceptions_LzmaException__ctor_System_String_
@@ -1183,15 +1156,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipArchiveException.New()
   nameWithType: SharpSevenZipArchiveException.SharpSevenZipArchiveException()
   nameWithType.vb: SharpSevenZipArchiveException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipArchiveException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipArchiveException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html#SharpSevenZip_Exceptions_SharpSevenZipArchiveException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipArchiveException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipArchiveException.SharpSevenZipArchiveException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipArchiveException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipArchiveException.SharpSevenZipArchiveException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipArchiveException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipArchiveException.#ctor(System.String)
   name: SharpSevenZipArchiveException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipArchiveException.html#SharpSevenZip_Exceptions_SharpSevenZipArchiveException__ctor_System_String_
@@ -1241,15 +1205,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.New()
   nameWithType: SharpSevenZipCompressionFailedException.SharpSevenZipCompressionFailedException()
   nameWithType.vb: SharpSevenZipCompressionFailedException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipCompressionFailedException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html#SharpSevenZip_Exceptions_SharpSevenZipCompressionFailedException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.SharpSevenZipCompressionFailedException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipCompressionFailedException.SharpSevenZipCompressionFailedException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipCompressionFailedException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.#ctor(System.String)
   name: SharpSevenZipCompressionFailedException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipCompressionFailedException.html#SharpSevenZip_Exceptions_SharpSevenZipCompressionFailedException__ctor_System_String_
@@ -1299,15 +1254,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New()
   nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException()
   nameWithType.vb: SharpSevenZipConfigurationException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipConfigurationException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipConfigurationException.SharpSevenZipConfigurationException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipConfigurationException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.#ctor(System.String)
   name: SharpSevenZipConfigurationException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipConfigurationException.html#SharpSevenZip_Exceptions_SharpSevenZipConfigurationException__ctor_System_String_
@@ -1357,15 +1303,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipException.New()
   nameWithType: SharpSevenZipException.SharpSevenZipException()
   nameWithType.vb: SharpSevenZipException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipException.html#SharpSevenZip_Exceptions_SharpSevenZipException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipException.SharpSevenZipException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipException.SharpSevenZipException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipException.#ctor(System.String)
   name: SharpSevenZipException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipException.html#SharpSevenZip_Exceptions_SharpSevenZipException__ctor_System_String_
@@ -1427,15 +1364,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.New()
   nameWithType: SharpSevenZipExtractionFailedException.SharpSevenZipExtractionFailedException()
   nameWithType.vb: SharpSevenZipExtractionFailedException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipExtractionFailedException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html#SharpSevenZip_Exceptions_SharpSevenZipExtractionFailedException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.SharpSevenZipExtractionFailedException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipExtractionFailedException.SharpSevenZipExtractionFailedException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipExtractionFailedException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.#ctor(System.String)
   name: SharpSevenZipExtractionFailedException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipExtractionFailedException.html#SharpSevenZip_Exceptions_SharpSevenZipExtractionFailedException__ctor_System_String_
@@ -1485,15 +1413,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.New()
   nameWithType: SharpSevenZipInvalidFileNamesException.SharpSevenZipInvalidFileNamesException()
   nameWithType.vb: SharpSevenZipInvalidFileNamesException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipInvalidFileNamesException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html#SharpSevenZip_Exceptions_SharpSevenZipInvalidFileNamesException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.SharpSevenZipInvalidFileNamesException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipInvalidFileNamesException.SharpSevenZipInvalidFileNamesException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipInvalidFileNamesException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.#ctor(System.String)
   name: SharpSevenZipInvalidFileNamesException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipInvalidFileNamesException.html#SharpSevenZip_Exceptions_SharpSevenZipInvalidFileNamesException__ctor_System_String_
@@ -1543,15 +1462,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipLibraryException.New()
   nameWithType: SharpSevenZipLibraryException.SharpSevenZipLibraryException()
   nameWithType.vb: SharpSevenZipLibraryException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipLibraryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipLibraryException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html#SharpSevenZip_Exceptions_SharpSevenZipLibraryException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipLibraryException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipLibraryException.SharpSevenZipLibraryException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipLibraryException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipLibraryException.SharpSevenZipLibraryException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipLibraryException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipLibraryException.#ctor(System.String)
   name: SharpSevenZipLibraryException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipLibraryException.html#SharpSevenZip_Exceptions_SharpSevenZipLibraryException__ctor_System_String_
@@ -1601,15 +1511,6 @@ references:
   fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.New()
   nameWithType: SharpSevenZipSfxValidationException.SharpSevenZipSfxValidationException()
   nameWithType.vb: SharpSevenZipSfxValidationException.New()
-- uid: SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name: SharpSevenZipSfxValidationException(SerializationInfo, StreamingContext)
-  href: api/SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html#SharpSevenZip_Exceptions_SharpSevenZipSfxValidationException__ctor_System_Runtime_Serialization_SerializationInfo_System_Runtime_Serialization_StreamingContext_
-  commentId: M:SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
-  name.vb: New(SerializationInfo, StreamingContext)
-  fullName: SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.SharpSevenZipSfxValidationException(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  fullName.vb: SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.New(System.Runtime.Serialization.SerializationInfo, System.Runtime.Serialization.StreamingContext)
-  nameWithType: SharpSevenZipSfxValidationException.SharpSevenZipSfxValidationException(SerializationInfo, StreamingContext)
-  nameWithType.vb: SharpSevenZipSfxValidationException.New(SerializationInfo, StreamingContext)
 - uid: SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.#ctor(System.String)
   name: SharpSevenZipSfxValidationException(string)
   href: api/SharpSevenZip.Exceptions.SharpSevenZipSfxValidationException.html#SharpSevenZip_Exceptions_SharpSevenZipSfxValidationException__ctor_System_String_
@@ -1728,6 +1629,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Arj
   fullName: SharpSevenZip.InArchiveFormat.Arj
   nameWithType: InArchiveFormat.Arj
+- uid: SharpSevenZip.InArchiveFormat.Avb
+  name: Avb
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Avb
+  commentId: F:SharpSevenZip.InArchiveFormat.Avb
+  fullName: SharpSevenZip.InArchiveFormat.Avb
+  nameWithType: InArchiveFormat.Avb
 - uid: SharpSevenZip.InArchiveFormat.BZip2
   name: BZip2
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_BZip2
@@ -1854,6 +1761,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Lp
   fullName: SharpSevenZip.InArchiveFormat.Lp
   nameWithType: InArchiveFormat.Lp
+- uid: SharpSevenZip.InArchiveFormat.Lvm
+  name: Lvm
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Lvm
+  commentId: F:SharpSevenZip.InArchiveFormat.Lvm
+  fullName: SharpSevenZip.InArchiveFormat.Lvm
+  nameWithType: InArchiveFormat.Lvm
 - uid: SharpSevenZip.InArchiveFormat.Lzh
   name: Lzh
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Lzh
@@ -1908,6 +1821,12 @@ references:
   commentId: F:SharpSevenZip.InArchiveFormat.Mub
   fullName: SharpSevenZip.InArchiveFormat.Mub
   nameWithType: InArchiveFormat.Mub
+- uid: SharpSevenZip.InArchiveFormat.None
+  name: None
+  href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_None
+  commentId: F:SharpSevenZip.InArchiveFormat.None
+  fullName: SharpSevenZip.InArchiveFormat.None
+  nameWithType: InArchiveFormat.None
 - uid: SharpSevenZip.InArchiveFormat.Nsis
   name: Nsis
   href: api/SharpSevenZip.InArchiveFormat.html#SharpSevenZip_InArchiveFormat_Nsis

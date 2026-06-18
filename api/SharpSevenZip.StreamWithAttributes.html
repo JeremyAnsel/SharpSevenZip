@@ -9,7 +9,7 @@
       <meta name="viewport" content="width=device-width">
       <meta name="title" content="Class StreamWithAttributes ">
     
-    
+    <meta name="description" content="Associates a  with optional file-time attributes for use in archive compression.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -292,7 +292,8 @@
 
 
   <h1 id="SharpSevenZip_StreamWithAttributes" data-uid="SharpSevenZip.StreamWithAttributes" class="text-break">Class StreamWithAttributes</h1>
-  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 summary"><p>Associates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> with optional file-time attributes for use in archive compression.</p>
+</div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
     <h5>Inheritance</h5>
@@ -340,11 +341,12 @@
     <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes__ctor_System_IO_Stream_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Nullable_System_DateTime__.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.%23ctor(System.IO.Stream%2CSystem.Nullable%7BSystem.DateTime%7D%2CSystem.Nullable%7BSystem.DateTime%7D%2CSystem.Nullable%7BSystem.DateTime%7D)%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L3">View Source</a>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L10">View Source</a>
   </span>
   <a id="SharpSevenZip_StreamWithAttributes__ctor_" data-uid="SharpSevenZip.StreamWithAttributes.#ctor*"></a>
   <h4 id="SharpSevenZip_StreamWithAttributes__ctor_System_IO_Stream_System_Nullable_System_DateTime__System_Nullable_System_DateTime__System_Nullable_System_DateTime__" data-uid="SharpSevenZip.StreamWithAttributes.#ctor(System.IO.Stream,System.Nullable{System.DateTime},System.Nullable{System.DateTime},System.Nullable{System.DateTime})">StreamWithAttributes(Stream, DateTime?, DateTime?, DateTime?)</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>Associates a <a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a> with optional file-time attributes for use in archive compression.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -363,22 +365,26 @@
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.io.stream">Stream</a></td>
         <td><span class="parametername">Stream</span></td>
-        <td></td>
+        <td><p>The stream containing the file data to compress.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
         <td><span class="parametername">CreationTime</span></td>
-        <td></td>
+        <td><p>The creation time to store in the archive, or <code>null</code> to omit.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
         <td><span class="parametername">LastWriteTime</span></td>
-        <td></td>
+        <td><p>The last-write time to store in the archive, or <code>null</code> to omit.</p>
+</td>
       </tr>
       <tr>
         <td><a class="xref" href="https://learn.microsoft.com/dotnet/api/system.datetime">DateTime</a>?</td>
         <td><span class="parametername">LastAccessTime</span></td>
-        <td></td>
+        <td><p>The last-access time to store in the archive, or <code>null</code> to omit.</p>
+</td>
       </tr>
     </tbody>
   </table>
@@ -389,11 +395,12 @@
     <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_CreationTime.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.CreationTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L3">View Source</a>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L10">View Source</a>
   </span>
   <a id="SharpSevenZip_StreamWithAttributes_CreationTime_" data-uid="SharpSevenZip.StreamWithAttributes.CreationTime*"></a>
   <h4 id="SharpSevenZip_StreamWithAttributes_CreationTime" data-uid="SharpSevenZip.StreamWithAttributes.CreationTime">CreationTime</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The creation time to store in the archive, or <code>null</code> to omit.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -419,11 +426,12 @@
     <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_LastAccessTime.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.LastAccessTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L3">View Source</a>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L10">View Source</a>
   </span>
   <a id="SharpSevenZip_StreamWithAttributes_LastAccessTime_" data-uid="SharpSevenZip.StreamWithAttributes.LastAccessTime*"></a>
   <h4 id="SharpSevenZip_StreamWithAttributes_LastAccessTime" data-uid="SharpSevenZip.StreamWithAttributes.LastAccessTime">LastAccessTime</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The last-access time to store in the archive, or <code>null</code> to omit.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -449,11 +457,12 @@
     <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_LastWriteTime.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.LastWriteTime%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L3">View Source</a>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L10">View Source</a>
   </span>
   <a id="SharpSevenZip_StreamWithAttributes_LastWriteTime_" data-uid="SharpSevenZip.StreamWithAttributes.LastWriteTime*"></a>
   <h4 id="SharpSevenZip_StreamWithAttributes_LastWriteTime" data-uid="SharpSevenZip.StreamWithAttributes.LastWriteTime">LastWriteTime</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The last-write time to store in the archive, or <code>null</code> to omit.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -479,11 +488,12 @@
     <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes_Stream.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes.Stream%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Edit this page</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L3">View Source</a>
+    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L10">View Source</a>
   </span>
   <a id="SharpSevenZip_StreamWithAttributes_Stream_" data-uid="SharpSevenZip.StreamWithAttributes.Stream*"></a>
   <h4 id="SharpSevenZip_StreamWithAttributes_Stream" data-uid="SharpSevenZip.StreamWithAttributes.Stream">Stream</h4>
-  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 summary"><p>The stream containing the file data to compress.</p>
+</div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="declaration">Declaration</h5>
   <div class="codewrapper">
@@ -520,7 +530,7 @@
                     <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_StreamWithAttributes.md&amp;value=---%0Auid%3A%20SharpSevenZip.StreamWithAttributes%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L3" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/StreamWithAttributes.cs/#L10" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

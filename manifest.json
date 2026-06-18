@@ -750,7 +750,7 @@
       "Uid": null,
       "IsMRef": true,
       "Title": "SharpSevenZip.StreamWithAttributes",
-      "Summary": null
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.StreamWithAttributes.yml\" sourcestartlinenumber=\"1\">Associates a <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> with optional file-time attributes for use in archive compression.</p>\n"
     },
     {
       "type": "ManagedReference",
