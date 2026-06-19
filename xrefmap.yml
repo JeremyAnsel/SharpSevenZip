@@ -255,6 +255,64 @@ references:
   fullName.vb: SharpSevenZip.ArchiveFileInfo.<>
   nameWithType: ArchiveFileInfo.operator !=
   nameWithType.vb: ArchiveFileInfo.<>
+- uid: SharpSevenZip.ArchiveFormatInfo
+  name: ArchiveFormatInfo
+  href: api/SharpSevenZip.ArchiveFormatInfo.html
+  commentId: T:SharpSevenZip.ArchiveFormatInfo
+  fullName: SharpSevenZip.ArchiveFormatInfo
+  nameWithType: ArchiveFormatInfo
+- uid: SharpSevenZip.ArchiveFormatInfo.Format
+  name: Format
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_Format
+  commentId: P:SharpSevenZip.ArchiveFormatInfo.Format
+  fullName: SharpSevenZip.ArchiveFormatInfo.Format
+  nameWithType: ArchiveFormatInfo.Format
+- uid: SharpSevenZip.ArchiveFormatInfo.Format*
+  name: Format
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_Format_
+  commentId: Overload:SharpSevenZip.ArchiveFormatInfo.Format
+  isSpec: "True"
+  fullName: SharpSevenZip.ArchiveFormatInfo.Format
+  nameWithType: ArchiveFormatInfo.Format
+- uid: SharpSevenZip.ArchiveFormatInfo.IsArchive
+  name: IsArchive
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_IsArchive
+  commentId: P:SharpSevenZip.ArchiveFormatInfo.IsArchive
+  fullName: SharpSevenZip.ArchiveFormatInfo.IsArchive
+  nameWithType: ArchiveFormatInfo.IsArchive
+- uid: SharpSevenZip.ArchiveFormatInfo.IsArchive*
+  name: IsArchive
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_IsArchive_
+  commentId: Overload:SharpSevenZip.ArchiveFormatInfo.IsArchive
+  isSpec: "True"
+  fullName: SharpSevenZip.ArchiveFormatInfo.IsArchive
+  nameWithType: ArchiveFormatInfo.IsArchive
+- uid: SharpSevenZip.ArchiveFormatInfo.IsExecutable
+  name: IsExecutable
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_IsExecutable
+  commentId: P:SharpSevenZip.ArchiveFormatInfo.IsExecutable
+  fullName: SharpSevenZip.ArchiveFormatInfo.IsExecutable
+  nameWithType: ArchiveFormatInfo.IsExecutable
+- uid: SharpSevenZip.ArchiveFormatInfo.IsExecutable*
+  name: IsExecutable
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_IsExecutable_
+  commentId: Overload:SharpSevenZip.ArchiveFormatInfo.IsExecutable
+  isSpec: "True"
+  fullName: SharpSevenZip.ArchiveFormatInfo.IsExecutable
+  nameWithType: ArchiveFormatInfo.IsExecutable
+- uid: SharpSevenZip.ArchiveFormatInfo.Offset
+  name: Offset
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_Offset
+  commentId: P:SharpSevenZip.ArchiveFormatInfo.Offset
+  fullName: SharpSevenZip.ArchiveFormatInfo.Offset
+  nameWithType: ArchiveFormatInfo.Offset
+- uid: SharpSevenZip.ArchiveFormatInfo.Offset*
+  name: Offset
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_Offset_
+  commentId: Overload:SharpSevenZip.ArchiveFormatInfo.Offset
+  isSpec: "True"
+  fullName: SharpSevenZip.ArchiveFormatInfo.Offset
+  nameWithType: ArchiveFormatInfo.Offset
 - uid: SharpSevenZip.ArchiveProperty
   name: ArchiveProperty
   href: api/SharpSevenZip.ArchiveProperty.html
@@ -3048,6 +3106,31 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipArchiveFormat.CheckFormat
   nameWithType: SharpSevenZipArchiveFormat.CheckFormat
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(System.IO.Stream,SharpSevenZip.ArchiveFormatInfo@)
+  name: TryCheckFormat(Stream, out ArchiveFormatInfo)
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_TryCheckFormat_System_IO_Stream_SharpSevenZip_ArchiveFormatInfo__
+  commentId: M:SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(System.IO.Stream,SharpSevenZip.ArchiveFormatInfo@)
+  name.vb: TryCheckFormat(Stream, ArchiveFormatInfo)
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(System.IO.Stream, out SharpSevenZip.ArchiveFormatInfo)
+  fullName.vb: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(System.IO.Stream, SharpSevenZip.ArchiveFormatInfo)
+  nameWithType: SharpSevenZipArchiveFormat.TryCheckFormat(Stream, out ArchiveFormatInfo)
+  nameWithType.vb: SharpSevenZipArchiveFormat.TryCheckFormat(Stream, ArchiveFormatInfo)
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(System.String,SharpSevenZip.ArchiveFormatInfo@)
+  name: TryCheckFormat(string, out ArchiveFormatInfo)
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_TryCheckFormat_System_String_SharpSevenZip_ArchiveFormatInfo__
+  commentId: M:SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(System.String,SharpSevenZip.ArchiveFormatInfo@)
+  name.vb: TryCheckFormat(String, ArchiveFormatInfo)
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(string, out SharpSevenZip.ArchiveFormatInfo)
+  fullName.vb: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat(String, SharpSevenZip.ArchiveFormatInfo)
+  nameWithType: SharpSevenZipArchiveFormat.TryCheckFormat(string, out ArchiveFormatInfo)
+  nameWithType.vb: SharpSevenZipArchiveFormat.TryCheckFormat(String, ArchiveFormatInfo)
+- uid: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat*
+  name: TryCheckFormat
+  href: api/SharpSevenZip.SharpSevenZipArchiveFormat.html#SharpSevenZip_SharpSevenZipArchiveFormat_TryCheckFormat_
+  commentId: Overload:SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipArchiveFormat.TryCheckFormat
+  nameWithType: SharpSevenZipArchiveFormat.TryCheckFormat
 - uid: SharpSevenZip.SharpSevenZipBase
   name: SharpSevenZipBase
   href: api/SharpSevenZip.SharpSevenZipBase.html
@@ -4112,6 +4195,15 @@ references:
   fullName.vb: SharpSevenZip.SharpSevenZipExtractor.New(String)
   nameWithType: SharpSevenZipExtractor.SharpSevenZipExtractor(string)
   nameWithType.vb: SharpSevenZipExtractor.New(String)
+- uid: SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,SharpSevenZip.ArchiveFormatInfo)
+  name: SharpSevenZipExtractor(string, ArchiveFormatInfo)
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_SharpSevenZip_ArchiveFormatInfo_
+  commentId: M:SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,SharpSevenZip.ArchiveFormatInfo)
+  name.vb: New(String, ArchiveFormatInfo)
+  fullName: SharpSevenZip.SharpSevenZipExtractor.SharpSevenZipExtractor(string, SharpSevenZip.ArchiveFormatInfo)
+  fullName.vb: SharpSevenZip.SharpSevenZipExtractor.New(String, SharpSevenZip.ArchiveFormatInfo)
+  nameWithType: SharpSevenZipExtractor.SharpSevenZipExtractor(string, ArchiveFormatInfo)
+  nameWithType.vb: SharpSevenZipExtractor.New(String, ArchiveFormatInfo)
 - uid: SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,SharpSevenZip.InArchiveFormat)
   name: SharpSevenZipExtractor(string, InArchiveFormat)
   href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_SharpSevenZip_InArchiveFormat_
@@ -4130,6 +4222,15 @@ references:
   fullName.vb: SharpSevenZip.SharpSevenZipExtractor.New(String, String)
   nameWithType: SharpSevenZipExtractor.SharpSevenZipExtractor(string, string)
   nameWithType.vb: SharpSevenZipExtractor.New(String, String)
+- uid: SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,System.String,SharpSevenZip.ArchiveFormatInfo)
+  name: SharpSevenZipExtractor(string, string, ArchiveFormatInfo)
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_System_String_SharpSevenZip_ArchiveFormatInfo_
+  commentId: M:SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,System.String,SharpSevenZip.ArchiveFormatInfo)
+  name.vb: New(String, String, ArchiveFormatInfo)
+  fullName: SharpSevenZip.SharpSevenZipExtractor.SharpSevenZipExtractor(string, string, SharpSevenZip.ArchiveFormatInfo)
+  fullName.vb: SharpSevenZip.SharpSevenZipExtractor.New(String, String, SharpSevenZip.ArchiveFormatInfo)
+  nameWithType: SharpSevenZipExtractor.SharpSevenZipExtractor(string, string, ArchiveFormatInfo)
+  nameWithType.vb: SharpSevenZipExtractor.New(String, String, ArchiveFormatInfo)
 - uid: SharpSevenZip.SharpSevenZipExtractor.#ctor(System.String,System.String,SharpSevenZip.InArchiveFormat)
   name: SharpSevenZipExtractor(string, string, InArchiveFormat)
   href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor__ctor_System_String_System_String_SharpSevenZip_InArchiveFormat_

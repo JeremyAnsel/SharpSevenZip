@@ -26,6 +26,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ArchiveFormatInfo.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ArchiveFormatInfo.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ArchiveFormatInfo",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ArchiveFormatInfo.yml\" sourcestartlinenumber=\"1\">The result of probing a file or stream for its archive format. Carries everything\n<xref href=\"SharpSevenZip.SharpSevenZipExtractor\" data-throw-if-not-resolved=\"false\"></xref> needs to open the archive, so a caller that has\nalready probed the format does not pay for signature detection a second time.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.ArchiveProperty.yml",
       "output": {
         ".html": {
