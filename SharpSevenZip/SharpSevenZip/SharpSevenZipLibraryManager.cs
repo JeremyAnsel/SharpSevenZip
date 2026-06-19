@@ -460,6 +460,8 @@ internal static class SharpSevenZipLibraryManager
                 {
                     createObject(ref classId, ref interfaceId, out nint resultPtr);
                     result = (IInArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
+
+                    _ = System.Runtime.InteropServices.Marshal.Release(resultPtr);
                 }
                 catch (Exception)
                 {
@@ -526,6 +528,8 @@ internal static class SharpSevenZipLibraryManager
 
                     InitUserOutFormat(user, format);
                     _outArchives[user][format] = (IOutArchive)_comWrappers.GetOrCreateObjectForComInstance(resultPtr, CreateObjectFlags.None);
+
+                    _ = System.Runtime.InteropServices.Marshal.Release(resultPtr);
                 }
                 catch (Exception)
                 {
