@@ -250,6 +250,26 @@ public class SharpSevenZipExtractorTests : TestBase
 
         Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(1));
     }
+
+    [Test]
+    [TestCase("TestData/xz.xz", "xz")]
+    [TestCase("TestData/bzip2.bz2", "bzip2")]
+    [TestCase("TestData/zstd.zst", "zstd")]
+    public void ExtractStandaloneCompressedFileDoesNotAppendTar(string archivePath, string expectedName)
+    {
+        // A standalone compressed file (e.g. file.zst, not file.tar.zst) carries no
+        // inner entry name. Extraction must strip the compression extension and must
+        // NOT append a bogus ".tar" suffix.
+        using (var extractor = new SharpSevenZipExtractor(archivePath))
+        {
+            extractor.ExtractArchive(OutputDirectory);
+        }
+
+        var files = Directory.GetFiles(OutputDirectory);
+
+        Assert.That(files, Has.Length.EqualTo(1));
+        Assert.That(Path.GetFileName(files[0]), Is.EqualTo(expectedName));
+    }
 }
 
 /// <summary>

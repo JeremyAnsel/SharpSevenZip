@@ -243,26 +243,9 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
 
                     if (string.IsNullOrEmpty(entryName))
                     {
-                        if (_filesCount == 1)
-                        {
-                            var archName = Path.GetFileName(_extractor!.FileName);
-                            var dotIndex = archName!.LastIndexOf('.');
-                            if (dotIndex > 0)
-                            {
-                                archName = archName[..dotIndex];
-                            }
-                            if (!archName.EndsWith(".tar",
-                                                   StringComparison.OrdinalIgnoreCase))
-                            {
-                                archName += ".tar";
-                            }
-
-                            entryName = archName;
-                        }
-                        else
-                        {
-                            entryName = $"[no name] {index.ToString(CultureInfo.InvariantCulture)}";
-                        }
+                        entryName = _filesCount == 1
+                            ? GetDefaultSingleEntryName(Path.GetFileName(_extractor!.FileName))
+                            : $"[no name] {index.ToString(CultureInfo.InvariantCulture)}";
                     }
 
                     #endregion
@@ -517,6 +500,53 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
             catch (ObjectDisposedException) { }
             _fakeStream = null;
         }
+    }
+
+    /// <summary>
+    /// Compact tar-compression extensions whose single compressed stream is itself a
+    /// tar archive, e.g. ".tgz" == ".tar.gz", ".txz" == ".tar.xz", ".tzst" == ".tar.zst".
+    /// </summary>
+    private static readonly HashSet<string> _tarShorthandExtensions =
+        new(StringComparer.OrdinalIgnoreCase)
+        {
+            "tgz", "tpz",                 // tar + gzip
+            "taz",                        // tar + gzip / compress (old .Z)
+            "tz",                         // tar + compress (.tar.Z, very old)
+            "tbz", "tbz2", "tb2", "tz2",  // tar + bzip2
+            "txz",                        // tar + xz
+            "tlz",                        // tar + lzma / lzip
+            "tzst",                       // tar + zstd
+        };
+
+    /// <summary>
+    /// Derives the inner file name for a single-stream archive (e.g. a standalone
+    /// .gz/.xz/.bz2/.zst file) whose only entry carries no stored name.
+    /// </summary>
+    /// <param name="archiveFileName">The archive file name, without directory.</param>
+    /// <returns>
+    /// The archive name with its trailing compression extension removed. For the compact
+    /// tar extensions (.tgz, .txz, .tzst, ...) the implicit ".tar" suffix is restored;
+    /// for every other format no ".tar" is appended. An explicit ".tar" already present
+    /// in the name (e.g. "foo.tar.gz") is preserved by removing only the last extension.
+    /// </returns>
+    private static string GetDefaultSingleEntryName(string? archiveFileName)
+    {
+        // Stream-based extraction may not know the archive's original file name.
+        if (string.IsNullOrEmpty(archiveFileName))
+        {
+            return "[no name] 0";
+        }
+
+        var extension = Path.GetExtension(archiveFileName);
+
+        if (extension.Length > 1 && _tarShorthandExtensions.Contains(extension[1..]))
+        {
+            return Path.GetFileNameWithoutExtension(archiveFileName) + ".tar";
+        }
+
+        var baseName = Path.GetFileNameWithoutExtension(archiveFileName);
+
+        return string.IsNullOrEmpty(baseName) ? archiveFileName! : baseName;
     }
 
     /// <summary>
