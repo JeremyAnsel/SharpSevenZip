@@ -50,4 +50,28 @@ public static class SharpSevenZipArchiveFormat
     {
         return FileChecker.CheckSignature(fileName, out offset, out isExecutable);
     }
+
+    /// <summary>
+    /// Probes a file for its archive format without throwing when it is not a recognised archive.
+    /// </summary>
+    /// <param name="fileName">The archive file name.</param>
+    /// <param name="info">The full detection result (format, offset and executable flag). Pass it to
+    /// <see cref="SharpSevenZipExtractor(string, ArchiveFormatInfo)"/> to open the archive without
+    /// detecting the signature again.</param>
+    /// <returns>True when a recognised archive format was found; otherwise, false.</returns>
+    public static bool TryCheckFormat(string fileName, out ArchiveFormatInfo info)
+    {
+        return FileChecker.TryCheckSignature(fileName, out info);
+    }
+
+    /// <summary>
+    /// Probes a stream for its archive format without throwing when it is not a recognised archive.
+    /// </summary>
+    /// <param name="stream">The stream to identify.</param>
+    /// <param name="info">The full detection result (format, offset and executable flag).</param>
+    /// <returns>True when a recognised archive format was found; otherwise, false.</returns>
+    public static bool TryCheckFormat(Stream stream, out ArchiveFormatInfo info)
+    {
+        return FileChecker.TryCheckSignature(stream, out info);
+    }
 }

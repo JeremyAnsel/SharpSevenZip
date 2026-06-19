@@ -319,4 +319,48 @@ internal static class FileChecker
             return Formats.FormatByFileName(fileName, true);
         }
     }
+
+    /// <summary>
+    /// Probes a file for its archive format without throwing when it is not an archive.
+    /// </summary>
+    /// <param name="fileName">The file name to identify.</param>
+    /// <param name="info">The full detection result; <see cref="ArchiveFormatInfo.Format"/>
+    /// is <see cref="InArchiveFormat.None"/> when nothing was recognised.</param>
+    /// <returns>True when a recognised archive format was found; otherwise, false.</returns>
+    public static bool TryCheckSignature(string fileName, out ArchiveFormatInfo info)
+    {
+        try
+        {
+            var format = CheckSignature(fileName, out var offset, out var isExecutable);
+            info = new ArchiveFormatInfo(format, offset, isExecutable);
+            return true;
+        }
+        catch (ArgumentException)
+        {
+            info = default;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Probes a stream for its archive format without throwing when it is not an archive.
+    /// </summary>
+    /// <param name="stream">The stream to identify.</param>
+    /// <param name="info">The full detection result; <see cref="ArchiveFormatInfo.Format"/>
+    /// is <see cref="InArchiveFormat.None"/> when nothing was recognised.</param>
+    /// <returns>True when a recognised archive format was found; otherwise, false.</returns>
+    public static bool TryCheckSignature(Stream stream, out ArchiveFormatInfo info)
+    {
+        try
+        {
+            var format = CheckSignature(stream, out var offset, out var isExecutable);
+            info = new ArchiveFormatInfo(format, offset, isExecutable);
+            return true;
+        }
+        catch (ArgumentException)
+        {
+            info = default;
+            return false;
+        }
+    }
 }
