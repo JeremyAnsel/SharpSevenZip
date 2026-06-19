@@ -53,6 +53,84 @@ internal static class FileChecker
     }
 
     /// <summary>
+    /// Validates the 512-byte tar header at the start of the stream by recomputing its
+    /// checksum. This recognises every tar variant (v7, ustar, GNU, pax) without relying
+    /// on the "ustar" magic and, crucially, rejects zero-padded non-tar binaries that merely
+    /// end in zero bytes.
+    /// </summary>
+    private static bool IsValidTarHeader(Stream stream)
+    {
+        const int BlockSize = 512;
+        const int ChecksumOffset = 148;
+        const int ChecksumLength = 8;
+
+        if (stream.Length < BlockSize)
+        {
+            return false;
+        }
+
+        var header = new byte[BlockSize];
+        stream.Seek(0, SeekOrigin.Begin);
+        ReadFully(stream, header, 0, BlockSize);
+
+        var storedChecksum = ParseOctal(header, ChecksumOffset, ChecksumLength);
+        if (storedChecksum < 0)
+        {
+            return false;
+        }
+
+        // The stored checksum is computed with the checksum field itself read as spaces.
+        // Compare against both the unsigned and signed byte sums, since historic writers
+        // disagreed on the signedness of bytes >= 0x80.
+        long unsignedSum = 0;
+        long signedSum = 0;
+        for (var i = 0; i < BlockSize; i++)
+        {
+            var b = i is >= ChecksumOffset and < ChecksumOffset + ChecksumLength ? (byte)0x20 : header[i];
+            unsignedSum += b;
+            signedSum += (sbyte)b;
+        }
+
+        return storedChecksum == unsignedSum || storedChecksum == signedSum;
+    }
+
+    /// <summary>
+    /// Parses a NUL/space padded octal ASCII number from a header field.
+    /// Returns -1 when the field holds no valid octal digits.
+    /// </summary>
+    private static long ParseOctal(byte[] buffer, int offset, int length)
+    {
+        var i = offset;
+        var end = offset + length;
+
+        while (i < end && (buffer[i] == (byte)' ' || buffer[i] == 0))
+        {
+            i++;
+        }
+
+        long value = 0;
+        var any = false;
+        for (; i < end; i++)
+        {
+            var b = buffer[i];
+            if (b == (byte)' ' || b == 0)
+            {
+                break;
+            }
+
+            if (b is < (byte)'0' or > (byte)'7')
+            {
+                return -1;
+            }
+
+            value = (value << 3) + (b - '0');
+            any = true;
+        }
+
+        return any ? value : -1;
+    }
+
+    /// <summary>
     /// Gets the InArchiveFormat for a specific extension.
     /// </summary>
     /// <param name="stream">The stream to identify.</param>
@@ -156,18 +234,19 @@ internal static class FileChecker
             return InArchiveFormat.Vdi;
         }
 
-        #region Last resort for tar - can mistake
+        #region Last resort for tar
 
-        if (suspectedFormat == null && stream.Length >= 1024)
+        // Tars whose first header lacks the POSIX "ustar" magic (old v7 / pre-POSIX GNU
+        // tars) are not caught by the SpecialDetect("ustar") check above. Validate the
+        // 512-byte header checksum instead of guessing from trailing zero padding: the
+        // former heuristic ("the last 1024 bytes are all zero") also matches zero-padded
+        // binaries – SquashFS images, Linux bzImage kernels, EFI stubs and firmware blobs –
+        // which were misdetected as TAR and then failed on open with the misleading
+        // "decided it is TAR by mistake" error. A valid checksum is present in every real
+        // tar header (all variants) and absent from those binaries.
+        if (suspectedFormat == null && IsValidTarHeader(stream))
         {
-            stream.Seek(-1024, SeekOrigin.End);
-            var buf = new byte[1024];
-            ReadFully(stream, buf, 0, buf.Length);
-
-            if (Array.TrueForAll(buf, b => b == 0))
-            {
-                return InArchiveFormat.Tar;
-            }
+            return InArchiveFormat.Tar;
         }
 
         #endregion
@@ -238,6 +317,50 @@ internal static class FileChecker
             offset = 0;
             isExecutable = false;
             return Formats.FormatByFileName(fileName, true);
+        }
+    }
+
+    /// <summary>
+    /// Probes a file for its archive format without throwing when it is not an archive.
+    /// </summary>
+    /// <param name="fileName">The file name to identify.</param>
+    /// <param name="info">The full detection result; <see cref="ArchiveFormatInfo.Format"/>
+    /// is <see cref="InArchiveFormat.None"/> when nothing was recognised.</param>
+    /// <returns>True when a recognised archive format was found; otherwise, false.</returns>
+    public static bool TryCheckSignature(string fileName, out ArchiveFormatInfo info)
+    {
+        try
+        {
+            var format = CheckSignature(fileName, out var offset, out var isExecutable);
+            info = new ArchiveFormatInfo(format, offset, isExecutable);
+            return true;
+        }
+        catch (ArgumentException)
+        {
+            info = default;
+            return false;
+        }
+    }
+
+    /// <summary>
+    /// Probes a stream for its archive format without throwing when it is not an archive.
+    /// </summary>
+    /// <param name="stream">The stream to identify.</param>
+    /// <param name="info">The full detection result; <see cref="ArchiveFormatInfo.Format"/>
+    /// is <see cref="InArchiveFormat.None"/> when nothing was recognised.</param>
+    /// <returns>True when a recognised archive format was found; otherwise, false.</returns>
+    public static bool TryCheckSignature(Stream stream, out ArchiveFormatInfo info)
+    {
+        try
+        {
+            var format = CheckSignature(stream, out var offset, out var isExecutable);
+            info = new ArchiveFormatInfo(format, offset, isExecutable);
+            return true;
+        }
+        catch (ArgumentException)
+        {
+            info = default;
+            return false;
         }
     }
 }

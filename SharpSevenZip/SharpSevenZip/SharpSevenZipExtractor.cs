@@ -34,6 +34,7 @@ public sealed partial class SharpSevenZipExtractor
     private bool _opened;
     private bool _disposed;
     private InArchiveFormat _format = InArchiveFormat.None;
+    private bool _isExecutable;
     private ReadOnlyCollection<ArchiveFileInfo>? _archiveFileInfoCollection;
     private ReadOnlyCollection<ArchiveProperty>? _archiveProperties;
     private ReadOnlyCollection<string>? _volumeFileNames;
@@ -53,7 +54,11 @@ public sealed partial class SharpSevenZipExtractor
     private void Init(string archiveFullName)
     {
         _fileName = archiveFullName;
-        var isExecutable = false;
+        // When the format was supplied by the caller (e.g. via a prior
+        // SharpSevenZipArchiveFormat.TryCheckFormat probe), reuse its detection result
+        // instead of scanning the signature a second time. _offset and _isExecutable were
+        // seeded together with _format, so the PE re-check below stays faithful.
+        var isExecutable = _isExecutable;
 
         if (_format == InArchiveFormat.None)
         {
@@ -101,7 +106,7 @@ public sealed partial class SharpSevenZipExtractor
     private void Init(Stream stream)
     {
         ValidateStream(stream);
-        var isExecutable = false;
+        var isExecutable = _isExecutable;
 
         if (_format == InArchiveFormat.None)
         {
@@ -195,6 +200,20 @@ public sealed partial class SharpSevenZipExtractor
     }
 
     /// <summary>
+    /// Initializes a new instance of SharpSevenZipExtractor class from an already probed format.
+    /// </summary>
+    /// <param name="archiveFullName">The archive full file name.</param>
+    /// <param name="formatInfo">The detection result obtained from
+    /// <see cref="SharpSevenZipArchiveFormat.TryCheckFormat(string, out ArchiveFormatInfo)"/>.
+    /// Reusing it avoids re-reading the archive signature. A <see cref="InArchiveFormat.None"/>
+    /// format falls back to automatic detection.</param>
+    public SharpSevenZipExtractor(string archiveFullName, ArchiveFormatInfo formatInfo)
+    {
+        ApplyFormatInfo(formatInfo);
+        Init(archiveFullName);
+    }
+
+    /// <summary>
     /// Initializes a new instance of SharpSevenZipExtractor class.
     /// </summary>
     /// <param name="archiveFullName">The archive full file name.</param>
@@ -216,6 +235,33 @@ public sealed partial class SharpSevenZipExtractor
         : base(password)
     {
         Init(archiveFullName);
+    }
+
+    /// <summary>
+    /// Initializes a new instance of SharpSevenZipExtractor class from an already probed format.
+    /// </summary>
+    /// <param name="archiveFullName">The archive full file name.</param>
+    /// <param name="password">Password for an encrypted archive.</param>
+    /// <param name="formatInfo">The detection result obtained from
+    /// <see cref="SharpSevenZipArchiveFormat.TryCheckFormat(string, out ArchiveFormatInfo)"/>.
+    /// Reusing it avoids re-reading the archive signature on every password attempt. A
+    /// <see cref="InArchiveFormat.None"/> format falls back to automatic detection.</param>
+    public SharpSevenZipExtractor(string archiveFullName, string password, ArchiveFormatInfo formatInfo)
+        : base(password)
+    {
+        ApplyFormatInfo(formatInfo);
+        Init(archiveFullName);
+    }
+
+    /// <summary>
+    /// Seeds the fields the <see cref="Init(string)"/> / <see cref="Init(Stream)"/> detection
+    /// step would otherwise compute, so a caller-supplied probe result is reused verbatim.
+    /// </summary>
+    private void ApplyFormatInfo(ArchiveFormatInfo formatInfo)
+    {
+        _format = formatInfo.Format;
+        _offset = formatInfo.Offset;
+        _isExecutable = formatInfo.IsExecutable;
     }
 
     /// <summary>
