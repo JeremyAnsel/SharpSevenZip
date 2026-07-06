@@ -420,13 +420,13 @@ internal static class SharpSevenZipLibraryManager
                 {
                     _inArchives = null;
                     _outArchives = null;
-                }
-            }
 
-            if (_modulePtr != IntPtr.Zero)
-            {
-                NativeMethods.FreeLibrary(_modulePtr);
-                _modulePtr = IntPtr.Zero;
+                    if (_modulePtr != IntPtr.Zero)
+                    {
+                        NativeMethods.FreeLibrary(_modulePtr);
+                        _modulePtr = IntPtr.Zero;
+                    }
+                }
             }
         }
     }
