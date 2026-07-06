@@ -862,7 +862,6 @@ public sealed partial class SharpSevenZipExtractor
         }
 
         SharpSevenZipLibraryManager.FreeLibrary(this, _format);
-        SharpSevenZipLibraryManager.FreeModuleLibrary();
     }
 
     /// <summary>

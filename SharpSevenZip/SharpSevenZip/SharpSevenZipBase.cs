@@ -217,6 +217,14 @@ public abstract class SharpSevenZipBase : MarshalByRefObject
     }
 
     /// <summary>
+    /// Free the 7-zip native library.
+    /// </summary>
+    public static void FreeModuleLibrary()
+    {
+        SharpSevenZipLibraryManager.FreeModuleLibrary();
+    }
+
+    /// <summary>
     /// Gets the current library features.
     /// </summary>
     [CLSCompliant(false)]
