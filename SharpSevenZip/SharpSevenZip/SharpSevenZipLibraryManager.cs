@@ -422,6 +422,12 @@ internal static class SharpSevenZipLibraryManager
                     _outArchives = null;
                 }
             }
+
+            if (_modulePtr != IntPtr.Zero)
+            {
+                NativeMethods.FreeLibrary(_modulePtr);
+                _modulePtr = IntPtr.Zero;
+            }
         }
     }
 
