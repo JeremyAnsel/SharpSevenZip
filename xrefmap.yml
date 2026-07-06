@@ -3198,6 +3198,19 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipBase.EventSynchronization
   nameWithType: SharpSevenZipBase.EventSynchronization
+- uid: SharpSevenZip.SharpSevenZipBase.FreeModuleLibrary
+  name: FreeModuleLibrary()
+  href: api/SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_FreeModuleLibrary
+  commentId: M:SharpSevenZip.SharpSevenZipBase.FreeModuleLibrary
+  fullName: SharpSevenZip.SharpSevenZipBase.FreeModuleLibrary()
+  nameWithType: SharpSevenZipBase.FreeModuleLibrary()
+- uid: SharpSevenZip.SharpSevenZipBase.FreeModuleLibrary*
+  name: FreeModuleLibrary
+  href: api/SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_FreeModuleLibrary_
+  commentId: Overload:SharpSevenZip.SharpSevenZipBase.FreeModuleLibrary
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipBase.FreeModuleLibrary
+  nameWithType: SharpSevenZipBase.FreeModuleLibrary
 - uid: SharpSevenZip.SharpSevenZipBase.GetHashCode
   name: GetHashCode()
   href: api/SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_GetHashCode
