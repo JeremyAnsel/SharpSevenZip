@@ -425,6 +425,18 @@ internal static class SharpSevenZipLibraryManager
         }
     }
 
+    public static void FreeModuleLibrary()
+    {
+        lock (SyncRoot)
+        {
+            if (_modulePtr != IntPtr.Zero)
+            {
+                NativeMethods.FreeLibrary(_modulePtr);
+                _modulePtr = IntPtr.Zero;
+            }
+        }
+    }
+
     /// <summary>
     /// Gets IInArchive interface to extract 7-zip archives.
     /// </summary>

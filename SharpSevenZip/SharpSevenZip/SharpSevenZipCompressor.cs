@@ -911,6 +911,8 @@ public sealed partial class SharpSevenZipCompressor
         {
             File.Move(GetTempArchiveFileName(_archiveName!), _archiveName!);
         }
+
+        SharpSevenZipLibraryManager.FreeModuleLibrary();
     }
 
     private UpdateData GetUpdateData()
