@@ -24,7 +24,12 @@
     <PackageProjectUrl>https://github.com/JeremyAnsel/SharpSevenZip</PackageProjectUrl>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <EnableNETAnalyzers>true</EnableNETAnalyzers>
-    <NoWarn>$(NoWarn);CS3016</NoWarn>
+    <IsAotCompatible Condition="$([MSBuild]::IsTargetFrameworkCompatible('$(TargetFramework)', 'net8.0'))">true</IsAotCompatible>
+    <VerifyReferenceAotCompatibility>true</VerifyReferenceAotCompatibility>
+    <InvariantGlobalization>true</InvariantGlobalization>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <WarningsAsErrors />
+    <NoWarn>$(NoWarn);CS3016;CA1416;CS1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
