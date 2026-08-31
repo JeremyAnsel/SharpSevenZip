@@ -4645,6 +4645,19 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipExtractor.Format
   nameWithType: SharpSevenZipExtractor.Format
+- uid: SharpSevenZip.SharpSevenZipExtractor.HasDataAfterEnd
+  name: HasDataAfterEnd
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_HasDataAfterEnd
+  commentId: P:SharpSevenZip.SharpSevenZipExtractor.HasDataAfterEnd
+  fullName: SharpSevenZip.SharpSevenZipExtractor.HasDataAfterEnd
+  nameWithType: SharpSevenZipExtractor.HasDataAfterEnd
+- uid: SharpSevenZip.SharpSevenZipExtractor.HasDataAfterEnd*
+  name: HasDataAfterEnd
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_HasDataAfterEnd_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.HasDataAfterEnd
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.HasDataAfterEnd
+  nameWithType: SharpSevenZipExtractor.HasDataAfterEnd
 - uid: SharpSevenZip.SharpSevenZipExtractor.IsSolid
   name: IsSolid
   href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_IsSolid
