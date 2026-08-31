@@ -773,6 +773,7 @@ public sealed partial class SharpSevenZipExtractor
 
     private void FreeArchiveExtractCallback(ArchiveExtractCallback callback)
     {
+        HasDataAfterEnd |= callback.HasDataAfterEnd;
         callback.Open -= OpenEventProxy;
         callback.FileExtractionStarted -= FileExtractionStartedEventProxy;
         callback.FileExtractionFinished -= FileExtractionFinishedEventProxy;
@@ -1040,6 +1041,12 @@ public sealed partial class SharpSevenZipExtractor
             return _volumeFileNames!;
         }
     }
+
+    /// <summary>
+    /// Gets a value indicating whether the archive declared more packed data than the
+    /// decoder consumed. The extracted content itself passed its CRC check.
+    /// </summary>
+    public bool HasDataAfterEnd { get; private set; }
     #endregion
 
     /// <summary>
@@ -1072,6 +1079,13 @@ public sealed partial class SharpSevenZipExtractor
             finally
             {
                 FreeArchiveExtractCallback(aec);
+            }
+
+            // Extraction tolerates trailing data, but 7-Zip's own test command counts it as
+            // a file error, so the integrity check stays as strict as it was.
+            if (aec.HasDataAfterEnd)
+            {
+                return false;
             }
         }
         catch (Exception)

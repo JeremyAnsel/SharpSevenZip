@@ -405,9 +405,24 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
     /// <inheritdoc />
     public void PrepareOperation(AskMode askExtractMode) { }
 
+    /// <summary>
+    /// Gets a value indicating whether an entry declared more packed data than the decoder
+    /// consumed. The entry itself was extracted correctly.
+    /// </summary>
+    public bool HasDataAfterEnd { get; private set; }
+
     /// <inheritdoc />
     public void SetOperationResult(OperationResult operationResult)
     {
+        // DataAfterEnd marks an entry whose payload decoded, with trailing bytes the decoder
+        // did not consume; ZipHandler.cpp and GzHandler.cpp reach it only once the CRC has
+        // matched. Reporting a failure here discarded a complete extraction.
+        if (operationResult == OperationResult.DataAfterEnd)
+        {
+            HasDataAfterEnd = true;
+            operationResult = OperationResult.Ok;
+        }
+
         if (operationResult != OperationResult.Ok && ReportErrors)
         {
             switch (operationResult)
@@ -426,9 +441,6 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                     break;
                 case OperationResult.UnexpectedEnd:
                     AddException(new ExtractionFailedException("Unexpected end of file."));
-                    break;
-                case OperationResult.DataAfterEnd:
-                    AddException(new ExtractionFailedException("Data after end of archive."));
                     break;
                 case OperationResult.IsNotArc:
                     AddException(new ExtractionFailedException("File is not archive."));

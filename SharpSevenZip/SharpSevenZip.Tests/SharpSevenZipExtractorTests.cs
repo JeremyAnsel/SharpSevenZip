@@ -52,6 +52,32 @@ public class SharpSevenZipExtractorTests : TestBase
     }
 
     [Test]
+    public void ExtractArchiveWithDataAfterEndTest()
+    {
+        // The entry declares 32 packed bytes more than deflate consumes, which is what
+        // 7-Zip answers with kDataAfterEnd once the CRC has already matched.
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/zip_data_after_end.zip"))
+        {
+            extractor.ExtractArchive(OutputDirectory);
+            Assert.That(extractor.HasDataAfterEnd, Is.True);
+        }
+
+        var extracted = Path.Combine(OutputDirectory, "payload.txt");
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(File.Exists(extracted), Is.True);
+            Assert.That(new FileInfo(extracted).Length, Is.EqualTo(1520));
+        }
+    }
+
+    [Test]
+    public void CheckArchiveWithDataAfterEndTest()
+    {
+        using var extractor = new SharpSevenZipExtractor(@"TestData/zip_data_after_end.zip");
+        Assert.That(extractor.Check(), Is.False);
+    }
+
+    [Test]
     public void ExtractArchiveMultiVolumesTest()
     {
         using (var extractor = new SharpSevenZipExtractor(@"TestData/multivolume.part0001.rar"))
