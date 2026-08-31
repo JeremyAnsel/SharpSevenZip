@@ -497,21 +497,20 @@ public sealed partial class SharpSevenZipExtractor
     }
 
     /// <summary>
-    /// Opens the archive and throws exceptions or returns OperationResult.DataError if any error occurs.
+    /// Opens the archive.
     /// </summary>       
     /// <param name="archiveStream">The IInStream compliant class instance, that is, the input stream.</param>
     /// <param name="openCallback">The ArchiveOpenCallback instance.</param>
-    /// <returns>OperationResult.Ok if Open() succeeds.</returns>
-    private OperationResult OpenArchiveInner(IInStream archiveStream, IArchiveOpenCallback openCallback)
+    /// <returns>The HRESULT returned by IInArchive.Open.</returns>
+    private int OpenArchiveInner(IInStream archiveStream, IArchiveOpenCallback openCallback)
     {
         ulong checkPos = 1 << 23;
-        var res = _archive!.Open(archiveStream, ref checkPos, openCallback);
 
-        return (OperationResult)res;
+        return _archive!.Open(archiveStream, ref checkPos, openCallback);
     }
 
     /// <summary>
-    /// Opens the archive and throws exceptions or returns OperationResult.DataError if any error occurs.
+    /// Opens the archive and throws exceptions if any error occurs.
     /// </summary>
     /// <param name="archiveStream">The IInStream compliant class instance, that is, the input stream.</param>
     /// <param name="openCallback">The ArchiveOpenCallback instance.</param>
@@ -520,7 +519,7 @@ public sealed partial class SharpSevenZipExtractor
     {
         if (!_opened)
         {
-            if (OpenArchiveInner(archiveStream, openCallback) != OperationResult.Ok)
+            if (OpenArchiveInner(archiveStream, openCallback) != HResultOk)
             {
                 if (!ThrowException(null, new SharpSevenZipArchiveException()))
                 {

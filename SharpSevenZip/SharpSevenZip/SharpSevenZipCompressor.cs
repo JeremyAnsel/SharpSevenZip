@@ -178,7 +178,7 @@ public sealed partial class SharpSevenZipCompressor
         {
             ulong checkPos = 1 << 15;
 
-            if (inArchive.Open(inArchiveStream, ref checkPos, openCallback) != (int)OperationResult.Ok)
+            if (inArchive.Open(inArchiveStream, ref checkPos, openCallback) != HResultOk)
             {
                 if (!ThrowException(null, new SharpSevenZipArchiveException("Can not update the archive: Open() failed.")))
                 {
