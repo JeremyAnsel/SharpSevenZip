@@ -883,7 +883,29 @@ public sealed partial class SharpSevenZipCompressor
 
     private string GetTempArchiveFileName(string archiveName)
     {
-        return Path.Combine(TempFolderPath!, Path.GetFileName(archiveName) + ".~");
+        // TempFolderPath is shared, so naming the temporary file after the archive alone
+        // makes two archives that differ only in directory overwrite each other's work.
+        return Path.Combine(TempFolderPath!, $"{Path.GetFileName(archiveName)}.{GetPathDiscriminator(archiveName)}.~");
+    }
+
+    /// <summary>
+    /// Derives a stable short token from the archive's full path.
+    /// </summary>
+    private static string GetPathDiscriminator(string archiveName)
+    {
+        // FNV-1a rather than string.GetHashCode, which is randomised per process and so
+        // cannot name a file that a later call in another process has to find again.
+        uint hash = 2166136261;
+
+        unchecked
+        {
+            foreach (char c in Path.GetFullPath(archiveName))
+            {
+                hash = (hash ^ c) * 16777619;
+            }
+        }
+
+        return hash.ToString("x8", CultureInfo.InvariantCulture);
     }
 
     private FileStream? GetArchiveFileStream(string archiveName)
