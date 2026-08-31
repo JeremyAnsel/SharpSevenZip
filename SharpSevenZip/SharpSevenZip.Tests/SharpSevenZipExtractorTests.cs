@@ -11,7 +11,7 @@ public class SharpSevenZipExtractorTests : TestBase
 
             foreach (var file in Directory.GetFiles(Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData")))
             {
-                if (file.Contains("multi") || file.Contains("long_path") || file.Contains("ihex"))
+                if (file.Contains("multi") || file.Contains("long_path") || file.Contains("ihex") || file.Contains("broken"))
                 {
                     continue;
                 }
@@ -75,6 +75,23 @@ public class SharpSevenZipExtractorTests : TestBase
     {
         using var extractor = new SharpSevenZipExtractor(@"TestData/zip_data_after_end.zip");
         Assert.That(extractor.Check(), Is.False);
+    }
+
+    [Test]
+    public void FailedEntryDoesNotHoldItsOutputFileOpen()
+    {
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/zip_broken_entry.zip"))
+        {
+            Assert.Catch<Exception>((Action)(() => extractor.ExtractArchive(OutputDirectory)));
+        }
+
+        // A failing entry used to keep its half-written file open once GetStream had moved
+        // on to the next entry, so opening it exclusively would fail here.
+        foreach (var file in Directory.GetFiles(OutputDirectory))
+        {
+            using var handle = File.Open(file, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            Assert.That(handle.CanWrite, Is.True);
+        }
     }
 
     [Test]

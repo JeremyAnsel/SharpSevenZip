@@ -423,6 +423,19 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
             operationResult = OperationResult.Ok;
         }
 
+        // The handle has to go back whatever the outcome. A failing entry used to keep its
+        // half-written file open until the next GetStream overwrote the reference.
+        if (_fileStream != null && !_fileIndex.HasValue)
+        {
+            try
+            {
+                _fileStream.BytesWritten -= IntEventArgsHandler;
+                _fileStream.Dispose();
+            }
+            catch (ObjectDisposedException) { }
+            _fileStream = null;
+        }
+
         if (operationResult != OperationResult.Ok && ReportErrors)
         {
             switch (operationResult)
@@ -455,27 +468,16 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                     AddException(new ExtractionFailedException($"Unexpected operation result: {operationResult}"));
                     break;
             }
+
+            return;
         }
-        else
+
+        var iea = new FileInfoEventArgs(_extractor!.ArchiveFileData[_currentIndex], PercentDoneEventArgs.ProducePercentDone(_doneRate));
+        FileExtractionFinished?.Invoke(this, iea);
+
+        if (iea.Cancel)
         {
-            if (_fileStream != null && !_fileIndex.HasValue)
-            {
-                try
-                {
-                    _fileStream.BytesWritten -= IntEventArgsHandler;
-                    _fileStream.Dispose();
-                }
-                catch (ObjectDisposedException) { }
-                _fileStream = null;
-            }
-
-            var iea = new FileInfoEventArgs(_extractor!.ArchiveFileData[_currentIndex], PercentDoneEventArgs.ProducePercentDone(_doneRate));
-            FileExtractionFinished?.Invoke(this, iea);
-
-            if (iea.Cancel)
-            {
-                Canceled = true;
-            }
+            Canceled = true;
         }
     }
 
