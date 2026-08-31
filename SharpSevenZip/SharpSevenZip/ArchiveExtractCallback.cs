@@ -405,9 +405,37 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
     /// <inheritdoc />
     public void PrepareOperation(AskMode askExtractMode) { }
 
+    /// <summary>
+    /// Gets a value indicating whether an entry declared more packed data than the decoder
+    /// consumed. The entry itself was extracted correctly.
+    /// </summary>
+    public bool HasDataAfterEnd { get; private set; }
+
     /// <inheritdoc />
     public void SetOperationResult(OperationResult operationResult)
     {
+        // DataAfterEnd marks an entry whose payload decoded, with trailing bytes the decoder
+        // did not consume; ZipHandler.cpp and GzHandler.cpp reach it only once the CRC has
+        // matched. Reporting a failure here discarded a complete extraction.
+        if (operationResult == OperationResult.DataAfterEnd)
+        {
+            HasDataAfterEnd = true;
+            operationResult = OperationResult.Ok;
+        }
+
+        // The handle has to go back whatever the outcome. A failing entry used to keep its
+        // half-written file open until the next GetStream overwrote the reference.
+        if (_fileStream != null && !_fileIndex.HasValue)
+        {
+            try
+            {
+                _fileStream.BytesWritten -= IntEventArgsHandler;
+                _fileStream.Dispose();
+            }
+            catch (ObjectDisposedException) { }
+            _fileStream = null;
+        }
+
         if (operationResult != OperationResult.Ok && ReportErrors)
         {
             switch (operationResult)
@@ -427,9 +455,6 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                 case OperationResult.UnexpectedEnd:
                     AddException(new ExtractionFailedException("Unexpected end of file."));
                     break;
-                case OperationResult.DataAfterEnd:
-                    AddException(new ExtractionFailedException("Data after end of archive."));
-                    break;
                 case OperationResult.IsNotArc:
                     AddException(new ExtractionFailedException("File is not archive."));
                     break;
@@ -443,27 +468,16 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
                     AddException(new ExtractionFailedException($"Unexpected operation result: {operationResult}"));
                     break;
             }
+
+            return;
         }
-        else
+
+        var iea = new FileInfoEventArgs(_extractor!.ArchiveFileData[_currentIndex], PercentDoneEventArgs.ProducePercentDone(_doneRate));
+        FileExtractionFinished?.Invoke(this, iea);
+
+        if (iea.Cancel)
         {
-            if (_fileStream != null && !_fileIndex.HasValue)
-            {
-                try
-                {
-                    _fileStream.BytesWritten -= IntEventArgsHandler;
-                    _fileStream.Dispose();
-                }
-                catch (ObjectDisposedException) { }
-                _fileStream = null;
-            }
-
-            var iea = new FileInfoEventArgs(_extractor!.ArchiveFileData[_currentIndex], PercentDoneEventArgs.ProducePercentDone(_doneRate));
-            FileExtractionFinished?.Invoke(this, iea);
-
-            if (iea.Cancel)
-            {
-                Canceled = true;
-            }
+            Canceled = true;
         }
     }
 

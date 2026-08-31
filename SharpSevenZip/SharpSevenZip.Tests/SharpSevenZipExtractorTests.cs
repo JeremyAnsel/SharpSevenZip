@@ -11,7 +11,7 @@ public class SharpSevenZipExtractorTests : TestBase
 
             foreach (var file in Directory.GetFiles(Path.Combine(TestContext.CurrentContext.TestDirectory, "TestData")))
             {
-                if (file.Contains("multi") || file.Contains("long_path") || file.Contains("ihex"))
+                if (file.Contains("multi") || file.Contains("long_path") || file.Contains("ihex") || file.Contains("broken"))
                 {
                     continue;
                 }
@@ -49,6 +49,49 @@ public class SharpSevenZipExtractorTests : TestBase
         Assert.That(Directory.GetFiles(OutputDirectory), Has.Length.EqualTo(2));
         Assert.That(Directory.GetFiles(OutputDirectory), Has.Some.Contain(Path.Combine(OutputDirectory, "file1.txt")));
         Assert.That(Directory.GetFiles(OutputDirectory), Has.Some.Contain(Path.Combine(OutputDirectory, "file3.txt")));
+    }
+
+    [Test]
+    public void ExtractArchiveWithDataAfterEndTest()
+    {
+        // The entry declares 32 packed bytes more than deflate consumes, which is what
+        // 7-Zip answers with kDataAfterEnd once the CRC has already matched.
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/zip_data_after_end.zip"))
+        {
+            extractor.ExtractArchive(OutputDirectory);
+            Assert.That(extractor.HasDataAfterEnd, Is.True);
+        }
+
+        var extracted = Path.Combine(OutputDirectory, "payload.txt");
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(File.Exists(extracted), Is.True);
+            Assert.That(new FileInfo(extracted).Length, Is.EqualTo(1520));
+        }
+    }
+
+    [Test]
+    public void CheckArchiveWithDataAfterEndTest()
+    {
+        using var extractor = new SharpSevenZipExtractor(@"TestData/zip_data_after_end.zip");
+        Assert.That(extractor.Check(), Is.False);
+    }
+
+    [Test]
+    public void FailedEntryDoesNotHoldItsOutputFileOpen()
+    {
+        using (var extractor = new SharpSevenZipExtractor(@"TestData/zip_broken_entry.zip"))
+        {
+            Assert.Catch<Exception>((Action)(() => extractor.ExtractArchive(OutputDirectory)));
+        }
+
+        // A failing entry used to keep its half-written file open once GetStream had moved
+        // on to the next entry, so opening it exclusively would fail here.
+        foreach (var file in Directory.GetFiles(OutputDirectory))
+        {
+            using var handle = File.Open(file, FileMode.Open, FileAccess.ReadWrite, FileShare.None);
+            Assert.That(handle.CanWrite, Is.True);
+        }
     }
 
     [Test]

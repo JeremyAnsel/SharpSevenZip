@@ -9,6 +9,11 @@ namespace SharpSevenZip;
 /// </summary>
 public abstract class SharpSevenZipBase : MarshalByRefObject
 {
+    /// <summary>
+    /// S_OK, the success code returned by the native COM interfaces.
+    /// </summary>
+    private protected const int HResultOk = 0;
+
     private readonly bool _reportErrors;
     private readonly int _uniqueId;
     private static int _incrementingUniqueId = int.MinValue;
@@ -172,7 +177,7 @@ public abstract class SharpSevenZipBase : MarshalByRefObject
     /// <param name="handler">The class responsible for the callback.</param>
     internal void CheckedExecute(int hresult, string message, CallbackBase handler)
     {
-        if (hresult != (int)OperationResult.Ok || handler.HasExceptions)
+        if (hresult != HResultOk || handler.HasExceptions)
         {
             if (!handler.HasExceptions)
             {

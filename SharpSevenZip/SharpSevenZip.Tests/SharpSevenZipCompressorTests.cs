@@ -23,6 +23,39 @@ public class SharpSevenZipCompressorTests : TestBase
     }
 
     [Test]
+    public void TempArchiveNameIsDerivedFromTheArchivePath()
+    {
+        var tempFolder = Path.Combine(OutputDirectory, "temp");
+        Directory.CreateDirectory(tempFolder);
+
+        var compressor = new SharpSevenZipCompressor
+        {
+            ArchiveFormat = OutArchiveFormat.SevenZip,
+            DirectoryStructure = false,
+            TempFolderPath = tempFolder
+        };
+
+        compressor.CompressFiles(TemporaryFile, @"TestData/7z_LZMA2.7z");
+
+        // The temporary archive only exists while the update runs, so it has to be caught
+        // in flight.
+        string? tempName = null;
+        compressor.CompressionMode = CompressionMode.Append;
+        compressor.FileCompressionStarted += (_, _) =>
+            tempName ??= Path.GetFileName(Directory.GetFiles(tempFolder).FirstOrDefault() ?? string.Empty);
+
+        compressor.CompressFiles(TemporaryFile, @"TestData/zip.zip");
+
+        // Naming it after the archive alone would collide with any equally named archive in
+        // another directory that is being updated at the same time.
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(tempName, Is.Not.EqualTo("tmp.7z.~"));
+            Assert.That(tempName, Does.StartWith("tmp.7z.").And.EndWith(".~"));
+        }
+    }
+
+    [Test]
     public void CompressDirectory_WithSfnPath()
     {
         var compressor = new SharpSevenZipCompressor
