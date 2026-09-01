@@ -83,6 +83,12 @@ public sealed partial class SharpSevenZipExtractor
             if (!Check())
             {
                 CommonDispose();
+
+                // The offset belongs to the embedded archive the signature scan believed it
+                // had found. Falling back to PE means that guess was wrong, so the file has
+                // to be read from its own start again - otherwise the PE handler is handed a
+                // stream beginning in the middle of the image and cannot open it.
+                _offset = 0;
                 _format = InArchiveFormat.PE;
                 SharpSevenZipLibraryManager.LoadLibrary(this, _format);
 
@@ -133,6 +139,10 @@ public sealed partial class SharpSevenZipExtractor
             if (!Check())
             {
                 CommonDispose();
+
+                // See Init(string): the offset described a suspected embedded archive that
+                // turned out not to be one, so the PE handler must start at byte zero.
+                _offset = 0;
                 _format = InArchiveFormat.PE;
                 SharpSevenZipLibraryManager.LoadLibrary(this, _format);
 

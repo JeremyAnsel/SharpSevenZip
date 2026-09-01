@@ -313,6 +313,23 @@ public class SharpSevenZipExtractorTests : TestBase
         Assert.That(files, Has.Length.EqualTo(1));
         Assert.That(Path.GetFileName(files[0]), Is.EqualTo(expectedName));
     }
+
+    [Test]
+    public void PeFallbackIgnoresTheSuspectedEmbeddedArchiveOffset()
+    {
+        // The signature scan reports an offset whenever it believes it found an archive
+        // embedded in an executable. Its shortest pattern is ARJ's two bytes 60 EA, which
+        // turns up by chance in a good quarter of all ordinary binaries. Once the integrity
+        // check rejects that guess and the PE handler takes over, the whole image counts
+        // again - reading from the guessed offset used to fail the open outright.
+        var executable = typeof(SharpSevenZipExtractorTests).Assembly.Location;
+        var falsePositive = new ArchiveFormatInfo(InArchiveFormat.Arj, 0x1000, isExecutable: true);
+
+        using var extractor = new SharpSevenZipExtractor(executable, falsePositive);
+        extractor.ExtractArchive(OutputDirectory);
+
+        Assert.That(extractor.FilesCount, Is.GreaterThan(0));
+    }
 }
 
 /// <summary>
