@@ -330,6 +330,25 @@ public class SharpSevenZipExtractorTests : TestBase
 
         Assert.That(extractor.FilesCount, Is.GreaterThan(0));
     }
+
+    [Test]
+    public void FailedCheckDoesNotHoldTheArchiveOpen()
+    {
+        var archive = Path.Combine(OutputDirectory, "not_an_arj.bin");
+        File.Copy(@"TestData/zip.zip", archive, overwrite: true);
+
+        using (var extractor = new SharpSevenZipExtractor(archive, InArchiveFormat.Arj))
+        {
+            Assert.That(extractor.Check(), Is.False);
+        }
+
+        // Check() dropped its reference to the archive stream without closing it, so the
+        // handle survived until the finalizer ran and callers could not move the file away.
+        var moved = Path.Combine(OutputDirectory, "moved.bin");
+        File.Move(archive, moved);
+
+        Assert.That(File.Exists(moved), Is.True);
+    }
 }
 
 /// <summary>

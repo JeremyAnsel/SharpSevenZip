@@ -1107,6 +1107,14 @@ public sealed partial class SharpSevenZipExtractor
 
             if (_archiveStream is IDisposable disposable)
             {
+                // A failure before GetArchiveStream(true) leaves the wrapper set to keep its
+                // base stream open. Since the reference is dropped right below, disposing it
+                // half-way would strand the archive's file handle until finalization.
+                if (disposable is DisposeVariableWrapper wrapper)
+                {
+                    wrapper.DisposeStream = true;
+                }
+
                 disposable.Dispose();
             }
 
