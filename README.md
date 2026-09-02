@@ -1,129 +1,152 @@
+# SharpSevenZip
 
-SharpSevenZip
-======
-
-SharpSevenZip is a 7-zip native library wrapper. Managed 7-zip library written in C# that provides data (self-)extraction and compression (all 7-zip formats are supported). Wraps 7z.dll or any compatible one and makes use of LZMA SDK, includes self-extraction functionality.
-
-This is a fork from [Squid-Box.SevenZipSharp](https://github.com/squid-box/SevenZipSharp) which is a fork from [tomap's fork](https://github.com/tomap/SevenZipSharp) of the [original CodePlex project](https://archive.codeplex.com/?p=sevenzipsharp).
-
-SevenZipSharp is an open source wrapper for 7-zip. It exploits the native 7zip dynamic link library through its COM interface and exports classes to work with various file archives. The project appeared as an improvement of http://www.codeproject.com/KB/DLL/cs_interface_7zip.aspx.
-
-
-Build Status
-------------
+A managed C# wrapper around the native 7-Zip library. SharpSevenZip drives `7z.dll` through its COM interface and adds an LZMA SDK implementation and self-extracting archive support on top.
 
 [![Build status](https://ci.appveyor.com/api/projects/status/u6ki6smclwffstjy/branch/main?svg=true)](https://ci.appveyor.com/project/JeremyAnsel/sharpsevenzip/branch/main)
 [![NuGet Version](https://img.shields.io/nuget/v/SharpSevenZip)](https://www.nuget.org/packages/SharpSevenZip)
 ![License](https://img.shields.io/github/license/JeremyAnsel/SharpSevenZip)
 
+| Resource | Link |
+| --- | --- |
+| Source code | [github.com/JeremyAnsel/SharpSevenZip](https://github.com/JeremyAnsel/SharpSevenZip) |
+| Documentation | [jeremyansel.github.io/SharpSevenZip](http://jeremyansel.github.io/SharpSevenZip) |
+| NuGet | [SharpSevenZip](https://www.nuget.org/packages/SharpSevenZip) |
+| NuGet (strong-named) | [SharpSevenZip.StrongName](https://www.nuget.org/packages/SharpSevenZip.StrongName) |
+| Build | [AppVeyor](https://ci.appveyor.com/project/JeremyAnsel/sharpsevenzip/branch/main) |
+| License | [LGPL-3.0-or-later](https://github.com/JeremyAnsel/SharpSevenZip/blob/main/LICENSE) |
 
-Description     | Value
-----------------|----------------
-License         | https://github.com/JeremyAnsel/SharpSevenZip/blob/main/LICENSE
-Documentation   | http://jeremyansel.github.io/SharpSevenZip
-Source code     | https://github.com/JeremyAnsel/SharpSevenZip
-Nuget           | https://www.nuget.org/packages/SharpSevenZip
-Build           | https://ci.appveyor.com/project/JeremyAnsel/sharpsevenzip/branch/main
+## Installation
 
+```shell
+dotnet add package SharpSevenZip
+```
 
-Changes from original project
-------------
+Target frameworks are `net8.0`, `net48` and `netstandard2.0`. The package ships the `x86` and `x64` builds of `7z.dll` and copies them into the corresponding subfolders of the output directory; set the MSBuild property `ExcludeSevenZipAssemblies` to `true` to suppress that.
 
-As required by the GNU GPL 3.0 license, here's a rough list of what has changed since the original CodePlex project, including changes made in tomap's fork.
+## Quick start
 
-- Target .NET version changed from .NET Framework 2.0 to .NET Standard 2.0, .NET Framework 4.8 and .NET 8.0.
-- Continous Integration added, both building and deploying.
-- Tests re-written to NUnit 3 test cases.
-- General code cleanup.
+The library exposes three main types:
 
-As well as a number of improvements and bug fixes.
+| Type | Purpose |
+| --- | --- |
+| `SharpSevenZipExtractor` | Extracts archives, single entries or LZMA-compressed byte arrays |
+| `SharpSevenZipCompressor` | Creates and updates archives from files, directories or streams |
+| `SharpSevenZipSfx` | Builds self-extracting archives |
 
+`LzmaEncodeStream` and `LzmaDecodeStream` are fully managed `Stream` implementations for raw LZMA data and need no native library.
 
-Quick start
-------------
+### Extracting
 
-SharpSevenZip exports three main classes - SharpSevenZipExtractor, SharpSevenZipCompressor and SharpSevenZipSfx.
-SharpSevenZipExtractor is a 7-zip unpacking front-end, it allows either to extract archives or LZMA-compressed byte arrays.
-SharpSevenZipCompressor is a 7-zip pack ingfront-end, it allows either to compress archives or byte arrays.
-SharpSevenZipSfx is a special class to create self-extracting archives. It uses the embedded sfx module by Oleg Scherbakov .
-LzmaEncodeStream/LzmaDecodeStream are special fully managed classes derived from Stream to store data compressed with LZMA and extract it.
+```csharp
+using SharpSevenZip;
 
+using var extractor = new SharpSevenZipExtractor(@"C:\archive.7z");
 
-Native libraries
-------------
+foreach (var entry in extractor.ArchiveFileData)
+{
+    Console.WriteLine($"{entry.FileName} ({entry.Size} bytes)");
+}
 
-SharpSevenZip requires a 7-zip native library to function. You can specify the path to a 7-zip dll (7z.dll, 7za.dll, etc.) in LibraryManager.cs at compile time, your app.config or via SetLibraryPath() method at runtime. <Path to SharpSevenZip.dll> + ("x86" or "x64") + "7z.dll" is the default path. For 64-bit systems, you must use the 64-bit versions of those libraries.
-7-zip ships with 7z.dll, which is used for all archive operations (usually it is "Program Files\7-Zip\7z.dll"). 7za.dll is a light version of 7z.dll, it supports only 7zip archives. You may even build your own library with formats you want from 7-zip sources. SharpSevenZip will work with them all.
+extractor.ExtractArchive(@"C:\output");
+```
 
+The input format is detected from the archive signature, so every format in `InArchiveFormat` — 7z, zip, rar, cab, iso and many more — can be read. Extraction from SFX archives and other formats with embedded archives is supported as well.
 
-Main features
-------------
+### Compressing
 
-- Encryption and passwords are supported.
-- Archive properties are supported.
-- Multi-threading is supported.
-- Streaming is supported.
-- Setting the compression level and method is supported.
-- Archive volumes are supported.
-- Archive updates are supported.
-- Extraction from SFX archives, as well as some other formats with embedded archives is supported.
+```csharp
+using SharpSevenZip;
 
-Extraction is supported from any archive format in InArchiveFormat - such as 7-zip itself, zip, rar or cab and the format is automatically guessed by the archive signature.
-You can compress streams, files or whole directories in OutArchiveFormat - 7-zip, Xz, Zip, GZip, BZip2 and Tar.
-Please note that GZip and BZip2 compresses only one file at a time.
+var compressor = new SharpSevenZipCompressor
+{
+    ArchiveFormat = OutArchiveFormat.SevenZip,
+    CompressionLevel = CompressionLevel.High
+};
 
+compressor.CompressDirectory(@"C:\input", @"C:\archive.7z");
+```
 
-Self-extracting archives
-------------
-SharpSevenZipSfx supports custom sfx modules. The most powerful one is embedded in the assembly, the other lie in SharpSevenZip/sfx directory. Apart from usual sfx, you can make even small installations with the help of SfxSettings scenarios. Refer to the "configuration file parameters" for the complete command list.
+Output is limited to the formats 7-Zip can write: `SevenZip`, `Zip`, `Tar`, `GZip`, `BZip2` and `XZ`. GZip and BZip2 compress a single file at a time.
 
+## Native library
 
-Advanced work with SharpSevenZipCompressor
-------------
+A native 7-Zip library is required at runtime. By default SharpSevenZip loads `<directory of SharpSevenZip.dll>\x86\7z.dll` or `…\x64\7z.dll`, matching the process architecture.
 
-SharpSevenZipCompressor.CustomParameters is a special property to set compression switches, compatible with command line switches of 7z.exe. The complete list of those switches is in 7-zip.chm of 7-Zip installation. For example, to turn on multi-threaded compression, code
-<SharpSevenZipCompressor Instance>.CustomParameters.Add("mt", "on");
-For the complete switches list, refer to SevenZipDoc.chm in the 7-zip installation.
+Another location can be configured in `app.config` or at runtime:
 
+```csharp
+SharpSevenZipBase.SetLibraryPath(@"C:\Program Files\7-Zip\7z.dll");
+```
 
-Benchmarks
-------------
+`7z.dll` covers all archive operations. `7za.dll` is a smaller variant restricted to 7z archives, and a custom build of the 7-Zip sources containing only the formats you need works too.
 
-Here is benchmarks to compare the performance of this library.
-The benchmarks use these libraries:
-- .Net Framework with System.IO.Compression
-- SharpCompress
-- SevenZipSharp
-- SharpSevenZip
+## Features
 
-| Method                               | Job   | Mean      | Ratio | Allocated   | Alloc Ratio |
-|------------------------------------- |------ |----------:|------:|------------:|------------:|
-| Decompress_DotNetFramework_Empty     | Net80 |  2.990 ms |  2.78 |     51.3 KB |        0.92 |
-| Decompress_DotNetFramework_Empty     | Net48 |  1.077 ms |  1.00 |       56 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SharpCompress_Empty       | Net80 |  7.448 ms |  2.57 |   131.76 KB |        0.87 |
-| Decompress_SharpCompress_Empty       | Net48 |  2.902 ms |  1.00 |      152 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SevenZipSharp_Empty       | Net80 | 14.186 ms |  1.91 |  1437.23 KB |        1.00 |
-| Decompress_SevenZipSharp_Empty       | Net48 |  7.412 ms |  1.00 |  1440.08 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SharpSevenZip_Empty       | Net80 |  7.723 ms |  3.45 |    83.72 KB |        1.16 |
-| Decompress_SharpSevenZip_Empty       | Net48 |  2.238 ms |  1.00 |       72 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_DotNetFramework_Sum1      | Net80 |  8.799 ms |  1.50 |    59.75 KB |        0.93 |
-| Decompress_DotNetFramework_Sum1      | Net48 |  5.875 ms |  1.00 |       64 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SharpCompress_Sum1        | Net80 |  9.976 ms |  1.93 |   797.77 KB |        0.97 |
-| Decompress_SharpCompress_Sum1        | Net48 |  5.156 ms |  1.00 |    824.7 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SharpCompress_Sum1_Stream | Net80 | 12.757 ms |  1.43 |   796.99 KB |        0.98 |
-| Decompress_SharpCompress_Sum1_Stream | Net48 |  8.936 ms |  1.00 |    816.7 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SevenZipSharp_Sum1        | Net80 | 32.895 ms |  1.36 | 28359.66 KB |        1.00 |
-| Decompress_SevenZipSharp_Sum1        | Net48 | 24.214 ms |  1.00 | 28333.16 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SharpSevenZip_Sum1        | Net80 | 19.595 ms |  2.01 |   123.58 KB |        1.10 |
-| Decompress_SharpSevenZip_Sum1        | Net48 |  9.725 ms |  1.00 |      112 KB |        1.00 |
-|                                      |       |           |       |             |             |
-| Decompress_SharpSevenZip_Sum1_Stream | Net48 | 34.122 ms |  1.00 |   171.59 KB |        1.00 |
-| Decompress_SharpSevenZip_Sum1_Stream | Net80 | 18.431 ms |  0.54 |   129.23 KB |        0.75 |
+- All 7-Zip archive formats for reading, all writable formats for compression
+- Encryption, passwords and encrypted headers
+- Archive properties, archive updates and multi-volume archives
+- Streaming, multi-threading, configurable compression level and method
+- Self-extracting archives
+
+## Self-extracting archives
+
+`SharpSevenZipSfx` uses the SFX module by Oleg Scherbakov, which is embedded in the assembly.
+
+Alternative modules are available in `SharpSevenZip/sfx`. Combined with `SfxSettings` scenarios this can produce small installers; the available directives are listed under "configuration file parameters" of the SFX module.
+
+## Custom compression switches
+
+`SharpSevenZipCompressor.CustomParameters` accepts the switches of the `7z.exe` command line, for example to enable multi-threaded compression:
+
+```csharp
+compressor.CustomParameters.Add("mt", "on");
+```
+
+The complete list of switches is documented in `7-zip.chm` and `SevenZipDoc.chm` of a 7-Zip installation.
+
+## Strong naming
+
+Two packages are published from the same sources:
+
+| Package | Assembly identity |
+| --- | --- |
+| `SharpSevenZip` | not strong-named |
+| `SharpSevenZip.StrongName` | strong-named, public key token `7b9e68449741c4c5` |
+
+Use `SharpSevenZip.StrongName` when your own application or library is strong-named and therefore requires strong-named references. Both packages contain an assembly named `SharpSevenZip`, so a project can reference only one of them.
+
+The key pair used for signing, `SharpSevenZip/SharpSevenZip/SharpSevenZip.snk`, is part of the repository. Anyone can build an assembly with that identity; strong naming provides an identity, not a security guarantee.
+
+## Benchmarks
+
+Decompression compared against `System.IO.Compression`, [SharpCompress](https://github.com/adamhathcock/sharpcompress) and [SevenZipSharp](https://github.com/squid-box/SevenZipSharp). `Empty` decompresses an empty archive, `Sum1` a small payload; the `stream` variants read from a `Stream` instead of a file.
+
+| Scenario | Library | Mean (net48) | Alloc (net48) | Mean (net8.0) | Alloc (net8.0) |
+| --- | --- | ---: | ---: | ---: | ---: |
+| Empty | System.IO.Compression | 1.077 ms | 56 KB | 2.990 ms | 51.3 KB |
+| Empty | SharpCompress | 2.902 ms | 152 KB | 7.448 ms | 131.8 KB |
+| Empty | SevenZipSharp | 7.412 ms | 1440.1 KB | 14.186 ms | 1437.2 KB |
+| Empty | **SharpSevenZip** | 2.238 ms | 72 KB | 7.723 ms | 83.7 KB |
+| Sum1 | System.IO.Compression | 5.875 ms | 64 KB | 8.799 ms | 59.8 KB |
+| Sum1 | SharpCompress | 5.156 ms | 824.7 KB | 9.976 ms | 797.8 KB |
+| Sum1 | SharpCompress (stream) | 8.936 ms | 816.7 KB | 12.757 ms | 797.0 KB |
+| Sum1 | SevenZipSharp | 24.214 ms | 28333.2 KB | 32.895 ms | 28359.7 KB |
+| Sum1 | **SharpSevenZip** | 9.725 ms | 112 KB | 19.595 ms | 123.6 KB |
+| Sum1 | **SharpSevenZip (stream)** | 34.122 ms | 171.6 KB | 18.431 ms | 129.2 KB |
+
+The benchmark project is `SharpSevenZipBenchmarks`.
+
+## History
+
+SharpSevenZip is a fork of [Squid-Box.SevenZipSharp](https://github.com/squid-box/SevenZipSharp), which forked [tomap's fork](https://github.com/tomap/SevenZipSharp) of the [original CodePlex project](https://archive.codeplex.com/?p=sevenzipsharp) by Markovtsev Vadim.
+
+As required by the license, the notable changes since the CodePlex project, including those made in tomap's fork, are:
+
+- Target frameworks moved from .NET Framework 2.0 to .NET Standard 2.0, .NET Framework 4.8 and .NET 8.0.
+- Continuous integration added for both building and publishing.
+- Tests rewritten as NUnit 3 test cases.
+- General code cleanup, along with a number of improvements and bug fixes.
+
+## License
+
+Licensed under the [GNU Lesser General Public License v3.0 or later](https://github.com/JeremyAnsel/SharpSevenZip/blob/main/LICENSE).
