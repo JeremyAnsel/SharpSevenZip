@@ -102,4 +102,102 @@ public class FileCheckerTests
             Assert.That(FileChecker.CheckSignature(data.TestDataFilePath, out _, out _), Is.EqualTo(data.ExpectedFormat));
         }
     }
+
+    /// <summary>
+    /// An OLE2/Compound file (.doc, .xls, .msi) carries no embedded Zip or 7z signature, so
+    /// the SFX scan finds nothing - it is still a container the Compound handler opens.
+    /// </summary>
+    [Test]
+    public void CheckSignature_CompoundWithoutEmbeddedArchive_ReturnsCompound()
+    {
+        using var stream = NonArchiveStream(CompoundHeader);
+
+        var format = FileChecker.CheckSignature(stream, out var offset, out var isExecutable);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.Compound));
+            Assert.That(offset, Is.Zero);
+            Assert.That(isExecutable, Is.False);
+        }
+    }
+
+    /// <summary>
+    /// The Compound header is only the last resort: a signature found at one of the probed
+    /// offsets still decides.
+    /// </summary>
+    [Test]
+    public void CheckSignature_CompoundHeaderOverVdiSignature_PrefersVdi()
+    {
+        var content = new byte[64 * 1024];
+        CompoundHeader.CopyTo(content, 0);
+        new byte[] { 0x7F, 0x10, 0xDA, 0xBE }.CopyTo(content, 0x40);
+        using var stream = new MemoryStream(content, writable: false);
+
+        Assert.That(FileChecker.CheckSignature(stream, out _, out _), Is.EqualTo(InArchiveFormat.Vdi));
+    }
+
+    /// <summary>
+    /// An archive embedded in an OLE2 container still wins over the bare Compound fallback.
+    /// </summary>
+    [Test]
+    public void CheckSignature_CompoundHeaderWithEmbeddedZip_PrefersZip()
+    {
+        var content = new byte[64 * 1024];
+        CompoundHeader.CopyTo(content, 0);
+        new byte[] { 0x50, 0x4B, 0x03, 0x04 }.CopyTo(content, 0x2000);
+        using var stream = new MemoryStream(content, writable: false);
+
+        var format = FileChecker.CheckSignature(stream, out var offset, out _);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.Zip));
+            Assert.That(offset, Is.EqualTo(0x2000));
+        }
+    }
+
+    [Test]
+    public void CheckSignature_ExecutableWithoutEmbeddedArchive_ReturnsPE()
+    {
+        using var stream = NonArchiveStream(new byte[] { (byte)'M', (byte)'Z' });
+
+        var format = FileChecker.CheckSignature(stream, out _, out var isExecutable);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.PE));
+            Assert.That(isExecutable, Is.True);
+        }
+    }
+
+    /// <summary>
+    /// InArchiveFormat.None is -1 while SevenZip is 0, so a default-valued result would
+    /// report SevenZip and make <see cref="ArchiveFormatInfo.IsArchive"/> true.
+    /// </summary>
+    [Test]
+    public void TryCheckSignature_NotAnArchive_ReportsNone()
+    {
+        using var stream = NonArchiveStream(Array.Empty<byte>());
+
+        var recognised = FileChecker.TryCheckSignature(stream, out var info);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(recognised, Is.False);
+            Assert.That(info.Format, Is.EqualTo(InArchiveFormat.None));
+            Assert.That(info.IsArchive, Is.False);
+        }
+    }
+
+    // 64 KiB of zeroes behind the header: past every SpecialDetect offset and free of any
+    // signature the SFX scan could latch onto.
+    private static MemoryStream NonArchiveStream(byte[] header)
+    {
+        var content = new byte[64 * 1024];
+        header.CopyTo(content, 0);
+        return new MemoryStream(content, writable: false);
+    }
+
+    private static readonly byte[] CompoundHeader = { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 };
 }

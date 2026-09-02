@@ -284,11 +284,9 @@ internal static class FileChecker
                 }
             }
 
-            // Nothing
-            if (suspectedFormat == InArchiveFormat.PE)
-            {
-                return InArchiveFormat.PE;
-            }
+            // No embedded archive: fall back to the container the header itself identified.
+            // A PE may still be a plain executable, but an OLE2/Compound file always is one.
+            return suspectedFormat.Value;
         }
 
         #endregion
@@ -337,7 +335,7 @@ internal static class FileChecker
         }
         catch (ArgumentException)
         {
-            info = default;
+            info = new ArchiveFormatInfo(InArchiveFormat.None, 0, false);
             return false;
         }
     }
@@ -359,7 +357,7 @@ internal static class FileChecker
         }
         catch (ArgumentException)
         {
-            info = default;
+            info = new ArchiveFormatInfo(InArchiveFormat.None, 0, false);
             return false;
         }
     }

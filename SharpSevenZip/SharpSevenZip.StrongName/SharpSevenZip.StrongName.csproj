@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <PackageId>SharpSevenZip.StrongName</PackageId>
+    <Version>2.0.0</Version>
+    <AssemblyName>SharpSevenZip</AssemblyName>
+    <RootNamespace>SharpSevenZip</RootNamespace>
+    <SignAssembly>true</SignAssembly>
+  </PropertyGroup>
+
+  <Import Project="..\SharpSevenZip\SharpSevenZip.Common.props" />
+
+  <PropertyGroup>
+    <Description>$(Description)
+
+Strong-named build of SharpSevenZip (public key token 7b9e68449741c4c5), for use by strong-named applications and libraries.</Description>
+    <PackageTags>$(PackageTags) strongname signed</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SharpSevenZip\**\*.cs" Exclude="..\SharpSevenZip\bin\**\*.cs;..\SharpSevenZip\obj\**\*.cs">
+      <Link>%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
+  </ItemGroup>
+
+</Project>
