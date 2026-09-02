@@ -337,7 +337,7 @@ internal static class FileChecker
         }
         catch (ArgumentException)
         {
-            info = default;
+            info = new ArchiveFormatInfo(InArchiveFormat.None, 0, false);
             return false;
         }
     }
@@ -359,7 +359,7 @@ internal static class FileChecker
         }
         catch (ArgumentException)
         {
-            info = default;
+            info = new ArchiveFormatInfo(InArchiveFormat.None, 0, false);
             return false;
         }
     }

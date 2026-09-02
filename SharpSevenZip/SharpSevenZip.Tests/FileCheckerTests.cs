@@ -102,4 +102,32 @@ public class FileCheckerTests
             Assert.That(FileChecker.CheckSignature(data.TestDataFilePath, out _, out _), Is.EqualTo(data.ExpectedFormat));
         }
     }
+
+    /// <summary>
+    /// InArchiveFormat.None is -1 while SevenZip is 0, so a default-valued result would
+    /// report SevenZip and make <see cref="ArchiveFormatInfo.IsArchive"/> true.
+    /// </summary>
+    [Test]
+    public void TryCheckSignature_NotAnArchive_ReportsNone()
+    {
+        using var stream = NonArchiveStream(Array.Empty<byte>());
+
+        var recognised = FileChecker.TryCheckSignature(stream, out var info);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(recognised, Is.False);
+            Assert.That(info.Format, Is.EqualTo(InArchiveFormat.None));
+            Assert.That(info.IsArchive, Is.False);
+        }
+    }
+
+    // 64 KiB of zeroes behind the header: past every SpecialDetect offset and free of any
+    // signature the SFX scan could latch onto.
+    private static MemoryStream NonArchiveStream(byte[] header)
+    {
+        var content = new byte[64 * 1024];
+        header.CopyTo(content, 0);
+        return new MemoryStream(content, writable: false);
+    }
 }
