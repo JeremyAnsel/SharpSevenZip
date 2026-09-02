@@ -104,6 +104,39 @@ public class FileCheckerTests
     }
 
     /// <summary>
+    /// An OLE2/Compound file (.doc, .xls, .msi) carries no embedded Zip or 7z signature, so
+    /// the SFX scan finds nothing - it is still a container the Compound handler opens.
+    /// </summary>
+    [Test]
+    public void CheckSignature_CompoundWithoutEmbeddedArchive_ReturnsCompound()
+    {
+        using var stream = NonArchiveStream(new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 });
+
+        var format = FileChecker.CheckSignature(stream, out var offset, out var isExecutable);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.Compound));
+            Assert.That(offset, Is.Zero);
+            Assert.That(isExecutable, Is.False);
+        }
+    }
+
+    [Test]
+    public void CheckSignature_ExecutableWithoutEmbeddedArchive_ReturnsPE()
+    {
+        using var stream = NonArchiveStream(new byte[] { (byte)'M', (byte)'Z' });
+
+        var format = FileChecker.CheckSignature(stream, out _, out var isExecutable);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.PE));
+            Assert.That(isExecutable, Is.True);
+        }
+    }
+
+    /// <summary>
     /// InArchiveFormat.None is -1 while SevenZip is 0, so a default-valued result would
     /// report SevenZip and make <see cref="ArchiveFormatInfo.IsArchive"/> true.
     /// </summary>
