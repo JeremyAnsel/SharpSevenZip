@@ -110,7 +110,7 @@ public class FileCheckerTests
     [Test]
     public void CheckSignature_CompoundWithoutEmbeddedArchive_ReturnsCompound()
     {
-        using var stream = NonArchiveStream(new byte[] { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 });
+        using var stream = NonArchiveStream(CompoundHeader);
 
         var format = FileChecker.CheckSignature(stream, out var offset, out var isExecutable);
 
@@ -119,6 +119,41 @@ public class FileCheckerTests
             Assert.That(format, Is.EqualTo(InArchiveFormat.Compound));
             Assert.That(offset, Is.Zero);
             Assert.That(isExecutable, Is.False);
+        }
+    }
+
+    /// <summary>
+    /// The Compound header is only the last resort: a signature found at one of the probed
+    /// offsets still decides.
+    /// </summary>
+    [Test]
+    public void CheckSignature_CompoundHeaderOverVdiSignature_PrefersVdi()
+    {
+        var content = new byte[64 * 1024];
+        CompoundHeader.CopyTo(content, 0);
+        new byte[] { 0x7F, 0x10, 0xDA, 0xBE }.CopyTo(content, 0x40);
+        using var stream = new MemoryStream(content, writable: false);
+
+        Assert.That(FileChecker.CheckSignature(stream, out _, out _), Is.EqualTo(InArchiveFormat.Vdi));
+    }
+
+    /// <summary>
+    /// An archive embedded in an OLE2 container still wins over the bare Compound fallback.
+    /// </summary>
+    [Test]
+    public void CheckSignature_CompoundHeaderWithEmbeddedZip_PrefersZip()
+    {
+        var content = new byte[64 * 1024];
+        CompoundHeader.CopyTo(content, 0);
+        new byte[] { 0x50, 0x4B, 0x03, 0x04 }.CopyTo(content, 0x2000);
+        using var stream = new MemoryStream(content, writable: false);
+
+        var format = FileChecker.CheckSignature(stream, out var offset, out _);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.Zip));
+            Assert.That(offset, Is.EqualTo(0x2000));
         }
     }
 
@@ -163,4 +198,6 @@ public class FileCheckerTests
         header.CopyTo(content, 0);
         return new MemoryStream(content, writable: false);
     }
+
+    private static readonly byte[] CompoundHeader = { 0xD0, 0xCF, 0x11, 0xE0, 0xA1, 0xB1, 0x1A, 0xE1 };
 }
