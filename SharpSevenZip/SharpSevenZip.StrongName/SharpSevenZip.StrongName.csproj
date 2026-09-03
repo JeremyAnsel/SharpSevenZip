@@ -6,6 +6,7 @@
     <IsPackable>true</IsPackable>
     <AssemblyName>SharpSevenZip</AssemblyName>
     <RootNamespace>SharpSevenZip</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
 
