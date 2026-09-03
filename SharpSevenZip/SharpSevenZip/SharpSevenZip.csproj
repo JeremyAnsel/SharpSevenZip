@@ -13,6 +13,7 @@
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <ContinuousIntegrationBuild Condition="'$(CI)' == 'True'">true</ContinuousIntegrationBuild>
+    <Version>2.0.0</Version>
     <Description>7-zip native library wrapper. Managed 7-zip library written in C# that provides data (self-)extraction and compression (all 7-zip formats are supported). Wraps 7z.dll or any compatible one and makes use of LZMA SDK, includes self-extraction functionality.</Description>
     <Authors>Joel Ahlgren, Markovtsev Vadim, Jérémy Ansel</Authors>
     <Company>Jérémy Ansel</Company>
