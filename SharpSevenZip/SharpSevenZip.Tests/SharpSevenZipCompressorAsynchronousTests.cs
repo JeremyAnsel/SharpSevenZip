@@ -5,6 +5,8 @@ namespace SharpSevenZip.Tests;
 [TestFixture]
 public class SharpSevenZipCompressorAsynchronousTests : TestBase
 {
+    private static readonly TimeSpan CompressionTimeout = TimeSpan.FromSeconds(10);
+
     [Test]
     public void AsynchronousCompressDirectoryAndEventsTest()
     {
@@ -12,39 +14,28 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
         var fileCompressionStartedInvoked = 0;
         var fileCompressionFinishedInvoked = 0;
         var compressingInvoked = 0;
-        var compressionFinishedInvoked = 0;
+        using var compressionFinished = new ManualResetEventSlim(false);
 
         var compressor = new SharpSevenZipCompressor();
 
-        compressor.FilesFound += (o, e) => filesFoundInvoked++;
-        compressor.FileCompressionStarted += (o, e) => fileCompressionStartedInvoked++;
-        compressor.FileCompressionFinished += (o, e) => fileCompressionFinishedInvoked++;
-        compressor.Compressing += (o, e) => compressingInvoked++;
-        compressor.CompressionFinished += (o, e) => compressionFinishedInvoked++;
+        compressor.FilesFound += (o, e) => Interlocked.Increment(ref filesFoundInvoked);
+        compressor.FileCompressionStarted += (o, e) => Interlocked.Increment(ref fileCompressionStartedInvoked);
+        compressor.FileCompressionFinished += (o, e) => Interlocked.Increment(ref fileCompressionFinishedInvoked);
+        compressor.Compressing += (o, e) => Interlocked.Increment(ref compressingInvoked);
+        compressor.CompressionFinished += (o, e) => compressionFinished.Set();
 
         compressor.BeginCompressDirectory(@"TestData", TemporaryFile);
 
-        var timeToWait = 10000;
-        while (compressionFinishedInvoked == 0)
-        {
-            if (timeToWait <= 0)
-            {
-                break;
-            }
-
-            Thread.Sleep(25);
-            //timeToWait -= 25;
-        }
+        Assert.That(compressionFinished.Wait(CompressionTimeout), Is.True, "Compression did not finish in time.");
 
         var numberOfTestDataFiles = Directory.GetFiles("TestData").Length;
 
         Assert.Multiple((Action)delegate
         {
-            Assert.That(filesFoundInvoked, Is.EqualTo(1));
-            Assert.That(fileCompressionStartedInvoked, Is.EqualTo(numberOfTestDataFiles));
-            Assert.That(fileCompressionFinishedInvoked, Is.EqualTo(numberOfTestDataFiles));
+            Assert.That(Volatile.Read(ref filesFoundInvoked), Is.EqualTo(1));
+            Assert.That(Volatile.Read(ref fileCompressionStartedInvoked), Is.EqualTo(numberOfTestDataFiles));
+            Assert.That(Volatile.Read(ref fileCompressionFinishedInvoked), Is.EqualTo(numberOfTestDataFiles));
             // Assert.That(compressingInvoked, Is.EqualTo(numberOfTestDataFiles));
-            Assert.That(compressionFinishedInvoked, Is.EqualTo(1));
 
             Assert.That(File.Exists(TemporaryFile), Is.True);
         });
@@ -53,24 +44,14 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
     [Test]
     public void AsynchronousCompressFilesTest()
     {
-        var compressionFinishedInvoked = false;
+        using var compressionFinished = new ManualResetEventSlim(false);
 
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
-        compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
+        compressor.CompressionFinished += (o, e) => compressionFinished.Set();
 
         compressor.BeginCompressFiles(TemporaryFile, @"TestData/zip.zip", @"TestData/tar.tar");
 
-        var timeToWait = 10000;
-        while (!compressionFinishedInvoked)
-        {
-            if (timeToWait <= 0)
-            {
-                break;
-            }
-
-            Thread.Sleep(25);
-            //timeToWait -= 25;
-        }
+        Assert.That(compressionFinished.Wait(CompressionTimeout), Is.True, "Compression did not finish in time.");
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
@@ -87,27 +68,17 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
     [Test]
     public void AsynchronousCompressStreamTest()
     {
-        var compressionFinishedInvoked = false;
+        using var compressionFinished = new ManualResetEventSlim(false);
 
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
-        compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
+        compressor.CompressionFinished += (o, e) => compressionFinished.Set();
 
         using (var inputStream = File.OpenRead(@"TestData/zip.zip"))
         {
             using var outputStream = new FileStream(TemporaryFile, FileMode.Create);
             compressor.BeginCompressStream(inputStream, outputStream);
 
-            var timeToWait = 10000;
-            while (!compressionFinishedInvoked)
-            {
-                if (timeToWait <= 0)
-                {
-                    break;
-                }
-
-                Thread.Sleep(25);
-                //timeToWait -= 25;
-            }
+            Assert.That(compressionFinished.Wait(CompressionTimeout), Is.True, "Compression did not finish in time.");
         }
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
@@ -123,22 +94,12 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
 
         compressor.CompressFiles(TemporaryFile, @"TestData/tar.tar");
 
-        var compressionFinishedInvoked = false;
-        compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
+        using var compressionFinished = new ManualResetEventSlim(false);
+        compressor.CompressionFinished += (o, e) => compressionFinished.Set();
 
         compressor.BeginModifyArchive(TemporaryFile, new Dictionary<int, string?> { { 0, @"tartar" } });
 
-        var timeToWait = 10000;
-        while (!compressionFinishedInvoked)
-        {
-            if (timeToWait <= 0)
-            {
-                break;
-            }
-
-            Thread.Sleep(25);
-            //timeToWait -= 25;
-        }
+        Assert.That(compressionFinished.Wait(CompressionTimeout), Is.True, "Compression did not finish in time.");
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
@@ -153,24 +114,14 @@ public class SharpSevenZipCompressorAsynchronousTests : TestBase
     [Test]
     public void AsynchronousCompressFilesEncryptedTest()
     {
-        var compressionFinishedInvoked = false;
+        using var compressionFinished = new ManualResetEventSlim(false);
 
         var compressor = new SharpSevenZipCompressor { DirectoryStructure = false };
-        compressor.CompressionFinished += (o, e) => compressionFinishedInvoked = true;
+        compressor.CompressionFinished += (o, e) => compressionFinished.Set();
 
         compressor.BeginCompressFilesEncrypted(TemporaryFile, "secure", @"TestData/zip.zip", @"TestData/tar.tar");
 
-        var timeToWait = 10000;
-        while (!compressionFinishedInvoked)
-        {
-            if (timeToWait <= 0)
-            {
-                break;
-            }
-
-            Thread.Sleep(25);
-            //timeToWait -= 25;
-        }
+        Assert.That(compressionFinished.Wait(CompressionTimeout), Is.True, "Compression did not finish in time.");
 
         Assert.That(File.Exists(TemporaryFile), Is.True);
 
