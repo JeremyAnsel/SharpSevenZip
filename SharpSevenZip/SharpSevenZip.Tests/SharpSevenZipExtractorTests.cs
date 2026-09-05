@@ -1,8 +1,13 @@
+using System.Text;
+
 namespace SharpSevenZip.Tests;
 
 [TestFixture]
 public class SharpSevenZipExtractorTests : TestBase
 {
+    private const string ZoneIdentifier = "[ZoneTransfer]\r\nZoneId=3\r\nHostUrl=https://example.com/multiple_files.7z\r\n";
+    private const string OtherZoneIdentifier = "[ZoneTransfer]\r\nZoneId=2\r\nHostUrl=https://example.org/other.7z\r\n";
+
     public static List<TestFile> TestFiles
     {
         get
@@ -348,6 +353,102 @@ public class SharpSevenZipExtractorTests : TestBase
         File.Move(archive, moved);
 
         Assert.That(File.Exists(moved), Is.True);
+    }
+
+    [Test]
+    public void ExtractArchivePropagatesTheMarkOfTheWeb()
+    {
+        var archive = MarkedArchive();
+        var target = Path.Combine(OutputDirectory, "extracted");
+
+        using (var extractor = new SharpSevenZipExtractor(archive))
+        {
+            extractor.ExtractArchive(target);
+        }
+
+        Assert.That(MarkOfTheWeb.Read(Path.Combine(target, "file1.txt")),
+            Is.EqualTo(Encoding.ASCII.GetBytes(ZoneIdentifier)));
+    }
+
+    [Test]
+    public void ExtractArchiveKeepsTheMarkOfTheWebOfTheOpenedArchive()
+    {
+        // The zone stream is read once up front, so replacing it mid-extraction must not
+        // give later entries a different mark than the first one.
+        var archive = MarkedArchive();
+        var target = Path.Combine(OutputDirectory, "extracted");
+
+        using (var extractor = new SharpSevenZipExtractor(archive))
+        {
+            extractor.FileExtractionStarted += (_, e) =>
+            {
+                if (e.FileInfo.Index == 0)
+                {
+                    MarkOfTheWeb.Apply(Encoding.ASCII.GetBytes(OtherZoneIdentifier), archive);
+                }
+            };
+
+            extractor.ExtractArchive(target);
+        }
+
+        Assert.Multiple((Action)delegate
+        {
+            Assert.That(MarkOfTheWeb.Read(Path.Combine(target, "file1.txt")),
+                Is.EqualTo(Encoding.ASCII.GetBytes(ZoneIdentifier)));
+            Assert.That(MarkOfTheWeb.Read(Path.Combine(target, "file3.txt")),
+                Is.EqualTo(Encoding.ASCII.GetBytes(ZoneIdentifier)));
+        });
+    }
+
+    [Test]
+    public void ExtractArchiveRestoresTimestampsOfMarkedFiles()
+    {
+        // Writing an alternate data stream stamps the base file with the current time, so
+        // the zone stream has to be written before the archived timestamp is restored.
+        var archive = MarkedArchive();
+        var target = Path.Combine(OutputDirectory, "extracted");
+        DateTime stored;
+
+        using (var extractor = new SharpSevenZipExtractor(archive))
+        {
+            stored = extractor.ArchiveFileData[0].LastWriteTime;
+            extractor.ExtractArchive(target);
+        }
+
+        Assert.That(File.GetLastWriteTime(Path.Combine(target, "file1.txt")), Is.EqualTo(stored));
+    }
+
+    [Test]
+    public void ExtractArchiveWithoutPropagationLeavesFilesUnmarked()
+    {
+        var archive = MarkedArchive();
+        var target = Path.Combine(OutputDirectory, "extracted");
+
+        using (var extractor = new SharpSevenZipExtractor(archive))
+        {
+            extractor.PropagateMarkOfTheWeb = false;
+            extractor.ExtractArchive(target);
+        }
+
+        Assert.That(MarkOfTheWeb.Read(Path.Combine(target, "file1.txt")), Is.Null);
+    }
+
+    /// <summary>
+    /// Copies the multi-entry test archive into the output directory and gives it a
+    /// Mark-of-the-Web.
+    /// </summary>
+    private static string MarkedArchive()
+    {
+        var archive = Path.GetFullPath(Path.Combine(OutputDirectory, "marked.7z"));
+        File.Copy(@"TestData/multiple_files.7z", archive, overwrite: true);
+        MarkOfTheWeb.Apply(Encoding.ASCII.GetBytes(ZoneIdentifier), archive);
+
+        if (MarkOfTheWeb.Read(archive) is null)
+        {
+            Assert.Ignore("The file system does not support Zone.Identifier alternate data streams.");
+        }
+
+        return archive;
     }
 }
 

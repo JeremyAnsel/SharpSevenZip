@@ -38,6 +38,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
     private uint? _fileIndex;
     private int _filesCount;
     private OutStreamWrapper? _fileStream;
+    private byte[]? _markOfTheWeb;
     private Stream? _baseStream;
     private bool _directoryStructure;
     private int _currentIndex;
@@ -133,6 +134,8 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
         _fakeStream = new FakeOutStreamWrapper();
         _fakeStream.BytesWritten += IntEventArgsHandler;
         _extractor = extractor;
+        // One snapshot for the whole extraction: the archive file must not be re-read per entry.
+        _markOfTheWeb = extractor.PropagateMarkOfTheWeb ? MarkOfTheWeb.Read(extractor.FileName) : null;
         //GC.AddMemoryPressure(MemoryPressure);
     }
     #endregion
@@ -329,7 +332,7 @@ internal sealed partial class ArchiveExtractCallback : CallbackBase, IArchiveExt
 
                         try
                         {
-                            _fileStream = new OutStreamWrapper(File.Create(fileName), fileName, time, true);
+                            _fileStream = new OutStreamWrapper(File.Create(fileName), fileName, time, true, _markOfTheWeb);
                         }
                         catch (Exception e)
                         {
