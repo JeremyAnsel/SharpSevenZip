@@ -5,11 +5,11 @@
   <head>
     <meta charset="utf-8">
       <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-      <title>Enum CompressionMethod </title>
+      <title>Enum ArchiveErrorFlags </title>
       <meta name="viewport" content="width=device-width">
-      <meta name="title" content="Enum CompressionMethod ">
+      <meta name="title" content="Enum ArchiveErrorFlags ">
     
-    <meta name="description" content="Compression method enumeration.">
+    <meta name="description" content="Problems 7-Zip reports for an archive it has opened. Mirrors 7-Zip&#39;s kpv_ErrorFlags_* values.">
       <link rel="shortcut icon" href="../favicon.ico">
       <link rel="stylesheet" href="../styles/docfx.vendor.min.css">
       <link rel="stylesheet" href="../styles/docfx.css">
@@ -95,8 +95,8 @@
                       <a href="SharpSevenZip.html" title="SharpSevenZip" class="">SharpSevenZip</a>
 
                         <ul class="nav level2">
-                          <li class="">
-                            <a href="SharpSevenZip.ArchiveErrorFlags.html" title="ArchiveErrorFlags" class="">ArchiveErrorFlags</a>
+                          <li class="active">
+                            <a href="SharpSevenZip.ArchiveErrorFlags.html" title="ArchiveErrorFlags" class="active">ArchiveErrorFlags</a>
                           </li>
                           <li class="">
                             <a href="SharpSevenZip.ArchiveFileInfo.html" title="ArchiveFileInfo" class="">ArchiveFileInfo</a>
@@ -110,8 +110,8 @@
                           <li class="">
                             <a href="SharpSevenZip.CompressionLevel.html" title="CompressionLevel" class="">CompressionLevel</a>
                           </li>
-                          <li class="active">
-                            <a href="SharpSevenZip.CompressionMethod.html" title="CompressionMethod" class="active">CompressionMethod</a>
+                          <li class="">
+                            <a href="SharpSevenZip.CompressionMethod.html" title="CompressionMethod" class="">CompressionMethod</a>
                           </li>
                           <li class="">
                             <a href="SharpSevenZip.CompressionMode.html" title="CompressionMode" class="">CompressionMode</a>
@@ -293,24 +293,23 @@
         </div>
         <div class="article row grid-right">
           <div class="col-md-10">
-            <article class="content wrap" id="_content" data-uid="SharpSevenZip.CompressionMethod">
+            <article class="content wrap" id="_content" data-uid="SharpSevenZip.ArchiveErrorFlags">
 
 
 
 
-  <h1 id="SharpSevenZip_CompressionMethod" data-uid="SharpSevenZip.CompressionMethod" class="text-break">Enum CompressionMethod</h1>
-  <div class="markdown level0 summary"><p>Compression method enumeration.</p>
+  <h1 id="SharpSevenZip_ArchiveErrorFlags" data-uid="SharpSevenZip.ArchiveErrorFlags" class="text-break">Enum ArchiveErrorFlags</h1>
+  <div class="markdown level0 summary"><p>Problems 7-Zip reports for an archive it has opened. Mirrors 7-Zip's
+<code>kpv_ErrorFlags_*</code> values.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <h6><strong>Namespace</strong>: <a class="xref" href="SharpSevenZip.html">SharpSevenZip</a></h6>
   <h6><strong>Assembly</strong>: SharpSevenZip.dll</h6>
-  <h5 id="SharpSevenZip_CompressionMethod_syntax">Syntax</h5>
+  <h5 id="SharpSevenZip_ArchiveErrorFlags_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public enum CompressionMethod</code></pre>
+    <pre><code class="lang-csharp hljs">[Flags]
+public enum ArchiveErrorFlags</code></pre>
   </div>
-  <h5 id="SharpSevenZip_CompressionMethod_remarks"><strong>Remarks</strong></h5>
-  <div class="markdown level0 remarks"><p>Some methods are applicable only to Zip format, some - only to 7-zip.</p>
-</div>
   <h3 id="fields">Fields
 </h3>
   <table class="table table-bordered table-condensed">
@@ -322,43 +321,63 @@
     <thead>
     </thead></thead><tbody>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_BZip2">BZip2</td>
-        <td><p>Zip or 7-zip|Bzip2 method.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_CrcError">CrcError</td>
+        <td><p>A checksum stored in the archive does not match.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Copy">Copy</td>
-        <td><p>Zip or 7-zip|no compression method.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_DataAfterEnd">DataAfterEnd</td>
+        <td><p>The archive is followed by data that is not part of it.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Default">Default</td>
-        <td><p>No method change.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_DataError">DataError</td>
+        <td><p>The archive contains damaged data.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Deflate">Deflate</td>
-        <td><p>Zip|Deflate method.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_EncryptedHeadersError">EncryptedHeadersError</td>
+        <td><p>The encrypted headers could not be decoded.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Deflate64">Deflate64</td>
-        <td><p>Zip|Deflate64 method.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_HeadersError">HeadersError</td>
+        <td><p>The headers are damaged.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Lzma">Lzma</td>
-        <td><p>Zip or 7-zip|LZMA method based on Lempel-Ziv algorithm, it is default for 7-zip.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_IsNotArchive">IsNotArchive</td>
+        <td><p>The data was not recognized as an archive of this format.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Lzma2">Lzma2</td>
-        <td><p>7-zip|LZMA version 2, LZMA with improved multithreading and usually slight archive size decrease.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_None">None</td>
+        <td><p>No problem was reported.</p>
 </td>
       </tr>
       <tr>
-        <td id="SharpSevenZip_CompressionMethod_Ppmd">Ppmd</td>
-        <td><p>Zip or 7-zip|PPMd method based on Dmitry Shkarin's PPMdH source code, very efficient for compressing texts.</p>
+        <td id="SharpSevenZip_ArchiveErrorFlags_UnavailableStart">UnavailableStart</td>
+        <td><p>The archive begins before the start of the available data.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="SharpSevenZip_ArchiveErrorFlags_UnconfirmedStart">UnconfirmedStart</td>
+        <td><p>The start of the archive could not be confirmed.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="SharpSevenZip_ArchiveErrorFlags_UnexpectedEnd">UnexpectedEnd</td>
+        <td><p>The archive is truncated.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="SharpSevenZip_ArchiveErrorFlags_UnsupportedFeature">UnsupportedFeature</td>
+        <td><p>The archive uses a format feature this build does not implement.</p>
+</td>
+      </tr>
+      <tr>
+        <td id="SharpSevenZip_ArchiveErrorFlags_UnsupportedMethod">UnsupportedMethod</td>
+        <td><p>The archive uses a compression method this build cannot decode.</p>
 </td>
       </tr>
     </tbody>
@@ -371,10 +390,10 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_CompressionMethod.md&amp;value=---%0Auid%3A%20SharpSevenZip.CompressionMethod%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/new/main/apiSpec/new?filename=SharpSevenZip_ArchiveErrorFlags.md&amp;value=---%0Auid%3A%20SharpSevenZip.ArchiveErrorFlags%0Asummary%3A%20&#39;*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax&#39;%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Edit this page</a>
                   </li>
                   <li>
-                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/Formats.cs/#L399" class="contribution-link">View Source</a>
+                    <a href="https://github.com/JeremyAnsel/SharpSevenZip/blob/main/SharpSevenZip/SharpSevenZip/ArchiveErrorFlags.cs/#L7" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

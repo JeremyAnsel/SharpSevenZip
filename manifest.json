@@ -12,6 +12,20 @@
     },
     {
       "type": "ManagedReference",
+      "source_relative_path": "api/SharpSevenZip.ArchiveErrorFlags.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/SharpSevenZip.ArchiveErrorFlags.html"
+        }
+      },
+      "version": "",
+      "Uid": null,
+      "IsMRef": true,
+      "Title": "SharpSevenZip.ArchiveErrorFlags",
+      "Summary": "<p sourcefile=\"api/SharpSevenZip.ArchiveErrorFlags.yml\" sourcestartlinenumber=\"1\">Problems 7-Zip reports for an archive it has opened. Mirrors 7-Zip's\n<code>kpv_ErrorFlags_*</code> values.</p>\n"
+    },
+    {
+      "type": "ManagedReference",
       "source_relative_path": "api/SharpSevenZip.ArchiveFileInfo.yml",
       "output": {
         ".html": {

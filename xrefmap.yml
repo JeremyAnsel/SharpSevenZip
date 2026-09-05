@@ -7,6 +7,84 @@ references:
   commentId: N:SharpSevenZip
   fullName: SharpSevenZip
   nameWithType: SharpSevenZip
+- uid: SharpSevenZip.ArchiveErrorFlags
+  name: ArchiveErrorFlags
+  href: api/SharpSevenZip.ArchiveErrorFlags.html
+  commentId: T:SharpSevenZip.ArchiveErrorFlags
+  fullName: SharpSevenZip.ArchiveErrorFlags
+  nameWithType: ArchiveErrorFlags
+- uid: SharpSevenZip.ArchiveErrorFlags.CrcError
+  name: CrcError
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_CrcError
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.CrcError
+  fullName: SharpSevenZip.ArchiveErrorFlags.CrcError
+  nameWithType: ArchiveErrorFlags.CrcError
+- uid: SharpSevenZip.ArchiveErrorFlags.DataAfterEnd
+  name: DataAfterEnd
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_DataAfterEnd
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.DataAfterEnd
+  fullName: SharpSevenZip.ArchiveErrorFlags.DataAfterEnd
+  nameWithType: ArchiveErrorFlags.DataAfterEnd
+- uid: SharpSevenZip.ArchiveErrorFlags.DataError
+  name: DataError
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_DataError
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.DataError
+  fullName: SharpSevenZip.ArchiveErrorFlags.DataError
+  nameWithType: ArchiveErrorFlags.DataError
+- uid: SharpSevenZip.ArchiveErrorFlags.EncryptedHeadersError
+  name: EncryptedHeadersError
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_EncryptedHeadersError
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.EncryptedHeadersError
+  fullName: SharpSevenZip.ArchiveErrorFlags.EncryptedHeadersError
+  nameWithType: ArchiveErrorFlags.EncryptedHeadersError
+- uid: SharpSevenZip.ArchiveErrorFlags.HeadersError
+  name: HeadersError
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_HeadersError
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.HeadersError
+  fullName: SharpSevenZip.ArchiveErrorFlags.HeadersError
+  nameWithType: ArchiveErrorFlags.HeadersError
+- uid: SharpSevenZip.ArchiveErrorFlags.IsNotArchive
+  name: IsNotArchive
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_IsNotArchive
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.IsNotArchive
+  fullName: SharpSevenZip.ArchiveErrorFlags.IsNotArchive
+  nameWithType: ArchiveErrorFlags.IsNotArchive
+- uid: SharpSevenZip.ArchiveErrorFlags.None
+  name: None
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_None
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.None
+  fullName: SharpSevenZip.ArchiveErrorFlags.None
+  nameWithType: ArchiveErrorFlags.None
+- uid: SharpSevenZip.ArchiveErrorFlags.UnavailableStart
+  name: UnavailableStart
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_UnavailableStart
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.UnavailableStart
+  fullName: SharpSevenZip.ArchiveErrorFlags.UnavailableStart
+  nameWithType: ArchiveErrorFlags.UnavailableStart
+- uid: SharpSevenZip.ArchiveErrorFlags.UnconfirmedStart
+  name: UnconfirmedStart
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_UnconfirmedStart
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.UnconfirmedStart
+  fullName: SharpSevenZip.ArchiveErrorFlags.UnconfirmedStart
+  nameWithType: ArchiveErrorFlags.UnconfirmedStart
+- uid: SharpSevenZip.ArchiveErrorFlags.UnexpectedEnd
+  name: UnexpectedEnd
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_UnexpectedEnd
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.UnexpectedEnd
+  fullName: SharpSevenZip.ArchiveErrorFlags.UnexpectedEnd
+  nameWithType: ArchiveErrorFlags.UnexpectedEnd
+- uid: SharpSevenZip.ArchiveErrorFlags.UnsupportedFeature
+  name: UnsupportedFeature
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_UnsupportedFeature
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.UnsupportedFeature
+  fullName: SharpSevenZip.ArchiveErrorFlags.UnsupportedFeature
+  nameWithType: ArchiveErrorFlags.UnsupportedFeature
+- uid: SharpSevenZip.ArchiveErrorFlags.UnsupportedMethod
+  name: UnsupportedMethod
+  href: api/SharpSevenZip.ArchiveErrorFlags.html#SharpSevenZip_ArchiveErrorFlags_UnsupportedMethod
+  commentId: F:SharpSevenZip.ArchiveErrorFlags.UnsupportedMethod
+  fullName: SharpSevenZip.ArchiveErrorFlags.UnsupportedMethod
+  nameWithType: ArchiveErrorFlags.UnsupportedMethod
 - uid: SharpSevenZip.ArchiveFileInfo
   name: ArchiveFileInfo
   href: api/SharpSevenZip.ArchiveFileInfo.html
@@ -4416,6 +4494,32 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipExtractor.Dispose
   nameWithType: SharpSevenZipExtractor.Dispose
+- uid: SharpSevenZip.SharpSevenZipExtractor.ErrorFlags
+  name: ErrorFlags
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_ErrorFlags
+  commentId: P:SharpSevenZip.SharpSevenZipExtractor.ErrorFlags
+  fullName: SharpSevenZip.SharpSevenZipExtractor.ErrorFlags
+  nameWithType: SharpSevenZipExtractor.ErrorFlags
+- uid: SharpSevenZip.SharpSevenZipExtractor.ErrorFlags*
+  name: ErrorFlags
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_ErrorFlags_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.ErrorFlags
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.ErrorFlags
+  nameWithType: SharpSevenZipExtractor.ErrorFlags
+- uid: SharpSevenZip.SharpSevenZipExtractor.ErrorMessage
+  name: ErrorMessage
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_ErrorMessage
+  commentId: P:SharpSevenZip.SharpSevenZipExtractor.ErrorMessage
+  fullName: SharpSevenZip.SharpSevenZipExtractor.ErrorMessage
+  nameWithType: SharpSevenZipExtractor.ErrorMessage
+- uid: SharpSevenZip.SharpSevenZipExtractor.ErrorMessage*
+  name: ErrorMessage
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_ErrorMessage_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.ErrorMessage
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.ErrorMessage
+  nameWithType: SharpSevenZipExtractor.ErrorMessage
 - uid: SharpSevenZip.SharpSevenZipExtractor.ExtractArchive(System.String)
   name: ExtractArchive(string)
   href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_ExtractArchive_System_String_
@@ -4713,6 +4817,19 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipExtractor.PreserveDirectoryStructure
   nameWithType: SharpSevenZipExtractor.PreserveDirectoryStructure
+- uid: SharpSevenZip.SharpSevenZipExtractor.PropagateMarkOfTheWeb
+  name: PropagateMarkOfTheWeb
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_PropagateMarkOfTheWeb
+  commentId: P:SharpSevenZip.SharpSevenZipExtractor.PropagateMarkOfTheWeb
+  fullName: SharpSevenZip.SharpSevenZipExtractor.PropagateMarkOfTheWeb
+  nameWithType: SharpSevenZipExtractor.PropagateMarkOfTheWeb
+- uid: SharpSevenZip.SharpSevenZipExtractor.PropagateMarkOfTheWeb*
+  name: PropagateMarkOfTheWeb
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_PropagateMarkOfTheWeb_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.PropagateMarkOfTheWeb
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.PropagateMarkOfTheWeb
+  nameWithType: SharpSevenZipExtractor.PropagateMarkOfTheWeb
 - uid: SharpSevenZip.SharpSevenZipExtractor.UnpackedSize
   name: UnpackedSize
   href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_UnpackedSize
@@ -4739,6 +4856,32 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipExtractor.VolumeFileNames
   nameWithType: SharpSevenZipExtractor.VolumeFileNames
+- uid: SharpSevenZip.SharpSevenZipExtractor.WarningFlags
+  name: WarningFlags
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_WarningFlags
+  commentId: P:SharpSevenZip.SharpSevenZipExtractor.WarningFlags
+  fullName: SharpSevenZip.SharpSevenZipExtractor.WarningFlags
+  nameWithType: SharpSevenZipExtractor.WarningFlags
+- uid: SharpSevenZip.SharpSevenZipExtractor.WarningFlags*
+  name: WarningFlags
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_WarningFlags_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.WarningFlags
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.WarningFlags
+  nameWithType: SharpSevenZipExtractor.WarningFlags
+- uid: SharpSevenZip.SharpSevenZipExtractor.WarningMessage
+  name: WarningMessage
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_WarningMessage
+  commentId: P:SharpSevenZip.SharpSevenZipExtractor.WarningMessage
+  fullName: SharpSevenZip.SharpSevenZipExtractor.WarningMessage
+  nameWithType: SharpSevenZipExtractor.WarningMessage
+- uid: SharpSevenZip.SharpSevenZipExtractor.WarningMessage*
+  name: WarningMessage
+  href: api/SharpSevenZip.SharpSevenZipExtractor.html#SharpSevenZip_SharpSevenZipExtractor_WarningMessage_
+  commentId: Overload:SharpSevenZip.SharpSevenZipExtractor.WarningMessage
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipExtractor.WarningMessage
+  nameWithType: SharpSevenZipExtractor.WarningMessage
 - uid: SharpSevenZip.SharpSevenZipSfx
   name: SharpSevenZipSfx
   href: api/SharpSevenZip.SharpSevenZipSfx.html
