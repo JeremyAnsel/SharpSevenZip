@@ -32,6 +32,8 @@ internal class StreamWrapper : DisposeVariableWrapper, IDisposable
 
     private readonly DateTime _fileTime;
 
+    private readonly byte[]? _markOfTheWeb;
+
     /// <summary>
     /// Worker stream for reading, writing and seeking.
     /// </summary>
@@ -44,12 +46,14 @@ internal class StreamWrapper : DisposeVariableWrapper, IDisposable
     /// <param name="fileName">File name associated with the stream (for attributes fix)</param>
     /// <param name="time">File last write time (for attributes fix)</param>
     /// <param name="disposeStream">Indicates whether to dispose the baseStream</param>
-    protected StreamWrapper(Stream baseStream, string fileName, DateTime time, bool disposeStream)
+    /// <param name="markOfTheWeb">Zone stream to give the file, or <c>null</c> for none</param>
+    protected StreamWrapper(Stream baseStream, string fileName, DateTime time, bool disposeStream, byte[]? markOfTheWeb)
         : base(disposeStream)
     {
         _baseStream = baseStream;
         _fileName = fileName;
         _fileTime = time;
+        _markOfTheWeb = markOfTheWeb;
     }
 
     /// <summary>
@@ -87,6 +91,10 @@ internal class StreamWrapper : DisposeVariableWrapper, IDisposable
 
         if (!string.IsNullOrEmpty(_fileName) && File.Exists(_fileName))
         {
+            // Writing an alternate data stream touches the base file, so the zone stream
+            // has to go in before the timestamps are restored.
+            MarkOfTheWeb.Apply(_markOfTheWeb, _fileName);
+
             try
             {
                 File.SetLastWriteTime(_fileName, _fileTime);
@@ -207,8 +215,9 @@ internal sealed partial class OutStreamWrapper : StreamWrapper, ISequentialOutSt
     /// <param name="fileName">File name (for attributes fix)</param>
     /// <param name="time">Time of the file creation (for attributes fix)</param>
     /// <param name="disposeStream">Indicates whether to dispose the baseStream</param>
-    public OutStreamWrapper(Stream baseStream, string fileName, DateTime time, bool disposeStream)
-        : base(baseStream, fileName, time, disposeStream)
+    /// <param name="markOfTheWeb">Zone stream to give the file, or <c>null</c> for none</param>
+    public OutStreamWrapper(Stream baseStream, string fileName, DateTime time, bool disposeStream, byte[]? markOfTheWeb)
+        : base(baseStream, fileName, time, disposeStream, markOfTheWeb)
     { }
 
     /// <summary>
