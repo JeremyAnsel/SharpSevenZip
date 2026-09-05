@@ -31,6 +31,10 @@ public sealed partial class SharpSevenZipExtractor
     private long? _unpackedSize;
     private uint? _filesCount;
     private bool? _isSolid;
+    private ArchiveErrorFlags _errorFlags;
+    private ArchiveErrorFlags _warningFlags;
+    private string? _errorMessage;
+    private string? _warningMessage;
     private bool _opened;
     private bool _disposed;
     private InArchiveFormat _format = InArchiveFormat.None;
@@ -583,11 +587,26 @@ public sealed partial class SharpSevenZipExtractor
                 _filesCount = _archive.GetNumberOfItems();
                 _archiveFileData = new List<ArchiveFileInfo>((int)_filesCount);
 
-                if (_filesCount != 0)
-                {
-                    var data = new PropVariant();
+                var data = new PropVariant();
 
-                    try
+                try
+                {
+                    #region Getting archive diagnostics
+
+                    // No handler lists these among its archive properties, so they can only
+                    // be asked for by id.
+                    _archive.GetArchiveProperty(ItemPropId.ErrorFlags, ref data);
+                    _errorFlags = (ArchiveErrorFlags)NativeMethods.SafeCast<uint>(data, 0);
+                    _archive.GetArchiveProperty(ItemPropId.WarningFlags, ref data);
+                    _warningFlags = (ArchiveErrorFlags)NativeMethods.SafeCast<uint>(data, 0);
+                    _archive.GetArchiveProperty(ItemPropId.Error, ref data);
+                    _errorMessage = NativeMethods.SafeCast<string?>(data, null);
+                    _archive.GetArchiveProperty(ItemPropId.Warning, ref data);
+                    _warningMessage = NativeMethods.SafeCast<string?>(data, null);
+
+                    #endregion
+
+                    if (_filesCount != 0)
                     {
                         #region Getting archive items data
 
@@ -676,12 +695,12 @@ public sealed partial class SharpSevenZipExtractor
 
                         #endregion
                     }
-                    catch (Exception)
+                }
+                catch (Exception)
+                {
+                    if (openCallback.ThrowException())
                     {
-                        if (openCallback.ThrowException())
-                        {
-                            throw;
-                        }
+                        throw;
                     }
                 }
             }
@@ -1020,6 +1039,64 @@ public sealed partial class SharpSevenZipExtractor
             InitArchiveFileData(true);
 
             return _archiveProperties!;
+        }
+    }
+
+    /// <summary>
+    /// Gets the problems 7-Zip reported for the archive. Anything other than
+    /// <see cref="ArchiveErrorFlags.None"/> means the archive cannot be extracted in full,
+    /// even when extraction itself reports no failure.
+    /// </summary>
+    public ArchiveErrorFlags ErrorFlags
+    {
+        get
+        {
+            DisposedCheck();
+            InitArchiveFileData(true);
+
+            return _errorFlags;
+        }
+    }
+
+    /// <summary>
+    /// Gets the non-fatal problems 7-Zip reported for the archive.
+    /// </summary>
+    public ArchiveErrorFlags WarningFlags
+    {
+        get
+        {
+            DisposedCheck();
+            InitArchiveFileData(true);
+
+            return _warningFlags;
+        }
+    }
+
+    /// <summary>
+    /// Gets the error message the format handler supplied, if any.
+    /// </summary>
+    public string? ErrorMessage
+    {
+        get
+        {
+            DisposedCheck();
+            InitArchiveFileData(true);
+
+            return _errorMessage;
+        }
+    }
+
+    /// <summary>
+    /// Gets the warning message the format handler supplied, if any.
+    /// </summary>
+    public string? WarningMessage
+    {
+        get
+        {
+            DisposedCheck();
+            InitArchiveFileData(true);
+
+            return _warningMessage;
         }
     }
 

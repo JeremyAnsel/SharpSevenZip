@@ -450,6 +450,42 @@ public class SharpSevenZipExtractorTests : TestBase
 
         return archive;
     }
+
+    [Test]
+    public void TruncatedArchiveReportsUnexpectedEnd()
+    {
+        // A truncated zip still opens and extracts the entries it can reach, so the only
+        // signal that the rest is missing is the flag 7-Zip sets on the archive.
+        var archive = Truncate(@"TestData/zip.zip", "truncated.zip");
+
+        using var extractor = new SharpSevenZipExtractor(archive);
+        extractor.ExtractArchive(OutputDirectory);
+
+        Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.UnexpectedEnd));
+    }
+
+    [Test]
+    public void IntactArchiveReportsNoErrorFlags()
+    {
+        using var extractor = new SharpSevenZipExtractor(@"TestData/multiple_files.7z");
+
+        Assert.Multiple((Action)delegate
+        {
+            Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.None));
+            Assert.That(extractor.WarningFlags, Is.EqualTo(ArchiveErrorFlags.None));
+            Assert.That(extractor.ErrorMessage, Is.Null);
+            Assert.That(extractor.WarningMessage, Is.Null);
+        });
+    }
+
+    private static string Truncate(string source, string name)
+    {
+        var bytes = File.ReadAllBytes(source);
+        var target = Path.Combine(OutputDirectory, name);
+        File.WriteAllBytes(target, bytes.Take(bytes.Length * 2 / 3).ToArray());
+
+        return target;
+    }
 }
 
 /// <summary>
