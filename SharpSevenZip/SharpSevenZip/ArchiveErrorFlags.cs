@@ -43,7 +43,8 @@ public enum ArchiveErrorFlags
     UnexpectedEnd = 1 << 5,
 
     /// <summary>
-    /// The archive is followed by data that is not part of it.
+    /// The archive is followed by data that is not part of it. Only a few handlers report
+    /// this themselves; for the rest it is measured against the physical size.
     /// </summary>
     DataAfterEnd = 1 << 6,
 

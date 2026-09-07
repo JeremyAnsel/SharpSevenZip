@@ -603,6 +603,10 @@ public sealed partial class SharpSevenZipExtractor
                     _errorMessage = NativeMethods.SafeCast<string?>(data, null);
                     _archive.GetArchiveProperty(ItemPropId.Warning, ref data);
                     _warningMessage = NativeMethods.SafeCast<string?>(data, null);
+                    _archive.GetArchiveProperty(ItemPropId.PhysicalSize, ref data);
+                    var physicalSize = NumericProperty(data);
+                    _archive.GetArchiveProperty(ItemPropId.Offset, ref data);
+                    CheckArchiveBounds(physicalSize, NumericProperty(data));
 
                     #endregion
 
@@ -712,6 +716,68 @@ public sealed partial class SharpSevenZipExtractor
             }
 
             _archiveFileInfoCollection = new ReadOnlyCollection<ArchiveFileInfo>(_archiveFileData);
+        }
+    }
+
+    /// <summary>
+    /// Numeric archive properties arrive as VT_UI8, VT_UI4, VT_I8 or VT_I4 depending on the
+    /// handler. A value above <see cref="long.MaxValue"/> cannot describe a readable stream
+    /// and is reported as -1 so the caller discards it.
+    /// </summary>
+    private static long NumericProperty(PropVariant data)
+    {
+        object? value;
+
+        try
+        {
+            value = data.Object;
+        }
+        catch (Exception)
+        {
+            return 0;
+        }
+
+        return value switch
+        {
+            ulong v => v <= long.MaxValue ? (long)v : -1,
+            long v => v,
+            uint v => v,
+            int v => v,
+            _ => 0
+        };
+    }
+
+    /// <summary>
+    /// Compares the archive's physical end against the stream, as CArc::ReadBasicProps does.
+    /// Neither verdict is an archive property: for Zip, 7z and PE the handlers publish a
+    /// physical size and leave the conclusion to the caller. Bytes past that end belong to no
+    /// entry, and an end past the stream means the archive is short.
+    /// </summary>
+    private void CheckArchiveBounds(long physicalSize, long handlerOffset)
+    {
+        var total = _packedSize ?? (_fileName != null ? new FileInfo(_fileName).Length : -1);
+
+        // 7-Zip splits the archive start the same way: the position the handler's stream was
+        // opened at, plus the offset a kUseGlobalOffset handler reports for itself.
+        var start = _offset + handlerOffset;
+
+        if (physicalSize <= 0 || total < 0 || start < 0)
+        {
+            return;
+        }
+
+        var available = total - start;
+
+        if (physicalSize < available)
+        {
+            if ((_errorFlags & ArchiveErrorFlags.DataAfterEnd) == 0)
+            {
+                _warningFlags |= ArchiveErrorFlags.DataAfterEnd;
+            }
+        }
+        else if (physicalSize > available)
+        {
+            _errorFlags |= ArchiveErrorFlags.UnexpectedEnd;
         }
     }
 
@@ -1046,6 +1112,8 @@ public sealed partial class SharpSevenZipExtractor
     /// Gets the problems 7-Zip reported for the archive. Anything other than
     /// <see cref="ArchiveErrorFlags.None"/> means the archive cannot be extracted in full,
     /// even when extraction itself reports no failure.
+    /// <see cref="ArchiveErrorFlags.UnexpectedEnd"/> is also raised when the physical size
+    /// runs past the stream, which is where 7-Zip's own tools derive it from.
     /// </summary>
     public ArchiveErrorFlags ErrorFlags
     {
@@ -1060,6 +1128,8 @@ public sealed partial class SharpSevenZipExtractor
 
     /// <summary>
     /// Gets the non-fatal problems 7-Zip reported for the archive.
+    /// <see cref="ArchiveErrorFlags.DataAfterEnd"/> is measured against the physical size
+    /// rather than taken from a handler, which is where 7-Zip's own tools get it from.
     /// </summary>
     public ArchiveErrorFlags WarningFlags
     {
