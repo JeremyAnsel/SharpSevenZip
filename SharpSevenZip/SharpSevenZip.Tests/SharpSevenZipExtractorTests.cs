@@ -516,6 +516,23 @@ public class SharpSevenZipExtractorTests : TestBase
 
         Assert.That(extractor.ErrorFlags.HasFlag(ArchiveErrorFlags.UnexpectedEnd), Is.True);
     }
+
+    [Test]
+    public void TrailingDataFoundWhileDecodingIsReportedAfterExtraction()
+    {
+        // Gz publishes no physical size before decoding and sets its own flag only while it
+        // runs, so the open has nothing to say about the tail.
+        var bytes = File.ReadAllBytes(@"TestData/gzip.gz");
+        var archive = Path.Combine(OutputDirectory, "tail.gz");
+        File.WriteAllBytes(archive, bytes.Concat(new byte[4096]).ToArray());
+
+        using var extractor = new SharpSevenZipExtractor(archive);
+        Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.None));
+
+        extractor.ExtractArchive(OutputDirectory);
+
+        Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.DataAfterEnd));
+    }
 }
 
 /// <summary>

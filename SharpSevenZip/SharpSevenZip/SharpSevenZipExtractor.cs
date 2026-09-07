@@ -591,24 +591,7 @@ public sealed partial class SharpSevenZipExtractor
 
                 try
                 {
-                    #region Getting archive diagnostics
-
-                    // No handler lists these among its archive properties, so they can only
-                    // be asked for by id.
-                    _archive.GetArchiveProperty(ItemPropId.ErrorFlags, ref data);
-                    _errorFlags = (ArchiveErrorFlags)NativeMethods.SafeCast<uint>(data, 0);
-                    _archive.GetArchiveProperty(ItemPropId.WarningFlags, ref data);
-                    _warningFlags = (ArchiveErrorFlags)NativeMethods.SafeCast<uint>(data, 0);
-                    _archive.GetArchiveProperty(ItemPropId.Error, ref data);
-                    _errorMessage = NativeMethods.SafeCast<string?>(data, null);
-                    _archive.GetArchiveProperty(ItemPropId.Warning, ref data);
-                    _warningMessage = NativeMethods.SafeCast<string?>(data, null);
-                    _archive.GetArchiveProperty(ItemPropId.PhysicalSize, ref data);
-                    var physicalSize = NumericProperty(data);
-                    _archive.GetArchiveProperty(ItemPropId.Offset, ref data);
-                    CheckArchiveBounds(physicalSize, NumericProperty(data));
-
-                    #endregion
+                    ReadDiagnostics();
 
                     if (_filesCount != 0)
                     {
@@ -717,6 +700,28 @@ public sealed partial class SharpSevenZipExtractor
 
             _archiveFileInfoCollection = new ReadOnlyCollection<ArchiveFileInfo>(_archiveFileData);
         }
+    }
+
+    /// <summary>
+    /// Reads what 7-Zip reports about the opened archive. None of these appear in a handler's
+    /// enumerated archive-property list, so they can only be asked for by id.
+    /// </summary>
+    private void ReadDiagnostics()
+    {
+        var data = new PropVariant();
+
+        _archive!.GetArchiveProperty(ItemPropId.ErrorFlags, ref data);
+        _errorFlags = (ArchiveErrorFlags)NativeMethods.SafeCast<uint>(data, 0);
+        _archive.GetArchiveProperty(ItemPropId.WarningFlags, ref data);
+        _warningFlags = (ArchiveErrorFlags)NativeMethods.SafeCast<uint>(data, 0);
+        _archive.GetArchiveProperty(ItemPropId.Error, ref data);
+        _errorMessage = NativeMethods.SafeCast<string?>(data, null);
+        _archive.GetArchiveProperty(ItemPropId.Warning, ref data);
+        _warningMessage = NativeMethods.SafeCast<string?>(data, null);
+        _archive.GetArchiveProperty(ItemPropId.PhysicalSize, ref data);
+        var physicalSize = NumericProperty(data);
+        _archive.GetArchiveProperty(ItemPropId.Offset, ref data);
+        CheckArchiveBounds(physicalSize, NumericProperty(data));
     }
 
     /// <summary>
@@ -874,6 +879,21 @@ public sealed partial class SharpSevenZipExtractor
     private void FreeArchiveExtractCallback(ArchiveExtractCallback callback)
     {
         HasDataAfterEnd |= callback.HasDataAfterEnd;
+
+        // gz, bz2, xz and zstd publish no physical size before decoding and only learn about
+        // trailing or missing data while it runs, so what was read at open time is stale.
+        if (_archive != null)
+        {
+            try
+            {
+                ReadDiagnostics();
+            }
+            catch (Exception)
+            {
+                // Keep what the open reported.
+            }
+        }
+
         callback.Open -= OpenEventProxy;
         callback.FileExtractionStarted -= FileExtractionStartedEventProxy;
         callback.FileExtractionFinished -= FileExtractionFinishedEventProxy;
