@@ -486,6 +486,53 @@ public class SharpSevenZipExtractorTests : TestBase
 
         return target;
     }
+
+    [Test]
+    public void ArchiveWithTrailingDataReportsDataAfterEnd()
+    {
+        // No handler publishes this for Zip: the bytes past the central directory are
+        // simply outside every entry, and only the physical size reveals them.
+        var bytes = File.ReadAllBytes(@"TestData/zip.zip");
+        var archive = Path.Combine(OutputDirectory, "tail.zip");
+        File.WriteAllBytes(archive, bytes.Concat(new byte[4096]).ToArray());
+
+        using var extractor = new SharpSevenZipExtractor(archive);
+
+        Assert.Multiple((Action)delegate
+        {
+            Assert.That(extractor.WarningFlags, Is.EqualTo(ArchiveErrorFlags.DataAfterEnd));
+            Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.None));
+        });
+    }
+
+    [Test]
+    public void ArchiveEndingPastTheStreamReportsUnexpectedEnd()
+    {
+        // VdiHandler has no kpv_ErrorFlags_UnexpectedEnd of its own; it declares a physical
+        // size, and here that size runs past the file.
+        var archive = Truncate(@"TestData/vdi.vdi", "truncated.vdi");
+
+        using var extractor = new SharpSevenZipExtractor(archive);
+
+        Assert.That(extractor.ErrorFlags.HasFlag(ArchiveErrorFlags.UnexpectedEnd), Is.True);
+    }
+
+    [Test]
+    public void TrailingDataFoundWhileDecodingIsReportedAfterExtraction()
+    {
+        // Gz publishes no physical size before decoding and sets its own flag only while it
+        // runs, so the open has nothing to say about the tail.
+        var bytes = File.ReadAllBytes(@"TestData/gzip.gz");
+        var archive = Path.Combine(OutputDirectory, "tail.gz");
+        File.WriteAllBytes(archive, bytes.Concat(new byte[4096]).ToArray());
+
+        using var extractor = new SharpSevenZipExtractor(archive);
+        Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.None));
+
+        extractor.ExtractArchive(OutputDirectory);
+
+        Assert.That(extractor.ErrorFlags, Is.EqualTo(ArchiveErrorFlags.DataAfterEnd));
+    }
 }
 
 /// <summary>
