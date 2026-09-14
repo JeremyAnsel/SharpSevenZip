@@ -145,7 +145,7 @@ public class FileCheckerTests
     {
         var content = new byte[64 * 1024];
         CompoundHeader.CopyTo(content, 0);
-        new byte[] { 0x50, 0x4B, 0x03, 0x04 }.CopyTo(content, 0x2000);
+        ZipLocalHeader().CopyTo(content, 0x2000);
         using var stream = new MemoryStream(content, writable: false);
 
         var format = FileChecker.CheckSignature(stream, out var offset, out _);
@@ -155,6 +155,25 @@ public class FileCheckerTests
             Assert.That(format, Is.EqualTo(InArchiveFormat.Zip));
             Assert.That(offset, Is.EqualTo(0x2000));
         }
+    }
+
+    /// <summary>
+    /// The smallest local file header ZipIn.cpp IsArc_Zip accepts: a named entry whose name
+    /// holds no embedded NUL.
+    /// </summary>
+    private static byte[] ZipLocalHeader()
+    {
+        var name = System.Text.Encoding.ASCII.GetBytes("Test.txt");
+        var header = new byte[30 + name.Length];
+        header[0] = 0x50;
+        header[1] = 0x4B;
+        header[2] = 0x03;
+        header[3] = 0x04;
+        header[4] = 10;
+        header[26] = (byte)name.Length;
+        name.CopyTo(header, 30);
+
+        return header;
     }
 
     [Test]
@@ -169,6 +188,131 @@ public class FileCheckerTests
             Assert.That(format, Is.EqualTo(InArchiveFormat.PE));
             Assert.That(isExecutable, Is.True);
         }
+    }
+
+    /// <summary>
+    /// ARJ is recognised by two bytes, which arbitrary content reproduces about once per
+    /// 64 KiB. Without the header test every larger OLE2 document or executable would be
+    /// opened as an ARJ archive at a random offset, and fail.
+    /// </summary>
+    [TestCase(false)]
+    [TestCase(true)]
+    public void CheckSignature_ChanceArjBytes_KeepsTheContainerFormat(bool executable)
+    {
+        var content = new byte[64 * 1024];
+        if (executable)
+        {
+            content[0] = (byte)'M';
+            content[1] = (byte)'Z';
+        }
+        else
+        {
+            CompoundHeader.CopyTo(content, 0);
+        }
+
+        new byte[] { 0x60, 0xEA }.CopyTo(content, 0x3000);
+        using var stream = new MemoryStream(content, writable: false);
+
+        var format = FileChecker.CheckSignature(stream, out var offset, out _);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(executable ? InArchiveFormat.PE : InArchiveFormat.Compound));
+            Assert.That(offset, Is.Zero);
+        }
+    }
+
+    /// <summary>
+    /// A well-formed ARJ header behind a stub is still found.
+    /// </summary>
+    [Test]
+    public void CheckSignature_EmbeddedArjHeader_PrefersArj()
+    {
+        var content = new byte[64 * 1024];
+        content[0] = (byte)'M';
+        content[1] = (byte)'Z';
+        ArjHeader().CopyTo(content, 0x3000);
+        using var stream = new MemoryStream(content, writable: false);
+
+        var format = FileChecker.CheckSignature(stream, out var offset, out _);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(format, Is.EqualTo(InArchiveFormat.Arj));
+            Assert.That(offset, Is.EqualTo(0x3000));
+        }
+    }
+
+    /// <summary>
+    /// A signature can turn up inside a container by chance, so the probe reports the format
+    /// the header itself identified and the reader falls back to it when the embedded
+    /// candidate will not open.
+    /// </summary>
+    [TestCase(false, InArchiveFormat.Compound)]
+    [TestCase(true, InArchiveFormat.PE)]
+    public void TryCheckFormat_EmbeddedArchive_ReportsTheContainer(bool executable, InArchiveFormat expected)
+    {
+        var content = new byte[64 * 1024];
+        if (executable)
+        {
+            content[0] = (byte)'M';
+            content[1] = (byte)'Z';
+        }
+        else
+        {
+            CompoundHeader.CopyTo(content, 0);
+        }
+
+        ZipLocalHeader().CopyTo(content, 0x2000);
+        using var stream = new MemoryStream(content, writable: false);
+
+        SharpSevenZipArchiveFormat.TryCheckFormat(stream, out var info);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(info.Format, Is.EqualTo(InArchiveFormat.Zip));
+            Assert.That(info.ContainerFormat, Is.EqualTo(expected));
+        }
+    }
+
+    /// <summary>
+    /// Nothing was overridden, so there is nothing to fall back to.
+    /// </summary>
+    [Test]
+    public void TryCheckFormat_FormatFromTheHeader_ReportsNoContainer()
+    {
+        var content = new byte[64 * 1024];
+        CompoundHeader.CopyTo(content, 0);
+        using var stream = new MemoryStream(content, writable: false);
+
+        SharpSevenZipArchiveFormat.TryCheckFormat(stream, out var info);
+
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(info.Format, Is.EqualTo(InArchiveFormat.Compound));
+            Assert.That(info.ContainerFormat, Is.EqualTo(InArchiveFormat.None));
+        }
+    }
+
+    /// <summary>
+    /// The smallest header ArjHandler.cpp accepts: signature, a 30-byte block, the
+    /// archive-header file type and a matching CRC.
+    /// </summary>
+    private static byte[] ArjHeader()
+    {
+        const int blockSize = 30;
+        var header = new byte[4 + blockSize + 4];
+        header[0] = 0x60;
+        header[1] = 0xEA;
+        header[2] = blockSize;
+        header[4] = blockSize;
+        header[4 + 6] = 2;
+
+        var crc = new SharpSevenZip.Sdk.Common.Crc();
+        crc.Update(header, 4, blockSize);
+        BitConverter.GetBytes(crc.GetDigest()).CopyTo(header, 4 + blockSize);
+
+        return header;
     }
 
     /// <summary>

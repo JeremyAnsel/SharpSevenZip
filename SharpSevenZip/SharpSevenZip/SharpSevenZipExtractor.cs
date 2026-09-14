@@ -38,6 +38,7 @@ public sealed partial class SharpSevenZipExtractor
     private bool _opened;
     private bool _disposed;
     private InArchiveFormat _format = InArchiveFormat.None;
+    private InArchiveFormat _containerFormat = InArchiveFormat.None;
     private bool _isExecutable;
     private ReadOnlyCollection<ArchiveFileInfo>? _archiveFileInfoCollection;
     private ReadOnlyCollection<ArchiveProperty>? _archiveProperties;
@@ -66,7 +67,8 @@ public sealed partial class SharpSevenZipExtractor
 
         if (_format == InArchiveFormat.None)
         {
-            _format = FileChecker.CheckSignature(archiveFullName, out _offset, out isExecutable);
+            _format = FileChecker.CheckSignature(archiveFullName, out _offset, out isExecutable, out _containerFormat);
+            _isExecutable = isExecutable;
         }
 
         PreserveDirectoryStructure = true;
@@ -82,29 +84,29 @@ public sealed partial class SharpSevenZipExtractor
             throw;
         }
 
-        if (isExecutable && _format != InArchiveFormat.PE)
+        var container = ContainerFallbackFormat();
+
+        if (container != InArchiveFormat.None && !Check())
         {
-            if (!Check())
+            CommonDispose();
+
+            // The offset belongs to the embedded archive the signature scan believed it
+            // had found. Falling back means that guess was wrong, so the file has to be
+            // read from its own start again - otherwise the handler is handed a stream
+            // beginning in the middle of the container and cannot open it.
+            _offset = 0;
+            _format = container;
+            _containerFormat = InArchiveFormat.None;
+            SharpSevenZipLibraryManager.LoadLibrary(this, _format);
+
+            try
             {
-                CommonDispose();
-
-                // The offset belongs to the embedded archive the signature scan believed it
-                // had found. Falling back to PE means that guess was wrong, so the file has
-                // to be read from its own start again - otherwise the PE handler is handed a
-                // stream beginning in the middle of the image and cannot open it.
-                _offset = 0;
-                _format = InArchiveFormat.PE;
-                SharpSevenZipLibraryManager.LoadLibrary(this, _format);
-
-                try
-                {
-                    _archive = SharpSevenZipLibraryManager.InArchive(_format, this);
-                }
-                catch (SharpSevenZipLibraryException)
-                {
-                    SharpSevenZipLibraryManager.FreeLibrary(this, _format);
-                    throw;
-                }
+                _archive = SharpSevenZipLibraryManager.InArchive(_format, this);
+            }
+            catch (SharpSevenZipLibraryException)
+            {
+                SharpSevenZipLibraryManager.FreeLibrary(this, _format);
+                throw;
             }
         }
     }
@@ -120,7 +122,8 @@ public sealed partial class SharpSevenZipExtractor
 
         if (_format == InArchiveFormat.None)
         {
-            _format = FileChecker.CheckSignature(stream, out _offset, out isExecutable);
+            _format = FileChecker.CheckSignature(stream, out _offset, out isExecutable, out _containerFormat);
+            _isExecutable = isExecutable;
         }
 
         PreserveDirectoryStructure = true;
@@ -138,31 +141,45 @@ public sealed partial class SharpSevenZipExtractor
             throw;
         }
 
-        if (isExecutable && _format != InArchiveFormat.PE)
+        var container = ContainerFallbackFormat();
+
+        if (container != InArchiveFormat.None && !Check())
         {
-            if (!Check())
+            CommonDispose();
+
+            // See Init(string): the offset described a suspected embedded archive that
+            // turned out not to be one, so the handler must start at byte zero.
+            _offset = 0;
+            _format = container;
+            _containerFormat = InArchiveFormat.None;
+            SharpSevenZipLibraryManager.LoadLibrary(this, _format);
+
+            try
             {
-                CommonDispose();
-
-                // See Init(string): the offset described a suspected embedded archive that
-                // turned out not to be one, so the PE handler must start at byte zero.
-                _offset = 0;
-                _format = InArchiveFormat.PE;
-                SharpSevenZipLibraryManager.LoadLibrary(this, _format);
-
-                try
-                {
-                    _inStream = new ArchiveEmulationStreamProxy(stream, _offset, _leaveOpen);
-                    _packedSize = stream.Length;
-                    _archive = SharpSevenZipLibraryManager.InArchive(_format, this);
-                }
-                catch (SharpSevenZipLibraryException)
-                {
-                    SharpSevenZipLibraryManager.FreeLibrary(this, _format);
-                    throw;
-                }
+                _inStream = new ArchiveEmulationStreamProxy(stream, _offset, _leaveOpen);
+                _packedSize = stream.Length;
+                _archive = SharpSevenZipLibraryManager.InArchive(_format, this);
+            }
+            catch (SharpSevenZipLibraryException)
+            {
+                SharpSevenZipLibraryManager.FreeLibrary(this, _format);
+                throw;
             }
         }
+    }
+
+    /// <summary>
+    /// The format to fall back to when the one the embedded-archive scan chose will not open,
+    /// or <see cref="InArchiveFormat.None"/> when nothing was overridden. A caller that only
+    /// supplies <see cref="ArchiveFormatInfo.IsExecutable"/> is saying the same thing about a PE.
+    /// </summary>
+    private InArchiveFormat ContainerFallbackFormat()
+    {
+        var container = _containerFormat == InArchiveFormat.None && _isExecutable
+            ? InArchiveFormat.PE
+            : _containerFormat;
+
+        return container == _format ? InArchiveFormat.None : container;
     }
 
     /// <summary>
@@ -276,6 +293,7 @@ public sealed partial class SharpSevenZipExtractor
         _format = formatInfo.Format;
         _offset = formatInfo.Offset;
         _isExecutable = formatInfo.IsExecutable;
+        _containerFormat = formatInfo.ContainerFormat;
     }
 
     /// <summary>
