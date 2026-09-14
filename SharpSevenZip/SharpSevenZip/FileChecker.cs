@@ -139,8 +139,23 @@ internal static class FileChecker
     /// <returns>Corresponding InArchiveFormat.</returns>
     public static InArchiveFormat CheckSignature(Stream stream, out int offset, out bool isExecutable)
     {
+        return CheckSignature(stream, out offset, out isExecutable, out _);
+    }
+
+    /// <summary>
+    /// Gets the InArchiveFormat for a specific extension.
+    /// </summary>
+    /// <param name="stream">The stream to identify.</param>
+    /// <param name="offset">The archive beginning offset.</param>
+    /// <param name="isExecutable">True if the original format of the stream is PE; otherwise, false.</param>
+    /// <param name="containerFormat">The format the header itself identifies when the result was
+    /// found embedded inside it; otherwise <see cref="InArchiveFormat.None"/>.</param>
+    /// <returns>Corresponding InArchiveFormat.</returns>
+    internal static InArchiveFormat CheckSignature(Stream stream, out int offset, out bool isExecutable, out InArchiveFormat containerFormat)
+    {
         offset = 0;
         isExecutable = false;
+        containerFormat = InArchiveFormat.None;
 
         if (!stream.CanRead || !stream.CanSeek)
         {
@@ -257,31 +272,13 @@ internal static class FileChecker
 
         if (suspectedFormat != null)
         {
+            var embedded = FindEmbeddedArchive(stream, out offset);
 
-            var scanLength = Math.Min(stream.Length, SFX_SCAN_LENGTH);
-            signature = new byte[scanLength];
-            stream.Seek(0, SeekOrigin.Begin);
-            ReadFully(stream, signature, 0, (int)scanLength);
-
-            actualSignature = BitConverter.ToString(signature);
-
-            foreach (var format in new[]
+            if (embedded != null)
             {
-                    InArchiveFormat.Zip,
-                    InArchiveFormat.SevenZip,
-                    InArchiveFormat.Rar4,
-                    InArchiveFormat.Rar,
-                    InArchiveFormat.Cab,
-                    InArchiveFormat.Arj
-                })
-            {
-                var pos = actualSignature.IndexOf(Formats.InSignatureFormatsReversed[format], StringComparison.InvariantCulture);
+                containerFormat = suspectedFormat.Value;
 
-                if (pos > -1)
-                {
-                    offset = pos / 3;
-                    return format;
-                }
+                return embedded.Value;
             }
 
             // No embedded archive: fall back to the container the header itself identified.
@@ -295,6 +292,194 @@ internal static class FileChecker
     }
 
     /// <summary>
+    /// Looks for an archive stored behind an executable stub.
+    /// </summary>
+    private static InArchiveFormat? FindEmbeddedArchive(Stream stream, out int offset)
+    {
+        offset = 0;
+
+        var scanLength = (int)Math.Min(stream.Length, SFX_SCAN_LENGTH);
+        var buffer = new byte[scanLength];
+        stream.Seek(0, SeekOrigin.Begin);
+        ReadFully(stream, buffer, 0, scanLength);
+
+        var text = BitConverter.ToString(buffer);
+
+        foreach (var format in new[]
+        {
+                InArchiveFormat.Zip,
+                InArchiveFormat.SevenZip,
+                InArchiveFormat.Rar4,
+                InArchiveFormat.Rar,
+                InArchiveFormat.Cab,
+                InArchiveFormat.Arj
+            })
+        {
+            var expected = Formats.InSignatureFormatsReversed[format];
+
+            for (var pos = text.IndexOf(expected, StringComparison.InvariantCulture);
+                 pos > -1;
+                 pos = text.IndexOf(expected, pos + 3, StringComparison.InvariantCulture))
+            {
+                var candidate = pos / 3;
+
+                if (!IsPlausibleHeader(format, buffer, candidate))
+                {
+                    continue;
+                }
+
+                offset = candidate;
+
+                return format;
+            }
+        }
+
+        return null;
+    }
+
+    /// <summary>
+    /// Applies the handler's own signature test to a candidate the scan found. Without it a
+    /// signature that arbitrary content reproduces by chance outranks the header the file was
+    /// recognised by, and the wrong handler is handed a meaningless offset.
+    /// </summary>
+    private static bool IsPlausibleHeader(InArchiveFormat format, byte[] buffer, int offset)
+    {
+        return format switch
+        {
+            InArchiveFormat.Arj => IsArjHeader(buffer, offset),
+            InArchiveFormat.Zip => IsZipHeader(buffer, offset),
+            InArchiveFormat.Cab => IsCabHeader(buffer, offset),
+            _ => true
+        };
+    }
+
+    /// <summary>
+    /// The local-file-header branch of ZipIn.cpp IsArc_Zip: a full header must be present, it
+    /// must not be all zeros, and the entry name must not contain an embedded NUL.
+    /// </summary>
+    private static bool IsZipHeader(byte[] buffer, int offset)
+    {
+        const int LocalHeaderSize = 30;
+
+        if (offset + LocalHeaderSize > buffer.Length)
+        {
+            return false;
+        }
+
+        var empty = true;
+        for (var i = 4; i < LocalHeaderSize; i++)
+        {
+            if (buffer[offset + i] != 0)
+            {
+                empty = false;
+                break;
+            }
+        }
+
+        if (empty)
+        {
+            return false;
+        }
+
+        int nameSize = buffer[offset + 26] | (buffer[offset + 27] << 8);
+        var available = Math.Min(nameSize, buffer.Length - offset - LocalHeaderSize);
+
+        for (var i = 0; i < available; i++)
+        {
+            if (buffer[offset + LocalHeaderSize + i] != 0)
+            {
+                continue;
+            }
+
+            // Some writers pad the name with zeros; anything else after one is not a name.
+            for (var k = i + 1; k < available; k++)
+            {
+                if (buffer[offset + LocalHeaderSize + k] != 0)
+                {
+                    return false;
+                }
+            }
+
+            break;
+        }
+
+        return true;
+    }
+
+    /// <summary>
+    /// CabIn.cpp CInArcInfo::Parse: both reserved fields zero, a cabinet at least as large as
+    /// its own header, flags within range and the file-header offset inside the cabinet.
+    /// </summary>
+    private static bool IsCabHeader(byte[] buffer, int offset)
+    {
+        const int HeaderSize = 36;
+
+        if (offset + HeaderSize > buffer.Length)
+        {
+            return false;
+        }
+
+        if (BitConverter.ToUInt32(buffer, offset + 0x0C) != 0
+            || BitConverter.ToUInt32(buffer, offset + 0x14) != 0)
+        {
+            return false;
+        }
+
+        var size = BitConverter.ToUInt32(buffer, offset + 8);
+
+        if (size < HeaderSize || BitConverter.ToUInt16(buffer, offset + 0x1E) > 7)
+        {
+            return false;
+        }
+
+        var headersOffset = BitConverter.ToUInt32(buffer, offset + 0x10);
+
+        return headersOffset == 0 || headersOffset <= size;
+    }
+
+    /// <summary>
+    /// Applies the test ArjHandler.cpp performs in IsArc_Arj: block and header sizes, the
+    /// archive-header file type, the encryption version and the CRC over the first block.
+    /// </summary>
+    private static bool IsArjHeader(byte[] buffer, int offset)
+    {
+        const int BlockSizeMin = 30;
+        const int BlockSizeMax = 2600;
+        const byte ArchiveHeaderType = 2;
+
+        if (offset + BlockSizeMin + 4 > buffer.Length)
+        {
+            return false;
+        }
+
+        int blockSize = buffer[offset + 2] | (buffer[offset + 3] << 8);
+
+        if (blockSize is < BlockSizeMin or > BlockSizeMax)
+        {
+            return false;
+        }
+
+        var block = offset + 4;
+
+        if (buffer[block] < BlockSizeMin || buffer[block] > blockSize
+            || buffer[block + 6] != ArchiveHeaderType
+            || buffer[block + 28] > 8)
+        {
+            return false;
+        }
+
+        if (block + blockSize + 4 > buffer.Length)
+        {
+            return true;
+        }
+
+        var crc = new Sdk.Common.Crc();
+        crc.Update(buffer, (uint)block, (uint)blockSize);
+
+        return crc.GetDigest() == BitConverter.ToUInt32(buffer, block + blockSize);
+    }
+
+    /// <summary>
     /// Gets the InArchiveFormat for a specific file name.
     /// </summary>
     /// <param name="fileName">The archive file name.</param>
@@ -304,16 +489,32 @@ internal static class FileChecker
     /// <exception cref="System.ArgumentException"/>
     public static InArchiveFormat CheckSignature(string fileName, out int offset, out bool isExecutable)
     {
+        return CheckSignature(fileName, out offset, out isExecutable, out _);
+    }
+
+    /// <summary>
+    /// Gets the InArchiveFormat for a specific file name.
+    /// </summary>
+    /// <param name="fileName">The archive file name.</param>
+    /// <param name="offset">The archive beginning offset.</param>
+    /// <param name="isExecutable">True if the original format of the file is PE; otherwise, false.</param>
+    /// <param name="containerFormat">The format the header itself identifies when the result was
+    /// found embedded inside it; otherwise <see cref="InArchiveFormat.None"/>.</param>
+    /// <returns>Corresponding InArchiveFormat.</returns>
+    /// <exception cref="System.ArgumentException"/>
+    internal static InArchiveFormat CheckSignature(string fileName, out int offset, out bool isExecutable, out InArchiveFormat containerFormat)
+    {
         using var fs = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.ReadWrite, SIGNATURE_SIZE);
 
         try
         {
-            return CheckSignature(fs, out offset, out isExecutable);
+            return CheckSignature(fs, out offset, out isExecutable, out containerFormat);
         }
         catch (ArgumentException)
         {
             offset = 0;
             isExecutable = false;
+            containerFormat = InArchiveFormat.None;
             return Formats.FormatByFileName(fileName, true);
         }
     }
@@ -329,8 +530,8 @@ internal static class FileChecker
     {
         try
         {
-            var format = CheckSignature(fileName, out var offset, out var isExecutable);
-            info = new ArchiveFormatInfo(format, offset, isExecutable);
+            var format = CheckSignature(fileName, out var offset, out var isExecutable, out var container);
+            info = new ArchiveFormatInfo(format, offset, isExecutable, container);
             return true;
         }
         catch (ArgumentException)
@@ -351,8 +552,8 @@ internal static class FileChecker
     {
         try
         {
-            var format = CheckSignature(stream, out var offset, out var isExecutable);
-            info = new ArchiveFormatInfo(format, offset, isExecutable);
+            var format = CheckSignature(stream, out var offset, out var isExecutable, out var container);
+            info = new ArchiveFormatInfo(format, offset, isExecutable, container);
             return true;
         }
         catch (ArgumentException)
