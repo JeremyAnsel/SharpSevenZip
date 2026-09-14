@@ -339,6 +339,19 @@ references:
   commentId: T:SharpSevenZip.ArchiveFormatInfo
   fullName: SharpSevenZip.ArchiveFormatInfo
   nameWithType: ArchiveFormatInfo
+- uid: SharpSevenZip.ArchiveFormatInfo.ContainerFormat
+  name: ContainerFormat
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_ContainerFormat
+  commentId: P:SharpSevenZip.ArchiveFormatInfo.ContainerFormat
+  fullName: SharpSevenZip.ArchiveFormatInfo.ContainerFormat
+  nameWithType: ArchiveFormatInfo.ContainerFormat
+- uid: SharpSevenZip.ArchiveFormatInfo.ContainerFormat*
+  name: ContainerFormat
+  href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_ContainerFormat_
+  commentId: Overload:SharpSevenZip.ArchiveFormatInfo.ContainerFormat
+  isSpec: "True"
+  fullName: SharpSevenZip.ArchiveFormatInfo.ContainerFormat
+  nameWithType: ArchiveFormatInfo.ContainerFormat
 - uid: SharpSevenZip.ArchiveFormatInfo.Format
   name: Format
   href: api/SharpSevenZip.ArchiveFormatInfo.html#SharpSevenZip_ArchiveFormatInfo_Format
