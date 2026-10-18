@@ -222,6 +222,19 @@ public abstract class SharpSevenZipBase : MarshalByRefObject
     }
 
     /// <summary>
+    /// Attempts to set the path to the 7-Zip native library.
+    /// </summary>
+    /// <param name="libraryPath">The path to the 7-Zip native library.</param>
+    /// <returns>
+    /// <see langword="true"/> if the path was set;
+    /// <see langword="false"/> if the library has already been loaded.
+    /// </returns>
+    public static bool TrySetLibraryPath(string libraryPath)
+    {
+        return SharpSevenZipLibraryManager.TrySetLibraryPath(libraryPath);
+    }
+
+    /// <summary>
     /// Free the 7-zip native library.
     /// </summary>
     public static void FreeModuleLibrary()
