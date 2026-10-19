@@ -589,4 +589,40 @@ internal static class SharpSevenZipLibraryManager
         _libraryFileName = libraryPath;
         _features = null;
     }
+
+    /// <summary>
+    /// Attempts to set the path to the 7-Zip native library.
+    /// </summary>
+    /// <param name="libraryPath">The path to the 7-Zip native library.</param>
+    /// <returns>
+    /// <see langword="true"/> if the path was set;
+    /// <see langword="false"/> if the library has already been loaded and the path was not changed.
+    /// </returns>
+    /// <exception cref="SharpSevenZipLibraryException">
+    /// The specified library file does not exist.
+    /// </exception>
+    /// <remarks>
+    /// This method must use the same synchronization lock as <c>LoadLibrary</c>
+    /// to prevent the library path from changing concurrently with library loading.
+    /// </remarks>
+    public static bool TrySetLibraryPath(string libraryPath)
+    {
+        lock (SyncRoot)
+        {
+            // The library is already loaded; keep using the loaded module.
+            if (_modulePtr != IntPtr.Zero)
+                return false;
+
+            if (!File.Exists(libraryPath))
+            {
+                throw new SharpSevenZipLibraryException(
+                    $"can not change the library path because the file \"{libraryPath}\" does not exist.");
+            }
+
+            _libraryFileName = libraryPath;
+            _features = null;
+
+            return true;
+        }
+    }
 }
