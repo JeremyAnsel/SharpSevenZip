@@ -3363,6 +3363,22 @@ references:
   isSpec: "True"
   fullName: SharpSevenZip.SharpSevenZipBase.ToString
   nameWithType: SharpSevenZipBase.ToString
+- uid: SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath(System.String)
+  name: TrySetLibraryPath(string)
+  href: api/SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_TrySetLibraryPath_System_String_
+  commentId: M:SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath(System.String)
+  name.vb: TrySetLibraryPath(String)
+  fullName: SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath(string)
+  fullName.vb: SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath(String)
+  nameWithType: SharpSevenZipBase.TrySetLibraryPath(string)
+  nameWithType.vb: SharpSevenZipBase.TrySetLibraryPath(String)
+- uid: SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath*
+  name: TrySetLibraryPath
+  href: api/SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_TrySetLibraryPath_
+  commentId: Overload:SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath
+  isSpec: "True"
+  fullName: SharpSevenZip.SharpSevenZipBase.TrySetLibraryPath
+  nameWithType: SharpSevenZipBase.TrySetLibraryPath
 - uid: SharpSevenZip.SharpSevenZipBase.UniqueID
   name: UniqueID
   href: api/SharpSevenZip.SharpSevenZipBase.html#SharpSevenZip_SharpSevenZipBase_UniqueID
